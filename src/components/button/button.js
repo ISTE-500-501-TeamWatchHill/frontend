@@ -1,1 +1,9 @@
-// TODO for Login buttons on home page and other buttons
+export default function Button(props) { 
+    return (
+        <>
+            <button>
+                {props.name}
+            </button>
+        </>
+    )
+}

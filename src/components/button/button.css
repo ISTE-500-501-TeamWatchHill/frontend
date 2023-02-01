@@ -1,1 +1,15 @@
-/* TODO for Login buttons on home page and other buttons */
+/**
+    TODO
+        Text size
+        Text color
+        Button height
+        Button background color
+        Button default width -- will be changed if user inputs one
+*/
+
+button {
+    background-color: #525252;
+    color: #FFFFFF;
+    padding: 12px;
+    border: none;
+}

@@ -2,6 +2,8 @@
 
 import React from "react";
 import './navbar.css';
+import NavLink from '../navlink/navlink';
+
 
 // Here, we display our Navbar
 export default function Navbar() {
@@ -9,10 +11,30 @@ export default function Navbar() {
     <>
       <nav>
         <ul>
-            <li><a href="#TOURNAMENT">LOGO</a></li>
-            <li><a href="#TOURNAMENT">TOURNAMENT</a></li>
-            <li><a href="#TEAMSUNIVERSITIES">TEAMS & UNIVERSITIES</a></li>
-            <li><a href="#AARDVARKGAMES">AARDVARK GAMES</a></li>
+            <li>
+                <NavLink 
+                    name="TOURNAMENT"
+                    link="/tournament"
+                    subnames={[ ]}
+                    linksubnames={[ ]}
+                />
+            </li>
+            <li>
+                <NavLink 
+                    name="TEAMS & UNIVERSITIES"
+                    link="/teamsanduniversities"
+                    subnames={[ ]}
+                    linksubnames={[ ]}
+                />
+            </li>
+            <li>
+                <NavLink 
+                    name="AARDVARK GAMES"
+                    link="/aardvarkgames"
+                    subnames={[ ]}
+                    linksubnames={[ ]}
+                />
+            </li>
             <li><button>LOGIN</button></li>
         </ul>
       </nav>

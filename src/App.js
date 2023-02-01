@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/navbar/navbar';
 
 //importing all of the pages
 import AardvarkGames from './pages/aardvarkgames/aardvarkgames';

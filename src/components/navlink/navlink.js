@@ -22,10 +22,10 @@ export default function NavLink(props) {
     if (props.sublinks) {
         return (
             <>
-                <a href={props.link} class="dropdown">
+                <a href={props.link} className="dropdown">
                     {props.name}
                 </a>
-                <div class="dropdown-items">
+                <div className="dropdown-items">
                     {props.sublinks.map((sublink) => (
                         <a href={sublink.link} key={sublink.link}>{sublink.name}</a>
                     ))}

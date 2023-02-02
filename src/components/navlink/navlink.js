@@ -1,8 +1,14 @@
 import './navlink.css';
 
 export default function NavLink(props) { 
-    // check props.name exists
-    // check props.link || props.sublinks exists
+    if (!props.name) {
+        throw new Error ("ERROR: No name provided for navlink component.");
+    }
+
+    if (!props.link && !props.sublinks) {
+        throw new Error ("ERROR: No link or sublinks provided for navlink component.");
+    }
+
     if (props.link) {
         return (
             <>

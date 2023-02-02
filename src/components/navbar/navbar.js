@@ -15,7 +15,6 @@ export default function Navbar() {
             <li>
                 <NavLink 
                     name="TOURNAMENT"
-                    // link="/tournament"
                     sublinks={[ 
                       { name: "ABOUT", link: "/tournament" },
                       { name: "SCHEDULE", link: "/schedule" },
@@ -26,14 +25,11 @@ export default function Navbar() {
                 <NavLink 
                     name="TEAMS & UNIVERSITIES"
                     link="/teamsanduniversities"
-                    // subnames={[ ]}
-                    // linksubnames={[ ]}
                 />
             </li>
             <li>
                 <NavLink 
                     name="AARDVARK GAMES"
-                    // link="/aardvarkgames"
                     sublinks={[ 
                       { name: "ABOUT", link: "/aardvarkgames" },
                       { name: "BOARD GAME", link: "/boardgame" },

@@ -1,3 +1,15 @@
 .dropdown:hover + .dropdown-items {
-    background: #f00;
+    background: #FFF;
+    display: block;
+    position: absolute;
+}
+
+.dropdown-items:hover{
+    display: block;
+    background: #FFF;
+    position: absolute;
+}
+
+.dropdown-items {
+    display: none;
 }

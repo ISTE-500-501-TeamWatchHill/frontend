@@ -36,12 +36,13 @@ export default function Navbar() {
                     ]}
                 />
             </li>
-            <li>
+            {/* <li>
               <Button 
-                name="LOGIN"
+                name="Login"
               />
-            </li>
+            </li> */}
         </ul>
+        <Button name="Login"/>
       </nav>
     </>
   );

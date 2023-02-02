@@ -6,6 +6,7 @@ ul {
   background-color: #fff;
   display: flex; 
   align-items: center;
+  margin-right:56px;
 }
 
 li {
@@ -26,6 +27,7 @@ li a:hover:not(.active) {
 
 nav {
   height: 88px;
+  padding-right: 95px;
   display: flex; 
   align-items: center;
   justify-content: end;

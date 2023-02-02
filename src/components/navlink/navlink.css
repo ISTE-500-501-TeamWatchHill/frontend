@@ -1,1 +1,15 @@
-/* TODO */
+.dropdown:hover + .dropdown-items {
+    background: #FFF;
+    display: block;
+    position: absolute;
+}
+
+.dropdown-items:hover{
+    display: block;
+    background: #FFF;
+    position: absolute;
+}
+
+.dropdown-items {
+    display: none;
+}

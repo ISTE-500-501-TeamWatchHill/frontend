@@ -15,33 +15,34 @@ export default function Navbar() {
             <li>
                 <NavLink 
                     name="TOURNAMENT"
-                    link="/tournament"
-                    subnames={[ ]}
-                    linksubnames={[ ]}
+                    sublinks={[ 
+                      { name: "ABOUT", link: "/tournament" },
+                      { name: "SCHEDULE", link: "/schedule" },
+                    ]}
                 />
             </li>
             <li>
                 <NavLink 
                     name="TEAMS & UNIVERSITIES"
                     link="/teamsanduniversities"
-                    subnames={[ ]}
-                    linksubnames={[ ]}
                 />
             </li>
             <li>
                 <NavLink 
                     name="AARDVARK GAMES"
-                    link="/aardvarkgames"
-                    subnames={[ ]}
-                    linksubnames={[ ]}
+                    sublinks={[ 
+                      { name: "ABOUT", link: "/aardvarkgames" },
+                      { name: "BOARD GAME", link: "/boardgame" },
+                    ]}
                 />
             </li>
-            <li>
+            {/* <li>
               <Button 
-                name="LOGIN"
+                name="Login"
               />
-            </li>
+            </li> */}
         </ul>
+        <Button name="Login"/>
       </nav>
     </>
   );

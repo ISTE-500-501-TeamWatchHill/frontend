@@ -1,9 +1,0 @@
-h1 {
-    color: #525252;
-}
-
-.flex {
-    display: flex;
-    flex-direction: row;
-    column-gap: 20px;
-}

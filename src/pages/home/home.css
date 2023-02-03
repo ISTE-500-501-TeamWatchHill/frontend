@@ -1,0 +1,56 @@
+/* The New World */
+
+/* .title-section {    
+    margin: 0 !important;
+    padding: 0 !important;
+} */
+h1 {
+    margin:0;
+}
+
+.title {
+    /* position: absolute; */
+    /* width: 1075px; */
+    /* height: 133px; */
+    /* left: 182px; */
+    /* top: 283px; */
+
+    /* font-family: 'Mulish'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 128px;
+    /* line-height: 147.69%; */
+    /* or 189px */
+
+   
+
+    color: #616161;
+}
+
+.title-section {
+    height:calc(100vh - 88px);
+    background-color:aqua;
+    /* display: flex; */
+    /* align-items: center; */
+    text-align: center;
+}
+
+.text {
+    /* Semibold/26px */
+
+    /* font-family: 'Mulish'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    /* identical to box height, or 123% */
+
+    /* display: flex; */
+    /* align-items: center; */
+    /* text-align: center; */
+    letter-spacing: 0.2px;
+
+    /* Light / Black */
+
+    color: #373F41;
+}

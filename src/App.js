@@ -11,6 +11,7 @@ import BoardGame from './pages/aardvarkgames/boardgame/boardgame';
 import TeamsAndUniversities from './pages/teamsanduniversities/teamsanduniversities';
 import Tournament from './pages/tournament/tournament/tournament';
 import Schedule from './pages/tournament/schedule/schedule';
+import Home from './pages/home/home';
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/teamsanduniversities" element={<TeamsAndUniversities />} />
         <Route exact path="/tournament" element={<Tournament />} />
         <Route exact path="/schedule" element={<Schedule />} />
+        <Route exact path="/" element={<Home />} />
       </Routes>
       </div>
     </div>

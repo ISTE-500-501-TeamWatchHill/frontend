@@ -14,10 +14,11 @@ const Home = () => {
                 <Spacer height='16px' />
                 <div className='text'>Introducing Aardvark's newest board game, A New World, with a global collegiate competition!</div>
                 <Spacer height='42px' />
-                <div>DD HH MM SS</div>
+                <div className='countdown'>TODO: Dynamic countdown timer here</div>
                 <Spacer height='40px' />
-                <div>
+                <div className='button-row'>
                     <Button name="Learn More"/>
+                    <Spacer width="20px"/>
                     <Button name="Register"/>
                 </div>
             </div>

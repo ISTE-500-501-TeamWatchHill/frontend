@@ -17,7 +17,6 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <div style={{ margin: 20 }}>
       <Routes>
         <Route path="/aardvarkgames" element={<AardvarkGames />} />
         <Route exact path="/boardgame" element={<BoardGame />} />
@@ -26,7 +25,6 @@ const App = () => {
         <Route exact path="/schedule" element={<Schedule />} />
       </Routes>
       </div>
-    </div>
   );
 };
 

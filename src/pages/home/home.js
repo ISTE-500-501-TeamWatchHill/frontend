@@ -15,6 +15,10 @@ import Spacer from '../../components/spacer/spacer';
     // Change favicon
     // Set button functions
         // make button size and shape dynaimc
+    // Make components out of repeated items
+
+// TechDebt
+    // Refactor dynamic text elements
 const Home = () => {
     return (
         <>

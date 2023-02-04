@@ -5,6 +5,12 @@ import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 
 
+// TODO
+    // Add footer
+    // Make dynamic
+    // Make responsive
+    // Change images + add alt text
+    // Make dynamic timer
 const Home = () => {
     return (
         <>
@@ -38,6 +44,48 @@ const Home = () => {
                 <img src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
                 <Spacer width='75px'/>
                 <p className='text'>All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag. The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.</p>
+            </div>
+
+            <div className='fourth-section'>
+                <h3 className='text'>WHO'S PLAYING?</h3>
+                <Spacer height='48px' />
+                <div className='teams-playing'>
+                    <div className='team-playing'>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <Spacer width='24px'/>
+                        <div className='small-text'>Cornell University</div>
+                    </div>
+
+                    <div className='team-playing'>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <Spacer width='24px'/>
+                        <div className='small-text'>University College of Dublin</div>
+                    </div>
+
+                    <div className='team-playing'>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <Spacer width='24px'/>
+                        <div className='small-text'>IIT Delhi</div>
+                    </div>
+
+                    <div className='team-playing'>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <Spacer width='24px'/>
+                        <div className='small-text'>Kyoto University</div>
+                    </div>
+
+                    <div className='team-playing'>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <Spacer width='24px'/>
+                        <div className='small-text'>Pontificia UCC</div>
+                    </div>
+
+                    <div className='team-playing'>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <Spacer width='24px'/>
+                        <div className='small-text'>Rochester Institute of Technology </div>
+                    </div>
+                </div>
             </div>
         </>
     )

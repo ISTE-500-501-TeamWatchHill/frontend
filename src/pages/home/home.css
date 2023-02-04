@@ -83,3 +83,44 @@ p.text {
     padding-top: 112px;
     padding-bottom: 144px;
 }
+
+.fourth-section {
+    /* mmmm not sure which to go with, but I'll leave both here */
+    /* margin-left: 146px; */
+    padding: auto;
+    align-content: center;
+    margin-top: 96px;
+    margin-left: 146px;
+    margin-bottom: 156px;
+
+}
+
+.teams-playing {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1147px;
+    /* background-color: blue; */
+    margin:auto;
+}
+
+.team-playing {
+    display: flex;
+    flex: 1 0 33%;
+    align-items: center;
+    width: 263px;
+    margin-bottom:40px;
+}
+
+.small-text {
+    /* font-family: 'Mulish'; */
+    
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 18px;
+    /* identical to box height, or 123% */
+
+    letter-spacing: 0.2px;
+    color: #373F41;
+
+    max-width: 166px;
+}

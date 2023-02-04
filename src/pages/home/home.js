@@ -11,6 +11,10 @@ import Spacer from '../../components/spacer/spacer';
     // Make responsive
     // Change images + add alt text
     // Make dynamic timer
+    // Add fonts
+    // Change favicon
+    // Set button functions
+        // make button size and shape dynaimc
 const Home = () => {
     return (
         <>

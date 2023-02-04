@@ -48,6 +48,7 @@ h1 {
 
 p.text {
     font-weight: 400;
+    max-width: 852px;
 }
 
 .countdown {
@@ -66,8 +67,19 @@ p.text {
 }
 
 .second-section {
-    width: 852px;
+    max-width: 852px;
     margin-top: 120px;
     margin-left: 146px;
     margin-bottom: 94px;
+}
+
+.third-section {
+    /* max-width: 1145px; */
+    display: flex;
+    background-color: #D9D9D9;
+    /* text-align: center; */
+    flex-direction:row;
+    justify-content: center;
+    padding-top: 112px;
+    padding-bottom: 144px;
 }

@@ -6,7 +6,6 @@ import Spacer from '../../components/spacer/spacer';
 
 
 const Home = () => {
-    
     return (
         <>
             <div className='title-section'>
@@ -33,6 +32,12 @@ const Home = () => {
                     <Spacer height='40px'/>
                     <p className='text'>Join us for some great gaming fun! Join us for some awesome tournament prizes!</p>
                 </div>
+            </div>
+
+            <div className='third-section'>
+                <img src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ'/>
+                <Spacer width='75px'/>
+                <p className='text'>All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag. The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.</p>
             </div>
         </>
     )

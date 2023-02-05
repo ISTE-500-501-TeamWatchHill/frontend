@@ -1,0 +1,106 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+h1 {
+    margin:0;
+}
+
+.title {
+    /* font-family: 'Mulish'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 128px;
+    color: #616161;
+}
+
+.title-section {
+    height:calc(100vh - 88px);
+    background-color: #D9D9D9;
+    display: flex;
+    text-align: center;
+    flex-direction:column;
+    justify-content: center;
+    
+}
+
+.text {
+    /* font-family: 'Mulish'; */
+    font-weight: bold;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #373F41;
+}
+
+p.text {
+    font-weight: 400;
+    max-width: 852px;
+}
+
+.countdown {
+    /* font-family: 'Mulish'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 147.69%;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+}
+
+.second-section {
+    max-width: 852px;
+    margin-top: 120px;
+    margin-left: 146px;
+    margin-bottom: 94px;
+}
+
+.third-section {
+    display: flex;
+    background-color: #D9D9D9;
+    flex-direction:row;
+    justify-content: center;
+    padding-top: 112px;
+    padding-bottom: 144px;
+}
+
+.fourth-section {
+    /* mmmm not sure which to go with, but I'll leave both here */
+    /* margin-left: 146px; */
+    padding: auto;
+    align-content: center;
+    margin-top: 96px;
+    margin-left: 146px;
+    margin-bottom: 156px;
+
+}
+
+.teams-playing {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1147px;
+    margin:auto;
+}
+
+.team-playing {
+    display: flex;
+    flex: 1 0 33%;
+    align-items: center;
+    width: 263px;
+    margin-bottom:40px;
+}
+
+.small-text {
+    /* font-family: 'Mulish'; */
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: #373F41;
+    max-width: 166px;
+}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Button from '../../../components/button/button';
+import Select from 'react-select'
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 import './teamsanduniversities.css';
@@ -20,6 +20,7 @@ const teams = [
 const TeamsAndUniversities = () => {   
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
+    const [sortOption, changeSortOption] = useState(null);
 
     return (
           <>
@@ -29,7 +30,15 @@ const TeamsAndUniversities = () => {
             {/* View and Search Functionality */}
             <div class="flex">
                 {/* Sort Button */}
-                <Button name="Sort By"/>
+                <Select
+                    onChange={changeSortOption}
+                    options={[
+                        { value: 'team', label: 'Team A-Z' },
+                        { value: 'university', label: 'University A-Z' }
+                    ]}
+                    className="select"
+                    placeholder="Sort by..."
+                />
 
                 {/* Search Bar */}
                 <SearchBar 

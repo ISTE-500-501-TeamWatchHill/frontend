@@ -16,3 +16,7 @@ h1 {
     row-gap: 10px;
     column-gap: 10px;
 }
+
+.select {
+    width: 180px;
+}

@@ -22,6 +22,23 @@ const TeamsAndUniversities = () => {
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
 
+if (sortOption!=null) {
+    var isTeamNameSort = sortOption.value=="team"
+
+    teams.sort(function (a, b) {
+        console.log(sortOption)
+        
+        if ((isTeamNameSort) ? a.name < b.name : a.universityname < b.universityname) {
+            return -1;
+        }
+        if ((isTeamNameSort) ? a.name > b.name : a.universityname > b.universityname) {
+            return 1;
+        }
+        return 0;
+    });
+}
+
+
     return (
           <>
             {/* Title */}
@@ -31,13 +48,15 @@ const TeamsAndUniversities = () => {
             <div class="flex">
                 {/* Sort Button */}
                 <Select
-                    onChange={changeSortOption}
+                    //Default value is null
+                    className="select"
+                    placeholder="Sort by..."
+                    value={sortOption}
                     options={[
                         { value: 'team', label: 'Team A-Z' },
                         { value: 'university', label: 'University A-Z' }
                     ]}
-                    className="select"
-                    placeholder="Sort by..."
+                    onChange={changeSortOption}
                 />
 
                 {/* Search Bar */}

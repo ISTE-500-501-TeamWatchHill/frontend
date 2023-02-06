@@ -3,6 +3,18 @@ import './teamblock.css';
 import image from '../placeholder.png';
 
 const TeamBlock = (props) => {   
+    if (!props.team.name) {
+        throw new Error ("ERROR: No team name.");
+    }
+
+    if (!props.team.universityname) {
+        throw new Error ("ERROR: No university name.");
+    }
+
+    if (!props.team.numplayers) {
+        throw new Error ("ERROR: No number of players set.");
+    }
+
     return (
           <>
             <div class="block">

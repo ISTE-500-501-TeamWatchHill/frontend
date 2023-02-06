@@ -1,0 +1,22 @@
+h1 {
+    color: #525252;
+    font-size: 100px;
+    margin-bottom: 0;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.select {
+    width: 180px;
+}

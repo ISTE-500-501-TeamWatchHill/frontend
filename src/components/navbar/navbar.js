@@ -1,5 +1,3 @@
-// TODO for Alexis
-
 import React from "react";
 import './navbar.css';
 import NavLink from '../navlink/navlink';

@@ -14,10 +14,6 @@ ul {
   margin-right:56px;
 }
 
-li {
-  float: left;
-}
-
 li a {
   display: block;
   color: #373F41;
@@ -32,8 +28,15 @@ li a:hover:not(.active) {
 
 nav {
   height: 88px;
+  padding-left: 95px;
   padding-right: 95px;
   display: flex; 
   align-items: center;
+  justify-content: space-between;
+}
+
+.right-nav {
+  display: flex; 
+
   justify-content: flex-end;
 }

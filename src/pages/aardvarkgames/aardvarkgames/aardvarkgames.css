@@ -1,14 +1,14 @@
-* {
+/* * {
     font-family: 'Mulish';
-}
+} */
 
-.title-section {
+/* .title-section {
     margin: 0;
     padding: 0;
     background-color: #B4B4B4;    
-}
+} */
 
-.aardvarkgames-title {
+/* .aardvarkgames-title {
     position: absolute;
     width: 75%;
     height:8rem;
@@ -20,15 +20,14 @@
     font-weight:bold;
     font-size: 8rem;
     line-height: 147.69%;
-    /* or 189px */
 
     display: flex;
     align-items: center;
 
     color: #616161;
-}
+} */
 
-.about {
+/* .about {
     position: absolute;
     width: 8%;
     height: 8rem;
@@ -39,16 +38,15 @@
     font-weight: lighter;
     font-size: 2rem;
     line-height: 147.69%;
-    /* or 53px */
 
     display: flex;
     align-items: center;
     text-transform: uppercase;
 
     color: #000000;
-}
+} */
 
-.info {
+/* .info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -56,5 +54,5 @@
     width: 55%;
     top: 95%;
     left: 11%;
-}
+} */
 

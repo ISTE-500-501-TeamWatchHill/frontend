@@ -1,5 +1,7 @@
 import React from 'react';
 import './tournament.css';
+import "@fontsource/mulish";
+
 import Spacer from '../../../components/spacer/spacer';
 
 const Tournament = () => {

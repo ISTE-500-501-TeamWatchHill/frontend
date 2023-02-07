@@ -1,10 +1,12 @@
 import React from 'react';
+import './tournament.css';
 const Tournament = () => {
     
 return (
       <>
-        <h1 style={{color:"blue"}}> 
-            Tournament Time</h1>
+        <div className='tournament-about-title-section'>
+          <h1 className='tournament-about-title'>Tournament</h1>
+        </div>
       </>
   )
 };

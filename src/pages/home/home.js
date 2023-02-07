@@ -4,7 +4,6 @@ import './home.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 
-
 // TODO
     // Add footer
     // Make dynamic

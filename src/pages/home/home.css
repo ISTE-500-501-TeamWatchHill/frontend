@@ -15,7 +15,7 @@ h1 {
     color: #616161;
 }
 
-.title-section {
+.home-title-section {
     height:calc(100vh - 88px);
     background-color: #D9D9D9;
     display: flex;

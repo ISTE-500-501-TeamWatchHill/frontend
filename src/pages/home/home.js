@@ -22,7 +22,7 @@ import Spacer from '../../components/spacer/spacer';
 const Home = () => {
     return (
         <>
-            <div className='title-section'>
+            <div className='home-title-section'>
                 <h1 className='home-title'>The New World</h1>
                 <Spacer height='16px' />
                 <div className='text'>Introducing Aardvark's newest board game, A New World, with a global collegiate competition!</div>
@@ -49,7 +49,7 @@ const Home = () => {
             </div>
 
             <div className='third-section'>
-                <img src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Aardvark%20Games' alt='TODO'/>
                 <Spacer width='75px'/>
                 <p className='text'>All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag. The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.</p>
             </div>
@@ -59,37 +59,37 @@ const Home = () => {
                 <Spacer height='48px' />
                 <div className='teams-playing'>
                     <div className='team-playing'>
-                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>
                         <Spacer width='24px'/>
                         <div className='small-text'>Cornell University</div>
                     </div>
 
                     <div className='team-playing'>
-                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>
                         <Spacer width='24px'/>
                         <div className='small-text'>University College of Dublin</div>
                     </div>
 
                     <div className='team-playing'>
-                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>
                         <Spacer width='24px'/>
                         <div className='small-text'>IIT Delhi</div>
                     </div>
 
                     <div className='team-playing'>
-                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>
                         <Spacer width='24px'/>
                         <div className='small-text'>Kyoto University</div>
                     </div>
 
                     <div className='team-playing'>
-                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>
                         <Spacer width='24px'/>
                         <div className='small-text'>Pontificia UCC</div>
                     </div>
 
                     <div className='team-playing'>
-                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ' alt='TODO'/>
+                        <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>
                         <Spacer width='24px'/>
                         <div className='small-text'>Rochester Institute of Technology </div>
                     </div>

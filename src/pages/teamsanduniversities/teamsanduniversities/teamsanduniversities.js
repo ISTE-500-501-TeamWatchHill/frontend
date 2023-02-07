@@ -70,7 +70,8 @@ if (sortOption!=null) {
             <div class="grid">
                 {/* Results */}
                 {
-                    teams.forEach((team) => {
+                    // eslint-disable-next-line
+                    teams.map((team) => {
                         if (searchValue.length === 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
                             return (
                                 <TeamBlock team={team} />

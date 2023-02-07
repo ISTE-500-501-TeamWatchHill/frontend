@@ -1,0 +1,27 @@
+footer {
+    min-height: 224px;
+    display: flex;
+    justify-content: space-between;
+    padding-top:52px;
+    padding-left: 146px;
+    padding-right: 292px;
+}
+
+.footerList {
+    display: flex;
+    flex-direction: column;
+    padding-bottom:10px;
+}
+
+.footerListItem {
+    padding-bottom:10px;
+}
+
+.footerListHeader {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    padding-bottom:10px;
+}

@@ -1,6 +1,7 @@
 import './App.css';
 import React from "react";
 import Navbar from './components/navbar/navbar';
+import Footer from './components/footer/footer';
 
 // We use Route in order to define the different routes of our application
 import { Route, Routes } from "react-router-dom";
@@ -28,6 +29,7 @@ const App = () => {
         <Route exact path="/team" element={<Team />} />
         <Route exact path="/" element={<Home />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

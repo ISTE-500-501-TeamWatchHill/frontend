@@ -19,7 +19,7 @@ const TeamBlock = (props) => {
           <>
             <div class="block">
                 <div class="flex">
-                    <img src={image} alt="Placeholder image"/>
+                    <img src={image} alt="Placeholder"/>
 
                     <div>
                         <h2>{props.team.name}</h2>

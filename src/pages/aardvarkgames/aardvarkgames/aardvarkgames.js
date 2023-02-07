@@ -6,7 +6,7 @@ const AardvarkGames = () => {
 return (
       <>
         <div className='title-section'>
-          <h1 className="title">Aardvark Games</h1>
+          <h1 className="aardvarkgames-title">Aardvark Games</h1>
         
           <h3 className='about'>ABOUT</h3>
           <p className='info'>Aardvark Games is a tabletop game publisher dedicated to entertaining game players worldwide with products designed to engage and challenge. Our best known games include Meeple City, Beyond the Galaxy, Continental Conquest, Between the Seas and now, A New World. 

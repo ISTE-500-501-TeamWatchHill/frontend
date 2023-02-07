@@ -23,7 +23,7 @@ const TeamsAndUniversities = () => {
     const [sortOption, changeSortOption] = useState(null);
 
 if (sortOption!=null) {
-    var isTeamNameSort = sortOption.value=="team"
+    let isTeamNameSort = sortOption.value === "team";
 
     teams.sort(function (a, b) {
         console.log(sortOption)
@@ -69,15 +69,15 @@ if (sortOption!=null) {
 
             <div class="grid">
                 {/* Results */}
-                {teams.map((team) => {
-                    if (searchValue.length == 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
-                        return (
-                            <TeamBlock
-                                team = {team}
-                            />
-                        )
-                    }
-                })}
+                {
+                    teams.forEach((team) => {
+                        if (searchValue.length === 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
+                            return (
+                                <TeamBlock team={team} />
+                            )
+                        }
+                    })
+                }
             </div>
           </>
     )

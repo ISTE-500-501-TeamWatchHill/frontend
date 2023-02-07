@@ -1,6 +1,5 @@
 import React from 'react'
 import './team.css';
-import image from '../../../components/placeholder.png';
 
 const Team = (props) => {   
     return (

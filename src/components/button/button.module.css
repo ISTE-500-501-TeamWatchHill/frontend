@@ -2,7 +2,8 @@
 .button {
     background-color: #525252;
     color: #FFFFFF;
-    padding: 12px 17px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     border: none;
     font-size: 14px;
     /* TODO: Add hover, click, active, etc. */

@@ -1,0 +1,9 @@
+/* Default styles */
+.button {
+    background-color: #525252;
+    color: #FFFFFF;
+    padding: 12px 17px;
+    border: none;
+    font-size: 14px;
+    /* TODO: Add hover, click, active, etc. */
+}

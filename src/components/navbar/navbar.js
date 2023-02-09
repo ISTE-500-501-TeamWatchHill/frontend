@@ -36,7 +36,7 @@ export default function Navbar() {
                   />
               </li>
           </ul>
-          <Button name="Login"/>
+          <Button name="Login" transparentBackground={true}/>
         </div> {/* classname='right-nav' */}
       </nav>
     </>

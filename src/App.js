@@ -13,6 +13,7 @@ import TeamsAndUniversities from './pages/teamsanduniversities/teamsanduniversit
 import Tournament from './pages/tournament/tournament/tournament';
 import Schedule from './pages/tournament/schedule/schedule';
 import Team from './pages/teamsanduniversities/team/team';
+import University from './pages/teamsanduniversities/university/university';
 import Home from './pages/home/home';
 
 
@@ -26,7 +27,8 @@ const App = () => {
         <Route path="/teamsanduniversities" element={<TeamsAndUniversities />} />
         <Route exact path="/tournament" element={<Tournament />} />
         <Route exact path="/schedule" element={<Schedule />} />
-        <Route exact path="/team" element={<Team />} />
+        <Route path="/team/:team" element={<Team />} />
+        <Route path="/university/:id" element={<University />} />
         <Route exact path="/" element={<Home />} />
       </Routes>
       <Footer />

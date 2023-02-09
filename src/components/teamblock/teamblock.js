@@ -31,7 +31,7 @@ const TeamBlock = (props) => {
                     <img src={image} alt="Placeholder"/>
 
                     <div>
-                        <a href={"/team/" + JSON.stringify(props.team)} key={"/team/" + JSON.stringify(props.team)}>{props.team.name}</a>
+                        <a href={"/team/" + props.team.id} key={"/team/" + props.team.id}>{props.team.name}</a>
                         <p><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
                         <p><strong>Number of Players:</strong> {props.team.numplayers}</p>
                     </div>

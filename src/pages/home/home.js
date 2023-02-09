@@ -29,7 +29,7 @@ const Home = () => {
                 <div className='countdown'>TODO: Dynamic countdown timer here</div>
                 <Spacer height='40px' />
                 <div className='button-row'>
-                    <Button name="Learn More"/>
+                    <Button name="Learn More" transparentBackground={true}/>
                     <Spacer width="20px"/>
                     <Button name="Register"/>
                 </div>

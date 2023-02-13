@@ -1,5 +1,5 @@
 import React from "react";
-import './navbar.css';
+import styles from './navbar.module.css';
 import NavLink from '../navlink/navlink';
 import Button from '../button/button';
 import logo from '../Aardvark_logo_clear_horizontal.png';
@@ -7,11 +7,11 @@ import logo from '../Aardvark_logo_clear_horizontal.png';
 export default function Navbar() {
   return (
     <>
-      <nav>
-        <a href='/'><img className='logo' src={logo} alt='Aarvark Games Logo'/></a>
-        <div className='right-nav'>
-          <ul>
-              <li>
+      <nav className={styles.nav}>
+        <a className={styles.nav_a} href='/'><img src={logo} alt='Aarvark Games Logo'/></a>
+        <div className={styles.right_nav}>
+          <ul className={styles.nav_ul}>
+              <li className={styles.nav_li}>
                   <NavLink 
                       name="TOURNAMENT"
                       sublinks={[ 
@@ -20,13 +20,13 @@ export default function Navbar() {
                       ]}
                   />
               </li>
-              <li>
+              <li className={styles.nav_li}>
                   <NavLink 
                       name="TEAMS & UNIVERSITIES"
                       link="/teamsanduniversities"
                   />
               </li>
-              <li>
+              <li className={styles.nav_li}>
                   <NavLink 
                       name="AARDVARK GAMES"
                       sublinks={[ 
@@ -37,7 +37,7 @@ export default function Navbar() {
               </li>
           </ul>
           <Button name="Login"/>
-        </div> {/* classname='right-nav' */}
+        </div> {/* classname='right_nav' */}
       </nav>
     </>
   );

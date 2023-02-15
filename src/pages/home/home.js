@@ -31,7 +31,7 @@ const Home = () => {
                 <div className='button-row'>
                     <Button name="Learn More" transparentBackground={true}/>
                     <Spacer width="20px"/>
-                    <Button name="Register"/>
+                    <Button name="Register for Tournament" link="/register"/>
                 </div>
             </div>
 

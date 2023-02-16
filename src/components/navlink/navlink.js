@@ -15,7 +15,7 @@ export default function NavLink(props) {
     if (props.link) {
         return (
             <>
-                <a href={props.link}>
+                <a className={navbarStyles.nav_a} href={props.link}>
                     {props.name}
                 </a>
             </>

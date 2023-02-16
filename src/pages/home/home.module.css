@@ -25,7 +25,8 @@
     
 }
 
-.text {
+/* moved to global */
+/* .text {
     font-family: 'Mulish';
     font-weight: bold;
     font-weight: 600;
@@ -38,7 +39,7 @@
 .p.text {
     font-weight: 400;
     max-width: 852px;
-}
+} */
 
 .countdown {
     font-family: 'Mulish';
@@ -53,12 +54,13 @@
     justify-content: center;
 }
 
-.second_section {
+/* moved to global */
+/* .second_section {
     max-width: 852px;
     margin-top: 120px;
     margin-left: 146px;
     margin-bottom: 94px;
-}
+} */
 
 .third_section {
     display: flex;

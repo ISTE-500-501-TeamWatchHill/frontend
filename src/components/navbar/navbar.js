@@ -36,7 +36,7 @@ export default function Navbar() {
                   />
               </li>
           </ul>
-          <Button name="Login"/>
+          <Button name="Login"  link="/login"/>
         </div> {/* classname='right_nav' */}
       </nav>
     </>

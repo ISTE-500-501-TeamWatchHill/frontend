@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './button.module.css';
 
 // TODO: Handle icons in buttons? (like on logged in profile page)

@@ -45,7 +45,7 @@ if (sortOption!=null) {
             <h1> Teams </h1>
 
             {/* View and Search Functionality */}
-            <div class="flex">
+            <div className="flex">
                 {/* Sort Button */}
                 <Select
                     //Default value is null
@@ -67,14 +67,15 @@ if (sortOption!=null) {
                 />
             </div>
 
-            <div class="grid">
+            <div className="grid">
                 {/* Results */}
                 {
                     // eslint-disable-next-line
                     teams.map((team) => {
                         if (searchValue.length === 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
                             return (
-                                <TeamBlock team={team} />
+                                // TODO: change key to use unique identifier
+                                <TeamBlock key={team.name} team={team} />
                             )
                         }
                     })

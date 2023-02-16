@@ -3,11 +3,11 @@
     padding:0;
 }
 
-h1 {
+.h1 {
     margin:0;
 }
 
-.home-title {
+.home_title {
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 700;
@@ -15,7 +15,7 @@ h1 {
     color: #616161;
 }
 
-.home-title-section {
+.home_title_section {
     height:calc(100vh - 88px);
     background-color: #D9D9D9;
     display: flex;
@@ -35,7 +35,7 @@ h1 {
     color: #373F41;
 }
 
-p.text {
+.p.text {
     font-weight: 400;
     max-width: 852px;
 }
@@ -48,19 +48,19 @@ p.text {
     line-height: 147.69%;
 }
 
-.button-row {
+.button_row {
     display: flex;
     justify-content: center;
 }
 
-.second-section {
+.second_section {
     max-width: 852px;
     margin-top: 120px;
     margin-left: 146px;
     margin-bottom: 94px;
 }
 
-.third-section {
+.third_section {
     display: flex;
     background-color: #D9D9D9;
     flex-direction:row;
@@ -69,7 +69,7 @@ p.text {
     padding-bottom: 144px;
 }
 
-.fourth-section {
+.fourth_section {
     /* mmmm not sure which to go with, but I'll leave both here */
     /* margin-left: 146px; */
     padding: auto;
@@ -80,14 +80,14 @@ p.text {
 
 }
 
-.teams-playing {
+.teams_playing {
     display: flex;
     flex-wrap: wrap;
     max-width: 1147px;
     margin:auto;
 }
 
-.team-playing {
+.team_playing {
     display: flex;
     flex: 1 0 33%;
     align-items: center;
@@ -95,7 +95,7 @@ p.text {
     margin-bottom:40px;
 }
 
-.small-text {
+.small_text {
     font-family: 'Mulish';
     font-weight: 300;
     font-size: 20px;

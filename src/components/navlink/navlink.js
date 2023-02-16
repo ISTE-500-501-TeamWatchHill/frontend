@@ -28,7 +28,7 @@ export default function NavLink(props) {
                 </a>
                 <div className="dropdown-items">
                     {props.sublinks.map((sublink) => (
-                        <a href={sublink.link} key={sublink.link}>{sublink.name}</a>
+                        <a href={sublink.link} key={sublink.link} id={sublink.link.substring(1).concat("_sub")}>{sublink.name}</a>
                     ))}
                 </div>
             </>

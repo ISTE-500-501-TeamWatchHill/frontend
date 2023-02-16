@@ -6,9 +6,15 @@ import styles from './button.module.css';
 // width: Int                       -- width of button (subtract width of word and 34px of padding)
 // transparentBackground: Boolean   -- background of button is clear
 export default function Button(props) {
+    var link = "";
+
     
     if (!props.name) {
         throw new Error ("ERROR: No name provided for button component.");
+    }
+
+    if (props.link) {
+        link = props.link;
     }
 
     // styles passed in with the props
@@ -33,9 +39,11 @@ export default function Button(props) {
 
     return (
         <>
-            <button className={styles.button} style={propStyles}>
-                {props.name}
-            </button>
+            <a href={link}>
+                <button className={styles.button} style={propStyles}>
+                    {props.name}
+                </button>
+            </a>
         </>
     )
 }

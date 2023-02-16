@@ -14,6 +14,8 @@ import Tournament from './pages/tournament/tournament/tournament';
 import Schedule from './pages/tournament/schedule/schedule';
 import Team from './pages/teamsanduniversities/team/team';
 import Home from './pages/home/home';
+import Registration from './pages/registration/registration';
+import Login from './pages/login/login';
 
 
 const App = () => {
@@ -28,6 +30,8 @@ const App = () => {
         <Route exact path="/schedule" element={<Schedule />} />
         <Route exact path="/team" element={<Team />} />
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/register" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </div>

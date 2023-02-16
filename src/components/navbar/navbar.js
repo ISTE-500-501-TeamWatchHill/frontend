@@ -11,7 +11,7 @@ export default function Navbar() {
         <a className={styles.nav_a} href='/'><img className={styles.logo} src={logo} alt='Aarvark Games Logo'/></a>
         <div className={styles.right_nav}>
           <ul className={styles.nav_ul}>
-              <li className={styles.nav_li}>
+              <li className={styles.nav_li} id="tournament">
                   <NavLink 
                       name="TOURNAMENT"
                       sublinks={[ 
@@ -20,13 +20,15 @@ export default function Navbar() {
                       ]}
                   />
               </li>
-              <li className={styles.nav_li}>
+
+              <li className={styles.nav_li} id="teamsanduniversities">
                   <NavLink 
                       name="TEAMS & UNIVERSITIES"
                       link="/teamsanduniversities"
                   />
               </li>
-              <li className={styles.nav_li}>
+
+              <li className={styles.nav_li} id="aardvarkgames">
                   <NavLink 
                       name="AARDVARK GAMES"
                       sublinks={[ 

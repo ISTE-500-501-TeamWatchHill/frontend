@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={styles.nav}>
-        <a className={styles.nav_a} href='/'><img src={logo} alt='Aarvark Games Logo'/></a>
+        <a className={styles.nav_a} href='/'><img className={styles.logo} src={logo} alt='Aarvark Games Logo'/></a>
         <div className={styles.right_nav}>
           <ul className={styles.nav_ul}>
               <li className={styles.nav_li}>

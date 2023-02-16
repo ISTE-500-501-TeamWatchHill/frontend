@@ -22,7 +22,7 @@ const Home = () => {
     return (
         <>
             <div className='home-title-section'>
-                <h1 className='home-title'>The New World</h1>
+                <h1 className='home-title'>A New World</h1>
                 <Spacer height='16px' />
                 <div className='text'>Introducing Aardvark's newest board game, A New World, with a global collegiate competition!</div>
                 <Spacer height='42px' />

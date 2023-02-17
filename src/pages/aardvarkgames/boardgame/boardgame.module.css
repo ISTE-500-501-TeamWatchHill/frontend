@@ -1,10 +1,10 @@
 .table {
-
+    border-collapse: collapse;
 }
 
-.table_row {
+/* .table_row {
 
-}
+} */
 
 .cell {
     padding:30px;
@@ -14,7 +14,6 @@
     line-height: 32px;
     letter-spacing: 0.2px;
     color: #373F41;
-    opacity: 1;
 }
 
 .grey {

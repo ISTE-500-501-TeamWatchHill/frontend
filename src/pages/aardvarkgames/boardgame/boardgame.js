@@ -30,26 +30,28 @@ const BoardGame = () => {
         <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>Every team must designate the roles for each player prior to beginning play. If a team has fewer than five players, team members may assume more than one role.</p>
         <Spacer height='32px' />
         <table className={styles.table}>
-          <tr className={`${styles.table_row} ${styles.grey}`}>
-            <td className={styles.cell}>EXPEDITION LEADER</td>
-            <td className={styles.cell}>This team member will make decisions on when and how action cards are played. They facilitate the team's joint strategic planning and manage the expedition budget.</td>
-          </tr>
-          <tr className={styles.table_row}>
-            <td className={styles.cell}>RESOURCE SPECIALIST</td>
-            <td className={styles.cell}>This team member is responsible for obtaining the resources required for survival on arrival and the establishment of a base on the new world.</td>
-          </tr>
-          <tr className={`${styles.table_row} ${styles.grey}`}>
-            <td className={styles.cell}>SCIENTIST</td>
-            <td className={styles.cell}>This team member collects knowledge cards that allow the team an advantage in knowing how to overcome obstacles and which actions are most likely to succeed.</td>
-          </tr>
-          <tr className={styles.table_row}>
-            <td className={styles.cell}>TECHNICIAN</td>
-            <td className={styles.cell}>This team member uses tool and technology cards to create the team base and repair machines and weapons as needed.</td>
-          </tr>
-          <tr className={`${styles.table_row} ${styles.grey}`}>
-            <td className={styles.cell}>WEAPONS SPECIALIST</td>
-            <td className={styles.cell}>This team member leads the team defense strategies and works to gain points to raise each team member's skill level on the weapon classes best suited to the current habitat.</td>
-          </tr>
+          <tbody>
+            <tr className={`${styles.table_row} ${styles.grey}`}>
+              <td className={styles.cell}>EXPEDITION LEADER</td>
+              <td className={styles.cell}>This team member will make decisions on when and how action cards are played. They facilitate the team's joint strategic planning and manage the expedition budget.</td>
+            </tr>
+            <tr className={styles.table_row}>
+              <td className={styles.cell}>RESOURCE SPECIALIST</td>
+              <td className={styles.cell}>This team member is responsible for obtaining the resources required for survival on arrival and the establishment of a base on the new world.</td>
+            </tr>
+            <tr className={`${styles.table_row} ${styles.grey}`}>
+              <td className={styles.cell}>SCIENTIST</td>
+              <td className={styles.cell}>This team member collects knowledge cards that allow the team an advantage in knowing how to overcome obstacles and which actions are most likely to succeed.</td>
+            </tr>
+            <tr className={styles.table_row}>
+              <td className={styles.cell}>TECHNICIAN</td>
+              <td className={styles.cell}>This team member uses tool and technology cards to create the team base and repair machines and weapons as needed.</td>
+            </tr>
+            <tr className={`${styles.table_row} ${styles.grey}`}>
+              <td className={styles.cell}>WEAPONS SPECIALIST</td>
+              <td className={styles.cell}>This team member leads the team defense strategies and works to gain points to raise each team member's skill level on the weapon classes best suited to the current habitat.</td>
+            </tr>
+          </tbody>
         </table>
         <Spacer height='32px' />
         <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>This game is appropriate for ages 13 and over. Play time runs 60-90 minutes.</p>

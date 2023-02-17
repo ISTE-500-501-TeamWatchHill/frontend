@@ -25,6 +25,13 @@
     margin-bottom: 94px;
 }
 
+.wide_subsection {
+    max-width: 1143px;
+    margin-top: 120px;
+    margin-left: 146px;
+    margin-bottom: 94px;
+}
+
 .text {
     font-family: 'Mulish';
     font-weight: bold;
@@ -38,4 +45,9 @@
 .p.text {
     font-weight: 400;
     max-width: 852px;
+}
+
+.wide_p.text {
+    font-weight: 400;
+    max-width: 1143px;
 }

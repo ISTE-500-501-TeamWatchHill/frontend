@@ -5,7 +5,7 @@ import styles from './footer.module.css';
 export default function Footer(props) { 
     return (
         <>
-            <hr/>
+            <hr className={styles.hr}/>
             <footer className={styles.footer}>
                 <div className={styles.footerLeftBlock}>
                     <h4 className={styles.footerTitle}>A New World</h4>

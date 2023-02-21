@@ -1,15 +1,14 @@
 import React from 'react'
-// import styles from './login.module.css';
+import styles from './adminmoderatorlogin.module.css';
 
-const Login = (props) => {   
+const AdminModeratorLogin = () => {   
     return (
           <>
             <h1 className="centerItem"> Login </h1>
-            <h3 className="centerItem"> Log into your account! </h3>
             <div className="center">
                 <br/><br/>
                 <form action="/login" method="POST">
-                    <label htmlFor="email">University Email:</label><br/>
+                    <label htmlFor="username">Username:</label><br/>
                     <input type="text" id="email" name="email"></input><br/><br/>
 
                     <label htmlFor="password">Password:</label><br/>
@@ -17,12 +16,11 @@ const Login = (props) => {
 
                     <input type="submit" value="Submit"></input>
                 </form>
+                <br/>
+                <h3 className="centerItem"> Are you a player? <a href="/login">Login here</a></h3>
             </div>
-            <br/>
-            <h3 className="centerItem"> Not registered for the tournament yet? <a href="/register">Register here</a></h3>
-            <h3 className="centerItem"> Are you an administrator or moderator? <a href="/stafflogin">Login here</a></h3>
           </>
     )
 };
   
-export default Login;
+export default AdminModeratorLogin;

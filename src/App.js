@@ -17,6 +17,7 @@ import University from './pages/teamsanduniversities/university/university';
 import Home from './pages/home/home';
 import Registration from './pages/registration/registration';
 import Login from './pages/login/login';
+import AdminModeratorLogin from './pages/adminmoderatorlogin/adminmoderatorlogin';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/stafflogin" element={<AdminModeratorLogin />} />
       </Routes>
       <Footer />
     </div>

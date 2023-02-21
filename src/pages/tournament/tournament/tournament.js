@@ -1,9 +1,10 @@
 import React from 'react';
-// import styles from './tournament.module.css';
+import styles from './tournament.module.css';
 import globalStyles from '../../pages.module.css';
 import "@fontsource/mulish";
 
 import Spacer from '../../../components/spacer/spacer';
+import Button from '../../../components/button/button';
 
 const Tournament = () => {
     
@@ -35,6 +36,16 @@ return (
           <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>Tournament play will be run consistently at each location to ensure that all players are treated equally. Both players and moderators are expected to cooperate to run an orderly competition. Players and moderators must treat each other in a fair and respectful manner, following both the rules and the spirit in which those rules were created.</p>
           <Spacer height='32px' />
           <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>Aardvark Games reserves the right to alter these rules, as well as the right to interpret, modify, clarify, or otherwise issue official changes to these rules without prior notice.</p>
+        </div>
+
+        <div className={styles.sign_up_section}>
+          <h3 className={globalStyles.text}>Take Home the Prize!</h3>
+          <Spacer height='32px' />
+          <div className={globalStyles.button_row}>
+            <Button name="Login" link="/login"/>
+            <Spacer width="20px"/>
+            <Button name="Register for Tournament" link="/register"/>
+          </div>
         </div>
 
         

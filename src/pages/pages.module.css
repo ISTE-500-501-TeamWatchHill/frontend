@@ -51,3 +51,8 @@
     font-weight: 400;
     max-width: 1143px;
 }
+
+.button_row {
+    display: flex;
+    justify-content: center;
+}

@@ -1,8 +1,8 @@
 .footer {
-    min-height: 224px;
     display: flex;
     justify-content: space-between;
     padding-top:52px;
+    padding-bottom:52px;
     padding-left: 146px;
     padding-right: 292px;
 }
@@ -26,6 +26,29 @@
     padding-bottom:10px;
 }
 
-.logo {
-    width:200px;
+.footerTitle {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 50px;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+}
+
+.subcontent {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.2px;
+}
+
+.footerLeftBlock {
+    display: flex;
+    flex-direction: column;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import './teamblock.css';
+import styles from './teamblock.module.css';
 import image from '../placeholder.png';
 import Team from '../../pages/teamsanduniversities/team/team';
 
@@ -26,9 +26,9 @@ const TeamBlock = (props) => {
 
     return (
           <>
-            <div class="block">
-                <div class="flex">
-                    <img src={image} alt="Placeholder"/>
+            <div className={styles.block}>
+                <div className={styles.flex}>
+                    <img className={styles.img} src={image} alt="Placeholder"/>
 
                     <div>
                         <a href={"/team/" + props.team.id} key={"/team/" + props.team.id}>{props.team.name}</a>

@@ -1,9 +1,8 @@
-body {
-  margin:0;
-  padding:0;
+.logo {
+  width: 200px;
 }
 
-ul {
+.nav_ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -14,7 +13,7 @@ ul {
   margin-right:56px;
 }
 
-li a {
+.nav_li .nav_a {
   display: block;
   color: #373F41;
   text-align: center;
@@ -22,11 +21,11 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+.nav_li .nav_a:hover:not(.active) {
   background-color: #eee;
 }
 
-nav {
+.nav {
   height: 88px;
   padding-left: 95px;
   padding-right: 95px;
@@ -35,8 +34,7 @@ nav {
   justify-content: space-between;
 }
 
-.right-nav {
+.right_nav {
   display: flex; 
-
   justify-content: flex-end;
 }

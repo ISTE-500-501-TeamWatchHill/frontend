@@ -1,25 +1,28 @@
 import React from 'react'
-// import styles from './login.module.css';
+import styles from './login.module.css';
+// import globalStyles from '../pages.module.css';
+import Button from '../../components/button/button';
+import Spacer from '../../components/spacer/spacer';
 
 const Login = (props) => {   
     return (
           <>
-            <h1 className="centerItem"> Login </h1>
-            <h3 className="centerItem"> Log into your account! </h3>
-            <div className="center">
-                <br/><br/>
-                <form action="/login" method="POST">
-                    <label htmlFor="fname">University Email:</label><br/>
-                    <input type="text" id="email" name="email"></input><br/><br/>
-
-                    <label htmlFor="fname">Password:</label><br/>
-                    <input type="text" id="password" name="password"></input><br/><br/>
-
-                    <input type="submit" value="Submit"></input>
+            <div className={styles.login_section}>
+                <h1 className={styles.title}>Login</h1>
+                <Spacer height='40px' />
+                <form className={styles.form} action="/login" method="POST">
+                    <input className={styles.inputText} type="text" id="email" name="email" placeholder='Email' required></input><br/>
+                    <Spacer height='18px' />
+                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input><br/>
+                    <Spacer height='18px' />
+                    {/* <input type="submit" value="Login"></input> */}
+                    <Button type='submit' name='Login' width='100%' />
                 </form>
+                <Spacer height='40px' />
+                <h4> Not registered for the tournament yet? <a href="/register">Register here</a></h4>
+                <Spacer height='9px' />
+                <h4> Forgot your password? <a href="/">Reset here</a></h4>
             </div>
-            <br/>
-            <h3 className="centerItem"> Not registered for the tournament yet? <a href="/register">Register here</a></h3>
           </>
     )
 };

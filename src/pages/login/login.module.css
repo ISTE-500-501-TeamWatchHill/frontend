@@ -1,0 +1,32 @@
+.login_section {
+    display: flex;
+    flex-direction: column;
+    /* height:calc(100vh - 88px); */
+    /* background-color:lightyellow; */
+    width: calc(60vw);
+    padding-top: 212px;
+    padding-bottom: 212px;
+    padding-left: 156px;
+}
+
+.form {
+    max-width: 610px;
+}
+
+.title {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 147.69%;
+
+    display: flex;
+    align-items: center;
+}
+
+.inputText {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #858C94;
+    border-radius: 8px;
+}

@@ -17,11 +17,15 @@ const Login = (props) => {
                     <Spacer height='18px' />
                     {/* <input type="submit" value="Login"></input> */}
                     <Button type='submit' name='Login' width='100%' />
-                </form>
-                <Spacer height='40px' />
-                <h4> Not registered for the tournament yet? <a href="/register">Register here</a></h4>
+                    <Spacer height='40px' />
+                <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
                 <Spacer height='9px' />
-                <h4> Forgot your password? <a href="/">Reset here</a></h4>
+                <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4>
+                </form>
+                {/* <Spacer height='40px' />
+                <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
+                <Spacer height='9px' />
+                <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4> */}
             </div>
           </>
     )

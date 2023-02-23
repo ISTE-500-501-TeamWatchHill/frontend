@@ -1,16 +1,15 @@
 .login_section {
     display: flex;
     flex-direction: column;
-    /* height:calc(100vh - 88px); */
-    background-color:lightyellow;
     width: calc(60vw);
-    padding-top: 212px;
-    padding-bottom: 212px;
+    padding-top: 156px;
+    padding-bottom: 156px;
     padding-left: 156px;
 }
 
 .form {
     max-width: 610px;
+    text-align: center;
 }
 
 .title {
@@ -30,4 +29,20 @@
     padding: 12px 16px;
     border: 1px solid #858C94;
     border-radius: 8px;
+}
+
+.h4 {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+
+    align-items: center;
+
+    opacity: 0.5;
+}
+
+.link {
+    text-decoration-line: underline;
 }

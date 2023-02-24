@@ -1,8 +1,56 @@
-.center {
-    margin: auto;
-    width: 50vw;
+.login_section {
+    display: flex;
+    flex-direction: column;
+    width: calc(60vw);
+    padding-top: 78px;
+    padding-bottom: 156px;
+    padding-left: 156px;
 }
 
-.centerItem {
+.form {
+    max-width: 610px;
     text-align: center;
+}
+
+.title {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 147.69%;
+
+    display: flex;
+    align-items: center;
+}
+
+.inputText {
+    max-width: 576px;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #858C94;
+    border-radius: 8px;
+}
+
+.short {
+    max-width: 280px;
+    width: 267px;
+}
+.short:first-of-type {
+    margin-right:8px;
+}
+
+.h4 {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+
+    align-items: center;
+
+    opacity: 0.5;
+}
+
+.link {
+    text-decoration-line: underline;
 }

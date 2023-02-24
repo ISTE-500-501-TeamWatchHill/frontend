@@ -26,7 +26,7 @@ const Login = (props) => {
         // });
     
         // navigate("/");
-      }
+    }
 
     return (
           <>
@@ -34,11 +34,10 @@ const Login = (props) => {
                 <h1 className={styles.title}>Login</h1>
                 <Spacer height='40px' />
                 <form className={styles.form} onSubmit={onSubmit}>
-                    <input className={styles.inputText} type="text" id="email" name="email" placeholder='Email' required></input><br/>
+                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='Email' required></input><br/>
                     <Spacer height='18px' />
                     <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input><br/>
                     <Spacer height='18px' />
-                    {/* <input type="submit" value="Login"></input> */}
                     <Button type='submit' name='Login' width='100%' />
                     <Spacer height='40px' />
                 <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>

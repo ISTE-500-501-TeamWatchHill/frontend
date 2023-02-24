@@ -1,26 +1,51 @@
 import React from 'react'
-// import styles from './login.module.css';
+import styles from './login.module.css';
+// import globalStyles from '../pages.module.css';
+import Button from '../../components/button/button';
+import Spacer from '../../components/spacer/spacer';
 
 const Login = (props) => {   
+
+    async function onSubmit(e) {
+        e.preventDefault();
+        const loginFormValues = {
+            email: e.target.email.value,
+            password: e.target.password.value,
+        };
+        console.log(loginFormValues);
+    
+        // TODO
+        // This will send a post request to update the data in the database.
+        // await fetch(`http://localhost:3001/login`, {
+        //   method: "POST",
+        //   body: JSON.stringify(loginFormValues),
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Access-Control-Allow-Origin': '*',
+        //   },
+        // });
+    
+        // navigate("/");
+    }
+
+
     return (
           <>
-            <h1 className="centerItem"> Login </h1>
-            <h3 className="centerItem"> Log into your account! </h3>
-            <div className="center">
-                <br/><br/>
-                <form action="/login" method="POST">
-                    <label htmlFor="email">University Email:</label><br/>
-                    <input type="text" id="email" name="email"></input><br/><br/>
-
-                    <label htmlFor="password">Password:</label><br/>
-                    <input type="text" id="password" name="password"></input><br/><br/>
-
-                    <input type="submit" value="Submit"></input>
+            <div className={styles.login_section}>
+                <h1 className={styles.title}>Login</h1>
+                <Spacer height='40px' />
+                <form className={styles.form} onSubmit={onSubmit}>
+                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='Email' required></input><br/>
+                    <Spacer height='18px' />
+                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input><br/>
+                    <Spacer height='18px' />
+                    <Button type='submit' name='Login' width='100%' />
+                    <Spacer height='40px' />
+                <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
+                <Spacer height='9px' />
+                <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4>
                 </form>
             </div>
-            <br/>
-            <h3 className="centerItem"> Not registered for the tournament yet? <a href="/register">Register here</a></h3>
-            <h3 className="centerItem"> Are you an administrator or moderator? <a href="/stafflogin">Login here</a></h3>
           </>
     )
 };

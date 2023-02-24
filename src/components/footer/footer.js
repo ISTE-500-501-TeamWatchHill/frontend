@@ -1,13 +1,19 @@
 import React from "react";
-import logo from '../Aardvark_logo_clear.png';
+import Spacer from '../spacer/spacer.js';
 import styles from './footer.module.css';
 
 export default function Footer(props) { 
     return (
         <>
+            <hr className={styles.hr}/>
             <footer className={styles.footer}>
-                <a href='/'><img className={styles.logo} src={logo} alt='Aarvark Games Logo'/></a>
-                <div className='footerList'>
+                <div className={styles.footerLeftBlock}>
+                    <h4 className={styles.footerTitle}>A New World</h4>
+                    <div className={styles.subcontent}>Aardvark Game's newest board game adventure!</div>
+                    <Spacer height='119px' />
+                    <div className={styles.subcontent}>&copy; Copyright 2023 · Team Watch Hill</div>
+                </div>
+                <div className={styles.footerList}>
                     <div className={styles.footerListHeader}>NAVIGATION</div>
                     <div className={styles.footerListItem}><a href='/tournament'>TOURNAMENT</a></div>
                     <div className={styles.footerListItem}><a href='/teamsanduniversities'>TEAMS & UNIVERSITIES</a></div>

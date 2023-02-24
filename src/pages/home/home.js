@@ -24,7 +24,7 @@ const Home = () => {
                 <Spacer height='42px' />
                 <div className={styles.countdown}>TODO: Dynamic countdown timer here</div>
                 <Spacer height='40px' />
-                <div className={styles.button_row}>
+                <div className={globalStyles.button_row}>
                     <Button name="Learn More" transparentBackground={true} link="/tournament"/>
                     <Spacer width="20px"/>
                     <Button name="Register for Tournament" link="/register"/>

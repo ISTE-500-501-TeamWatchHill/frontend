@@ -1,0 +1,21 @@
+.table {
+    border-collapse: collapse;
+}
+
+/* .table_row {
+
+} */
+
+.cell {
+    padding:30px;
+    font-family: 'Mulish';
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #373F41;
+}
+
+.grey {
+    background: #F2F2F2;
+}

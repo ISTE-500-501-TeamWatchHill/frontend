@@ -6,8 +6,7 @@ import styles from './button.module.css';
 // width: Int                       -- width of button (subtract width of word and 34px of padding)
 // transparentBackground: Boolean   -- background of button is clear
 export default function Button(props) {
-    var link = "";
-
+    let link = "";
     
     if (!props.name) {
         throw new Error ("ERROR: No name provided for button component.");

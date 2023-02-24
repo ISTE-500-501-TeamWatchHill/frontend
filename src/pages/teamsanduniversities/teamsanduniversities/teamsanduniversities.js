@@ -6,15 +6,15 @@ import './teamsanduniversities.css';
 
 //Hard coded for now- will grab from database
 const teams = [ 
-  { name: "Team One", universityname: "Rochester Istitute of Technology", numplayers: 4 },
-  { name: "Team Two", universityname: "Univerity of Buffalo", numplayers: 4 },
-  { name: "Team Three", universityname: "Far Far Away", numplayers: 5 },
-  { name: "Team Four", universityname: "Winterfell", numplayers: 4 },
-  { name: "Team Five", universityname: "Gatlin College of Civil War Studies", numplayers: 3 },
-  { name: "Team Six", universityname: "Europe", numplayers: 5 },
-  { name: "Team Seven", universityname: "Garden Life University", numplayers: 4 },
-  { name: "Team Eight", universityname: "Law School USA", numplayers: 5 },
-  { name: "Team Nine", universityname: "None", numplayers: 4 },
+  { id: 1, name: "Team One", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
+  { id: 2, name: "Team Two", universityname: "Univerity of Buffalo", universityid: 6, numplayers: 4 },
+  { id: 3, name: "Team Three", universityname: "Far Far Away", universityid: 3, numplayers: 5 },
+  { id: 4, name: "Team Four", universityname: "Winterfell", universityid: 8, numplayers: 4 },
+  { id: 5, name: "Team Five", universityname: "Gatlin College of Civil War Studies", universityid: 12, numplayers: 3 },
+  { id: 6, name: "Team Six", universityname: "Europe", universityid: 22, numplayers: 5 },
+  { id: 7, name: "Team Seven", universityname: "Garden Life University", universityid: 9, numplayers: 4 },
+  { id: 8, name: "Team Eight", universityname: "Law School USA", universityid: 2, numplayers: 5 },
+  { id: 9, name: "Team Nine", universityname: "None", universityid: 63, numplayers: 4 },
 ];
 
 const TeamsAndUniversities = () => {   
@@ -45,7 +45,7 @@ if (sortOption!=null) {
             <h1> Teams </h1>
 
             {/* View and Search Functionality */}
-            <div class="flex">
+            <div className="flex">
                 {/* Sort Button */}
                 <Select
                     //Default value is null
@@ -67,14 +67,15 @@ if (sortOption!=null) {
                 />
             </div>
 
-            <div class="grid">
+            <div className="grid">
                 {/* Results */}
                 {
                     // eslint-disable-next-line
                     teams.map((team) => {
                         if (searchValue.length === 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
                             return (
-                                <TeamBlock team={team} />
+                                // TODO: change key to use unique identifier
+                                <TeamBlock key={team.name} team={team} />
                             )
                         }
                     })

@@ -1,5 +1,7 @@
 import React from "react";
-import './navlink.css';
+import styles from './navlink.module.css';
+import navbarStyles from '../navbar/navbar.module.css';
+
 
 export default function NavLink(props) { 
     if (!props.name) {
@@ -13,7 +15,7 @@ export default function NavLink(props) {
     if (props.link) {
         return (
             <>
-                <a href={props.link}>
+                <a className={navbarStyles.nav_a} href={props.link}>
                     {props.name}
                 </a>
             </>
@@ -23,12 +25,12 @@ export default function NavLink(props) {
     if (props.sublinks) {
         return (
             <>
-                <a href={props.link} className="dropdown">
+                <a href={props.link} className={`${styles.dropdown} ${navbarStyles.nav_a}`}>
                     {props.name}
                 </a>
-                <div className="dropdown-items">
+                <div className={styles.dropdown_items}>
                     {props.sublinks.map((sublink) => (
-                        <a href={sublink.link} key={sublink.link} id={sublink.link.substring(1).concat("_sub")}>{sublink.name}</a>
+                        <a className={navbarStyles.nav_a} href={sublink.link} key={sublink.link} id={sublink.link.substring(1).concat("_sub")}>{sublink.name}</a>
                     ))}
                 </div>
             </>

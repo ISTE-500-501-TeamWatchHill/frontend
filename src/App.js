@@ -13,9 +13,12 @@ import TeamsAndUniversities from './pages/teamsanduniversities/teamsanduniversit
 import Tournament from './pages/tournament/tournament/tournament';
 import Schedule from './pages/tournament/schedule/schedule';
 import Team from './pages/teamsanduniversities/team/team';
+import University from './pages/teamsanduniversities/university/university';
 import Home from './pages/home/home';
 import Registration from './pages/registration/registration';
 import Login from './pages/login/login';
+import AdminModeratorLogin from './pages/adminmoderatorlogin/adminmoderatorlogin';
+
 
 
 class App extends Component {
@@ -40,20 +43,21 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <h1>{this.state.apiRespone}</h1>
         <Routes>
           <Route path="/aardvarkgames" element={<AardvarkGames />} />
           <Route exact path="/boardgame" element={<BoardGame />} />
-          <Route path="/teamsanduniversities" element={<TeamsAndUniversities/>} />
+          <Route path="/teamsanduniversities" element={<TeamsAndUniversities />} />
           <Route exact path="/tournament" element={<Tournament />} />
           <Route exact path="/schedule" element={<Schedule />} />
-          <Route exact path="/team" element={<Team />} />
+          <Route path="/team/:id" element={<Team />} />
+          <Route path="/university/:id" element={<University />} />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/stafflogin" element={<AdminModeratorLogin />} />
         </Routes>
         <Footer />
-      </div>
+    </div>
     );
   }
 };

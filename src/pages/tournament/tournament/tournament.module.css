@@ -1,0 +1,8 @@
+.sign_up_section {
+    background-color: #D9D9D9;
+    display: flex;
+    text-align: center;
+    flex-direction:column;
+    justify-content: center;
+    height: 280px;
+}

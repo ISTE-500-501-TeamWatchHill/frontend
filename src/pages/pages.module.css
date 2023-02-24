@@ -1,0 +1,58 @@
+/* Global CSS to be added during module conversion */
+
+.h1_title_section{
+    background-color: #D9D9D9;
+    padding-left: 146px;
+    max-height: 432px;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.h1_title{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 128px;
+    color: #616161;
+    line-height: .8em;
+}
+
+.subsection {
+    max-width: 852px;
+    margin-top: 120px;
+    margin-left: 146px;
+    margin-bottom: 94px;
+}
+
+.wide_subsection {
+    max-width: 1143px;
+    margin-top: 120px;
+    margin-left: 146px;
+    margin-bottom: 94px;
+}
+
+.text {
+    font-family: 'Mulish';
+    font-weight: bold;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #373F41;
+}
+
+.p.text {
+    font-weight: 400;
+    max-width: 852px;
+}
+
+.wide_p.text {
+    font-weight: 400;
+    max-width: 1143px;
+}
+
+.button_row {
+    display: flex;
+    justify-content: center;
+}

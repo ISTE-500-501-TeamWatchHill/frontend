@@ -3,8 +3,12 @@ import styles from './navbar.module.css';
 import NavLink from '../navlink/navlink';
 import Button from '../button/button';
 import logo from '../Aardvark_logo_clear_horizontal.png';
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "../languageselector/languageselector";
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <nav className={styles.nav}>
@@ -13,32 +17,33 @@ export default function Navbar() {
           <ul className={styles.nav_ul}>
               <li className={styles.nav_li} id="tournament">
                   <NavLink 
-                      name="TOURNAMENT"
+                      name={t("tournamentNav.label")}
                       sublinks={[ 
-                        { name: "ABOUT", link: "/tournament" },
-                        { name: "SCHEDULE", link: "/schedule" },
+                        { name: t("tournamentAboutNav.label"), link: "/tournament" },
+                        { name: t("tournamentScheduleNav.label"), link: "/schedule" },
                       ]}
                   />
               </li>
 
               <li className={styles.nav_li} id="teamsanduniversities">
                   <NavLink 
-                      name="TEAMS & UNIVERSITIES"
+                      name={t("teamsanduniversitiesNav.label")}
                       link="/teamsanduniversities"
                   />
               </li>
 
               <li className={styles.nav_li} id="aardvarkgames">
                   <NavLink 
-                      name="AARDVARK GAMES"
+                      name={t("aardvarkGamesNav.label")}
                       sublinks={[ 
-                        { name: "ABOUT", link: "/aardvarkgames" },
-                        { name: "BOARD GAME", link: "/boardgame" },
+                        { name: t("aardvarkGamesAboutNav.label"), link: "/aardvarkgames" },
+                        { name: t("aardvarkGamesBoardGameNav.label"), link: "/boardgame" },
                       ]}
                   />
               </li>
           </ul>
-          <Button name="Login"  link="/login"/>
+          <Button name={t("loginButton.label")}  link="/login"/>
+          <LanguageSelector />
         </div> {/* classname='right_nav' */}
       </nav>
     </>

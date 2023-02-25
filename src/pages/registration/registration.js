@@ -5,25 +5,31 @@ import Spacer from '../../components/spacer/spacer';
 
 const Registration = (props) => {   
 
-    // TODO
     async function onSubmit(e) {
-        // e.preventDefault();
-        // const loginFormValues = {
-        //     email: e.target.email.value,
-        //     password: e.target.password.value,
-        // };
-        // console.log(loginFormValues);
-    
-        // TODO
-        // This will send a post request to update the data in the database.
-        // await fetch(`http://localhost:3001/login`, {
-        //   method: "POST",
-        //   body: JSON.stringify(loginFormValues),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Access-Control-Allow-Origin': '*',
-        //   },
-        // });
+        e.preventDefault();
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "uid": 1423518,
+            "firstName": e.target.fname.value,
+            "lastName": e.target.lname.value,
+            "email": e.target.email.value,
+            "password": e.target.password.value,
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch("http://localhost:3001/register", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result)) // store token in session
+            .catch(error => console.log('error', error)); // display error, refresh form
     
         // navigate("/");
     }

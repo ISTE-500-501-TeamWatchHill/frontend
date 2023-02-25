@@ -12,7 +12,7 @@ const Registration = (props) => {
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({
-            "uid": 1423518,
+            "uid": 1423518, // TODO: get university IDs dynamically
             "firstName": e.target.fname.value,
             "lastName": e.target.lname.value,
             "email": e.target.email.value,
@@ -27,11 +27,17 @@ const Registration = (props) => {
         };
 
         await fetch("http://localhost:3001/register", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result)) // store token in session
-            .catch(error => console.log('error', error)); // display error, refresh form
+            .then(response => response.json())
+            .then(function(result) {
+                localStorage.setItem('token', result.token);
+                alert('Registered! Will add a redirect here later :)'); // TODO: Add redirect
+            }) // TODO: store token in session
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); // TODO: display error, refresh form
     
-        // navigate("/");
+        // navigate("/"); // TODO: redirect to correct landing page
     }
 
     return (

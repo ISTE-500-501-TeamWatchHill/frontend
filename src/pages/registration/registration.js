@@ -36,8 +36,6 @@ const Registration = (props) => {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
             }); // TODO: display error, refresh form
-    
-        // navigate("/"); // TODO: redirect to correct landing page
     }
 
     return (

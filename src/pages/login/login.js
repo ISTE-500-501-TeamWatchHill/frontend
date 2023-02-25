@@ -34,7 +34,6 @@ const Login = (props) => {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
             }); // TODO: display error, refresh form
-    
     }
 
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import './memberblock.css';
+import styles from './memberblock.module.css';
+import globalStyles from '../../pages/pages.module.css';
 import image from '../placeholder.png';
 
 const MemberBlock = (props) => {   
@@ -17,12 +18,12 @@ const MemberBlock = (props) => {
 
     return (
           <>
-            <div class="block">
-                <div class="flex">
-                    <img src={image} alt="Placeholder"/>
+            <div className={styles.block}>
+                <div className={styles.flex}>
+                    <img className={styles.img} src={image} alt="Placeholder"/>
 
                     <div>
-                        <h2>{props.member.name}</h2>
+                        <a className={globalStyles.text}>{props.member.name}</a>
                     </div>
                 </div>
             </div>

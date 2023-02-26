@@ -8,6 +8,7 @@ import LanguageSelector from "../languageselector/languageselector";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
+  const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
 
   return (
     <>
@@ -42,7 +43,8 @@ export default function Navbar() {
                   />
               </li>
           </ul>
-          <Button name={t("loginButton.label")}  link="/login"/>
+          { !user && <Button name={t("loginButton.label")} link="/login"/> }
+          { user && <Button name="Logout" link="/login" onClick={function() {localStorage.removeItem('user');}}/> }
           <LanguageSelector />
         </div> {/* classname='right_nav' */}
       </nav>

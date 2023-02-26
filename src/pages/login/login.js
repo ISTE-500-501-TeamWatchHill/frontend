@@ -12,6 +12,7 @@ const Login = (props) => {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        // TODO: Sanitize data and make consts for future use
         const raw = JSON.stringify({
             "email": e.target.email.value,
             "password": e.target.password.value,
@@ -27,7 +28,7 @@ const Login = (props) => {
         await fetch("http://localhost:3001/login", requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                localStorage.setItem('token', result.token);
+                localStorage.setItem('user', JSON.stringify(result));
                 alert('Logged in! Will add a redirect here later :)'); // TODO: Add redirect
             })
             .catch(function(error) {
@@ -49,9 +50,9 @@ const Login = (props) => {
                     <Spacer height='18px' />
                     <Button type='submit' name='Login' width='100%' />
                     <Spacer height='40px' />
-                <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
-                <Spacer height='9px' />
-                <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4>
+                    <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
+                    <Spacer height='9px' />
+                    <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4>
                 </form>
             </div>
           </>

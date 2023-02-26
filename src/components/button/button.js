@@ -39,7 +39,7 @@ export default function Button(props) {
     return (
         <>
             <a href={link}>
-                <button className={styles.button} style={propStyles}>
+                <button className={styles.button} style={propStyles} onClick={props.onClick}>
                     {props.name}
                 </button>
             </a>

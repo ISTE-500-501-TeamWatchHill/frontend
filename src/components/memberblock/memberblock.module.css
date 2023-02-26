@@ -1,0 +1,15 @@
+.block {
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 24px;
+    margin: 12px
+}
+
+.img {
+    width: 200px;
+}

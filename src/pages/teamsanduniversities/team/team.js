@@ -22,14 +22,14 @@ const Team = (props) => {
 
     return (
           <>
-          
-          <Header 
-            name={id}
-          />
+            <Header 
+              name={id}
+            />
 
+          <div className={globalStyles.grid_page}>
             <h3> University Name</h3>
 
-            <div class={styles.grid}>
+            <div className={globalStyles.grid}>
                 {/* Team Members */}
                 {
                     // eslint-disable-next-line
@@ -40,7 +40,8 @@ const Team = (props) => {
                     })
                 }
             </div>
-          </>
+          </div>
+        </>
     )
 };
   

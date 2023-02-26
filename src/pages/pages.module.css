@@ -2,7 +2,7 @@
 
 .h1_title_section{
     background-color: #D9D9D9;
-    padding-left: 146px;
+    padding-left: 6vw;
     max-height: 432px;
     height: 50vh;
     display: flex;
@@ -20,16 +20,23 @@
 
 .subsection {
     max-width: 852px;
-    margin-top: 120px;
-    margin-left: 146px;
-    margin-bottom: 94px;
+    margin: 8vh 6vw;
 }
 
 .wide_subsection {
     max-width: 1143px;
-    margin-top: 120px;
-    margin-left: 146px;
-    margin-bottom: 94px;
+    margin: 8vh 6vw;
+}
+
+.grid_page {
+    margin: 8vh 6vw;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+    column-gap: 16px;
 }
 
 .text {
@@ -38,6 +45,15 @@
     font-weight: 600;
     font-size: 26px;
     line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #373F41;
+}
+
+.sub_text {
+    font-family: 'Mulish';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
     letter-spacing: 0.2px;
     color: #373F41;
 }

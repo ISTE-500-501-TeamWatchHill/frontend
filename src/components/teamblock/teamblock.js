@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './teamblock.module.css';
 import image from '../placeholder.png';
+import globalStyles from '../../pages/pages.module.css';
 import Team from '../../pages/teamsanduniversities/team/team';
 
 const TeamBlock = (props) => {   
@@ -31,9 +32,9 @@ const TeamBlock = (props) => {
                     <img className={styles.img} src={image} alt="Placeholder"/>
 
                     <div>
-                        <a href={"/team/" + props.team.id} key={"/team/" + props.team.id}>{props.team.name}</a>
-                        <p><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
-                        <p><strong>Number of Players:</strong> {props.team.numplayers}</p>
+                        <a className={globalStyles.text} href={"/team/" + props.team.id} key={"/team/" + props.team.id} >{props.team.name}</a>
+                        <p lassName={globalStyles.sub_text}><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
+                        <p lassName={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.numplayers}</p>
                     </div>
                 </div>
             </div>

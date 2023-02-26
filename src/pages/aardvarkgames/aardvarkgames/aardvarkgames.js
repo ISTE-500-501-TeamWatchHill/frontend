@@ -1,16 +1,18 @@
 import React from 'react';
-// import styles from './aardvarkgames.module.css';
 import globalStyles from '../../pages.module.css';
+import styles from './aardvarkgames.module.css';
 import "@fontsource/mulish";
+
+import Header from '../../../components/header/header';
 import Spacer from '../../../components/spacer/spacer';
 
 const AardvarkGames = () => {
     
 return (
       <>
-        <div className={globalStyles.h1_title_section}>
-          <h1 className={globalStyles.h1_title}>Aardvark Games</h1>
-        </div>
+        <Header 
+          name="Aardvark Games"
+        />
 
         <div className={globalStyles.wide_subsection}>
           <h3 className={globalStyles.text}>ABOUT</h3>

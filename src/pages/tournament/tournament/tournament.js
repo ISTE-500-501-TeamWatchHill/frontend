@@ -5,14 +5,15 @@ import "@fontsource/mulish";
 
 import Spacer from '../../../components/spacer/spacer';
 import Button from '../../../components/button/button';
+import Header from '../../../components/header/header';
 
 const Tournament = () => {
     
 return (
       <>
-        <div className={globalStyles.h1_title_section}>
-          <h1 className={globalStyles.h1_title}>Tournament</h1>
-        </div>
+        <Header 
+          name="Tournament"
+        />
 
         <div className={globalStyles.wide_subsection}>
           <h3 className={globalStyles.text}>RULES</h3>

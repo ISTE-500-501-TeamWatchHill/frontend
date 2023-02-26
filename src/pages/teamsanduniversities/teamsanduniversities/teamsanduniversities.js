@@ -8,7 +8,7 @@ import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 
 //Hard coded for now- will grab from database. Assume default sort is by id
-var teams = [ 
+const teams = [ 
   { id: 1, name: "Team One", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
   { id: 2, name: "Team Two", universityname: "University of Buffalo", universityid: 6, numplayers: 4 },
   { id: 3, name: "Team Three", universityname: "Far Far Away", universityid: 3, numplayers: 5 },
@@ -25,14 +25,12 @@ const TeamsAndUniversities = () => {
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
 
-    if (sortOption!=null) {
-        teams.sort(function (a, b) {
-            console.log(sortOption)
-            
-            if ((sortOption.value!="none") ? (sortOption.value === "team") ? a.name < b.name : a.universityname < b.universityname : a.id < b.id) {
+    if (sortOption !== null) {
+        teams.sort(function (a, b) {            
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.name < b.name : a.universityname < b.universityname : a.id < b.id) {
                 return -1;
             }
-            if ((sortOption.value!="none") ? (sortOption.value === "team") ? a.name > b.name : a.universityname > b.universityname : a.id > b.id) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.name > b.name : a.universityname > b.universityname : a.id > b.id) {
                 return 1;
             }
             return 0;

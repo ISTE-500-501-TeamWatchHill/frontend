@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import Select from 'react-select'
+import globalStyles from '../../pages.module.css';
+import styles from './teamsanduniversities.module.css';
+
+import Header from '../../../components/header/header';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
-import './teamsanduniversities.css';
 
 //Hard coded for now- will grab from database
 const teams = [ 
@@ -41,15 +44,16 @@ if (sortOption!=null) {
 
     return (
           <>
-            {/* Title */}
-            <h1> Teams </h1>
+            <Header 
+                name="Teams & Universities"
+            />
 
             {/* View and Search Functionality */}
-            <div className="flex">
+            <div className={styles.flex}>
                 {/* Sort Button */}
                 <Select
                     //Default value is null
-                    className="select"
+                    className={styles.select}
                     placeholder="Sort by..."
                     value={sortOption}
                     options={[
@@ -67,7 +71,7 @@ if (sortOption!=null) {
                 />
             </div>
 
-            <div className="grid">
+            <div className={styles.grid}>
                 {/* Results */}
                 {
                     // eslint-disable-next-line

@@ -1,7 +1,10 @@
 import React from 'react'
-import './university.css';
 import image from '../../../components/placeholder.png';
 import { useParams } from "react-router-dom";
+import globalStyles from '../../pages.module.css';
+import styles from './university.module.css';
+
+import Header from '../../../components/header/header';
 
 const University = (props) => {   
 
@@ -9,7 +12,9 @@ const University = (props) => {
 
     return (
           <>
-            <div>Hello this is a university page for university with id: {id}</div>
+            <Header 
+              name={id}
+            />
           </>
     )
 };

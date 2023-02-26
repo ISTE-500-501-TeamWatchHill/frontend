@@ -1,7 +1,10 @@
 import React from 'react'
-import './team.css';
 import image from '../../../components/placeholder.png';
 import { useParams } from "react-router-dom";
+import globalStyles from '../../pages.module.css';
+import styles from './team.module.css';
+
+import Header from '../../../components/header/header';
 import MemberBlock from '../../../components/memberblock/memberblock';
 
 
@@ -19,12 +22,14 @@ const Team = (props) => {
 
     return (
           <>
-            {/* Title */}
-            <h1> Team Name ({id}) </h1>
+          
+          <Header 
+            name={id}
+          />
 
             <h3> University Name</h3>
 
-            <div class="grid">
+            <div class={styles.grid}>
                 {/* Team Members */}
                 {
                     // eslint-disable-next-line

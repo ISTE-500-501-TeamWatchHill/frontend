@@ -3,8 +3,11 @@ import styles from './login.module.css';
 // import globalStyles from '../pages.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
+import { Navigate } from "react-router-dom";
 
 const Login = (props) => {   
+
+    const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -40,6 +43,9 @@ const Login = (props) => {
 
     return (
           <>
+            {user && (
+                <Navigate to="/" replace={true} />
+            )}
             <div className={styles.login_section}>
                 <h1 className={styles.title}>Login</h1>
                 <Spacer height='40px' />

@@ -2,8 +2,11 @@ import React from 'react'
 import styles from './registration.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
+import { Navigate } from "react-router-dom";
 
-const Registration = (props) => {   
+const Registration = (props) => {  
+    
+    const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -40,6 +43,9 @@ const Registration = (props) => {
 
     return (
           <>
+            {user && (
+                <Navigate to="/" replace={true} />
+            )}
             <div className={styles.login_section}>
                 <h1 className={styles.title}>Register</h1>
                 <Spacer height='40px' />

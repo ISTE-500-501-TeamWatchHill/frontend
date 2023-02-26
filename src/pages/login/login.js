@@ -8,24 +8,32 @@ const Login = (props) => {
 
     async function onSubmit(e) {
         e.preventDefault();
-        const loginFormValues = {
-            email: e.target.email.value,
-            password: e.target.password.value,
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "email": e.target.email.value,
+            "password": e.target.password.value,
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
         };
-        console.log(loginFormValues);
-    
-        // TODO
-        // This will send a post request to update the data in the database.
-        // await fetch(`http://localhost:3001/login`, {
-        //   method: "POST",
-        //   body: JSON.stringify(loginFormValues),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Access-Control-Allow-Origin': '*',
-        //   },
-        // });
-    
-        // navigate("/");
+
+        await fetch("http://localhost:3001/login", requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                localStorage.setItem('token', result.token);
+                alert('Logged in! Will add a redirect here later :)'); // TODO: Add redirect
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); // TODO: display error, refresh form
     }
 
 

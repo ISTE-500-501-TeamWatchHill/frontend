@@ -3,10 +3,11 @@ import styles from './login.module.css';
 // import globalStyles from '../pages.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = (props) => {   
 
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
 
     async function onSubmit(e) {
@@ -32,7 +33,9 @@ const Login = (props) => {
             .then(response => response.json())
             .then(function(result) {
                 localStorage.setItem('user', JSON.stringify(result));
-                alert('Logged in! Will add a redirect here later :)'); // TODO: Add redirect
+                alert('Logged in! Redirecting to home...');
+                navigate('/');
+                navigate(0);
             })
             .catch(function(error) {
                 console.log('error', error);

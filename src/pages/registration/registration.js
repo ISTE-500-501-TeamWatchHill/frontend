@@ -2,10 +2,11 @@ import React from 'react'
 import styles from './registration.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Registration = (props) => {  
     
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
 
     async function onSubmit(e) {
@@ -33,8 +34,10 @@ const Registration = (props) => {
             .then(response => response.json())
             .then(function(result) {
                 localStorage.setItem('token', result.token);
-                alert('Registered! Will add a redirect here later :)'); // TODO: Add redirect
-            }) // TODO: store token in session
+                alert('Registered! Redirecting to home...');
+                navigate('/');
+                navigate(0);
+            })
             .catch(function(error) {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');

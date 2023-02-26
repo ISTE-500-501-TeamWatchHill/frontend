@@ -25,22 +25,6 @@
     
 }
 
-/* moved to global */
-/* .text {
-    font-family: 'Mulish';
-    font-weight: bold;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 32px;
-    letter-spacing: 0.2px;
-    color: #373F41;
-}
-
-.p.text {
-    font-weight: 400;
-    max-width: 852px;
-} */
-
 .countdown {
     font-family: 'Mulish';
     font-style: normal;
@@ -49,37 +33,15 @@
     line-height: 147.69%;
 }
 
-/* .button_row {
-    display: flex;
-    justify-content: center;
-} */
-
-/* moved to global */
-/* .second_section {
-    max-width: 852px;
-    margin-top: 120px;
-    margin-left: 146px;
-    margin-bottom: 94px;
-} */
-
 .third_section {
     display: flex;
-    background-color: #D9D9D9;
     flex-direction:row;
     justify-content: center;
-    padding-top: 112px;
-    padding-bottom: 144px;
 }
 
 .fourth_section {
-    /* mmmm not sure which to go with, but I'll leave both here */
-    /* margin-left: 146px; */
     padding: auto;
     align-content: center;
-    margin-top: 96px;
-    margin-left: 146px;
-    margin-bottom: 156px;
-
 }
 
 .teams_playing {

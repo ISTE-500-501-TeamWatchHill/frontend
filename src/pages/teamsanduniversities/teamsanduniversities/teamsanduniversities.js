@@ -45,7 +45,7 @@ const TeamsAndUniversities = () => {
                 name="Teams & Universities"
             />
 
-            <div className={globalStyles.grid_page}>
+            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
                 {/* View and Search Functionality */}
                 <div className={styles.flex}>
                     {/* Sort Button */}

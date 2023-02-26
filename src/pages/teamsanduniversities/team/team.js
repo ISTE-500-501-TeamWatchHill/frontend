@@ -23,11 +23,11 @@ const Team = (props) => {
     return (
           <>
             <Header 
-              name={id}
+              name={`Team with ID: ${id}`}
             />
 
-          <div className={globalStyles.grid_page}>
-            <h3> University Name</h3>
+          <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+            <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
 
             <div className={globalStyles.grid}>
                 {/* Team Members */}

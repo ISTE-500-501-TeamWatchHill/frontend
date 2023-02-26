@@ -5,18 +5,8 @@ import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { useTranslation } from "react-i18next";
 
-// TODO
-    // Make dynamic
-    // Make responsive
-    // Change images + add alt text
-    // Make dynamic timer
-    // Add fonts
-    // Make components out of repeated items
-
-// TechDebt
-    // Refactor dynamic text elements
 const Home = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>
@@ -34,27 +24,27 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className={globalStyles.subsection}>
-                <h3 className={globalStyles.text}>{t("homeTournamentExplanationTitle.label")}</h3>
-                <Spacer height='32px'/>
+            <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{t("homeTournamentExplanationTitle.label")}</h3>
+
                 <div className={globalStyles.text}>
-                    <p className={`${globalStyles.p} ${globalStyles.text}`}>{t("homeTournamentExplanationp1.label")}</p>
-                    <Spacer height='40px'/>
-                    <p className={`${globalStyles.p} ${globalStyles.text}`}>{t("homeTournamentExplanationp2.label")}</p>
-                    <Spacer height='40px'/>
+                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.sub_text_spacer}`}>{t("homeTournamentExplanationp1.label")}</p>
+
+                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.sub_text_spacer}`}>{t("homeTournamentExplanationp2.label")}</p>
+
                     <p className={`${globalStyles.p} ${globalStyles.text}`}>{t("homeTournamentExplanationp3.label")}</p>
                 </div>
             </div>
 
-            <div className={styles.third_section}>
+            <div className={`${globalStyles.gray_section} ${styles.third_section}`}>
                 <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Aardvark%20Games' alt='TODO'/>
                 <Spacer width='75px'/>
                 <p className={`${globalStyles.p} ${globalStyles.text}`}>{t("homePrizeExplanation.label")}</p>
             </div>
 
-            <div className={styles.fourth_section}>
-                <h3 className={globalStyles.text}>{t("whoPlaying.label")}</h3>
-                <Spacer height='48px' />
+            <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom} ${styles.fourth_section}`}>
+                <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{t("whoPlaying.label")}</h3>
+                
                 <div className={styles.teams_playing}>
                     <div className={styles.team_playing}>
                         <img src='https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=Aardvark%20Games' alt='TODO'/>

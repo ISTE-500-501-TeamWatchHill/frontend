@@ -10,7 +10,7 @@ import TeamBlock from '../../../components/teamblock/teamblock';
 
 
 //Hard coded for now- will grab from database.
-var teams = [ 
+const teams = [ 
   { id: 1, name: "Team One", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
   { id: 2, name: "Team Two", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
   { id: 3, name: "Team Three", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 5 },

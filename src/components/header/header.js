@@ -1,5 +1,4 @@
 import React from "react";
-import styles from './header.module.css';
 import globalStyles from '../../pages/pages.module.css';
 
 export default function Header(props) { 

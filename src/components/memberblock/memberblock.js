@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './memberblock.module.css';
 import globalStyles from '../../pages/pages.module.css';
 import image from '../placeholder.png';
 
@@ -23,7 +22,7 @@ const MemberBlock = (props) => {
                     <img className={globalStyles.img} src={image} alt="Placeholder"/>
 
                     <div>
-                        <a className={globalStyles.text}>{props.member.name}</a>
+                        <a href='/#' className={globalStyles.text}>{props.member.name}</a>
                     </div>
                 </div>
             </div>

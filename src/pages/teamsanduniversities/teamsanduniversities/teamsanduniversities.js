@@ -10,7 +10,7 @@ import TeamBlock from '../../../components/teamblock/teamblock';
 //Hard coded for now- will grab from database. Assume default sort is by id
 var teams = [ 
   { id: 1, name: "Team One", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
-  { id: 2, name: "Team Two", universityname: "Univerity of Buffalo", universityid: 6, numplayers: 4 },
+  { id: 2, name: "Team Two", universityname: "University of Buffalo", universityid: 6, numplayers: 4 },
   { id: 3, name: "Team Three", universityname: "Far Far Away", universityid: 3, numplayers: 5 },
   { id: 4, name: "Team Four", universityname: "Winterfell", universityid: 8, numplayers: 4 },
   { id: 5, name: "Team Five", universityname: "Gatlin College of Civil War Studies", universityid: 12, numplayers: 3 },

@@ -18,9 +18,9 @@ const MemberBlock = (props) => {
 
     return (
           <>
-            <div className={styles.block}>
-                <div className={styles.flex}>
-                    <img className={styles.img} src={image} alt="Placeholder"/>
+            <div className={globalStyles.block}>
+                <div className={globalStyles.flex}>
+                    <img className={globalStyles.img} src={image} alt="Placeholder"/>
 
                     <div>
                         <a className={globalStyles.text}>{props.member.name}</a>

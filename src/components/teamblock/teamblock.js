@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './teamblock.module.css';
+// import styles from './teamblock.module.css';
 import image from '../placeholder.png';
 import globalStyles from '../../pages/pages.module.css';
-import Team from '../../pages/teamsanduniversities/team/team';
+// import Team from '../../pages/teamsanduniversities/team/team';
 
 const TeamBlock = (props) => {   
     if (!props.team.id) {

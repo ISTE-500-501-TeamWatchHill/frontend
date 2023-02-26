@@ -7,7 +7,8 @@ import { useTranslation } from "react-i18next";
 import LanguageSelector from "../languageselector/languageselector";
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
 
   return (

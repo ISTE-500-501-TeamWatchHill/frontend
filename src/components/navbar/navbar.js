@@ -11,7 +11,7 @@ export default function Navbar() {
   // const { t, i18n } = useTranslation();
   const { t } = useTranslation();
   const cookies = new Cookies();
-  const user = cookies.get('user').user;
+  const user = cookies.get('user') ? cookies.get('user').user : false;
 
   return (
     <>

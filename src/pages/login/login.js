@@ -6,11 +6,15 @@ import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
-const Login = () => {   
-
-    const navigate = useNavigate();
+const Login = () => {
+    // Needed for all API calls
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
-    const user = cookies.get('user').user;
+    const user = cookies.get('user');
+
+    // used for redirect after successful login
+    const navigate = useNavigate();
+
     
     async function onSubmit(e) { 
         e.preventDefault();
@@ -31,7 +35,7 @@ const Login = () => {
             redirect: 'follow'
         };
 
-        await fetch("http://localhost:3001/login", requestOptions)
+        await fetch(`${BASE_URL}/login`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 cookies.set('user', JSON.stringify(result));

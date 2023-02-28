@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './teamblock.module.css';
+// import styles from './teamblock.module.css';
 import image from '../placeholder.png';
 import globalStyles from '../../pages/pages.module.css';
-import Team from '../../pages/teamsanduniversities/team/team';
+// import Team from '../../pages/teamsanduniversities/team/team';
 
 const TeamBlock = (props) => {   
     if (!props.team.id) {
@@ -33,8 +33,8 @@ const TeamBlock = (props) => {
 
                     <div>
                         <a className={globalStyles.text} href={"/team/" + props.team.id} key={"/team/" + props.team.id} >{props.team.name}</a>
-                        <p lassName={globalStyles.sub_text}><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
-                        <p lassName={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.numplayers}</p>
+                        <p className={globalStyles.sub_text}><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
+                        <p className={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.numplayers}</p>
                     </div>
                 </div>
             </div>

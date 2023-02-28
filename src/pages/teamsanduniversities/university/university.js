@@ -1,16 +1,16 @@
 import React from 'react'
-import image from '../../../components/placeholder.png';
+// import image from '../../../components/placeholder.png';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './university.module.css';
 
 import Header from '../../../components/header/header';
-import Spacer from '../../../components/spacer/spacer';
+// import Spacer from '../../../components/spacer/spacer';
 import TeamBlock from '../../../components/teamblock/teamblock';
 
 
 //Hard coded for now- will grab from database.
-var teams = [ 
+const teams = [ 
   { id: 1, name: "Team One", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
   { id: 2, name: "Team Two", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 4 },
   { id: 3, name: "Team Three", universityname: "Rochester Istitute of Technology", universityid: 1, numplayers: 5 },

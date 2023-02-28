@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 
 const LanguageSelector = () => {
 
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
 
   //Creating a method to change the language onChnage from select box

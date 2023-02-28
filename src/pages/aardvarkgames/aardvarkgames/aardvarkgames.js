@@ -1,10 +1,10 @@
 import React from 'react';
 import globalStyles from '../../pages.module.css';
-import styles from './aardvarkgames.module.css';
+// import styles from './aardvarkgames.module.css';
 import "@fontsource/mulish";
 
 import Header from '../../../components/header/header';
-import Spacer from '../../../components/spacer/spacer';
+// import Spacer from '../../../components/spacer/spacer';
 
 const AardvarkGames = () => {
     

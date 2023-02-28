@@ -4,7 +4,7 @@ import styles from './boardgame.module.css';
 import "@fontsource/mulish";
 
 import Header from '../../../components/header/header';
-import Spacer from '../../../components/spacer/spacer';
+// import Spacer from '../../../components/spacer/spacer';
 
 
 const BoardGame = () => {

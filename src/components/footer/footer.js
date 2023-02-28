@@ -4,7 +4,8 @@ import styles from './footer.module.css';
 import { useTranslation } from "react-i18next";
 
 export default function Footer(props) { 
-    const { t, i18n } = useTranslation();
+    // const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

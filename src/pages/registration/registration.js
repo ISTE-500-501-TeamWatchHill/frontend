@@ -2,15 +2,27 @@ import React from 'react'
 import styles from './registration.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
+import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
-const Registration = (props) => {   
-
+const Registration = () => {  
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
+    
+    const navigate = useNavigate();
+    
     async function onSubmit(e) {
         e.preventDefault();
 
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        /**
+         * >= 8 characters
+         * alphanumeric
+         * require special characters
+         */
         const raw = JSON.stringify({
             "uid": 1423518, // TODO: get university IDs dynamically
             "firstName": e.target.fname.value,
@@ -26,12 +38,19 @@ const Registration = (props) => {
             redirect: 'follow'
         };
 
-        await fetch("http://localhost:3001/register", requestOptions)
+        await fetch(`${BASE_URL}/register`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                localStorage.setItem('token', result.token);
-                alert('Registered! Will add a redirect here later :)'); // TODO: Add redirect
-            }) // TODO: store token in session
+                const options = {
+                    path: '/',
+                    secure: true,
+                    sameSite: 'strict',
+                    expires: new Date(Date.now()+86400) // expires in one day
+                };
+                cookies.set('user', result.user, options);
+                navigate('/');
+                navigate(0);
+            })
             .catch(function(error) {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
@@ -40,6 +59,9 @@ const Registration = (props) => {
 
     return (
           <>
+            {user && (
+                <Navigate to="/" replace={true} />
+            )}
             <div className={styles.login_section}>
                 <h1 className={styles.title}>Register</h1>
                 <Spacer height='40px' />

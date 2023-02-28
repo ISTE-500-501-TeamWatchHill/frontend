@@ -41,7 +41,13 @@ const Registration = () => {
         await fetch(`${BASE_URL}/register`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                cookies.set('user', result.user);
+                const options = {
+                    path: '/',
+                    secure: true,
+                    sameSite: 'strict',
+                    expires: new Date(Date.now()+86400) // expires in one day
+                };
+                cookies.set('user', result.user, options);
                 navigate('/');
                 navigate(0);
             })

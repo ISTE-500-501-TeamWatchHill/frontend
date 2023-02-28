@@ -38,7 +38,7 @@ const Login = () => {
         await fetch(`${BASE_URL}/login`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                cookies.set('user', JSON.stringify(result));
+                cookies.set('user', result.user);
                 navigate('/');
                 navigate(0);
             })

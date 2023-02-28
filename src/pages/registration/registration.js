@@ -6,11 +6,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 const Registration = () => {  
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
     
     const navigate = useNavigate();
-    const cookies = new Cookies();
-    const user = cookies.get('user').user;
-
+    
     async function onSubmit(e) {
         e.preventDefault();
 
@@ -37,11 +38,10 @@ const Registration = () => {
             redirect: 'follow'
         };
 
-        await fetch("http://localhost:3001/register", requestOptions)
+        await fetch(`${BASE_URL}/register`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                localStorage.setItem('token', result.token);
-                alert('Registered! Redirecting to home...');
+                cookies.set('user', result.user);
                 navigate('/');
                 navigate(0);
             })

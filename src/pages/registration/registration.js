@@ -3,11 +3,13 @@ import styles from './registration.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
-const Registration = (props) => {  
+const Registration = () => {  
     
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
+    const cookies = new Cookies();
+    const user = cookies.get('user').user;
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -15,6 +17,11 @@ const Registration = (props) => {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        /**
+         * >= 8 characters
+         * alphanumeric
+         * require special characters
+         */
         const raw = JSON.stringify({
             "uid": 1423518, // TODO: get university IDs dynamically
             "firstName": e.target.fname.value,

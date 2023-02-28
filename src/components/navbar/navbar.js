@@ -5,11 +5,13 @@ import Button from '../button/button';
 import logo from '../Aardvark_logo_clear_horizontal.png';
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../languageselector/languageselector";
+import Cookies from 'universal-cookie';
 
 export default function Navbar() {
   // const { t, i18n } = useTranslation();
   const { t } = useTranslation();
-  const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
+  const cookies = new Cookies();
+  const user = cookies.get('user').user;
 
   return (
     <>
@@ -45,7 +47,8 @@ export default function Navbar() {
               </li>
           </ul>
           { !user && <Button name={t("loginButton.label")} link="/login"/> }
-          { user && <Button name="Logout" link="/login" onClick={function() {localStorage.removeItem('user');}}/> }
+          { user && <Button name="Logout" link="/login" onClick={function() {cookies.remove('user');}}/> }
+          { user && <div>Welcome, { user.firstName }!</div>}
           <LanguageSelector />
         </div> {/* classname='right_nav' */}
       </nav>

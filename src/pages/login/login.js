@@ -4,13 +4,15 @@ import styles from './login.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
-const Login = (props) => {   
+const Login = () => {   
 
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem('user')); // get user from localStorage
-
-    async function onSubmit(e) {
+    const cookies = new Cookies();
+    const user = cookies.get('user').user;
+    
+    async function onSubmit(e) { 
         e.preventDefault();
 
         let myHeaders = new Headers();
@@ -32,8 +34,7 @@ const Login = (props) => {
         await fetch("http://localhost:3001/login", requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                localStorage.setItem('user', JSON.stringify(result));
-                alert('Logged in! Redirecting to home...');
+                cookies.set('user', JSON.stringify(result));
                 navigate('/');
                 navigate(0);
             })

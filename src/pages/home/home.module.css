@@ -25,14 +25,6 @@
     
 }
 
-.countdown {
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 147.69%;
-}
-
 .third_section {
     display: flex;
     flex-direction:row;

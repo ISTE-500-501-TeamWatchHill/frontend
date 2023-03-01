@@ -1,0 +1,15 @@
+.timer {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 44px;
+    color: gray;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 16px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}

@@ -3,6 +3,7 @@ import styles from './home.module.css';
 import globalStyles from '../pages.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
+import CountdownTimer from '../../components/countdowntimer/countdowntimer';
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
@@ -15,7 +16,7 @@ const Home = () => {
                 <Spacer height='16px' />
                 <div className={globalStyles.text}>{t("homeSubTitle.label")}</div>
                 <Spacer height='42px' />
-                <div className={styles.countdown}>TODO: Dynamic countdown timer here</div>
+                <div><CountdownTimer /></div>
                 <Spacer height='40px' />
                 <div className={globalStyles.button_row}>
                     <Button name={t("learnMoreButton.label")} transparentBackground={true} link="/tournament"/>

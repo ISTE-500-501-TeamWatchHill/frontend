@@ -2,34 +2,66 @@ import React from 'react'
 import styles from './registration.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
+import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
-const Registration = (props) => {   
-
-    // TODO
+const Registration = () => {  
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
+    
+    const navigate = useNavigate();
+    
     async function onSubmit(e) {
-        // e.preventDefault();
-        // const loginFormValues = {
-        //     email: e.target.email.value,
-        //     password: e.target.password.value,
-        // };
-        // console.log(loginFormValues);
-    
-        // TODO
-        // This will send a post request to update the data in the database.
-        // await fetch(`http://localhost:3001/login`, {
-        //   method: "POST",
-        //   body: JSON.stringify(loginFormValues),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'Access-Control-Allow-Origin': '*',
-        //   },
-        // });
-    
-        // navigate("/");
+        e.preventDefault();
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        /**
+         * >= 8 characters
+         * alphanumeric
+         * require special characters
+         */
+        const raw = JSON.stringify({
+            "uid": 1423518, // TODO: get university IDs dynamically
+            "firstName": e.target.fname.value,
+            "lastName": e.target.lname.value,
+            "email": e.target.email.value,
+            "password": e.target.password.value,
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/register`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                const options = {
+                    path: '/',
+                    secure: true,
+                    sameSite: 'strict',
+                    expires: new Date(Date.now()+86400) // expires in one day
+                };
+                cookies.set('user', result.user, options);
+                navigate('/');
+                navigate(0);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); // TODO: display error, refresh form
     }
 
     return (
           <>
+            {user && (
+                <Navigate to="/" replace={true} />
+            )}
             <div className={styles.login_section}>
                 <h1 className={styles.title}>Register</h1>
                 <Spacer height='40px' />

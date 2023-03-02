@@ -1,39 +1,40 @@
 import React from 'react'
-import styles from './teamblock.module.css';
+// import styles from './teamblock.module.css';
 import image from '../placeholder.png';
-import Team from '../../pages/teamsanduniversities/team/team';
+import globalStyles from '../../pages/pages.module.css';
+// import Team from '../../pages/teamsanduniversities/team/team';
 
 const TeamBlock = (props) => {   
-    if (!props.team.id) {
+    if (!props.team.teamID) {
         throw new Error ("ERROR: No team id.");
     }
 
-    if (!props.team.name) {
+    if (!props.team.description) {
         throw new Error ("ERROR: No team name.");
     }
 
-    if (!props.team.universityname) {
-        throw new Error ("ERROR: No university name.");
-    }
+    // if (!props.team.universityname) {
+    //     throw new Error ("ERROR: No university name.");
+    // }
 
-    if (!props.team.universityid) {
+    if (!props.team.universityID) {
         throw new Error ("ERROR: No university id.");
     }
 
-    if (!props.team.numplayers) {
-        throw new Error ("ERROR: No number of players set.");
-    }
+    // if (!props.team.numplayers) {
+    //     throw new Error ("ERROR: No number of players set.");
+    // }
 
     return (
           <>
-            <div className={styles.block}>
-                <div className={styles.flex}>
-                    <img className={styles.img} src={image} alt="Placeholder"/>
+            <div className={globalStyles.block}>
+                <div className={globalStyles.flex}>
+                    <img className={globalStyles.img} src={image} alt="Placeholder"/>
 
                     <div>
-                        <a href={"/team/" + props.team.id} key={"/team/" + props.team.id}>{props.team.name}</a>
-                        <p><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
-                        <p><strong>Number of Players:</strong> {props.team.numplayers}</p>
+                        <a className={globalStyles.text} href={"/team/" + props.team.teamID} key={"/team/" + props.team.teamID} >{props.team.description}</a>
+                        {/* <p className={globalStyles.sub_text}><strong>University Name:</strong> <a href={"/university/" + props.team.universityid} key={"/university/" + props.team.universityid}>{props.team.universityname}</a></p>
+                        <p className={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.numplayers}</p> */}
                     </div>
                 </div>
             </div>

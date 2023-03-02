@@ -1,12 +1,13 @@
 import React from 'react';
+import Header from '../../../components/header/header';
+
 const Schedule = () => {
-    
-return (
-      <>
-        <h1 style={{color:"blue"}}> 
-            Tis Time!</h1>
-      </>
-  )
-};
-  
+  return (
+        <>
+          <Header 
+            name="Schedule"
+          />
+        </>
+    )
+  };
 export default Schedule;

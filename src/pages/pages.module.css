@@ -1,8 +1,11 @@
 /* Global CSS to be added during module conversion */
 
+/*##########################################################################################
+#####################################    HEADER    #########################################
+##########################################################################################*/
 .h1_title_section{
     background-color: #D9D9D9;
-    padding-left: 146px;
+    padding-left: 6vw;
     max-height: 432px;
     height: 50vh;
     display: flex;
@@ -18,26 +21,72 @@
     line-height: .8em;
 }
 
-.subsection {
+
+/*##########################################################################################
+##################################    Page Layouts    ######################################
+##########################################################################################*/
+/* .subsection {
     max-width: 852px;
-    margin-top: 120px;
-    margin-left: 146px;
-    margin-bottom: 94px;
 }
 
 .wide_subsection {
     max-width: 1143px;
-    margin-top: 120px;
-    margin-left: 146px;
-    margin-bottom: 94px;
+} */
+
+.gray_section {
+    background-color: #D9D9D9;
+    padding: 8vh 6vw 10vh 6vw;
 }
 
+.grid_page .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+    column-gap: 16px;
+}
+
+.grid_page .grid_list {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+}
+
+.grid_page .block {
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.grid_page .flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 24px;
+    margin: 12px
+}
+
+.grid_page .img {
+    width: 200px;
+}
+
+
+
+/*##########################################################################################
+######################################    Text    ##########################################
+##########################################################################################*/
 .text {
     font-family: 'Mulish';
     font-weight: bold;
     font-weight: 600;
     font-size: 26px;
     line-height: 32px;
+    letter-spacing: 0.2px;
+    color: #373F41;
+}
+
+.sub_text {
+    font-family: 'Mulish';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
     letter-spacing: 0.2px;
     color: #373F41;
 }
@@ -55,4 +104,35 @@
 .button_row {
     display: flex;
     justify-content: center;
+}
+
+
+
+/*##########################################################################################
+#####################################    Spacing    ########################################
+##########################################################################################*/
+.body_margin {
+    margin-left: 6vw;
+    margin-right: 6vw;
+}
+
+.margin8_top_bottom {
+    margin-top: 8vh;
+    margin-bottom: 8vh;
+}
+
+.margin8_bottom {
+    margin-bottom: 8vh;
+}
+
+.margin8_top {
+    margin-top: 8vh;
+}
+
+.sub_header_spacer {
+    margin-bottom: 3vh;
+}
+
+.sub_text_spacer {
+    margin-bottom: 2vh;
 }

@@ -1,3 +1,11 @@
 .university {
     margin-bottom: 2vh;
 }
+
+.editButtonRow {
+    margin-top: 24px;
+}
+
+.editButtonRow > * {
+    margin-right: 16px;
+}

@@ -38,11 +38,18 @@ export default function Button(props) {
 
     return (
         <>
-            <a href={link}>
+            { props.link && 
+                <a href={link}>
+                    <button className={styles.button} style={propStyles} onClick={props.onClick}>
+                        {props.name}
+                    </button>
+                </a>
+            }
+            { !props.link && 
                 <button className={styles.button} style={propStyles} onClick={props.onClick}>
                     {props.name}
                 </button>
-            </a>
+            }
         </>
     )
 }

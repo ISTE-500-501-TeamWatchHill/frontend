@@ -3,7 +3,7 @@ import image from '../../../components/placeholder.png';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
-
+import Button from '../../../components/button/button';
 import Header from '../../../components/header/header';
 import MemberBlock from '../../../components/memberblock/memberblock';
 
@@ -18,16 +18,21 @@ const members = [
 
 const Team = (props) => {   
 
+  // TEMP HARDCODED
+  const teamID = "1"; // acting as a substitute for a user's team ID
+  let teamNamePrefix = "Team ";
+  let teamName = "Temp Name"; // acting as a substitute for a team's name
+
   let { id } = useParams();
 
     return (
           <>
             <Header 
-              name={`Team with ID: ${id}`}
+              name={teamNamePrefix + teamName}
             />
 
           <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-            <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
+            <h3 className={`${globalStyles.text} ${styles.university}`}>Dynamic University Name TODO</h3>
 
             <div className={globalStyles.grid}>
                 {/* Team Members */}
@@ -40,6 +45,15 @@ const Team = (props) => {
                     })
                 }
             </div>
+
+            { teamID == id &&
+              <div className={styles.editButtonRow}>
+                <Button name='Edit Team Name' />
+                <Button name='Edit Team Profile Picture' />
+                <Button name='Edit Roster' />
+              </div>
+            }
+
           </div>
         </>
     )

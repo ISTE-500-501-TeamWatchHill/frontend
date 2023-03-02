@@ -25,38 +25,100 @@ const Team = (props) => {
 
   let { id } = useParams();
 
-    return (
-          <>
-            <Header 
-              name={teamNamePrefix + teamName}
-            />
+  // edit team name
+  function teamNameEditOnSubmit (e) {
+    /**
+     * TODO: check for default value, check string not empty
+     *       strip value, check for bad input...
+     */
+    e.preventDefault();
+    alert(e.target.teamName.value);
+  }
 
-          <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-            <h3 className={`${globalStyles.text} ${styles.university}`}>Dynamic University Name TODO</h3>
+  function teamProfilePictureEditOnSubmit (e) {
+    /**
+     * TODO: check for image size, check for no image
+     *       check image type, ...
+     */
+    e.preventDefault();
+    alert("Submit clicked");
+  }
+  
+  function teamRosterEditOnSubmit (e) {
+    // TODO
+    e.preventDefault();
+  }
 
-            <div className={globalStyles.grid}>
-                {/* Team Members */}
-                {
-                    // eslint-disable-next-line
-                    members.map((member) => {
-                        return (
-                            <MemberBlock member={member} />
-                        )
-                    })
-                }
-            </div>
+  return (
+        <>
+          <Header 
+            name={teamNamePrefix + teamName}
+          />
 
-            { teamID == id &&
-              <div className={styles.editButtonRow}>
-                <Button name='Edit Team Name' />
-                <Button name='Edit Team Profile Picture' />
-                <Button name='Edit Roster' />
-              </div>
-            }
+        <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+          <h3 className={`${globalStyles.text} ${styles.university}`}>Dynamic University Name TODO</h3>
 
+          <div className={globalStyles.grid}>
+              {/* Team Members */}
+              {
+                  // eslint-disable-next-line
+                  members.map((member) => {
+                      return (
+                          <MemberBlock member={member} />
+                      )
+                  })
+              }
           </div>
-        </>
-    )
+
+          { teamID == id &&
+            <div className={styles.editButtonRow}>
+              <Button name='Edit Team Name' />
+              <Button name='Edit Team Profile Picture' />
+              <Button name='Edit Roster' />
+            </div>
+          }
+
+          <hr/>
+          <form className={styles.editTeamNameForm} onSubmit={teamNameEditOnSubmit}>
+            <h5>Has prefix "Team " (with space)</h5>
+            <input defaultValue={teamName} name='teamName' placeholder='Team Name'/><br/>
+            <Button name='Cancel' />
+            <Button type='submit' name='Save' />
+          </form>
+          
+          <hr/>
+          <form className={styles.editTeamProfilePicture} onSubmit={teamProfilePictureEditOnSubmit}>
+            <h5>Change profile picture (or default will be provided)</h5>
+            <input type="file" name="teamProfilePicture" accept="image/*" /><br/>
+            <Button name='Cancel' />
+            <Button type='submit' name='Save' />
+            <br/>
+            {/* TODO: Add confirm button */}
+            <Button type='submit' name='Delete Exisiting Photo' /> 
+          </form>
+
+
+          <hr/>
+          <h5>Current Roster</h5>
+          {
+            // eslint-disable-next-line
+            members.map(member => {
+              return (
+                <>
+                  <div>{member.name}</div><Button name='Remove' onClick={function () { alert(`Removing user ${member.name}`); } } /><br />
+                </>
+              )
+            })
+          }
+          <form className={styles.editTeamRosterForm} onSubmit={teamRosterEditOnSubmit}>
+            <h5>Add to Roster by Email</h5>
+            <input type='email' placeholder='Email'/>
+            <Button type='submit' name='Request user join roster' />
+          </form>
+
+        </div>
+      </>
+  )
 };
   
 export default Team;

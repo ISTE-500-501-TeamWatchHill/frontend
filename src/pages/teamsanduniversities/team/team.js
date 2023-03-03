@@ -72,34 +72,31 @@ const Team = (props) => {
 
           { teamID === id &&
             <div className={styles.editButtonRow}>
-              <Button name='Edit Team Name' />
+              <Button name='Edit Team Name' onClick={function() { document.getElementsByClassName(styles.editTeamNameForm)[0].style.display = "block"; }} />
               <Button name='Edit Team Profile Picture' />
               <Button name='Edit Roster' />
             </div>
           }
 
-          <hr/>
           <form className={styles.editTeamNameForm} onSubmit={teamNameEditOnSubmit}>
             <h5>Has prefix "Team " (with space)</h5>
             <input defaultValue={teamName} name='teamName' placeholder='Team Name'/><br/>
-            <Button name='Cancel' />
-            <Button type='submit' name='Save' />
+            <Button onClick={function(e) {e.preventDefault(); document.getElementsByClassName(styles.editTeamNameForm)[0].style.display = "none"; }} name='Cancel' />
+            <Button name='Save' />
           </form>
           
-          <hr/>
-          <form className={styles.editTeamProfilePicture} onSubmit={teamProfilePictureEditOnSubmit}>
+          {/* <form className={styles.editTeamProfilePicture} onSubmit={teamProfilePictureEditOnSubmit}>
             <h5>Change profile picture (or default will be provided)</h5>
             <input type="file" name="teamProfilePicture" accept="image/*" /><br/>
             <Button name='Cancel' />
             <Button type='submit' name='Save' />
-            <br/>
+            <br/> */}
             {/* TODO: Add confirm button */}
-            <Button type='submit' name='Delete Exisiting Photo' /> 
-          </form>
+            {/* <Button type='submit' name='Delete Exisiting Photo' /> 
+          </form> */}
 
 
-          <hr/>
-          <h5>Current Roster</h5>
+          {/* <h5>Current Roster</h5>
           {
             // eslint-disable-next-line
             members.map(member => {
@@ -114,7 +111,7 @@ const Team = (props) => {
             <h5>Add to Roster by Email</h5>
             <input type='email' placeholder='Email'/>
             <Button type='submit' name='Request user join roster' />
-          </form>
+          </form> */}
 
         </div>
       </>

@@ -9,3 +9,7 @@
 .editButtonRow > * {
     margin-right: 16px;
 }
+
+.editTeamNameForm {
+    display: none;
+}

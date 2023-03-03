@@ -70,7 +70,7 @@ const Team = (props) => {
               }
           </div>
 
-          { teamID == id &&
+          { teamID === id &&
             <div className={styles.editButtonRow}>
               <Button name='Edit Team Name' />
               <Button name='Edit Team Profile Picture' />

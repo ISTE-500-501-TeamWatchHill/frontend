@@ -13,17 +13,17 @@ const TeamBlock = (props) => {
         throw new Error ("ERROR: No team name.");
     }
 
-    // if (!props.team.universityName) {
-    //     throw new Error ("ERROR: No university name.");
-    // }
+    if (!props.team.universityName) {
+        throw new Error ("ERROR: No university name.");
+    }
 
     if (!props.team.universityID) {
         throw new Error ("ERROR: No university id.");
     }
 
-    // if (!props.team.players) {
-    //     throw new Error ("ERROR: No number of players set.");
-    // }
+    if (!props.team.players) {
+        throw new Error ("ERROR: No number of players set.");
+    }
 
     return (
           <>
@@ -34,7 +34,7 @@ const TeamBlock = (props) => {
                     <div>
                         <a className={globalStyles.text} href={"/team/" + props.team.teamID} key={"/team/" + props.team.teamID} >{props.team.description}</a>
                          <p className={globalStyles.sub_text}><strong>University Name:</strong> <a href={"/university/" + props.team.universityID} key={"/university/" + props.team.universityID}>{props.team.universityName}</a></p>
-                        {/* <p className={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.players.length}</p> */}
+                        <p className={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.players.length}</p>
                     </div>
                 </div>
             </div>

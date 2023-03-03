@@ -7,20 +7,50 @@ import Header from '../../../components/header/header';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 import Cookies from 'universal-cookie';
+import { use } from 'i18next';
 
 const TeamsAndUniversities = () => {   
 
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
-    const [teams, changeTeams] = useState([{ teamID: 1, description: "Naur One", universityID: 1, players: [] }]);
+    const [teams, changeTeams] = useState([{ teamID: 1, description: "Naur One", universityID: 1, universityName: "RIT", players: [] }]);
+    const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
     const user = cookies.get('user');
 
+    useEffect(()=> {
+        async function getUniversities() {
+            if (user) {
+                let myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("x-access-token", user.token);
+    
+                const requestOptions = {
+                    method: 'GET',
+                    headers: myHeaders,
+                    redirect: 'follow'
+                };
+
+                await fetch(`${BASE_URL}/universities/all`, requestOptions)
+                    .then(response => response.json())
+                    .then(function(result) {
+                        changeUniversities(result);
+                    })
+                    .catch(function(error) {
+                        console.log('error', error);
+                    }); 
+            }
+        }
+
+        getUniversities();
+    },[])
+
     useEffect(() =>{
+    
         async function getTeams () {
             if (user) {
                 let myHeaders = new Headers();
@@ -32,9 +62,15 @@ const TeamsAndUniversities = () => {
                     headers: myHeaders,
                     redirect: 'follow'
                 };
+
                 await fetch(`${BASE_URL}/teams/all`, requestOptions)
                     .then(response => response.json())
                     .then(function(result) {
+                        result.map((team) => {
+                            team.universityName = universities.filter(university => {
+                                return university.universityID === team.universityID
+                            })[0].name;
+                        });
                         changeTeams(result);
                     })
                     .catch(function(error) {
@@ -43,16 +79,14 @@ const TeamsAndUniversities = () => {
             }
         }
         getTeams();
-    }, [] )  
+    }, [universities] )  
 
     if (sortOption !== null) {
         teams.sort(function (a, b) {            
-            //if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityname < b.universityname : a.teamID < b.teamID) {
-            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : true : a.teamID < b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityName < b.universityName : a.teamID < b.teamID) {
                 return -1;
             }
-            //if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityname > b.universityname : a.teamID > b.teamID) {
-            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : true : a.teamID > b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityName > b.universityName : a.teamID > b.teamID) {
                 return 1;
             }
             return 0;
@@ -94,8 +128,7 @@ const TeamsAndUniversities = () => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
-                            // if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
-                            if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase())) {
+                            if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityName.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
                                     // TODO: change key to use unique identifier
                                     <TeamBlock key={team.description} team={team} />

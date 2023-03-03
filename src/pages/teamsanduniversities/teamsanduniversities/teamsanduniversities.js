@@ -11,8 +11,8 @@ import Cookies from 'universal-cookie';
 const TeamsAndUniversities = () => {   
 
     //Setup for hook for search term from search bar
-    // const [searchValue, changeSearchValue] = useState("");
-    // const [sortOption, changeSortOption] = useState(null);
+    const [searchValue, changeSearchValue] = useState("");
+    const [sortOption, changeSortOption] = useState(null);
     const [teams, changeTeams] = useState([{ teamID: 1, description: "Naur One", universityID: 1, players: [] }]);
 
     // Needed for all API calls
@@ -45,17 +45,19 @@ const TeamsAndUniversities = () => {
         getTeams();
     }, [] )  
 
-    // if (sortOption !== null) {
-    //     teams.sort(function (a, b) {            
-    //         if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.name < b.name : a.universityname < b.universityname : a.id < b.id) {
-    //             return -1;
-    //         }
-    //         if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.name > b.name : a.universityname > b.universityname : a.id > b.id) {
-    //             return 1;
-    //         }
-    //         return 0;
-    //     });
-    // }
+    if (sortOption !== null) {
+        teams.sort(function (a, b) {            
+            //if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityname < b.universityname : a.teamID < b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : true : a.teamID < b.teamID) {
+                return -1;
+            }
+            //if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityname > b.universityname : a.teamID > b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : true : a.teamID > b.teamID) {
+                return 1;
+            }
+            return 0;
+        });
+    }
 
     return (
         <>
@@ -65,8 +67,8 @@ const TeamsAndUniversities = () => {
 
             <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
                 {/* View and Search Functionality */}
-                {/* <div className={styles.flex}>
-                    {/* Sort Button *
+                 <div className={styles.flex}>
+                    {/* Sort Button */}
                     <Select
                         //Default value is null
                         className={styles.select}
@@ -80,25 +82,25 @@ const TeamsAndUniversities = () => {
                         onChange={changeSortOption}
                     />
 
-                    {/* Search Bar *
+                    {/* Search Bar */}
                     <SearchBar 
                         searchTerm = {searchValue}
                         onSearchChange = {changeSearchValue}
                         teams={teams}
                     /> 
-                </div> */}
+                </div> 
                 <div className={globalStyles.grid}>
                     {/* Results */}
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
                             // if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
-                            //if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase())) {
+                            if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
                                     // TODO: change key to use unique identifier
                                     <TeamBlock key={team.description} team={team} />
                                 )
-                            // }
+                            }
                         })
                        
                     }

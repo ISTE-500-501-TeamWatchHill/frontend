@@ -13,7 +13,7 @@ You'll probably want to run this command everytime you pull. If you're unable to
 
 This command copies the example file and create a new .env file for the frontend repo. Double check you have all of the correct variables set.
 
-The `REACT_APP_BASE_URL` in the frontend .env file needs to have a matching port number with whatever port you have it running on the backend. By default, the backend runs on PORT=5000 unless you specify another port in the backend .env file with PORT=####. Without this properly setup, none of the fetch requests to the backend will work.
+The `REACT_APP_BASE_URL` in the frontend .env file needs to have a matching port number with whatever port you have it running on the backend. By default, the backend runs on PORT=3001 unless you specify another port in the backend .env file with PORT=####. Without this properly setup, none of the fetch requests to the backend will work.
 
 ### To run the app
 `npm start`

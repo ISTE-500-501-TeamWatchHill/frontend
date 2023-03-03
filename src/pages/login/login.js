@@ -19,6 +19,7 @@ const Login = () => {
     async function onSubmit(e) { 
         e.preventDefault();
 
+        //TODO: move out login to methods.js 
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 

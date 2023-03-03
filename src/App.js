@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, {Component} from "react";
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 
@@ -37,7 +37,7 @@ const App = () => {
       </Routes>
       <Footer />
     </div>
-  );
+    );
 };
 
 export default App;

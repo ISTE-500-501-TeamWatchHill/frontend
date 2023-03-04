@@ -42,6 +42,7 @@ rawgames.forEach((game) => {
 const Schedule = () => {
   return (
         <>
+        <div className={globalStyles.background}>
           <Header 
             name="Schedule"
           />
@@ -77,6 +78,7 @@ const Schedule = () => {
                   })
                 };
             </div>
+          </div>
           </div>
         </>
     )

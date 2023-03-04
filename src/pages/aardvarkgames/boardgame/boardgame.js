@@ -10,6 +10,7 @@ import Header from '../../../components/header/header';
 const BoardGame = () => {
   return (
     <>
+    <div className={globalStyles.background}>
       <Header 
         name="A New World"
       />
@@ -26,7 +27,7 @@ const BoardGame = () => {
         <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>The game is best played in a head-to-head competition with a second team seeking to survive in its own New World, but competing for the same resources. However, with the modifications described for solo team play, it is possible to enjoy striving to beat your own prior scores.</p>
       </div>
 
-      <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+      <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
         <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>ROLES</h3>
 
         <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.sub_text_spacer}`}>Every team must designate the roles for each player prior to beginning play. If a team has fewer than five players, team members may assume more than one role.</p>
@@ -56,8 +57,9 @@ const BoardGame = () => {
           </tbody>
         </table>
 
-        <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.margin8_bottom}`}>This game is appropriate for ages 13 and over. Play time runs 60-90 minutes.</p>
+        <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>This game is appropriate for ages 13 and over. Play time runs 60-90 minutes.</p>
       </div>
+    </div>
     </>
   )
 };

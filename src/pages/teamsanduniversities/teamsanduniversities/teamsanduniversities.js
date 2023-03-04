@@ -95,6 +95,7 @@ const TeamsAndUniversities = () => {
 
     return (
         <>
+          <div className={globalStyles.background}>
             <Header 
                 name="Teams & Universities"
             />
@@ -139,6 +140,7 @@ const TeamsAndUniversities = () => {
                     }
                 </div>
             </div>
+          </div>
         </>
     )
 };

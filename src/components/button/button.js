@@ -32,8 +32,10 @@ export default function Button(props) {
     if (props.transparentBackground) {
         // set background to transparent and change color of text
         propStyles.backgroundColor = `transparent`;
-        propStyles.color = `#525252`;
-        propStyles.border = `1px solid #525252`;
+        propStyles.color = `white`;
+        propStyles.border = `1px solid white`;
+    } else {
+        propStyles.backgroundColor = '#2E8D93';
     }
 
     return (

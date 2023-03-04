@@ -22,23 +22,25 @@ const Team = (props) => {
 
     return (
           <>
+          <div className={globalStyles.background}>
             <Header 
               name={`Team with ID: ${id}`}
             />
 
-          <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-            <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
+            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+              <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
 
-            <div className={globalStyles.grid}>
-                {/* Team Members */}
-                {
-                    // eslint-disable-next-line
-                    members.map((member) => {
-                        return (
-                            <MemberBlock member={member} />
-                        )
-                    })
-                }
+              <div className={globalStyles.grid}>
+                  {/* Team Members */}
+                  {
+                      // eslint-disable-next-line
+                      members.map((member) => {
+                          return (
+                              <MemberBlock member={member} />
+                          )
+                      })
+                  }
+              </div>
             </div>
           </div>
         </>

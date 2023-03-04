@@ -21,7 +21,9 @@
 
     "loginButton.label": "Acceso",
 
-    "homeTournamentExplanationTitle.label": "EL EQUIPO DE TU UNIVERSIDAD PUEDE LLEVAR A CASA EL PREMIO?",
+    "homeTournamentExplanationTitle.label": "Puede su equipo llevar a casa el premio?",
+
+    "homeTournamentPrizeTitle.label": "Premios",
 
     "homeTournamentExplanationp1.label": "Reúna un equipo e inscríbase para jugar, primero por el honor de ser el equipo campeón de su universidad y luego por la oportunidad de representar a su escuela en rondas continuas de competencia global.",
 
@@ -29,9 +31,11 @@
 
     "homeTournamentExplanationp3.label": "Únase a nosotros para divertirse jugando! Únase a nosotros para algunos premios increíbles del torneo!",
 
-    "homePrizeExplanation.label": "Todos los jugadores que completen al menos una ronda del torneo recibirán una copia de cortesía de A New World. Los equipos de la ronda final de cada universidad se irán a casa con un increíble botín de Aardvark Games. El equipo del Primer Lugar de cada universidad recibirá un premio en efectivo de $1,000 y cada miembro individual del equipo recibirá un certificado de regalo de $100 para la tienda en línea de Aardvark Games.",
+    "homePrizeExplanation.label": "Todos los jugadores que completen al menos una ronda de torneos recibirán una copia gratuita de A New World. Los equipos de la ronda final de cada universidad se irán a casa con un increíble botín de Aardvark Games.",
 
-    "whoPlaying.label": "QUIÉN ESTÁ JUGANDO?",
+    "homeFirstPlace.label": "El equipo del Primer Lugar de cada universidad recibirá un premio en efectivo de $1,000 y cada miembro individual del equipo recibirá un certificado de regalo de $100 para la tienda en línea de Aardvark Games.",
+
+    "whoPlaying.label": "Quien esta jugando?",
 
     "footerSubtitle.label": "La nueva aventura de juegos de mesa de Aardvark Game!",
 

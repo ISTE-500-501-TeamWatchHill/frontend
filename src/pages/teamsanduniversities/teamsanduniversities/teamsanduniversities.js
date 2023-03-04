@@ -16,67 +16,56 @@ const TeamsAndUniversities = () => {
     const [sortOption, changeSortOption] = useState(null);
     const [teams, changeTeams] = useState([{ teamID: 1, description: "Naur One", universityID: 1, universityName: "RIT", players: [] }]);
     const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
+    const [token, changeToken] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
     const user = cookies.get('user');
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
     useEffect(()=> {
         async function getUniversities() {
-            if (user) {
-                let myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                myHeaders.append("x-access-token", user.token);
-    
-                const requestOptions = {
-                    method: 'GET',
-                    headers: myHeaders,
-                    redirect: 'follow'
-                };
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
 
-                await fetch(`${BASE_URL}/universities/all`, requestOptions)
-                    .then(response => response.json())
-                    .then(function(result) {
-                        changeUniversities(result);
-                    })
-                    .catch(function(error) {
-                        console.log('error', error);
-                    }); 
-            }
+            await fetch(`${BASE_URL}/universities/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeUniversities(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
         }
-
         getUniversities();
-    },[])
+    },[token])
 
     useEffect(() =>{
-    
         async function getTeams () {
-            if (user) {
-                let myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                myHeaders.append("x-access-token", user.token);
-    
-                const requestOptions = {
-                    method: 'GET',
-                    headers: myHeaders,
-                    redirect: 'follow'
-                };
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
 
-                await fetch(`${BASE_URL}/teams/all`, requestOptions)
-                    .then(response => response.json())
-                    .then(function(result) {
-                        result.map((team) => {
-                            team.universityName = universities.filter(university => {
-                                return university.universityID === team.universityID
-                            })[0].name;
-                        });
-                        changeTeams(result);
-                    })
-                    .catch(function(error) {
-                        console.log('error', error);
-                    }); 
-            }
+            await fetch(`${BASE_URL}/teams/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    result.map((team) => {
+                        team.universityName = universities.filter(university => {
+                            return university.universityID === team.universityID
+                        })[0].name;
+                    });
+                    changeTeams(result);
+                })
+                .catch(function(error) {
+                    //console.log('error', error);
+                }); 
         }
         getTeams();
     }, [universities] )  

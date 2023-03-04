@@ -21,7 +21,9 @@
 
     "loginButton.label": "Login",
 
-    "homeTournamentExplanationTitle.label": "CAN YOUR UNIVERSITY'S TEAM BRING HOME THE PRIZE?",
+    "homeTournamentExplanationTitle.label": "Can Your Team Bring Home the Prize?",
+
+    "homeTournamentPrizeTitle.label": "Prizes",
 
     "homeTournamentExplanationp1.label": "Gather a team and sign up to play, first for the honor of being your University's championship team and then for the chance to represent your school in continued rounds of global competition.",
 
@@ -29,9 +31,11 @@
 
     "homeTournamentExplanationp3.label": "Join us for some great gaming fun! Join us for some awesome tournament prizes!",
 
-    "homePrizeExplanation.label": "All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag. The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.",
+    "homePrizeExplanation.label": "All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag.",
 
-    "whoPlaying.label": "WHO'S PLAYING?",
+    "homeFirstPlace.label": "The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.",
+
+    "whoPlaying.label": "Who's Playing?",
 
     "footerSubtitle.label": "Aardvark Game's newest board game adventure!",
 

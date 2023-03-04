@@ -26,38 +26,6 @@ const TeamsAndUniversities = () => {
     myHeaders.append("Content-Type", "application/json");
 
     useEffect(()=> {
-        async function setToken() {
-            if (user) {
-                changeToken(user.token); 
-            } else {
-                const raw = JSON.stringify({
-                    "email": "testUser@rit.edu",
-                    "password": "Password1",
-                });
-        
-                const requestOptions = {
-                    method: 'POST',
-                    headers: myHeaders,
-                    body: raw,
-                    redirect: 'follow'
-                };
-                await fetch(`${BASE_URL}/login`, requestOptions)
-                .then(response => response.json())
-                .then(function(result) {
-                    console.log(result.user.token);
-                    changeToken(result.user.token);
-                })
-                .catch(function(error) {
-                    console.log('error', error);
-                });
-            }
-        }
-        setToken();
-        console.log(token);
-        myHeaders.append("x-access-token", token); 
-    })
-
-    useEffect(()=> {
         async function getUniversities() {
             const requestOptions = {
                 method: 'GET',
@@ -96,7 +64,7 @@ const TeamsAndUniversities = () => {
                     changeTeams(result);
                 })
                 .catch(function(error) {
-                    console.log('error', error);
+                    //console.log('error', error);
                 }); 
         }
         getTeams();

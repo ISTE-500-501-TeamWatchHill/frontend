@@ -1,12 +1,15 @@
 import React from 'react';
+import globalStyles from '../../pages.module.css';
 import Header from '../../../components/header/header';
 
 const Schedule = () => {
   return (
         <>
-          <Header 
-            name="Schedule"
-          />
+          <div className={globalStyles.background}>
+            <Header 
+              name="Schedule"
+            />
+          </div>
         </>
     )
   };

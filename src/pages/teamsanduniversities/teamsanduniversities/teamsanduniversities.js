@@ -39,48 +39,50 @@ const TeamsAndUniversities = () => {
 
     return (
           <>
-            <Header 
-                name="Teams & Universities"
-            />
+            <div className={globalStyles.background}>
+                <Header 
+                    name="Teams & Universities"
+                />
 
-            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                {/* View and Search Functionality */}
-                <div className={styles.flex}>
-                    {/* Sort Button */}
-                    <Select
-                        //Default value is null
-                        className={styles.select}
-                        placeholder="Sort by..."
-                        value={sortOption}
-                        options={[
-                            { value: 'none', label: "None" },
-                            { value: 'team', label: 'Team A-Z' },
-                            { value: 'university', label: 'University A-Z' }
-                        ]}
-                        onChange={changeSortOption}
-                    />
+                <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                    {/* View and Search Functionality */}
+                    <div className={styles.flex}>
+                        {/* Sort Button */}
+                        <Select
+                            //Default value is null
+                            className={styles.select}
+                            placeholder="Sort by..."
+                            value={sortOption}
+                            options={[
+                                { value: 'none', label: "None" },
+                                { value: 'team', label: 'Team A-Z' },
+                                { value: 'university', label: 'University A-Z' }
+                            ]}
+                            onChange={changeSortOption}
+                        />
 
-                    {/* Search Bar */}
-                    <SearchBar 
-                        searchTerm = {searchValue}
-                        onSearchChange = {changeSearchValue}
-                        teams={teams}
-                    />
-                </div>
+                        {/* Search Bar */}
+                        <SearchBar 
+                            searchTerm = {searchValue}
+                            onSearchChange = {changeSearchValue}
+                            teams={teams}
+                        />
+                    </div>
 
-                <div className={globalStyles.grid}>
-                    {/* Results */}
-                    {
-                        // eslint-disable-next-line
-                        teams.map((team) => {
-                            if (searchValue.length === 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
-                                return (
-                                    // TODO: change key to use unique identifier
-                                    <TeamBlock key={team.name} team={team} />
-                                )
-                            }
-                        })
-                    }
+                    <div className={globalStyles.grid}>
+                        {/* Results */}
+                        {
+                            // eslint-disable-next-line
+                            teams.map((team) => {
+                                if (searchValue.length === 0 || team.name.toLowerCase().includes(searchValue.toLowerCase()) || team.universityname.toLowerCase().includes(searchValue.toLowerCase())) {
+                                    return (
+                                        // TODO: change key to use unique identifier
+                                        <TeamBlock key={team.name} team={team} />
+                                    )
+                                }
+                            })
+                        }
+                    </div>
                 </div>
             </div>
           </>

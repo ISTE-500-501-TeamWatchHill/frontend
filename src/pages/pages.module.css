@@ -1,7 +1,12 @@
 /* Global CSS to be added during module conversion */
 .background {
     background-image: url("../assets/images/homeBackground.png");
-    /* background-size: cover;    */
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+
+.boardgamebackground {
+    background-image: url("../assets/images/boardGameBackground.png");
     background-repeat: no-repeat;
     background-size:100% 100%;
 }
@@ -10,12 +15,11 @@
 #####################################    HEADER    #########################################
 ##########################################################################################*/
 .h1_title_section{
-    /* background-color: #D9D9D9; */
-    padding-left: 6vw;
-    max-height: 432px;
     height: 50vh;
+    width: 100vw;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
 }
 
 .h1_title{
@@ -31,14 +35,6 @@
 /*##########################################################################################
 ##################################    Page Layouts    ######################################
 ##########################################################################################*/
-/* .subsection {
-    max-width: 852px;
-}
-
-.wide_subsection {
-    max-width: 1143px;
-} */
-
 .gray_section {
     background-color: #D9D9D9;
     padding: 8vh 6vw 10vh 6vw;
@@ -78,6 +74,16 @@
 /*##########################################################################################
 ######################################    Text    ##########################################
 ##########################################################################################*/
+.logo_text {
+    font-weight: bold;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 100px;
+    letter-spacing: 0.2px;
+    color: white;
+    text-decoration: none;
+}
+
 .headline_text {
     font-family: 'Mulish';
     font-weight: bold;
@@ -109,12 +115,6 @@
 
 .p.text {
     font-weight: 400;
-    max-width: 60vw;
-}
-
-.wide_p.text {
-    font-weight: 400;
-    max-width: 1143px;
 }
 
 .small_text {
@@ -131,6 +131,11 @@
     justify-content: center;
 }
 
+
+
+/*##########################################################################################
+##################################    Green Elements    ####################################
+##########################################################################################*/
 .green_bar {
     font-family: 'Mulish';
     font-weight: bold;
@@ -150,6 +155,11 @@
     border-radius: 20px;
 }
 
+.green_block {
+    height: 8vh;
+    background-color: #2A4C47;
+}
+
 
 
 /*##########################################################################################
@@ -160,6 +170,11 @@
     margin-right: 6vw;
 }
 
+.text_margin {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
 .thintext_margin {
     margin-left: 20vw;
     margin-right: 20vw;
@@ -168,6 +183,10 @@
 .margin8_top_bottom {
     margin-top: 8vh;
     margin-bottom: 8vh;
+}
+
+.margin4_bottom {
+    margin-bottom: 4vh;
 }
 
 .margin8_bottom {

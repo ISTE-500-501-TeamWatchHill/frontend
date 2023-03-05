@@ -90,10 +90,11 @@ const Home = () => {
                         <p className={globalStyles.small_text}>Rochester Institute of Technology</p>
                     </div>
 
-                    <div className={globalStyles.margin8_bottom}></div>
+                    
                 </div>
             </div>
         </div>
+        <div className={globalStyles.green_block}></div>
         </>
     )
 };

@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
   display: flex; 
   align-items: center;
   margin-right:56px;
@@ -15,14 +15,17 @@
 
 .nav_li .nav_a {
   display: block;
-  color: #373F41;
+  /* color: #373F41; */
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 .nav_li .nav_a:hover:not(.active) {
-  background-color: #eee;
+  /* background for the top level nav when hovered over */
+  /* background-color: #eee; */
+  background-color: gray;
 }
 
 .nav {
@@ -32,6 +35,11 @@
   display: flex; 
   align-items: center;
   justify-content: space-between;
+  background-color: black;
+  /* background-image: url("../../assets/images/homeNavBackground.png");
+  background-repeat: no-repeat;
+  background-size:100% 100%; */
+  color: white;
 }
 
 .right_nav {

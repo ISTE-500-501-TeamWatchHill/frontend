@@ -1,12 +1,13 @@
 .dropdown:hover + .dropdown_items {
-    background: #FFF;
+    /* background when sub nav menus are opened */
+    background: lightgray;
     display: block;
     position: absolute;
 }
 
 .dropdown_items:hover{
     display: block;
-    background: #FFF;
+    background: lightgray;
     position: absolute;
 }
 

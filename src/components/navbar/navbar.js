@@ -1,4 +1,5 @@
 import React from "react";
+import globalStyles from '../../pages/pages.module.css';
 import styles from './navbar.module.css';
 import NavLink from '../navlink/navlink';
 import Button from '../button/button';
@@ -8,7 +9,6 @@ import LanguageSelector from "../languageselector/languageselector";
 import Cookies from 'universal-cookie';
 
 export default function Navbar() {
-  // const { t, i18n } = useTranslation();
   const { t } = useTranslation();
   const cookies = new Cookies();
   const user = cookies.get('user');
@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={styles.nav}>
-        <a className={styles.nav_a} href='/'><img className={styles.logo} src={logo} alt='Aarvark Games Logo'/></a>
+        <a className={`${globalStyles.logo_text} ${styles.nav_a}`} href='/'>A NEW WORLD</a>
         <div className={styles.right_nav}>
           <ul className={styles.nav_ul}>
               <li className={styles.nav_li} id="tournament">

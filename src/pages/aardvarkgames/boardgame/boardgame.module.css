@@ -1,21 +1,25 @@
-.table {
-    border-collapse: collapse;
+.green_box_role {
+    background-color: #326C64;
+    padding: 30px 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 36px;
+    border-radius: 20px;
 }
 
-/* .table_row {
-
-} */
-
-.cell {
-    padding:30px;
+.role {
     font-family: 'Mulish';
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 32px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
     letter-spacing: 0.2px;
-    color: #373F41;
+    color: #43c6cf;
+    text-align: left;
+    flex: 1;
 }
 
-.grey {
-    background: #F2F2F2;
+.left_text {
+    text-align: left;
+    flex: 3;
 }

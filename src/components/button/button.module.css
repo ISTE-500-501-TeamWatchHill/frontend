@@ -7,4 +7,9 @@
     border: none;
     font-size: 14px;
     /* TODO: Add hover, click, active, etc. */
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #28747A;
 }

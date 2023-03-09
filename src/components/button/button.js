@@ -34,8 +34,6 @@ export default function Button(props) {
         propStyles.backgroundColor = `transparent`;
         propStyles.color = `white`;
         propStyles.border = `1px solid white`;
-    } else {
-        propStyles.backgroundColor = '#2E8D93';
     }
 
     return (

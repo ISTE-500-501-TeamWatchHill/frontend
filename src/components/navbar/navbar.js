@@ -3,7 +3,6 @@ import globalStyles from '../../pages/pages.module.css';
 import styles from './navbar.module.css';
 import NavLink from '../navlink/navlink';
 import Button from '../button/button';
-import logo from '../Aardvark_logo_clear_horizontal.png';
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../languageselector/languageselector";
 import Cookies from 'universal-cookie';
@@ -32,7 +31,10 @@ export default function Navbar() {
               <li className={styles.nav_li} id="teamsanduniversities">
                   <NavLink 
                       name={t("teamsanduniversitiesNav.label")}
-                      link="/teamsanduniversities"
+                      sublinks={[ 
+                        { name: 'VIEW COMPETITORS', link: "/teamsanduniversities" },
+                        { name: 'CREATE A TEAM', link: "/team/create" },
+                      ]}
                   />
               </li>
 

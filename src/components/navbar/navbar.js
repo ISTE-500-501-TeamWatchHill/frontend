@@ -45,10 +45,17 @@ export default function Navbar() {
                       ]}
                   />
               </li>
-          </ul>
           { !user && <Button name={t("loginButton.label")} link="/login"/> }
-          { user && <Button name="Logout" link="/login" onClick={function() {cookies.remove('user');}}/> }
-          { user && <div>Welcome, { user.firstName }!</div>}
+          { user && <li className={styles.nav_li} id="profile">
+              <NavLink 
+                      name={user.firstName}
+                      sublinks={[ 
+                        { name: "Profile", link: "/user" },
+                        { name: "Logout", link: "/login", onClick:{function() {cookies.remove('user');}} },
+                      ]}
+                      img="profile.png"
+                  /> </li>} 
+            </ul>
           <LanguageSelector />
         </div> {/* classname='right_nav' */}
       </nav>

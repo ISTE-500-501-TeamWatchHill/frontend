@@ -17,13 +17,15 @@ import University from './pages/teamsanduniversities/university/university';
 import Home from './pages/home/home';
 import Registration from './pages/registration/registration';
 import Login from './pages/login/login';
+import Profile from './pages/profile/profile';
 
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes>
+      <Routes> 
+        {/* why sometimes path and other times exact path */}
         <Route path="/aardvarkgames" element={<AardvarkGames />} />
         <Route exact path="/boardgame" element={<BoardGame />} />
         <Route path="/teamsanduniversities" element={<TeamsAndUniversities />} />
@@ -34,6 +36,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user" element={<Profile />} />
       </Routes>
       <Footer />
     </div>

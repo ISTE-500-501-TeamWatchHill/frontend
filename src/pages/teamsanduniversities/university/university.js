@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 // import image from '../../../components/placeholder.png';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
@@ -8,20 +8,53 @@ import Header from '../../../components/header/header';
 // import Spacer from '../../../components/spacer/spacer';
 import TeamBlock from '../../../components/teamblock/teamblock';
 
-
-//Hard coded for now- will grab from database.
-const teams = [{teamID: 1, description: "Naur One", universityID: 1, universityName: "RIT", players: []}];
-
-
 const University = (props) => {   
 
   let { id } = useParams();
 
+  const [university, setUniversity] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
+  const [teams, setTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
+
+
+
+   // Needed for all API calls
+   const BASE_URL = process.env.REACT_APP_BASE_URL;
+   //const cookies = new Cookies();
+   //const user = cookies.get('user');
+   let myHeaders = new Headers();
+   myHeaders.append("Content-Type", "application/json");
+
+  useEffect(()=> {
+    async function getUniversity() {
+        const requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            body: {
+              id: id
+            },
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/universities/byID`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+              setUniversity(result);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+    }
+    getUniversity();
+  })
+
+  //TODO: get teams by univ id 
+
     return (
           <>
+          
             <div className={globalStyles.background}>
               <Header 
-                name={`University with ID: ${id}`}
+                name={`${university.name}`}
               />
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>

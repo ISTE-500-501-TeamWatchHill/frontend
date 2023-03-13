@@ -14,14 +14,14 @@ const TeamsAndUniversities = () => {
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
-    const [teams, changeTeams] = useState([{ teamID: 1, description: "Naur One", universityID: 1, universityName: "RIT", players: [] }]);
+    const [teams, changeTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
     const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
-    const [token, changeToken] = useState("");
+    //const [token, changeToken] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
-    const cookies = new Cookies();
-    const user = cookies.get('user');
+    //const cookies = new Cookies();
+    //const user = cookies.get('user');
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -43,7 +43,7 @@ const TeamsAndUniversities = () => {
                 });
         }
         getUniversities();
-    },[token])
+    })
 
     useEffect(() =>{
         async function getTeams () {
@@ -118,10 +118,11 @@ const TeamsAndUniversities = () => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
+                            //console.log(team.teamID);
                             if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityName.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
                                     // TODO: change key to use unique identifier
-                                    <TeamBlock key={team.description} team={team} />
+                                    <TeamBlock key={team.teamID} team={team} />
                                 )
                             }
                         })

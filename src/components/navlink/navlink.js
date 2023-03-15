@@ -1,8 +1,9 @@
 import React from "react";
 import styles from './navlink.module.css';
 import navbarStyles from '../navbar/navbar.module.css';
+import profileImg from '../../assets/images/profile.png';
 
-//TODO: update to be able to set an image 
+//TODO: update to be able to set an image dynamically
 
 export default function NavLink(props) { 
     if (!props.name) {
@@ -38,18 +39,18 @@ export default function NavLink(props) {
         );
     }
 
-    //stupid image doesnt work
     if (props.sublinks && props.img) {
-        let path = `../${props.img}`;
+        let path = `../../assets/images/${props.img}`;
         return (
             <>
                 <a href={props.link} className={`${styles.dropdown} ${navbarStyles.nav_a}`}>
-                    <img src="../../assets/images/profile.png"/>
+                    <img src={profileImg} width="26px" height="26px" /> 
+                    {/* <img src={require(path)}/>  */}
                     <span>{props.name}</span>
                 </a>
                 <div className={styles.dropdown_items}>
                     {props.sublinks.map((sublink) => (
-                        <a className={navbarStyles.nav_a} href={sublink.link} key={sublink.link} id={sublink.link.substring(1).concat("_sub")}>{sublink.name}</a>
+                        <a className={navbarStyles.nav_a} href={sublink.link} key={sublink.link} id={sublink.link.substring(1).concat("_sub")} onClick={sublink.onClick}>{sublink.name}</a>
                     ))}
                 </div>
             </>

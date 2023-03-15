@@ -7,11 +7,13 @@ import logo from '../Aardvark_logo_clear_horizontal.png';
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../languageselector/languageselector";
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const { t } = useTranslation();
   const cookies = new Cookies();
   const user = cookies.get('user');
+  const navigate = useNavigate();
 
   return (
     <>
@@ -51,7 +53,7 @@ export default function Navbar() {
                       name={user.firstName}
                       sublinks={[ 
                         { name: "Profile", link: "/user" },
-                        { name: "Logout", link: "/login", onClick:{function() {cookies.remove('user');}} },
+                        { name: "Logout", link: "/login", onClick:function() {cookies.remove('user');} },
                       ]}
                       img="profile.png"
                   /> </li>} 

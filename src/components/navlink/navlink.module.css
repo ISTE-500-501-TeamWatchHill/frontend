@@ -14,3 +14,7 @@
 .dropdown_items {
     display: none;
 }
+
+img {
+    border-radius: 30px;
+}

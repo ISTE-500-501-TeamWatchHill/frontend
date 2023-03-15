@@ -12,33 +12,34 @@ const University = (props) => {
 
   let { id } = useParams();
 
-  const [university, setUniversity] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
+  const [university, changeUniversity] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
   const [teams, setTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
 
 
 
    // Needed for all API calls
    const BASE_URL = process.env.REACT_APP_BASE_URL;
-   //const cookies = new Cookies();
-   //const user = cookies.get('user');
    let myHeaders = new Headers();
    myHeaders.append("Content-Type", "application/json");
 
   useEffect(()=> {
+
     async function getUniversity() {
+        const raw = JSON.stringify({
+          "id": id
+        });
+
         const requestOptions = {
-            method: 'GET',
+            method: 'POST',
             headers: myHeaders,
-            body: {
-              id: id
-            },
-            redirect: 'follow'
+            body: raw,
         };
 
-        await fetch(`${BASE_URL}/universities/byID`, requestOptions)
+        await fetch(`${BASE_URL}/universityPub/byID`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-              setUniversity(result);
+              //console.log(result);
+              changeUniversity(result); //this isn't setting the result
             })
             .catch(function(error) {
                 console.log('error', error);
@@ -47,7 +48,32 @@ const University = (props) => {
     getUniversity();
   })
 
-  //TODO: get teams by univ id 
+  useEffect(()=> {
+    const raw = JSON.stringify({
+      "universityID": id
+    });
+    async function getTeams() {
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        await fetch(`${BASE_URL}/teamPub/byUniID`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+              result.map((team) => {
+                team.universityName = university[0].name;
+              });
+              setTeams(result);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+    }
+    getTeams();
+  },[university])
 
     return (
           <>

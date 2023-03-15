@@ -33,7 +33,7 @@ const TeamsAndUniversities = () => {
                 redirect: 'follow'
             };
 
-            await fetch(`${BASE_URL}/universities/all`, requestOptions)
+            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
                     changeUniversities(result);
@@ -53,7 +53,7 @@ const TeamsAndUniversities = () => {
                 redirect: 'follow'
             };
 
-            await fetch(`${BASE_URL}/teams/all`, requestOptions)
+            await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
                     result.map((team) => {

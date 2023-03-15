@@ -12,7 +12,7 @@ const University = (props) => {
 
   let { id } = useParams();
 
-  const [university, changeUniversity] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
+  const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
   const [teams, setTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
 
 
@@ -39,20 +39,23 @@ const University = (props) => {
             .then(response => response.json())
             .then(function(result) {
               //console.log(result);
-              changeUniversity(result); //this isn't setting the result
+              changeUniversity(result); 
+              console.log(university); //this isn't setting the result
             })
             .catch(function(error) {
                 console.log('error', error);
             });
     }
     getUniversity();
-  })
+  },[])
 
   useEffect(()=> {
-    const raw = JSON.stringify({
-      "universityID": id
-    });
+    
     async function getTeams() {
+        const raw = JSON.stringify({
+          "universityID": id
+        });
+
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -64,7 +67,7 @@ const University = (props) => {
             .then(response => response.json())
             .then(function(result) {
               result.map((team) => {
-                team.universityName = university[0].name;
+                team.universityName = university.name;
               });
               setTeams(result);
             })
@@ -98,7 +101,7 @@ const University = (props) => {
                         teams.map((team) => {
                           return (
                               // TODO: change key to use unique identifier
-                              <TeamBlock key={team.name} team={team} />
+                              <TeamBlock key={team.teamID} team={team} />
                           )
                       })
                     }

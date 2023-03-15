@@ -15,10 +15,9 @@ const University = (props) => {
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
   const [teams, setTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
 
-
-
    // Needed for all API calls
    const BASE_URL = process.env.REACT_APP_BASE_URL;
+   // eslint-disable-next-line
    let myHeaders = new Headers();
    myHeaders.append("Content-Type", "application/json");
 
@@ -38,16 +37,14 @@ const University = (props) => {
         await fetch(`${BASE_URL}/universityPub/byID`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-              //console.log(result);
               changeUniversity(result); 
-              console.log(university); //this isn't setting the result
             })
             .catch(function(error) {
                 console.log('error', error);
             });
     }
     getUniversity();
-  },[])
+  },[BASE_URL, id, myHeaders])
 
   useEffect(()=> {
     
@@ -66,6 +63,7 @@ const University = (props) => {
         await fetch(`${BASE_URL}/teamPub/byUniID`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
+              // eslint-disable-next-line
               result.map((team) => {
                 team.universityName = university.name;
               });
@@ -76,7 +74,7 @@ const University = (props) => {
             });
     }
     getTeams();
-  },[university])
+  },[university,BASE_URL, id, myHeaders])
 
     return (
           <>

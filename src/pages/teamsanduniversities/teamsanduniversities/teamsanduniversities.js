@@ -6,22 +6,19 @@ import styles from './teamsanduniversities.module.css';
 import Header from '../../../components/header/header';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
-import Cookies from 'universal-cookie';
-import { use } from 'i18next';
+// import { use } from 'i18next';
 
-const TeamsAndUniversities = () => {   
+const TeamsAndUniversities = (props) => {   
 
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
     const [teams, changeTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
     const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
-    //const [token, changeToken] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
-    //const cookies = new Cookies();
-    //const user = cookies.get('user');
+    // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -56,6 +53,7 @@ const TeamsAndUniversities = () => {
             await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
+                    // eslint-disable-next-line
                     result.map((team) => {
                         team.universityName = universities.filter(university => {
                             return university.universityID === team.universityID
@@ -68,7 +66,7 @@ const TeamsAndUniversities = () => {
                 }); 
         }
         getTeams();
-    }, [universities] )  
+    }, [universities, BASE_URL, myHeaders] )  
 
     if (sortOption !== null) {
         teams.sort(function (a, b) {            
@@ -118,7 +116,6 @@ const TeamsAndUniversities = () => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
-                            //console.log(team.teamID);
                             if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityName.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
                                     // TODO: change key to use unique identifier

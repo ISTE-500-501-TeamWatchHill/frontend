@@ -3,7 +3,6 @@ import globalStyles from '../../pages/pages.module.css';
 import styles from './navbar.module.css';
 import NavLink from '../navlink/navlink';
 import Button from '../button/button';
-import logo from '../Aardvark_logo_clear_horizontal.png';
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../languageselector/languageselector";
 import Cookies from 'universal-cookie';

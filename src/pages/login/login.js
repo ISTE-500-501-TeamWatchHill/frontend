@@ -6,6 +6,8 @@ import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
+import landscapeImage from '../../assets/images/loginsidepanel.png';
+
 const Login = () => {
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -62,19 +64,17 @@ const Login = () => {
                 <Navigate to="/" replace={true} />
             )}
             <div className={styles.login_section}>
-                <h1 className={styles.title}>Login</h1>
-                <Spacer height='40px' />
                 <form className={styles.form} onSubmit={onSubmit}>
-                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='Email' required></input><br/>
-                    <Spacer height='18px' />
-                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input><br/>
-                    <Spacer height='18px' />
+                    <h1 className={styles.title}>Login</h1>
+                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='Email' required></input>
+                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>
                     <Button type='submit' name='Login' width='100%' />
-                    <Spacer height='40px' />
+                    <Spacer height='36px' />
                     <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
-                    <Spacer height='9px' />
                     <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4>
                 </form>
+                
+                <img src={landscapeImage} alt="Landscape" />
             </div>
           </>
     )

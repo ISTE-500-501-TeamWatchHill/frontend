@@ -13,7 +13,7 @@ const University = (props) => {
   let { id } = useParams();
 
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
-  const [teams, setTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
+  const [teams, setTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
 
    // Needed for all API calls
    const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -97,9 +97,10 @@ const University = (props) => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
+                          console.log(team);
                           return (
                               // TODO: change key to use unique identifier
-                              <TeamBlock key={team.teamID} team={team} />
+                              <TeamBlock key={team._id} team={team} />
                           )
                       })
                     }

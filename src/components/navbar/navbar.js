@@ -51,7 +51,7 @@ export default function Navbar() {
                 </table>
             </div>
 
-            <a href="/" className={styles.profile}>Login</a>
+            <a href="/login" className={styles.profile}>Login</a>
         </div>
       </nav>
     </>

@@ -1,48 +1,119 @@
-.logo {
-  width: 200px;
-}
-
-.nav_ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+nav {
   overflow: hidden;
-  /* background-color: #fff; */
-  display: flex; 
-  align-items: center;
-  margin-right:56px;
-}
-
-.nav_li .nav_a {
-  display: block;
-  /* color: #373F41; */
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.nav_li .nav_a:hover:not(.active) {
-  /* background for the top level nav when hovered over */
-  /* background-color: #eee; */
-  background-color: gray;
-}
-
-.nav {
-  height: 88px;
-  padding-left: 95px;
-  padding-right: 95px;
-  display: flex; 
-  align-items: center;
-  justify-content: space-between;
   background-color: black;
-  /* background-image: url("../../assets/images/homeNavBackground.png");
-  background-repeat: no-repeat;
-  background-size:100% 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 6vw;
+}
+
+nav a {
+  text-decoration: none;
   color: white;
 }
 
-.right_nav {
-  display: flex; 
-  justify-content: flex-end;
+.left {
+  font-size: 24px;
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  margin-right: 6vw;
+}
+
+.links a {
+  padding: 14px;
+  font-size: 15px;
+  font: Arial;
+}
+
+.links button {
+  font-size: 15px;
+  font: Arial;
+}
+
+td {
+  padding: 14px;
+}
+
+th {
+  padding: 0 14px;
+}
+
+.dropdown .dropbtn {
+  border: none;
+  outline: none;
+  color: white;
+  background-color: inherit;
+  font-size: 15px;
+}
+
+.dropcontent {
+  display: none;
+  position: absolute;
+  background-color: black;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropcontent {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown:hover, .link:hover {
+  background-color: #2E8D93;
+}
+
+.dropcontent td:hover {
+  background-color: #2E8D93;
+}
+
+@media screen and (max-width: 916px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .left {
+    font-size: 36px;
+    margin-bottom: 2vh;
+    width: 100vw;
+    text-align: center;
+  }
+
+  .right {
+    flex-direction: column-reverse;
+    width: 100vw;
+  }
+
+  .links {
+    flex-direction: column;
+    margin-right: 0;
+    width: 100vw;
+  }
+
+  nav a {
+    text-align: center;
+  }
+
+  .dropdown .dropcontent {
+    width: 100vw;
+    position: relative;
+  }
+
+  .profile {
+    margin-bottom: 2vh;
+  }
+
+  th {
+    padding: 14px;
+  }
 }

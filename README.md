@@ -31,7 +31,11 @@ Follow all instructions listed there.
 ## If you have any problems with setup...
 Please contact Aaron Putterman (abp6318@rit.edu)
 
-# TODO: Add testing information here
+# Testing
+`yarn run cypress open`
+
+This will start the frontend tests, so long as you have the frontend running in another terminal. Please message Alexis for a more in-depth explaination for running within the tool, modifying existing, and create new tests.
+
 
 # Other
 

@@ -26,7 +26,7 @@
 #####################################    HEADER    #########################################
 ##########################################################################################*/
 .h1_title_section{
-    height: 50vh;
+    height: 60vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -102,16 +102,18 @@
     font-size: 42px;
     line-height: 32px;
     letter-spacing: 0.2px;
-    color: white;
 }
 
 .text {
     font-family: 'Mulish';
     font-weight: bold;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 24px;
     line-height: 32px;
     letter-spacing: 0.2px;
+}
+
+.white {
     color: white;
 }
 
@@ -247,6 +249,14 @@
     .small_text {
         font-size: 16px;
     }
+
+    .h1_title_section{
+        height: 40vh;
+    }
+    
+    .h1_title{
+        font-size: 88px;
+    }
 }
 
 
@@ -254,5 +264,13 @@
 @media screen and (max-width: 600px) {
     .green_box {
         flex-direction: column;
+    }
+
+    .h1_title_section{
+        height: 30vh;
+    }
+    
+    .h1_title{
+        font-size: 54px;
     }
 }

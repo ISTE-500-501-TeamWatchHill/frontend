@@ -5,6 +5,8 @@ import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
+import landscapeImage from '../../assets/images/registersidepanel.png';
+
 const Registration = () => {  
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
@@ -62,24 +64,22 @@ const Registration = () => {
             {user && (
                 <Navigate to="/" replace={true} />
             )}
-            <div className={styles.login_section}>
-                <h1 className={styles.title}>Register</h1>
-                <Spacer height='40px' />
+            <div className={styles.register_section}>
                 <form className={styles.form} onSubmit={onSubmit}>
-                    <input className={`${styles.inputText} ${styles.short}`} type="text" id="fname" name="fname" placeholder='First Name' required></input>
-                    <input className={`${styles.inputText} ${styles.short}`} type="text" id="lname" name="lname" placeholder='Last Name' required></input><br/>
-                    <Spacer height='18px' />
-                    <input className={styles.inputText} type="text" id="university" name="university" placeholder='University' required></input><br/>
-                    <Spacer height='18px' />
-                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='University Email' required></input><br/>
-                    <Spacer height='18px' />
-                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input><br/>
-                    <Spacer height='18px' />
+                    <h1 className={styles.title}>Register</h1>
+                    <div className={styles.short}>
+                        <input className={styles.inputText} type="text" id="fname" name="fname" placeholder='First Name' required></input>
+                        <input className={styles.inputText} type="text" id="lname" name="lname" placeholder='Last Name' required></input>
+                    </div>
+                    <input className={styles.inputText} type="text" id="university" name="university" placeholder='University' required></input>
+                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='University Email' required></input>
+                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>
                     <Button type='submit' name='Register' width='100%' />
-                    <Spacer height='40px' />
-                <Spacer height='9px' />
-                <h4 className={styles.h4}>Already registered? <a className={styles.link} href="/login">Login here</a></h4>
+                    <Spacer height='36px' />
+                    <h4 className={styles.h4}>Already registered? <a className={styles.link} href="/login">Login here</a></h4>
                 </form>
+
+                <img src={landscapeImage} alt="Landscape" />
             </div>
           </>
     )

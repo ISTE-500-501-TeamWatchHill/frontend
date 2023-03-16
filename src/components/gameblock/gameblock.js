@@ -6,24 +6,28 @@ import Header from '../header/header';
 import image from '../placeholder.png';
 
 const GameBlock = (props) => {
-    if (!props.game.gameid) {
-        throw new Error ("ERROR: No game id.");
+    // if (!props.game.gameID) {
+    //     throw new Error ("ERROR: No game ID.");
+    // }
+
+    if (!props.game.universityID) {
+        throw new Error ("ERROR: No university location.");
     }
 
-    if (!props.game.teamoneid) {
-        throw new Error ("ERROR: No team one id.");
+    if (!props.game.homeTeam) {
+        throw new Error ("ERROR: No home team.");
     }
 
-    if (!props.game.teamtwoid) {
-        throw new Error ("ERROR: No team two id.");
+    if (!props.game.awayTeam) {
+        throw new Error ("ERROR: No away team.");
     }
 
-    if (!props.game.datetime) {
-        throw new Error ("ERROR: No game date and time.");
+    if (!props.game.gameFinished) {
+        console.log("No game status provided");
     }
 
-    if (!props.game.location) {
-        throw new Error ("ERROR: No game location.");
+    if (!props.game.gameTime) {
+        console.log("No game time provided");
     }
 
     return (
@@ -32,17 +36,18 @@ const GameBlock = (props) => {
                 <div className={`${styles.flex} ${styles.center}`}>
                     <div>
                         <p><strong>START TIME</strong></p>
-                        <p>{props.game.datetime.substring(12)}</p>
+                        <p>{props.game.gameTime}</p>
                         <br/>
                         <p><strong>LOCATION</strong></p>
-                        <p>{props.game.location}</p>
+                        <p>{props.game.universityID}</p>
                     </div>
 
                     <div className={`${globalStyles.flex} ${styles.center}`}>
                         <div>
                             <p>TEAM</p>
-                            <a href={"/team/" + props.game.teamoneid} key={"/team/" + props.game.teamoneid} className={globalStyles.text}>Team {props.game.teamoneid}</a>
-                            <p>University Name Here</p>
+                            {/* Need to fix hard coded url- need team IDs in addition to names or a way to get team name by ID */}
+                            <a href={"/team/1"} key={"/team/2"} className={globalStyles.text}>{props.game.homeTeam}</a>
+                            <p>Home Team University</p>
                         </div>
 
                         <img className={globalStyles.img} src={image} alt="Placeholder"/>
@@ -55,8 +60,8 @@ const GameBlock = (props) => {
 
                         <div>
                             <p>TEAM</p>
-                            <a href={"/team/" + props.game.teamtwoid} key={"/team/" + props.game.teamtwoid}className={globalStyles.text}>Team {props.game.teamtwoid}</a>
-                            <p>University Name Here</p>
+                            <a href={"/team/1"} key={"/team/1"}className={globalStyles.text}>{props.game.awayTeam}</a>
+                            <p>Away Team University</p>
                         </div>
                     </div>
                 </div>

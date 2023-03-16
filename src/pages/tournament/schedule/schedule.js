@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
+import Cookies from 'universal-cookie';
 
 import Header from '../../../components/header/header';
 import GameBlock from '../../../components/gameblock/gameblock';
@@ -40,6 +41,40 @@ rawgames.forEach((game) => {
 });
 
 const Schedule = () => {
+
+  //Setup for hook for games
+  const [games, changeGames] = useState([{ gameID: 1, universityID: 1, homeTeam: "Team One", awayTeam: "Team Two", winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST" }]); 
+  const [token, changeToken] = useState("");
+
+  // Needed for all API calls
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const cookies = new Cookies();
+  const user = cookies.get('user');
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  useEffect(()=> {
+      async function getGames() {
+          const requestOptions = {
+              method: 'GET',
+              headers: myHeaders,
+              redirect: 'follow'
+          };
+
+          await fetch(`${BASE_URL}/gamePub/all`, requestOptions)
+              .then(response => response.json())
+              .then(function(result) {
+                  changeGames(result);
+              })
+              .catch(function(error) {
+                  console.log('error', error);
+              });
+      }
+      getGames();
+  },[token])
+
+  console.log(games);
+
   return (
         <>
         <div className={globalStyles.background}>
@@ -56,7 +91,19 @@ const Schedule = () => {
           <div className={`${globalStyles.grid_page} ${globalStyles.margin8_top}`}>
             <div className={`${globalStyles.body_margin} ${globalStyles.grid_list}`}>
                 {/* Teams */}
-                {
+                <>
+                  {
+                      // eslint-disable-next-line
+                      games.map((game) => {
+                        return (
+                            // TODO: change key to use unique identifier
+                            <GameBlock key={game._id} game={game} />
+                        )
+                      })
+                  }
+                </>
+
+                {/* {
                   games.map( (gamesForDateX) => {
                     return (
                       <>
@@ -76,7 +123,7 @@ const Schedule = () => {
                       </>
                     )
                   })
-                };
+                }; */}
             </div>
           </div>
           </div>

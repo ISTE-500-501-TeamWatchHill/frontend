@@ -15,100 +15,102 @@ import MemberBlock from '../../../components/memberblock/memberblock';
 const Team = (props) => {   
 
   let { id } = useParams();
- // roleID, universityID,  
-  const [team, setTeam] = useState({ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: ["2893572"] });
+  // roleID, universityID,  
+  const [team, setTeam] = useState({
+    "_id": "Loading...",
+    "teamID": 1,
+    "universityID": 1,
+    "players": [],
+    "description": "Loading...",
+    "logo": "",
+    "approvalStatus": false,
+  });
   const [members, setMembers] = useState([]);
 
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  // eslint-disable-next-line
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
 
-
-    async function getTeam() {
-        const raw = JSON.stringify({
-          "_id": id
+  useEffect(() => {
+    const fetchMember = async (userID) => {
+      const raw = JSON.stringify({
+        "id": userID
+      });
+  
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
+  
+      await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          // setMembers(result);
+          let updatedMembers = [...members, result];
+          // console.log("setting member");
+          setMembers(updatedMembers); 
+        })
+        .catch(function(error) {
+          console.log('error', error);
         });
-
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-        };
-
-        await fetch(`${BASE_URL}/teamPub/byID`, requestOptions)
-            .then(response => response.json())
-            .then(function(result) {
-              console.log(result);
-              setTeam(result); 
-            })
-            .catch(function(error) {
-                console.log('error', error);
-            });
     }
-    //getPlayers();
+
+    const fetchTeam = async () => {
+      const raw = JSON.stringify({
+        "_id": id
+      });
+
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
+
+      await fetch(`${BASE_URL}/teamPub/byID`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          setTeam(result);
+          result.players.forEach(player => {
+            fetchMember(player);
+          });
+        })
+        .catch(function(error) {
+          console.log('error', error);
+        });      
+    }
+
+    fetchTeam();
+    
+    // eslint-disable-next-line
+  },[]);  
 
 
-  //causes infinite re-renders
-  // function getPlayers() {
+  return (
+    <>
+      <div className={globalStyles.background}>
+        <Header name={`${team.description}`} />
 
-  //   async function getMember(userID) {
-  //       const raw = JSON.stringify({
-  //         "id": userID
-  //       });
+        <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+          <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
 
-  //       const requestOptions = {
-  //           method: 'POST',
-  //           headers: myHeaders,
-  //           body: raw,
-  //       };
-
-  //       await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
-  //           .then(response => response.json())
-  //           .then(function(result) {
-  //             //setMembers(result);
-  //             let updatedMembers = [...members, result];
-  //             //console.log("setting member");
-  //             setMembers(updatedMembers); 
-  //           })
-  //           .catch(function(error) {
-  //               console.log('error', error);
-  //           });
-  //   }
-  //   team.players.forEach(player => {
-  //     console.log("in for each");
-  //     getMember(player);
-  //   });
-  // }
-
-    return (
-          <>
-
-          <div className={globalStyles.background}>
-            <Header 
-              name={`${team.description}`}
-            />
-
-            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-              <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
-
-              <div className={globalStyles.grid}>
-                  {/* Team Members */}
-                  {members.length>0 &&
-                      // eslint-disable-next-line
-                      members.map((member) => {
-                          return (
-                              <MemberBlock member={member} />
-                          )
-                      })
-                  }
-              </div>
-            </div>
+          <div className={globalStyles.grid}>
+              {/* Team Members */}
+              {
+                members.length > 0 &&
+                  members.map((member, index) => {
+                    return (
+                        <MemberBlock key={index} member={member} />
+                    );
+                  })
+              }
           </div>
-        </>
-    )
+        </div>
+      </div>
+    </>
+  );
 };
   
 export default Team;

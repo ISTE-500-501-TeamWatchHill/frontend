@@ -21,11 +21,8 @@ const Home = () => {
         <div className={globalStyles.background}>
             <div className={styles.home_title_section}>
                 <h1 className={`${styles.home_title} ${styles.h1}`}>A New World</h1>
-                <Spacer height='16px' />
                 <div className={globalStyles.text}>{t("homeSubTitle.label")}</div>
-                <Spacer height='42px' />
-                <div><CountdownTimer /></div>
-                <Spacer height='40px' />
+                <CountdownTimer />
                 <div className={globalStyles.button_row}>
                     <Button name={t("learnMoreButton.label")} transparentBackground={true} link="/tournament"/>
                     <Spacer width="20px"/>

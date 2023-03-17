@@ -3,28 +3,27 @@ import globalStyles from '../../pages.module.css';
 import styles from './boardgame.module.css';
 import "@fontsource/mulish";
 
-import Header from '../../../components/header/header';
-// import Spacer from '../../../components/spacer/spacer';
+import boardGameImages from '../../../assets/images/boardGameImages.png';
 
 
 const BoardGame = () => {
   return (
     <>
-    <div className={globalStyles.boardgamebackground}>
-      <Header 
-        name="A New World"
-      />
+      <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+          <h1 className={globalStyles.h1_title}>Tournament</h1>
+      </div>
 
-      <div className={`${globalStyles.thintext_margin} ${globalStyles.margin8_top} ${globalStyles.center_text}`}>
+      <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
           <h3 className={globalStyles.headline_text}>About</h3>
 
           <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
 
           <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.sub_text_spacer}`}>Aardvark Games announces our newest board game adventure, A New World. A New World requires a team of 2-5 players who will work together to score as many points as possible after being dropped into a new, unpopulated world. The habitats will vary and the team will not know in advance where they will land.</p>
           <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.sub_text_spacer}`}>Environments could be a desert planet, an underwater location, a water world with scattered islands, an ice covered mountain range, or a jungle full of predatory animals and dangerous plant life. (Advance News! Expansion Pack 1 is in the design phase with additional worlds and resources!)</p>
-          <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.margin20_bottom}`}>The game is best played in a head-to-head competition with a second team seeking to survive in its own New World, but competing for the same resources. However, with the modifications described for solo team play, it is possible to enjoy striving to beat your own prior scores.</p>
+          <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.sub_header_spacer}`}>The game is best played in a head-to-head competition with a second team seeking to survive in its own New World, but competing for the same resources. However, with the modifications described for solo team play, it is possible to enjoy striving to beat your own prior scores.</p>
 
-      
+          <img className={globalStyles.margin20_bottom} src={boardGameImages} alt="Images of board games" />
+
           <h3 className={globalStyles.headline_text}>Roles</h3>
 
           <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
@@ -58,8 +57,6 @@ const BoardGame = () => {
 
           <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.margin8_top}`}>This game is appropriate for ages 13 and over. Play time runs 60-90 minutes.</p>
       </div>
-    </div>
-    <div className={globalStyles.green_block}></div>
     </>
   )
 };

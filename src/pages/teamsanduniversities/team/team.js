@@ -115,7 +115,7 @@ const Team = (props) => {
         <Header name={`${team.description}`} />
 
         <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-          <h3 className={`${globalStyles.text} ${styles.university}`}> {university}</h3>
+          <h3 className={`${globalStyles.text} ${styles.university}`}> <a href={"/university/" + team.universityID}>{university}</a></h3>
 
           <div className={globalStyles.grid}>
               {/* Team Members */}

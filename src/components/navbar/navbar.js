@@ -19,39 +19,43 @@ export default function Navbar() {
         <div className={styles.right}>
             <div className={styles.links}>
                 <table className={`${styles.dropdown} ${styles.border}`}>
-                  <tr>
-                    <th>
-                      <button className={styles.dropbtn}>
-                        {t("tournamentNav.label")}
-                        <FaCaretDown />
-                      </button>
-                    </th>
-                  </tr>
-                  <tr className={styles.dropcontent}>
-                    <td><a href="/tournament">{t("tournamentAboutNav.label")}</a></td>
-                    <td><a href="/schedule">{t("tournamentScheduleNav.label")}</a></td>
-                  </tr>
-                </table>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                          {t("tournamentNav.label")}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/tournament">{t("tournamentAboutNav.label")}</a></td>
+                      <td><a href="/schedule">{t("tournamentScheduleNav.label")}</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
 
                 <a className={styles.link} href="/teamsanduniversities">{t("teamsanduniversitiesNav.label")}</a>
 
                 <table className={`${styles.dropdown} ${styles.border}`}>
-                  <tr>
-                    <th>
-                      <button className={styles.dropbtn}>
-                        {t("aardvarkGamesNav.label")}
-                        <FaCaretDown />
-                      </button>
-                    </th>
-                  </tr>
-                  <tr className={styles.dropcontent}>
-                    <td><a href="/aardvarkgames">{t("aardvarkGamesAboutNav.label")}</a></td>
-                    <td><a href="/boardgame">{t("aardvarkGamesBoardGameNav.label")}</a></td>
-                  </tr>
-                </table>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                          {t("aardvarkGamesNav.label")}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/aardvarkgames">{t("aardvarkGamesAboutNav.label")}</a></td>
+                      <td><a href="/boardgame">{t("aardvarkGamesBoardGameNav.label")}</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
             </div>
 
-            <a href="/" className={styles.profile}>Login</a>
+            <a href="/login" className={styles.profile}>Login</a>
         </div>
       </nav>
     </>

@@ -10,13 +10,13 @@ const BoardGame = () => {
   return (
     <>
       <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
-          <h1 className={globalStyles.h1_title}>Tournament</h1>
+          <h1 className={globalStyles.h1_title}>Board Game</h1>
       </div>
 
       <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-          <h3 className={globalStyles.headline_text}>About</h3>
+          <h3 className={globalStyles.headline_text}>About A New World</h3>
 
-          <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
+          <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>__</p>
 
           <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.sub_text_spacer}`}>Aardvark Games announces our newest board game adventure, A New World. A New World requires a team of 2-5 players who will work together to score as many points as possible after being dropped into a new, unpopulated world. The habitats will vary and the team will not know in advance where they will land.</p>
           <p className={`${globalStyles.text} ${globalStyles.p} ${globalStyles.sub_text_spacer}`}>Environments could be a desert planet, an underwater location, a water world with scattered islands, an ice covered mountain range, or a jungle full of predatory animals and dangerous plant life. (Advance News! Expansion Pack 1 is in the design phase with additional worlds and resources!)</p>
@@ -26,7 +26,7 @@ const BoardGame = () => {
 
           <h3 className={globalStyles.headline_text}>Roles</h3>
 
-          <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
+          <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>__</p>
 
           <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.margin8_bottom}`}>Every team must designate the roles for each player prior to beginning play. If a team has fewer than five players, team members may assume more than one role.</p>
 

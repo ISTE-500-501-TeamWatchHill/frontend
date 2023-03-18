@@ -13,7 +13,7 @@ const TeamsAndUniversities = (props) => {
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
-    const [teams, changeTeams] = useState([{ teamID: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
+    const [teams, changeTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
     const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
 
     // Needed for all API calls
@@ -119,7 +119,7 @@ const TeamsAndUniversities = (props) => {
                             if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityName.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
                                     // TODO: change key to use unique identifier
-                                    <TeamBlock key={team.teamID} team={team} />
+                                    <TeamBlock key={team._id} team={team} />
                                 )
                             }
                         })

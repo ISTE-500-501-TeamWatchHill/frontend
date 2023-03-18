@@ -6,7 +6,7 @@ import globalStyles from '../../pages/pages.module.css';
 
 const TeamBlock = (props) => {   
     //fix id stuff pending removal of team id 
-    if (!props.team.teamID) {
+    if (!props.team._id) {
         throw new Error ("ERROR: No team id.");
     }
 
@@ -33,7 +33,7 @@ const TeamBlock = (props) => {
                     <img className={globalStyles.img} src={image} alt="Placeholder"/>
 
                     <div>
-                        <a className={globalStyles.text} href={"/team/" + props.team.teamID} key={"/team/" + props.team.teamID} >{props.team.description}</a>
+                        <a className={globalStyles.text} href={"/team/" + props.team._id} key={"/team/" + props.team._id} >{props.team.description}</a>
                          <p className={globalStyles.sub_text}><strong>University Name:</strong> <a href={"/university/" + props.team.universityID} key={"/university/" + props.team.universityID}>{props.team.universityName}</a></p>
                         <p className={globalStyles.sub_text}><strong>Number of Players:</strong> {props.team.players.length}</p>
                     </div>

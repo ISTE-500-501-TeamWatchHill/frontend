@@ -1,6 +1,5 @@
-import React from 'react'
-import image from '../../../components/placeholder.png';
-import { useParams } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
 import Header from '../../../components/header/header';
@@ -11,88 +10,132 @@ import { Navigate } from 'react-router-dom';
 import Button from '../../../components/button/button';
 import Spacer from '../../../components/spacer/spacer';
 
+/* TODO
+ * maybe look for a way to pass univ info? 
+*/
 
-//Hard coded for now- will grab from database
-const members = [ 
-  { id: 1533, name: 'John Smith', image: image },
-  { id: 2354, name: 'Jane Doe', image: image },
-  { id: 3876, name: 'Cindy Lou', image: image },
-  { id: 4767, name: 'Mary', image: image },
-];
-
-const Team = (props) => { 
-  // Needed for all API calls
-  // const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const cookies = new Cookies();
-  const user = cookies.get('user');  
-
+const Team = (props) => {   
   let { id } = useParams();
+  // roleID, universityID,  
+  const [team, setTeam] = useState({
+    "_id": "Loading...",
+    "teamID": 1,
+    "universityID": 2760,
+    "players": [],
+    "description": "Loading...",
+    "logo": "",
+    "approvalStatus": false,
+  });
+  const [members, setMembers] = useState([]);
+  const [university, setUniversity] = useState("Loading...");
 
-  // TODO: Validate user input
-  function createTeam(e) {
-    e.preventDefault()
-    
-    // Team owner and univertsity should be derived on backend using token
-    const team = {
-      teamName: e.target.teamName.value,
-      token: user.token,
+  // Needed for all API calls
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  // eslint-disable-next-line
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+
+  useEffect(() => {
+    const fetchMember = async (userID) => {
+      const raw = JSON.stringify({
+        "id": userID
+      });
+  
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
+  
+      await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          let updatedMembers = [...members, result];
+          setMembers(updatedMembers); 
+        })
+        .catch(function(error) {
+          console.log('error', error);
+        });
     }
 
-    // TODO: Post statement here once endpoint is set up
+    const fetchTeam = async () => {
+      const raw = JSON.stringify({
+        "_id": id
+      });
 
-    console.log(team); // TODO: Remove
-  }
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
 
-  if (id === 'create') { // Creating a team
-    return (
-      <>
-        {/* uncomment once page completed */}
-        {!user && (
-          <Navigate to='/login' replace={true} />
-        )}
+      await fetch(`${BASE_URL}/teamPub/byID`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          setTeam(result);
+          result.players.forEach(player => {
+            fetchMember(player);
+          });
+        })
+        .catch(function(error) {
+          console.log('error', error);
+        }); 
+    }
 
-        <div className={styles.login_section}>
-          <h1 className={styles.title}>Create a Team</h1>
-          <Spacer height='40px' />
-          <form className={styles.form} onSubmit={createTeam}>
-              <input className={styles.inputText} type='text' id='teamName' name='teamName' placeholder='Team Name' required></input><br/>
-              <Spacer height='18px' />
-              <Button type='submit' name='Create Team' width='100%' />
-              <Spacer height='40px' />
-              <h4 className={styles.h4}>You will be set as the team owner by default, and only students from your university will be able to join your team through invites on your team's page or finding you on the <a className={styles.link} href="/teamsanduniversities" target="_blank">team search page.</a></h4>
-              <Spacer height='9px' />
-              <h4 className={styles.h4}><a className={styles.link} href="/boardgame" target="_blank">Read more about the rules</a></h4>
-          </form>
-        </div>
-      </>
-    )
-  } else { // Viewing a team
-    return (
-          <>
-          <div className={globalStyles.background}>
-            <Header 
-              name={`Team with ID: ${id}`}
-            />
+    fetchTeam();
+     
+    // eslint-disable-next-line
+  },[]);  
 
-            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-              <h3 className={`${globalStyles.text} ${styles.university}`}> University Name</h3>
+  useEffect(() => {
+    const fetchUniversity = async () => {
+      const raw = JSON.stringify({
+        "id": team.universityID
+      });
 
-              <div className={globalStyles.grid}>
-                  {/* Team Members */}
-                  {
-                      // eslint-disable-next-line
-                      members.map((member) => {
-                          return (
-                              <MemberBlock member={member} />
-                          )
-                      })
-                  }
-              </div>
-            </div>
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
+
+      await fetch(`${BASE_URL}/universityPub/byID`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) {
+          setUniversity(result.name);
+        })
+        .catch(function(error) {
+          console.log('error', error);
+        }); 
+    }
+    fetchUniversity();
+  },[team, BASE_URL, myHeaders]);
+
+
+  return (
+    <>
+      <div className={globalStyles.background}>
+        <Header name={`${team.description}`} />
+
+        <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+          <h3 className={`${globalStyles.text} ${styles.university}`}> <a href={"/university/" + team.universityID}>{university}</a></h3>
+
+          <div className={globalStyles.grid}>
+              {/* Team Members */}
+              {
+                members.length > 0 &&
+                  members.map((member, index) => {
+                    return (
+                        <MemberBlock key={index} member={member} />
+                    );
+                  })
+              }
           </div>
-        </>
-    )
-  }
+        </div>
+      </div>
+    </>
+  );
 };
   
 export default Team;

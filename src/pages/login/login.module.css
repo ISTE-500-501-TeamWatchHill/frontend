@@ -1,15 +1,19 @@
 .login_section {
     display: flex;
-    flex-direction: column;
-    width: calc(60vw);
-    padding-top: 78px;
-    padding-bottom: 156px;
-    padding-left: 156px;
+    flex-direction: row;
 }
 
-.form {
-    max-width: 610px;
-    text-align: center;
+form {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    padding: 6vh 6vw;
+}
+
+.login_section img {
+    display: flex;
+    flex: 1;
+    width: 40vw;
 }
 
 .title {
@@ -18,17 +22,14 @@
     font-weight: 700;
     font-size: 36px;
     line-height: 147.69%;
-
-    display: flex;
-    align-items: center;
+    margin-bottom: 4vh;
 }
 
 .inputText {
-    max-width: 576px;
-    width: 100%;
     padding: 12px 16px;
     border: 1px solid #858C94;
     border-radius: 8px;
+    margin-bottom: 2vh;
 }
 
 .h4 {
@@ -37,12 +38,31 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
-
-    align-items: center;
-
-    opacity: 0.5;
+    text-align: center;
+    color: gray;
+    margin-top: 1vh;
 }
 
 .link {
     text-decoration-line: underline;
+}
+
+@media screen and (max-width: 916px) {
+    .login_section img {
+        display: none;
+    }
+
+    .login_section {
+        background-image: url("../../assets/images/homeBackground.png");
+        background-repeat: no-repeat;
+        background-size:100% 100%;
+        justify-content: center;
+    }
+
+    form {
+        background: white;
+        margin: 6vh 10vw;
+        flex: 100;
+        width: 100vw;
+    }
 }

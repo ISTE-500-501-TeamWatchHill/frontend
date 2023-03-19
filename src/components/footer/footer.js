@@ -2,6 +2,7 @@ import React from "react";
 import Spacer from '../spacer/spacer.js';
 import styles from './footer.module.css';
 import { useTranslation } from "react-i18next";
+import LanguageSelector from "../languageselector/languageselector";
 
 export default function Footer(props) { 
     // const { t, i18n } = useTranslation();
@@ -14,6 +15,7 @@ export default function Footer(props) {
                 <div className={styles.footerLeftBlock}>
                     <h4 className={styles.footerTitle}>A New World</h4>
                     <div className={styles.subcontent}>{t("footerSubtitle.label")}</div>
+                    <p>Select your language: <LanguageSelector /></p>
                     <Spacer height='119px' />
                     <div className={styles.subcontent}>&copy; Copyright 2023 · Team Watch Hill</div>
                 </div>

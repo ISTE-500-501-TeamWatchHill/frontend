@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 // import image from '../../../components/placeholder.png';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
@@ -8,20 +8,80 @@ import Header from '../../../components/header/header';
 // import Spacer from '../../../components/spacer/spacer';
 import TeamBlock from '../../../components/teamblock/teamblock';
 
-
-//Hard coded for now- will grab from database.
-const teams = [{teamID: 1, description: "Naur One", universityID: 1, universityName: "RIT", players: []}];
-
-
 const University = (props) => {   
 
   let { id } = useParams();
 
+  const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
+  const [teams, setTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
+
+   // Needed for all API calls
+   const BASE_URL = process.env.REACT_APP_BASE_URL;
+   // eslint-disable-next-line
+   let myHeaders = new Headers();
+   myHeaders.append("Content-Type", "application/json");
+
+  useEffect(()=> {
+
+    async function getUniversity() {
+        const raw = JSON.stringify({
+          "id": id
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        await fetch(`${BASE_URL}/universityPub/byID`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+              changeUniversity(result); 
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+    }
+    getUniversity();
+  },[BASE_URL, id, myHeaders])
+
+  useEffect(()=> {
+    
+    async function getTeams() {
+        const raw = JSON.stringify({
+          "universityID": id
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        await fetch(`${BASE_URL}/teamPub/byUniID`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+              // eslint-disable-next-line
+              result.map((team) => {
+                team.universityName = university.name;
+              });
+              setTeams(result);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+    }
+    getTeams();
+  },[university,BASE_URL, id, myHeaders])
+
     return (
           <>
+          
             <div className={globalStyles.background}>
               <Header 
-                name={`University with ID: ${id}`}
+                name={`${university.name}`}
               />
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
@@ -37,9 +97,10 @@ const University = (props) => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
+                          console.log(team);
                           return (
                               // TODO: change key to use unique identifier
-                              <TeamBlock key={team.name} team={team} />
+                              <TeamBlock key={team._id} team={team} />
                           )
                       })
                     }

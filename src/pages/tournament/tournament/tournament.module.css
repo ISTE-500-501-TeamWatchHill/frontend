@@ -1,8 +1,12 @@
 .sign_up_section {
-    background-color: #D9D9D9;
+    background-image: url("../../../assets/images/tournamentAboutBottom.png");
     display: flex;
     text-align: center;
     flex-direction:column;
     justify-content: center;
     height: 280px;
+}
+
+.background {
+    background-image: url("../../../assets/images/tournamentAboutBackground.png");
 }

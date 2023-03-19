@@ -1,5 +1,13 @@
+.background {
+    background-image: url("../../../assets/images/boardGameBackground.png");
+}
+
+img {
+    width: 88vw;
+}
+
 .green_box_role {
-    background-color: #326C64;
+    border: 2px solid #326C64;
     padding: 30px 60px;
     display: flex;
     flex-direction: row;
@@ -22,4 +30,19 @@
 .left_text {
     text-align: left;
     flex: 3;
+}
+
+@media screen and (max-width: 600px) {
+    .green_box_role {
+        flex-direction: column;
+        align-items: center;
+        column-gap: 0;
+        row-gap: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .green_box_role {
+        padding: 30px 30px;
+    }
 }

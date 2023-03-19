@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './gameblock.module.css';
 import globalStyles from '../../pages/pages.module.css';
 
-import Header from '../header/header';
 import image from '../placeholder.png';
 
 const GameBlock = (props) => {

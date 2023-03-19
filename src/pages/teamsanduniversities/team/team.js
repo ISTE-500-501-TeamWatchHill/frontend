@@ -4,18 +4,14 @@ import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
 import Header from '../../../components/header/header';
 import MemberBlock from '../../../components/memberblock/memberblock';
-import Cookies from 'universal-cookie';
-// import { Navigate, useNavigate } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
-import Button from '../../../components/button/button';
-import Spacer from '../../../components/spacer/spacer';
 
 /* TODO
  * maybe look for a way to pass univ info? 
 */
 
-const Team = (props) => {   
+const Team = () => {   
   let { id } = useParams();
+  
   // roleID, universityID,  
   const [team, setTeam] = useState({
     "_id": "Loading...",

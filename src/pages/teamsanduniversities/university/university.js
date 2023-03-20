@@ -22,10 +22,9 @@ const University = (props) => {
    myHeaders.append("Content-Type", "application/json");
 
   useEffect(()=> {
-
     async function getUniversity() {
         const raw = JSON.stringify({
-          "id": id
+          "universityID": id
         });
 
         const requestOptions = {
@@ -64,6 +63,7 @@ const University = (props) => {
             .then(response => response.json())
             .then(function(result) {
               // eslint-disable-next-line
+              console.log(result);
               result.map((team) => {
                 team.universityName = university.name;
               });
@@ -97,7 +97,6 @@ const University = (props) => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
-                          console.log(team);
                           return (
                               // TODO: change key to use unique identifier
                               <TeamBlock key={team._id} team={team} />

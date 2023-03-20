@@ -13,8 +13,44 @@ const CreateTeam = () => {
     const user = cookies.get('user');
     const navigate = useNavigate();
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
+
+        const playerOne = user.email;
+        const playerTwo = e.target.playerTwo.value;
+        const playerThree = e.target.playerThree.value;
+        const playerFour = e.target.playerFour.value;
+        const playerFive = e.target.playerFive.value;
+
+        let formValues = [playerOne];
+
+        if (playerTwo) { formValues.push(playerTwo) }
+        if (playerThree) { formValues.push(playerThree) }
+        if (playerFour) { formValues.push(playerFour) }
+        if (playerFive) { formValues.push(playerFive) }
+
+        const raw = JSON.stringify({
+            "universityID": 1423518, // gotta fix this later
+            "players": formValues,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                console.log(results);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); // TODO: display error, refresh form
 
         // ask to get backend changed to accept emails instead of ids
         // strip out empty inputs

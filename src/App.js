@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import AardvarkGames from './pages/aardvarkgames/aardvarkgames/aardvarkgames';
 import BoardGame from './pages/aardvarkgames/boardgame/boardgame';
 import TeamsAndUniversities from './pages/teamsanduniversities/teamsanduniversities/teamsanduniversities';
+import CreateTeam from './pages/teamsanduniversities/create-team/create-team';
 import Tournament from './pages/tournament/tournament/tournament';
 import Schedule from './pages/tournament/schedule/schedule';
 import Team from './pages/teamsanduniversities/team/team';
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path="/tournament" element={<Tournament />} />
         <Route exact path="/schedule" element={<Schedule />} />
         <Route path="/team/:id" element={<Team />} />
+        <Route path="/team/create" element={<CreateTeam />} />
         <Route path="/university/:id" element={<University />} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/register" element={<Registration />} />

@@ -5,7 +5,6 @@ import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
-
 import landscapeImage from '../../assets/images/loginsidepanel.png';
 
 const Login = () => {

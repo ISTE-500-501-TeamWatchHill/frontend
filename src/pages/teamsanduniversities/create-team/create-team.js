@@ -29,6 +29,9 @@ const CreateTeam = () => {
         if (playerFour) { formValues.push(playerFour) }
         if (playerFive) { formValues.push(playerFive) }
 
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
         const raw = JSON.stringify({
             "universityID": 1423518, // gotta fix this later
             "players": formValues,
@@ -45,7 +48,7 @@ const CreateTeam = () => {
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                console.log(results);
+                console.log(result);
             })
             .catch(function(error) {
                 console.log('error', error);

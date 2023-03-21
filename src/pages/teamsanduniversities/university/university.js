@@ -24,7 +24,7 @@ const University = (props) => {
   useEffect(()=> {
     async function getUniversity() {
         const raw = JSON.stringify({
-          "universityID": id
+          "universityID": Number(id)
         });
 
         const requestOptions = {
@@ -49,7 +49,7 @@ const University = (props) => {
     
     async function getTeams() {
         const raw = JSON.stringify({
-          "universityID": id
+          "universityID": Number(id)
         });
 
         const requestOptions = {
@@ -63,7 +63,6 @@ const University = (props) => {
             .then(response => response.json())
             .then(function(result) {
               // eslint-disable-next-line
-              console.log(result);
               result.map((team) => {
                 team.universityName = university.name;
               });
@@ -85,9 +84,9 @@ const University = (props) => {
               />
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>DESCRIPTION</h3>
+                <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer} ${globalStyles.white}`}>DESCRIPTION</h3>
 
-                <p className={`${globalStyles.text} ${globalStyles.wide_p}`}>Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.</p>
+                <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.</p>
               </div>
 
               <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>TEAMS</h3>

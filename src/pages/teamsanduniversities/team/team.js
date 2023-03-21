@@ -87,7 +87,7 @@ const Team = (props) => {
   useEffect(() => {
     const fetchUniversity = async () => {
       const raw = JSON.stringify({
-        "id": team.universityID
+        "universityID": team.universityID
       });
 
       const requestOptions = {

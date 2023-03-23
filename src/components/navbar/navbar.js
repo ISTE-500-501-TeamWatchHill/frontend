@@ -10,7 +10,6 @@ export default function Navbar() {
   const { t } = useTranslation();
   const cookies = new Cookies();
   const user = cookies.get('user');
-  const navigate = useNavigate();
 
   return (
     <>

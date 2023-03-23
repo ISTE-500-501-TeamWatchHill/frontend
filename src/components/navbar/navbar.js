@@ -55,7 +55,24 @@ export default function Navbar() {
                   </table>
             </div>
 
-            <a href="/login" className={styles.profile}>Login</a>
+            {!user && <a href="/login" className={styles.profile}>Login</a>}
+            {user && <table className={`${styles.dropdown} ${styles.border}`}>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                          {user.firstName}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/user">Profile</a></td>
+                      <td><a href="/user">Team</a></td>  {/* change to be to the user's team page */}
+                      <td><a href="/login" onClick={function() {cookies.remove('user');}}>Logout</a></td>
+                    </tr>
+                  </tbody>
+                </table>}
         </div>
       </nav>
     </>

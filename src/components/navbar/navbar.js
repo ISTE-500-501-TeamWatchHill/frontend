@@ -1,12 +1,10 @@
 import React from "react";
 import globalStyles from '../../pages/pages.module.css';
 import styles from './navbar.module.css';
-import NavLink from '../navlink/navlink';
 import Button from '../button/button';
-import logo from '../Aardvark_logo_clear_horizontal.png';
 import { useTranslation } from "react-i18next";
-import LanguageSelector from "../languageselector/languageselector";
 import Cookies from 'universal-cookie';
+import { FaCaretDown } from 'react-icons/fa';
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -15,42 +13,50 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={styles.nav}>
-        <a className={`${globalStyles.logo_text} ${styles.nav_a}`} href='/'>A NEW WORLD</a>
-        <div className={styles.right_nav}>
-          <ul className={styles.nav_ul}>
-              <li className={styles.nav_li} id="tournament">
-                  <NavLink 
-                      name={t("tournamentNav.label")}
-                      sublinks={[ 
-                        { name: t("tournamentAboutNav.label"), link: "/tournament" },
-                        { name: t("tournamentScheduleNav.label"), link: "/schedule" },
-                      ]}
-                  />
-              </li>
+      <nav>
+        <a href="/" className={styles.left}><strong>A NEW WORLD</strong></a>
 
-              <li className={styles.nav_li} id="teamsanduniversities">
-                  <NavLink 
-                      name={t("teamsanduniversitiesNav.label")}
-                      link="/teamsanduniversities"
-                  />
-              </li>
+        <div className={styles.right}>
+            <div className={styles.links}>
+                <table className={`${styles.dropdown} ${styles.border}`}>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                          {t("tournamentNav.label")}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/tournament">{t("tournamentAboutNav.label")}</a></td>
+                      <td><a href="/schedule">{t("tournamentScheduleNav.label")}</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
 
-              <li className={styles.nav_li} id="aardvarkgames">
-                  <NavLink 
-                      name={t("aardvarkGamesNav.label")}
-                      sublinks={[ 
-                        { name: t("aardvarkGamesAboutNav.label"), link: "/aardvarkgames" },
-                        { name: t("aardvarkGamesBoardGameNav.label"), link: "/boardgame" },
-                      ]}
-                  />
-              </li>
-          </ul>
-          { !user && <Button name={t("loginButton.label")} link="/login"/> }
-          { user && <Button name="Logout" link="/login" onClick={function() {cookies.remove('user');}}/> }
-          { user && <div>Welcome, { user.firstName }!</div>}
-          <LanguageSelector />
-        </div> {/* classname='right_nav' */}
+                <a className={styles.link} href="/teamsanduniversities">{t("teamsanduniversitiesNav.label")}</a>
+
+                <table className={`${styles.dropdown} ${styles.border}`}>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                          {t("aardvarkGamesNav.label")}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/aardvarkgames">{t("aardvarkGamesAboutNav.label")}</a></td>
+                      <td><a href="/boardgame">{t("aardvarkGamesBoardGameNav.label")}</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
+            </div>
+
+            <a href="/login" className={styles.profile}>Login</a>
+        </div>
       </nav>
     </>
   );

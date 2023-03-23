@@ -10,6 +10,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 16px;
-    margin-left: 30vw;
-    margin-right: 30vw;
+    margin: 3vh 19vw;
+    width: 50vw;
+}
+
+@media screen and (max-width: 916px) {
+    .timer {
+        font-size: 36px;
+    }
+    
+    .grid {
+        width: 88vw;
+        margin: 3vh 0;
+    }
 }

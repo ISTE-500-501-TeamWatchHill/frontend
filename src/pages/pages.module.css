@@ -1,3 +1,14 @@
+/* NOTE FOR RESPONSIVE CSS */
+/*
+    The following are the standard-used screen sizes check points throughout the pages:
+        916px
+        600px
+        476px
+*/
+
+
+
+
 /* Global CSS to be added during module conversion */
 .background {
     background-image: url("../assets/images/homeBackground.png");
@@ -15,7 +26,7 @@
 #####################################    HEADER    #########################################
 ##########################################################################################*/
 .h1_title_section{
-    height: 50vh;
+    height: 60vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -29,6 +40,7 @@
     font-size: 128px;
     color: white;
     line-height: .8em;
+    text-align: center;
 }
 
 
@@ -91,16 +103,18 @@
     font-size: 42px;
     line-height: 32px;
     letter-spacing: 0.2px;
-    color: white;
 }
 
 .text {
     font-family: 'Mulish';
     font-weight: bold;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 24px;
     line-height: 32px;
     letter-spacing: 0.2px;
+}
+
+.white {
     color: white;
 }
 
@@ -110,7 +124,6 @@
     font-size: 20px;
     line-height: 28px;
     letter-spacing: 0.2px;
-    color: white;
 }
 
 .p.text {
@@ -129,6 +142,10 @@
 .button_row {
     display: flex;
     justify-content: center;
+}
+
+.button_row button:first-of-type {
+    margin-right: 1vw;
 }
 
 
@@ -211,4 +228,49 @@
 
 .center_text {
     text-align: center;
+}
+
+
+
+@media screen and (max-width: 916px) {
+    .text {
+        font-size: 18px;
+    }
+
+    .headline_text {
+        font-size: 34px;
+    }
+
+    .thintext_margin {
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    .small_text {
+        font-size: 16px;
+    }
+
+    .h1_title_section{
+        height: 40vh;
+    }
+    
+    .h1_title{
+        font-size: 88px;
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .green_box {
+        flex-direction: column;
+    }
+
+    .h1_title_section{
+        height: 30vh;
+    }
+    
+    .h1_title{
+        font-size: 54px;
+    }
 }

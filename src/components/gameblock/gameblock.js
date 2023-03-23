@@ -6,9 +6,9 @@ import Header from '../header/header';
 import image from '../placeholder.png';
 
 const GameBlock = (props) => {
-    // if (!props.game.gameID) {
-    //     throw new Error ("ERROR: No game ID.");
-    // }
+    if (!props.game._id) {
+        throw new Error ("ERROR: No game ID.");
+    }
 
     if (!props.game.universityID) {
         throw new Error ("ERROR: No university location.");

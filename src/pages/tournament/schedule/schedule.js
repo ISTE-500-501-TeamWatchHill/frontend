@@ -13,37 +13,11 @@ const rawgames = [
   { gameid: 4, teamoneid: 4, teamtwoid: 8, datetime: "05 Aug 2023 00:12:00 EST", location: "Antarctica" }
 ];
 
-//parallel array
-let gamesDates = [
-  // "date1"
-];
-
-let games = [
-  // [
-  //   {Games_with_1_date_here: "time 1"},
-  //   {Games_with_1_date_here: "time 2"}
-  // ]
-];
-
-rawgames.forEach((game) => {
-  //Get index of date if its in splitGamesDates otherwise returns -1
-  const index = gamesDates.indexOf(game.datetime.substring(0,11)); //needs to be date only not datetime
-
-  
-  if (index === -1) {
-    //index is -1, create a new array
-    gamesDates.push(game.datetime.substring(0,11)) //need to push date only not datetime
-    games.push([game]); //push new empty array with game in it
-  } else {
-    //add game to that already existing date array
-    games[index].push(game); //push game to already existing array
-  }
-});
 
 const Schedule = () => {
 
   //Setup for hook for games
-  const [games, changeGames] = useState([{ gameID: 1, universityID: 1, homeTeam: "Team One", awayTeam: "Team Two", winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST" }]); 
+  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", awayTeam: "Team Two", winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST" }]); 
   const [token, changeToken] = useState("");
 
   // Needed for all API calls
@@ -75,6 +49,34 @@ const Schedule = () => {
 
   console.log(games);
 
+  //parallel array
+let gameDates = [
+  // "date1"
+];
+
+let gamesByDate = [
+  // [
+  //   {Games_with_1_date_here: "time 1"},
+  //   {Games_with_1_date_here: "time 2"}
+  // ]
+];
+
+games.forEach((game) => {
+  const date = game.gameTime.split("T")[0];
+  //Get index of date if its in splitGamesDates otherwise returns -1
+  const index = gameDates.indexOf(date); //needs to be date only not datetime
+
+  
+  if (index === -1) {
+    //index is -1, create a new array
+    gameDates.push(date) //need to push date only not datetime
+    gamesByDate.push([game]); //push new empty array with game in it
+  } else {
+    //add game to that already existing date array
+    gamesByDate[index].push(game); //push game to already existing array
+  }
+});
+
   return (
         <>
         <div className={globalStyles.background}>
@@ -91,23 +93,11 @@ const Schedule = () => {
           <div className={`${globalStyles.grid_page} ${globalStyles.margin8_top}`}>
             <div className={`${globalStyles.body_margin} ${globalStyles.grid_list}`}>
                 {/* Teams */}
-                <>
-                  {
-                      // eslint-disable-next-line
-                      games.map((game) => {
-                        return (
-                            // TODO: change key to use unique identifier
-                            <GameBlock key={game._id} game={game} />
-                        )
-                      })
-                  }
-                </>
-
-                {/* {
-                  games.map( (gamesForDateX) => {
+                {
+                  gamesByDate.map( (gamesForDateX) => {
                     return (
                       <>
-                        <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{gamesDates[games.indexOf(gamesForDateX)]}</h3>
+                        <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{gameDates[gamesByDate.indexOf(gamesForDateX)]}</h3>
                       
                         {
                           // eslint-disable-next-line
@@ -123,7 +113,7 @@ const Schedule = () => {
                       </>
                     )
                   })
-                }; */}
+                };
             </div>
           </div>
           </div>

@@ -48,7 +48,9 @@ const Team = (props) => {
       await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
         .then(response => response.json())
         .then(function(result) {
+          // console.log("result",result);
           let updatedMembers = [...members, result];
+          // console.log("updatedMembers",updatedMembers);
           setMembers(updatedMembers); 
         })
         .catch(function(error) {
@@ -97,7 +99,7 @@ const Team = (props) => {
         body: raw,
       };
 
-      await fetch(`${BASE_URL}/universityPub/byID`, requestOptions)
+      await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
         .then(response => response.json())
         .then(function(result) {
           setUniversity(result.name);

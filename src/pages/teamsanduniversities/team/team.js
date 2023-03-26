@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
 
-import Header from '../../../components/header/header';
 import MemberBlock from '../../../components/memberblock/memberblock';
+// import GameBlock from '../../../components/gameblock/gameblock';
 
 /* TODO
  * maybe look for a way to pass univ info? 
@@ -24,6 +24,7 @@ const Team = (props) => {
   });
   const [members, setMembers] = useState([]);
   const [university, setUniversity] = useState("Loading...");
+  // const [games, setGames] = useState([]);
 
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -80,7 +81,7 @@ const Team = (props) => {
     }
 
     fetchTeam();
-     
+
     // eslint-disable-next-line
   },[]);  
 
@@ -111,13 +112,16 @@ const Team = (props) => {
 
   return (
     <>
-      <div className={globalStyles.background}>
-        <Header name={`${team.description}`} />
+        <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+            <h1 className={globalStyles.h1_title}>{team.description}</h1>
+        </div>
 
-        <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-          <h3 className={`${globalStyles.text} ${styles.university}`}> <a href={"/university/" + team.universityID}>{university}</a></h3>
+        <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+          <h3 className={globalStyles.headline_text}>{team.description}</h3>
+          <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
+          <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>PLAYERS</p>
 
-          <div className={globalStyles.grid}>
+          <div className={styles.grid}>
               {/* Team Members */}
               {
                 members.length > 0 &&
@@ -128,8 +132,21 @@ const Team = (props) => {
                   })
               }
           </div>
+
+          <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>UPCOMING GAMES</p>
+
+          <div className={styles.gridList}>
+              {/* Games */}
+              {/* {
+                games.length > 0 &&
+                  games.map((game, index) => {
+                    return (
+                        <GameBlock key={index} game={game} />
+                    );
+                  })
+              } */}
+          </div>
         </div>
-      </div>
     </>
   );
 };

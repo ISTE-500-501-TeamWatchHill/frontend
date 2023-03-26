@@ -52,33 +52,10 @@
     padding: 8vh 6vw 10vh 6vw;
 }
 
-.grid_page .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 16px;
-    column-gap: 16px;
-}
-
 .grid_page .grid_list {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 16px;
-}
-
-.grid_page .block {
-    background-color: lightgray;
-    padding: 20px;
-}
-
-.grid_page .flex {
-    display: flex;
-    flex-direction: row;
-    column-gap: 24px;
-    margin: 12px
-}
-
-.grid_page .img {
-    width: 200px;
+    row-gap: 20px;
 }
 
 

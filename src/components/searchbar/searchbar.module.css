@@ -3,3 +3,9 @@
     padding: 8px 17px;
     font-size: 14px;
 }
+
+@media screen and (max-width: 916px) {
+    .searchBar {
+        width: 350px;
+    }
+}

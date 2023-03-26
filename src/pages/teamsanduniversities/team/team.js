@@ -48,9 +48,8 @@ const Team = (props) => {
       await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
         .then(response => response.json())
         .then(function(result) {
-          // console.log("result",result);
-          let updatedMembers = [...members, result];
-          // console.log("updatedMembers",updatedMembers);
+          const updatedMembers = members;
+          updatedMembers.push(result);
           setMembers(updatedMembers); 
         })
         .catch(function(error) {
@@ -119,7 +118,7 @@ const Team = (props) => {
         </div>
 
         <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-          <h3 className={globalStyles.headline_text}>{team.description}</h3>
+          <h3 className={globalStyles.headline_text}>{university}</h3>
           <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
           <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>PLAYERS</p>
 

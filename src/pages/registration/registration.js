@@ -4,6 +4,7 @@ import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import BackArrow from '../../components/backarrow/backarrow';
 
 import landscapeImage from '../../assets/images/registersidepanel.png';
 
@@ -66,6 +67,9 @@ const Registration = () => {
             )}
             <div className={styles.register_section}>
                 <form className={styles.form} onSubmit={onSubmit}>
+                    <div className={styles.arrow}>
+                        <BackArrow text="Back to Homepage" route="/"/>
+                    </div>
                     <h1 className={styles.title}>Register</h1>
                     <div className={styles.short}>
                         <input className={styles.inputText} type="text" id="fname" name="fname" placeholder='First Name' required></input>

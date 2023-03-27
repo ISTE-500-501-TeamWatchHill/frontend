@@ -4,9 +4,8 @@ import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './university.module.css';
 
-import Header from '../../../components/header/header';
-// import Spacer from '../../../components/spacer/spacer';
 import TeamBlock from '../../../components/teamblock/teamblock';
+import BackArrow from '../../../components/backarrow/backarrow';
 
 const University = (props) => {   
 
@@ -77,21 +76,21 @@ const University = (props) => {
 
     return (
           <>
-          
-            <div className={globalStyles.background}>
-              <Header 
-                name={`${university.name}`}
-              />
+              <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+                  <h1 className={globalStyles.h1_title}>{university.name}</h1>
+              </div>
+
+              <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
+                  <BackArrow text="Back to Teams" route="/teamsanduniversities"/>
+              </div>
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer} ${globalStyles.white}`}>DESCRIPTION</h3>
-
-                <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.</p>
+                <p className={`${globalStyles.text} ${globalStyles.p}`}>Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.</p>
               </div>
 
               <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>TEAMS</h3>
-              <div className={`${globalStyles.grid_page} ${globalStyles.margin8_bottom}`}>
-                <div className={`${globalStyles.body_margin} ${globalStyles.grid_list}`}>
+              <div className={`${globalStyles.margin8_bottom}`}>
+                <div className={`${globalStyles.body_margin} ${styles.grid}`}>
                     {/* Teams */}
                     {
                         // eslint-disable-next-line
@@ -103,8 +102,9 @@ const University = (props) => {
                       })
                     }
                 </div>
+
+                <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>UPCOMING GAMES</h3>
               </div>
-            </div>
           </>
     )
 };

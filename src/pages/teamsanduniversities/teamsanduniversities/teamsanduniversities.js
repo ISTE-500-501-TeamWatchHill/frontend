@@ -3,7 +3,6 @@ import Select from 'react-select'
 import globalStyles from '../../pages.module.css';
 import styles from './teamsanduniversities.module.css';
 
-import Header from '../../../components/header/header';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 // import { use } from 'i18next';
@@ -82,36 +81,45 @@ const TeamsAndUniversities = (props) => {
 
     return (
         <>
-          <div className={globalStyles.background}>
-            <Header 
-                name="Teams & Universities"
-            />
+            <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+                <h1 className={globalStyles.h1_title}>Teams & Universities</h1>
+            </div>
 
-            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                {/* View and Search Functionality */}
+            
+
+            <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
                  <div className={styles.flex}>
-                    {/* Sort Button */}
-                    <Select
-                        //Default value is null
-                        className={styles.select}
-                        placeholder="Sort by..."
-                        value={sortOption}
-                        options={[
-                            { value: 'none', label: "None" },
-                            { value: 'team', label: 'Team A-Z' },
-                            { value: 'university', label: 'University A-Z' }
-                        ]}
-                        onChange={changeSortOption}
-                    />
+                    <div className={styles.left}>
+                        <h3 className={globalStyles.headline_text}>All Teams</h3>
+                        <p className={globalStyles.green_bar}>____</p>
+                    </div>
 
-                    {/* Search Bar */}
-                    <SearchBar 
-                        searchTerm = {searchValue}
-                        onSearchChange = {changeSearchValue}
-                        teams={teams}
-                    /> 
+                    <div className={styles.right}>
+                        {/* View and Search Functionality */}
+                        {/* Sort Button */}
+                        <Select
+                            //Default value is null
+                            className={styles.select}
+                            placeholder="Sort by..."
+                            value={sortOption}
+                            options={[
+                                { value: 'none', label: "None" },
+                                { value: 'team', label: 'Team A-Z' },
+                                { value: 'university', label: 'University A-Z' }
+                            ]}
+                            onChange={changeSortOption}
+                        />
+
+                        {/* Search Bar */}
+                        <SearchBar 
+                            searchTerm = {searchValue}
+                            onSearchChange = {changeSearchValue}
+                            teams={teams}
+                        /> 
+                    </div>
                 </div> 
-                <div className={globalStyles.grid}>
+
+                <div className={styles.grid}>
                     {/* Results */}
                     {
                         // eslint-disable-next-line
@@ -127,7 +135,6 @@ const TeamsAndUniversities = (props) => {
                     }
                 </div>
             </div>
-          </div>
         </>
     )
 };

@@ -1,4 +1,6 @@
 .background {
     background-image: url("../../../assets/images/aardvarkAboutBackground.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
 }
 

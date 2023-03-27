@@ -3,7 +3,6 @@ import Select from 'react-select'
 import globalStyles from '../../pages.module.css';
 import styles from './teamsanduniversities.module.css';
 
-import Header from '../../../components/header/header';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 // import { use } from 'i18next';
@@ -86,7 +85,9 @@ const TeamsAndUniversities = (props) => {
                 <h1 className={globalStyles.h1_title}>Teams & Universities</h1>
             </div>
 
-            <div className={`${globalStyles.grid_page} ${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+            
+
+            <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
                  <div className={styles.flex}>
                     <div className={styles.left}>
                         <h3 className={globalStyles.headline_text}>All Teams</h3>

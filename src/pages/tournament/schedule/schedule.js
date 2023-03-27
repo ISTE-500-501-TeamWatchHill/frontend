@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
+import styles from './schedule.module.css';
 import Cookies from 'universal-cookie';
 
-import Header from '../../../components/header/header';
 import GameBlock from '../../../components/gameblock/gameblock';
 
 //Hard coded for now- will grab from database.
@@ -79,10 +79,9 @@ games.forEach((game) => {
 
   return (
         <>
-        <div className={globalStyles.background}>
-          <Header 
-            name="Schedule"
-          />
+          <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+              <h1 className={globalStyles.h1_title}>Schedule</h1>
+          </div>
 
           {/* TODO FOR ALEXIS
             filter games by date/team/university location
@@ -115,7 +114,6 @@ games.forEach((game) => {
                   })
                 };
             </div>
-          </div>
           </div>
         </>
     )

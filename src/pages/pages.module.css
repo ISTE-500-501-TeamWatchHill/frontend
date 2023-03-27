@@ -16,12 +16,6 @@
     background-size:100% 100%;
 }
 
-.boardgamebackground {
-    background-image: url("../assets/images/boardGameBackground.png");
-    background-repeat: no-repeat;
-    background-size:100% 100%;
-}
-
 /*##########################################################################################
 #####################################    HEADER    #########################################
 ##########################################################################################*/
@@ -177,6 +171,10 @@
 .margin8_top_bottom {
     margin-top: 8vh;
     margin-bottom: 8vh;
+}
+
+.margin4_top {
+    margin-top: 4vh;
 }
 
 .margin4_bottom {

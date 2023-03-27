@@ -1,7 +1,6 @@
 import React from "react";
 import globalStyles from '../../pages/pages.module.css';
 import styles from './navbar.module.css';
-import Button from '../button/button';
 import { useTranslation } from "react-i18next";
 import Cookies from 'universal-cookie';
 import { FaCaretDown } from 'react-icons/fa';

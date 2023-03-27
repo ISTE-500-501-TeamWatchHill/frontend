@@ -4,7 +4,7 @@ import image from '../placeholder.png';
 import globalStyles from '../../pages/pages.module.css';
 // import Team from '../../pages/teamsanduniversities/team/team';
 
-const TeamBlock = (props) => {   
+const TeamBlock = (props) => { 
     //fix id stuff pending removal of team id 
     if (!props.team._id) {
         throw new Error ("ERROR: No team id.");

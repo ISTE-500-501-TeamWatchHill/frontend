@@ -4,6 +4,7 @@ import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
 
 import MemberBlock from '../../../components/memberblock/memberblock';
+import BackArrow from '../../../components/backarrow/backarrow';
 // import GameBlock from '../../../components/gameblock/gameblock';
 
 /* TODO
@@ -115,6 +116,10 @@ const Team = (props) => {
     <>
         <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
             <h1 className={globalStyles.h1_title}>{team.description}</h1>
+        </div>
+
+        <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
+            <BackArrow text="Back to Teams" route="/teamsanduniversities"/>
         </div>
 
         <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>

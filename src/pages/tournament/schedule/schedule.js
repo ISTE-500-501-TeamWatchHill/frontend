@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
+import Cookies from 'universal-cookie';
 
 import Header from '../../../components/header/header';
 import GameBlock from '../../../components/gameblock/gameblock';
@@ -12,34 +13,70 @@ const rawgames = [
   { gameid: 4, teamoneid: 4, teamtwoid: 8, datetime: "05 Aug 2023 00:12:00 EST", location: "Antarctica" }
 ];
 
-//parallel array
-let gamesDates = [
+
+const Schedule = () => {
+
+  //Setup for hook for games
+  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", awayTeam: "Team Two", winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST" }]); 
+  const [token, changeToken] = useState("");
+
+  // Needed for all API calls
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const cookies = new Cookies();
+  const user = cookies.get('user');
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  useEffect(()=> {
+      async function getGames() {
+          const requestOptions = {
+              method: 'GET',
+              headers: myHeaders,
+              redirect: 'follow'
+          };
+
+          await fetch(`${BASE_URL}/gamePub/all`, requestOptions)
+              .then(response => response.json())
+              .then(function(result) {
+                  changeGames(result);
+              })
+              .catch(function(error) {
+                  console.log('error', error);
+              });
+      }
+      getGames();
+  },[token])
+
+  console.log(games);
+
+  //parallel array
+let gameDates = [
   // "date1"
 ];
 
-let games = [
+let gamesByDate = [
   // [
   //   {Games_with_1_date_here: "time 1"},
   //   {Games_with_1_date_here: "time 2"}
   // ]
 ];
 
-rawgames.forEach((game) => {
+games.forEach((game) => {
+  const date = game.gameTime.split("T")[0];
   //Get index of date if its in splitGamesDates otherwise returns -1
-  const index = gamesDates.indexOf(game.datetime.substring(0,11)); //needs to be date only not datetime
+  const index = gameDates.indexOf(date); //needs to be date only not datetime
 
   
   if (index === -1) {
     //index is -1, create a new array
-    gamesDates.push(game.datetime.substring(0,11)) //need to push date only not datetime
-    games.push([game]); //push new empty array with game in it
+    gameDates.push(date) //need to push date only not datetime
+    gamesByDate.push([game]); //push new empty array with game in it
   } else {
     //add game to that already existing date array
-    games[index].push(game); //push game to already existing array
+    gamesByDate[index].push(game); //push game to already existing array
   }
 });
 
-const Schedule = () => {
   return (
         <>
         <div className={globalStyles.background}>
@@ -57,10 +94,10 @@ const Schedule = () => {
             <div className={`${globalStyles.body_margin} ${globalStyles.grid_list}`}>
                 {/* Teams */}
                 {
-                  games.map( (gamesForDateX) => {
+                  gamesByDate.map( (gamesForDateX) => {
                     return (
                       <>
-                        <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{gamesDates[games.indexOf(gamesForDateX)]}</h3>
+                        <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{gameDates[gamesByDate.indexOf(gamesForDateX)]}</h3>
                       
                         {
                           // eslint-disable-next-line

@@ -26,20 +26,17 @@ const Profile = (props) => {
       "universityName": "RIT",
       "email": "spammewemails@rit.edu"
     });
+    const [university, setUniversity] = useState("RIT");
 
     /* TODO:
      * dynamic profile pic
-        * need endpoint for this also? 
-     * connect to backend
-        * what endpoint will allow me to get user info based on whats in the cookie? 
-        * /how do i get this info 
      * style it - alexis pls <3
     */
 
     useEffect(()=> {
-      async function getUser() {
+      async function getUser() { 
           const raw = JSON.stringify({
-            "email": user.email
+            "token": user.token
           });
   
           const requestOptions = {
@@ -48,7 +45,7 @@ const Profile = (props) => {
               body: raw,
           };
   
-          await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
+          await fetch(`${BASE_URL}/userSec/getUserProfile`, requestOptions) 
               .then(response => response.json())
               .then(function(result) {
                 setPerson(result); 
@@ -57,8 +54,32 @@ const Profile = (props) => {
                   console.log('error', error);
               });
       }
-      //getUser();
-    },[BASE_URL, user, myHeaders])
+      getUser();
+    },[BASE_URL, user, myHeaders]);
+
+    useEffect(() => {
+      const fetchUniversity = async () => {
+        const raw = JSON.stringify({
+          "universityID": person.universityID
+        });
+  
+        const requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+        };
+  
+        await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
+          .then(response => response.json())
+          .then(function(result) {
+            setUniversity(result.name);
+          })
+          .catch(function(error) {
+            console.log('error', error);
+          }); 
+      }
+      fetchUniversity();
+    },[person, BASE_URL, myHeaders]);
     
 
     return (
@@ -70,9 +91,9 @@ const Profile = (props) => {
             <Header 
               name={`${user.firstName} ${user.lastName}`}
             />
+            {/* get univ name slay  */}
             <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Name: {`${user.firstName} ${user.lastName}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Password: ****</p>
-            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>University: {`${person.universityName}`}</p>
+            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>University: {`${university}`}</p>
             <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>University Email: {`${person.email}`}</p>
             <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Team: {`${person.teamName}`}</p>
           </div>

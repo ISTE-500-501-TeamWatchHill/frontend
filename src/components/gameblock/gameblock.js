@@ -31,8 +31,8 @@ const GameBlock = (props) => {
 
     return (
         <>
-            <div className={globalStyles.block}>
-                <div className={`${styles.flex} ${styles.center}`}>
+            <div className={styles.block}>
+                <div className={`${styles.flexBlock} ${styles.center}`}>
                     <div>
                         <p><strong>START TIME</strong></p>
                         <p>{props.game.gameTime}</p>
@@ -41,7 +41,7 @@ const GameBlock = (props) => {
                         <p>{props.game.universityID}</p>
                     </div>
 
-                    <div className={`${globalStyles.flex} ${styles.center}`}>
+                    <div className={`${styles.flex} ${styles.center}`}>
                         <div>
                             <p>TEAM</p>
                             {/* Need to fix hard coded url- need team IDs in addition to names or a way to get team name by ID */}
@@ -49,13 +49,13 @@ const GameBlock = (props) => {
                             <p>Home Team University</p>
                         </div>
 
-                        <img className={globalStyles.img} src={image} alt="Placeholder"/>
+                        <img className={styles.img} src={image} alt="Placeholder"/>
 
                         <div>
-                            <p className={globalStyles.text}>0 - 0</p>
+                            <p className={globalStyles.text}>[]</p>
                         </div>
 
-                        <img className={globalStyles.img} src={image} alt="Placeholder"/>
+                        <img className={styles.img} src={image} alt="Placeholder"/>
 
                         <div>
                             <p>TEAM</p>

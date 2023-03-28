@@ -89,8 +89,8 @@ games.forEach((game) => {
              */}
 
 
-          <div className={`${globalStyles.grid_page} ${globalStyles.margin8_top}`}>
-            <div className={`${globalStyles.body_margin} ${globalStyles.grid_list}`}>
+          <div className={globalStyles.margin8_top}>
+            <div className={`${globalStyles.body_margin} ${styles.grid_list}`}>
                 {/* Teams */}
                 {
                   gamesByDate.map( (gamesForDateX) => {

@@ -27,6 +27,14 @@
     justify-content: center;
 }
 
+.h1_title_section_manageView{
+    height: 30vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    padding-left: 6vw; 
+}
+
 .h1_title{
     font-family: 'Mulish';
     font-style: normal;
@@ -35,6 +43,15 @@
     color: white;
     line-height: .8em;
     text-align: center;
+}
+
+.h1_title_manageView{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 54px;
+    color: white;
+    line-height: .8em;
 }
 
 

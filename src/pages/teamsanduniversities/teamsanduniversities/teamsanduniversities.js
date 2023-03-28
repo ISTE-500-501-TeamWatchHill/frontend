@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react'
 import Select from 'react-select'
 import globalStyles from '../../pages.module.css';
 import styles from './teamsanduniversities.module.css';
-
+import Cookies from 'universal-cookie';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 // import { use } from 'i18next';
 
-const TeamsAndUniversities = (props) => {   
+const TeamsAndUniversities = (props) => {  
+    const cookies = new Cookies();
+    const user = cookies.get('user');
 
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
@@ -81,9 +83,22 @@ const TeamsAndUniversities = (props) => {
 
     return (
         <>
+            {/* I'm a visitor or a logged in user who is not an admin */}
+            {
+            (!user || (user && user.role!=14139)) && 
             <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
                 <h1 className={globalStyles.h1_title}>Teams & Universities</h1>
             </div>
+            }
+
+            {/* I'm an admin */}
+            {
+            (user && user.role==14139) && 
+            <div className={`${globalStyles.h1_title_section_manageView} ${styles.background}`}>
+                <h1 className={globalStyles.h1_title_manageView}>Manage Teams & Universities</h1>
+            </div>
+            }
+            
 
             
 

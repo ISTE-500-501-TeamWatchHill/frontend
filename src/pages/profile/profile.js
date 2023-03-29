@@ -3,7 +3,6 @@ import globalStyles from '../pages.module.css';
 import styles from './profile.module.css';
 import { Navigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
-import Header from '../../components/header/header';
 
 
 const Profile = (props) => {  
@@ -87,16 +86,16 @@ const Profile = (props) => {
             {!user && (
                 <Navigate to="/" replace={true} />
             )}
-          <div className={globalStyles.background}>
-            <Header 
-              name={`${user.firstName} ${user.lastName}`}
-            />
+
+            <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+                <h1 className={globalStyles.h1_title}>{`${user.firstName} ${user.lastName}`}</h1>
+            </div>
+
             {/* get univ name slay  */}
-            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Name: {`${user.firstName} ${user.lastName}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>University: {`${university}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>University Email: {`${person.email}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.wide_p} ${globalStyles.white}`}>Team: {`${person.teamName}`}</p>
-          </div>
+            <p className={`${globalStyles.text} ${globalStyles.p}`}>Name: {`${user.firstName} ${user.lastName}`}</p>
+            <p className={`${globalStyles.text} ${globalStyles.p}`}>University: {`${university}`}</p>
+            <p className={`${globalStyles.text} ${globalStyles.p}`}>University Email: {`${person.email}`}</p>
+            <p className={`${globalStyles.text} ${globalStyles.p}`}>Team: {`${person.teamName}`}</p>
         </>
   )
 };

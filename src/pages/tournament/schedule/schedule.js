@@ -17,7 +17,7 @@ const rawgames = [
 const Schedule = () => {
 
   //Setup for hook for games
-  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", awayTeam: "Team Two", winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST" }]); 
+  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]); 
   const [token, changeToken] = useState("");
 
   // Needed for all API calls
@@ -35,10 +35,10 @@ const Schedule = () => {
               redirect: 'follow'
           };
 
-          await fetch(`${BASE_URL}/gamePub/all`, requestOptions)
+          await fetch(`${BASE_URL}/gamePub/allExpanded`, requestOptions)
               .then(response => response.json())
               .then(function(result) {
-                  changeGames(result);
+                changeGames(result);
               })
               .catch(function(error) {
                   console.log('error', error);
@@ -100,10 +100,10 @@ games.forEach((game) => {
                       
                         {
                           // eslint-disable-next-line
-                          gamesForDateX.map((game) => {
+                          gamesForDateX.map((game, index) => {
                             return (
                                 // TODO: change key to use unique identifier
-                                <GameBlock key={game.gameid} game={game} />
+                                <GameBlock key={index} game={game} />
                             )
                           })
                         }

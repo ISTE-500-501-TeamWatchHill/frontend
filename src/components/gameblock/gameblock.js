@@ -38,14 +38,13 @@ const GameBlock = (props) => {
                         <p>{props.game.gameTime}</p>
                         <br/>
                         <p><strong>LOCATION</strong></p>
-                        <p>{props.game.universityID}</p>
+                        <p>{props.game.locationInfo[0].name}</p>
                     </div>
 
                     <div className={`${styles.flex} ${styles.center}`}>
                         <div>
-                            <p>TEAM</p>
                             {/* Need to fix hard coded url- need team IDs in addition to names or a way to get team name by ID */}
-                            <a href={"/team/1"} key={"/team/2"} className={globalStyles.text}>{props.game.homeTeam}</a>
+                            <a href={"/team/1"} key={"/team/2"} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>
                             <p>Home Team University</p>
                         </div>
 
@@ -58,8 +57,7 @@ const GameBlock = (props) => {
                         <img className={styles.img} src={image} alt="Placeholder"/>
 
                         <div>
-                            <p>TEAM</p>
-                            <a href={"/team/1"} key={"/team/1"}className={globalStyles.text}>{props.game.awayTeam}</a>
+                            <a href={"/team/1"} key={"/team/1"}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>
                             <p>Away Team University</p>
                         </div>
                     </div>

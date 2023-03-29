@@ -46,12 +46,6 @@
     padding: 8vh 6vw 10vh 6vw;
 }
 
-.grid_page .grid_list {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 20px;
-}
-
 
 
 /*##########################################################################################

@@ -1,8 +1,24 @@
-.flex {
+.block {
+    border: 2px solid #326C64;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.flexBlock {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     margin: 12px
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+}
+
+.img {
+    width: 150px;
 }
 
 .center {

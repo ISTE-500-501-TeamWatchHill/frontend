@@ -3,3 +3,9 @@
     background-repeat: no-repeat;
     background-size:100% 100%;
 }
+
+.grid_list {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+}

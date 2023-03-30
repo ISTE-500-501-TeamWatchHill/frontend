@@ -17,10 +17,9 @@ const TeamsAndUniversities = (props) => {
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [editTeam, changeEditTeam] = useState({ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] });
-    const [token, changeToken] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -46,7 +45,7 @@ const TeamsAndUniversities = (props) => {
                 });
         }
         getTeams();
-    },[token])
+    }, [])
 
 
     if (sortOption !== null) {
@@ -66,19 +65,18 @@ const TeamsAndUniversities = (props) => {
           <>
             <Button 
                 name="Edit"
-                onClick={() => handleEdit(editTeamData)}>
+                onClick={(e) => { 
+                    e.preventDefault(); 
+                    handleEdit(editTeamData)
+                }}>
             </Button>
           </>
         );
     };
 
     const handleEdit = (data) => {
-        setOpen(true);
         changeEditTeam(data);
-    };
-
-    const handleClose = (value) => {
-        setOpen(false);
+        setOpen(true);
     };
 
     const columns = [
@@ -101,7 +99,7 @@ const TeamsAndUniversities = (props) => {
           sortable: true
         },
         {
-            name: "Manage",
+            name: "",
             cell: (row) => addEdit(row)
         }
     ];
@@ -186,7 +184,7 @@ const TeamsAndUniversities = (props) => {
                 {
                     (user && user.role===14139) && 
                     <div>
-                        <Popup show={open} data={editTeam} onClose={handleClose} />
+                        <Popup show={open} data={editTeam} onClick={(e) => { e.preventDefault(); setOpen(false); }} />
 
                         <DataTable
                             columns={columns}

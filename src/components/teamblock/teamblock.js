@@ -5,25 +5,25 @@ import globalStyles from '../../pages/pages.module.css';
 // import Team from '../../pages/teamsanduniversities/team/team';
 
 const TeamBlock = (props) => { 
-    if (!props.team._id) {
-        throw new Error ("ERROR: No team id.");
-    }
+    // if (!props.team._id) {
+    //     throw new Error ("ERROR: No team id.");
+    // }
 
-    if (!props.team.description) {
-        throw new Error ("ERROR: No team name.");
-    }
+    // if (!props.team.description) {
+    //     throw new Error ("ERROR: No team name.");
+    // }
 
-    if (!props.team.universityInfo[0].name) {
-        throw new Error ("ERROR: No university name.");
-    }
+    // if (!props.team.universityInfo[0].name) {
+    //     throw new Error ("ERROR: No university name.");
+    // }
 
-    if (!props.team.universityInfo[0].universityID) {
-        throw new Error ("ERROR: No university id.");
-    }
+    // if (!props.team.universityInfo[0].universityID) {
+    //     throw new Error ("ERROR: No university id.");
+    // }
 
-    if (!props.team.players) {
-        throw new Error ("ERROR: No number of players set.");
-    }
+    // if (!props.team.players) {
+    //     throw new Error ("ERROR: No number of players set.");
+    // }
 
     console.log(props.team);
 

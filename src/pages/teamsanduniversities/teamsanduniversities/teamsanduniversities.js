@@ -18,9 +18,9 @@ const TeamsAndUniversities = (props) => {
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
     const [open, setOpen] = useState(true);
-    const [teams, changeTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
-    const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
+    const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [editTeam, changeEditTeam] = useState({ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] });
+    const [token, changeToken] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -28,59 +28,33 @@ const TeamsAndUniversities = (props) => {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    // useEffect(()=> {
-    //     async function getUniversities() {
-    //         const requestOptions = {
-    //             method: 'GET',
-    //             headers: myHeaders,
-    //             redirect: 'follow'
-    //         };
-
-    //         await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
-    //             .then(response => response.json())
-    //             .then(function(result) {
-    //                 changeUniversities(result);
-    //             })
-    //             .catch(function(error) {
-    //                 console.log('error', error);
-    //             });
-    //     }
-    //     getUniversities();
-    // })
-
-    // useEffect(() =>{
-    //     async function getTeams () {
-    //         const requestOptions = {
-    //             method: 'GET',
-    //             headers: myHeaders,
-    //             redirect: 'follow'
-    //         };
-
-    //         await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
-    //             .then(response => response.json())
-    //             .then(function(result) {
-    //                 // eslint-disable-next-line
-    //                 result.map((team) => {
-    //                     team.universityName = universities.filter(university => {
-    //                         return university.universityID === team.universityID
-    //                     })[0].name;
-    //                 });
-    //                 changeTeams(result);
-    //             })
-    //             .catch(function(error) {
-    //                 //console.log('error', error);
-    //             }); 
-    //     }
-    //     getTeams();
-    // }, [universities, BASE_URL, myHeaders] )  
+    useEffect(()=> {
+        async function getTeams() {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+  
+            await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                  changeTeams(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
+        getTeams();
+    },[token])
 
 
     if (sortOption !== null) {
         teams.sort(function (a, b) {            
-            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityName < b.universityName : a.teamID < b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityInfo[0].name < b.universityInfo[0].name : a._id < b._id) {
                 return -1;
             }
-            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityName > b.universityName : a.teamID > b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityInfo[0].name > b.universityInfo[0].name : a._id > b._id) {
                 return 1;
             }
             return 0;
@@ -123,7 +97,7 @@ const TeamsAndUniversities = (props) => {
         },
         {
           name: "University Name",
-          selector: (row) => row.universityName,
+          selector: (row) => row.universityInfo[0].name,
           sortable: true
         },
         {
@@ -194,7 +168,7 @@ const TeamsAndUniversities = (props) => {
                             {
                                 // eslint-disable-next-line
                                 teams.map((team) => {
-                                    if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityName.toLowerCase().includes(searchValue.toLowerCase())) {
+                                    if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityInfo[0].name.toLowerCase().includes(searchValue.toLowerCase())) {
                                         return (
                                             // TODO: change key to use unique identifier
                                             <TeamBlock key={team._id} team={team} />

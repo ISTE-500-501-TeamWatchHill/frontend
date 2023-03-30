@@ -5,7 +5,6 @@ import globalStyles from '../../pages/pages.module.css';
 // import Team from '../../pages/teamsanduniversities/team/team';
 
 const TeamBlock = (props) => { 
-    //fix id stuff pending removal of team id 
     if (!props.team._id) {
         throw new Error ("ERROR: No team id.");
     }
@@ -14,17 +13,19 @@ const TeamBlock = (props) => {
         throw new Error ("ERROR: No team name.");
     }
 
-    if (!props.team.universityName) {
+    if (!props.team.universityInfo[0].name) {
         throw new Error ("ERROR: No university name.");
     }
 
-    if (!props.team.universityID) {
+    if (!props.team.universityInfo[0].universityID) {
         throw new Error ("ERROR: No university id.");
     }
 
     if (!props.team.players) {
         throw new Error ("ERROR: No number of players set.");
     }
+
+    console.log(props.team);
 
     return (
           <>
@@ -34,7 +35,7 @@ const TeamBlock = (props) => {
 
                     <div>
                         <a className={globalStyles.text} href={"/team/" + props.team._id} key={"/team/" + props.team._id} >{props.team.description}</a>
-                        <p className={globalStyles.sub_text}><a href={"/university/" + props.team.universityID} key={"/university/" + props.team.universityID}>{props.team.universityName}</a></p>
+                        <p className={globalStyles.sub_text}><a href={"/university/" + props.team.universityInfo[0].universityID} key={"/university/" + props.team.universityInfo[0].universityID}>{props.team.universityInfo[0].name}</a></p>
                         <p className={globalStyles.sub_text}>{props.team.players.length} PLAYERS</p>
                     </div>
                 </div>

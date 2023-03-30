@@ -1,10 +1,13 @@
 import React from "react";
 import styles from './navbar.module.css';
 import { useTranslation } from "react-i18next";
+import Cookies from 'universal-cookie';
 import { FaCaretDown } from 'react-icons/fa';
 
 export default function Navbar() {
   const { t } = useTranslation();
+  const cookies = new Cookies();
+  const user = cookies.get('user');
   
   return (
     <>

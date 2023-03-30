@@ -33,8 +33,9 @@ const CreateTeam = () => {
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({
-            "universityID": 1423518, // TODO: gotta fix this later
-            "players": formValues,
+            "universityID": user.universityID,
+            "name": e.target.teamName.value,
+            "emails": formValues,
             "token": user.token,
         });
 
@@ -48,7 +49,11 @@ const CreateTeam = () => {
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                console.log(result);
+                // console.log(result);
+                if (result && result._id) {
+                    navigate(`/team/${result._id}`);
+                    navigate(0);
+                }
             })
             .catch(function(error) {
                 console.log('error', error);
@@ -67,6 +72,10 @@ const CreateTeam = () => {
         <>
             {!user && (
                 <Navigate to="/login" replace={true} />
+            )}
+
+            {user && user.teamID !== null && (
+                <Navigate to="/user" replace={true} />
             )}
             
             <div className={styles.login_section}>

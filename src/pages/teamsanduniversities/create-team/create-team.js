@@ -33,7 +33,7 @@ const CreateTeam = () => {
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({
-            "universityID": 1423518, // gotta fix this later
+            "universityID": 1423518, // TODO: gotta fix this later
             "players": formValues,
             "token": user.token,
         });

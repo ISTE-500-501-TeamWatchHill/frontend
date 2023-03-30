@@ -1,6 +1,7 @@
 import React from 'react'
 import globalStyles from '../../pages/pages.module.css';
-// import image from '../placeholder.png';
+import styles from './memberblock.module.css';
+import image from '../placeholder.png';
 
 const MemberBlock = (props) => {   
     if (!props.member._id) {
@@ -23,9 +24,9 @@ const MemberBlock = (props) => {
 
     return (
           <>
-            <div className={globalStyles.block}>
-                <div className={globalStyles.flex}>
-                    {/* <img className={globalStyles.img} src={image} alt="Placeholder"/> */}
+            <div className={styles.block}>
+                <div className={styles.flexBlock}>
+                    <img className={styles.img} src={image} alt="Placeholder"/>
 
                     <div>
                         <a href='/#' className={globalStyles.text}>{props.member.firstName} {props.member.lastName}</a>

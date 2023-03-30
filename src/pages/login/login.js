@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from './login.module.css';
-// import globalStyles from '../pages.module.css';
+//import globalStyles from '../pages.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import BackArrow from '../../components/backarrow/backarrow';
+
 import landscapeImage from '../../assets/images/loginsidepanel.png';
 
 const Login = () => {
@@ -64,6 +66,9 @@ const Login = () => {
             )}
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmit}>
+                    <div className={styles.arrow}>
+                        <BackArrow text="Back to Homepage" route="/"/>
+                    </div>
                     <h1 className={styles.title}>Login</h1>
                     <input className={styles.inputText} type="email" id="email" name="email" placeholder='Email' required></input>
                     <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>

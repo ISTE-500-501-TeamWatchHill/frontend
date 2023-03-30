@@ -1,3 +1,16 @@
+.background {
+    background-image: url("../../../assets/images/aardvarkAboutBackground.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 16px;
+}
+
 .university {
     margin-bottom: 2vh;
 }

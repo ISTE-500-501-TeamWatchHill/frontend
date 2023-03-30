@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
+import styles from './schedule.module.css';
 import Cookies from 'universal-cookie';
 
-import Header from '../../../components/header/header';
 import GameBlock from '../../../components/gameblock/gameblock';
 
 //Hard coded for now- will grab from database.
@@ -17,7 +17,7 @@ const rawgames = [
 const Schedule = () => {
 
   //Setup for hook for games
-  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", awayTeam: "Team Two", winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST" }]); 
+  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]); 
   const [token, changeToken] = useState("");
 
   // Needed for all API calls
@@ -35,10 +35,10 @@ const Schedule = () => {
               redirect: 'follow'
           };
 
-          await fetch(`${BASE_URL}/gamePub/all`, requestOptions)
+          await fetch(`${BASE_URL}/gamePub/allExpanded`, requestOptions)
               .then(response => response.json())
               .then(function(result) {
-                  changeGames(result);
+                changeGames(result);
               })
               .catch(function(error) {
                   console.log('error', error);
@@ -79,10 +79,9 @@ games.forEach((game) => {
 
   return (
         <>
-        <div className={globalStyles.background}>
-          <Header 
-            name="Schedule"
-          />
+          <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
+              <h1 className={globalStyles.h1_title}>Schedule</h1>
+          </div>
 
           {/* TODO FOR ALEXIS
             filter games by date/team/university location
@@ -90,8 +89,8 @@ games.forEach((game) => {
              */}
 
 
-          <div className={`${globalStyles.grid_page} ${globalStyles.margin8_top}`}>
-            <div className={`${globalStyles.body_margin} ${globalStyles.grid_list}`}>
+          <div className={globalStyles.margin8_top}>
+            <div className={`${globalStyles.body_margin} ${styles.grid_list}`}>
                 {/* Teams */}
                 {
                   gamesByDate.map( (gamesForDateX) => {
@@ -101,10 +100,10 @@ games.forEach((game) => {
                       
                         {
                           // eslint-disable-next-line
-                          gamesForDateX.map((game) => {
+                          gamesForDateX.map((game, index) => {
                             return (
                                 // TODO: change key to use unique identifier
-                                <GameBlock key={game.gameid} game={game} />
+                                <GameBlock key={index} game={game} />
                             )
                           })
                         }
@@ -115,7 +114,6 @@ games.forEach((game) => {
                   })
                 };
             </div>
-          </div>
           </div>
         </>
     )

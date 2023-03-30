@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
-
 import MemberBlock from '../../../components/memberblock/memberblock';
 import BackArrow from '../../../components/backarrow/backarrow';
 // import GameBlock from '../../../components/gameblock/gameblock';
@@ -11,8 +10,9 @@ import BackArrow from '../../../components/backarrow/backarrow';
  * maybe look for a way to pass univ info? 
 */
 
-const Team = (props) => {   
+const Team = () => {   
   let { id } = useParams();
+  
   // roleID, universityID,  
   const [team, setTeam] = useState({
     "_id": "Loading...",

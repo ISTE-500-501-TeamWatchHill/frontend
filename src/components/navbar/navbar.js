@@ -1,5 +1,4 @@
 import React from "react";
-import globalStyles from '../../pages/pages.module.css';
 import styles from './navbar.module.css';
 import { useTranslation } from "react-i18next";
 import Cookies from 'universal-cookie';
@@ -9,7 +8,7 @@ export default function Navbar() {
   const { t } = useTranslation();
   const cookies = new Cookies();
   const user = cookies.get('user');
-
+  
   return (
     <>
       <nav>
@@ -34,7 +33,24 @@ export default function Navbar() {
                     </tbody>
                   </table>
 
-                <a className={styles.link} href="/teamsanduniversities">{t("teamsanduniversitiesNav.label")}</a>
+
+                <table className={`${styles.dropdown} ${styles.border}`}>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                        {t("teamsanduniversitiesNav.label")}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/teamsanduniversities">FIND A TEAM</a></td>
+                      <td><a href="/team/create">CREATE A TEAM</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
+
 
                 <table className={`${styles.dropdown} ${styles.border}`}>
                   <tbody>

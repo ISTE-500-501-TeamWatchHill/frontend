@@ -19,6 +19,7 @@ import Home from './pages/home/home';
 import Registration from './pages/registration/registration';
 import Login from './pages/login/login';
 import Profile from './pages/profile/profile';
+import ManageTeams from './pages/admin/manageteamsanduniversities/manageteams/manageteams';
 
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<Profile />} />
         <Route path="/*" element={<Home />} />
+        <Route path="/manageteams" element={<ManageTeams />} />
       </Routes>
       <Footer />
     </div>

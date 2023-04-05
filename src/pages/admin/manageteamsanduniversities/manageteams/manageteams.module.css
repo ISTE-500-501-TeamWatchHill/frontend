@@ -9,3 +9,8 @@
     flex-direction: row;
     column-gap: 24px;
 }
+
+.addButton {
+    display: flex;
+    justify-content: flex-end;
+}

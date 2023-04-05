@@ -61,7 +61,23 @@ export default function AddPopup(props) {
                 (props.show && props.type==="team") && 
 
                 <form className={styles.form} onSubmit={onSubmit}>
-                    {/* ALEXIS TODO */}
+                    <h1 className={styles.title}>Add Team</h1>
+
+                    <div className={styles.padding}>
+                        <p>TODO</p>
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button 
+                                type='submit'
+                                name='Add Team' 
+                            />
+                        </div>
+                    </div>
                 </form>
             }
 

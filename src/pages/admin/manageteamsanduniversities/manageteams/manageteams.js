@@ -2,16 +2,19 @@ import React, {useState, useEffect} from 'react';
 import globalStyles from '../../../pages.module.css';
 import styles from './manageteams.module.css';
 import Cookies from 'universal-cookie';
+import AddPopup from '../../../../components/addpopup/addpopup';
 import EditPopup from '../../../../components/editpopup/editpopup';
 import DeletePopup from '../../../../components/deletepopup/deletepopup';
 import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Button from '../../../../components/button/button';
 // import { use } from 'i18next';
 
 const ManageTeams = (props) => {  
     const cookies = new Cookies();
     const user = cookies.get('user');
 
+    const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
@@ -104,7 +107,7 @@ const ManageTeams = (props) => {
         <>
             {/* Disables rest of page from being clicked when a popup is open */}
             {
-                editOpen &&
+                (addOpen || editOpen || deleteOpen) &&
                 <div className={globalStyles.disable}></div>
             }
             
@@ -113,8 +116,20 @@ const ManageTeams = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                <AddPopup show={addOpen} type="team" onClick={(e) => { e.preventDefault(); setAddOpen(false); }} />
                 <EditPopup show={editOpen} type="team" data={editTeam} onClick={(e) => { e.preventDefault(); setEditOpen(false); }} />
-                <DeletePopup show={deleteOpen} data={editTeam} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+                <DeletePopup show={deleteOpen} type="team" data={editTeam} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+
+                <div className={styles.addButton}>
+                    <div></div>
+                    <Button 
+                        name="Add Team"
+                        onClick={(e) => { 
+                            e.preventDefault(); 
+                            setAddOpen(true);
+                        }}
+                    />
+                </div>
 
                 <DataTable
                     columns={columns}

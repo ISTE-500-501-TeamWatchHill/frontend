@@ -59,7 +59,36 @@ export default function EditPopup(props) {
                 (props.show && props.type==="team") && 
 
                 <form className={styles.form} onSubmit={onSubmit}>
-                    {/* ALEXIS TODO */}
+                    <h1 className={styles.title}>Update Team</h1>
+
+                    <div className={styles.padding}>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Name</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="teamName" 
+                                name="teamName" 
+                                placeholder='Team Name' 
+                                defaultValue={props.data.description} 
+                                required 
+                            />
+                        </div>
+
+                        {/* ALEXIS: Currently waiting to edit players and team as a whole until user functionality is done */}
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button 
+                                type='submit'
+                                name='Update Team' 
+                            />
+                        </div>
+                    </div>
                 </form>
             }
 
@@ -71,7 +100,7 @@ export default function EditPopup(props) {
 
                     <div className={styles.padding}>
                         <div className={`${styles.inputItem} ${styles.center}`}>
-                            <p>Name:</p>
+                            <p>Name</p>
                             <input 
                                 className={styles.inputText} 
                                 type="text" 
@@ -84,7 +113,7 @@ export default function EditPopup(props) {
                         </div>
 
                         <div className={`${styles.inputItem} ${styles.center}`}>
-                            <p>Domain:</p>
+                            <p>Domain</p>
                             <input 
                                 className={styles.inputText} 
                                 type="text" 
@@ -97,7 +126,7 @@ export default function EditPopup(props) {
                         </div>
 
                         <div className={`${styles.inputItemBox}`}>
-                            <p>Description:</p>
+                            <p>Description</p>
                             <textarea 
                                 className={styles.textArea} 
                                 type="text" 
@@ -117,7 +146,7 @@ export default function EditPopup(props) {
                             />
                             <Button 
                                 type='submit'
-                                name='Update Team' 
+                                name='Update University' 
                             />
                         </div>
                     </div>

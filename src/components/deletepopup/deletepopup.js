@@ -56,7 +56,20 @@ export default function DeletePopup(props) {
                 (props.show && props.type==="team") && 
 
                 <form className={styles.form} onSubmit={onSubmit}>
-                    {/* ALEXIS TODO */}
+                    <h1 className={styles.title}>Delete Team</h1>
+
+                    <div className={styles.padding}>
+                        <p>TODO</p>
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button type='submit' name='Confirm Delete' />
+                        </div>
+                    </div>
                 </form>
             }
 

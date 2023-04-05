@@ -12,7 +12,11 @@ export default function DeletePopup(props) {
     const navigate = useNavigate();
 
 
-    async function onSubmit(e) {
+    async function onSubmitGame(e) {
+        //TODO
+    };
+
+    async function onSubmitTeam(e) {
         //TODO
     };
 
@@ -83,13 +87,36 @@ export default function DeletePopup(props) {
     return (
         <>
             {
+                (props.show && props.type==="game") && 
+
+                <form className={styles.form} onSubmit={onSubmitGame}>
+                    <h1 className={styles.title}>Delete Game</h1>
+
+                    <div className={styles.padding}>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Are you sure you want to delete game between {props.data.homeTeam} and {props.data.awayTeam}?</p>
+                        </div>
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button type='submit' name='Confirm Delete' />
+                        </div>
+                    </div>
+                </form>
+            }
+
+            {
                 (props.show && props.type==="team") && 
 
-                <form className={styles.form} onSubmit={onSubmit}>
+                <form className={styles.form} onSubmit={onSubmitTeam}>
                     <h1 className={styles.title}>Delete Team</h1>
 
                     <div className={styles.padding}>
-                        <p>TODO</p>
+                        {/* ALEXIS: TODO */}
 
                         <div className={styles.flex}>
                             <Button 

@@ -12,7 +12,11 @@ export default function EditPopup(props) {
     const navigate = useNavigate();
     
 
-    async function onSubmit(e) {
+    async function onSubmitGame(e) {
+        //TODO
+    }
+
+    async function onSubmitTeam(e) {
         //TODO
     }
 
@@ -92,9 +96,33 @@ export default function EditPopup(props) {
     return (
         <>
             {
+                (props.show && props.type==="game") && 
+
+                <form className={styles.form} onSubmit={onSubmitGame}>
+                    <h1 className={styles.title}>Update Game</h1>
+
+                    <div className={styles.padding}>
+                        {/* ALEXIS: TODO */}
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button 
+                                type='submit'
+                                name='Update Game' 
+                            />
+                        </div>
+                    </div>
+                </form>
+            }
+
+            {
                 (props.show && props.type==="team") && 
 
-                <form className={styles.form} onSubmit={onSubmit}>
+                <form className={styles.form} onSubmit={onSubmitTeam}>
                     <h1 className={styles.title}>Update Team</h1>
 
                     <div className={styles.padding}>

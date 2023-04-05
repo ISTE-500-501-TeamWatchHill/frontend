@@ -48,6 +48,36 @@ export default function DeletePopup(props) {
             });
     }
 
+    async function onSubmitUser(e) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "id": props.data._id,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/userSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageusers");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            });
+    }
+
     
 
     return (
@@ -95,7 +125,29 @@ export default function DeletePopup(props) {
                     </div>
                 </form>
             }
-            
+
+            {
+                (props.show && props.type==="user") && 
+
+                <form className={styles.form} onSubmit={onSubmitUser}>
+                    <h1 className={styles.title}>Delete User</h1>
+
+                    <div className={styles.padding}>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Are you sure you want to delete {props.data.firstName} {props.data.lastName}?</p>
+                        </div>
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button type='submit' name='Confirm Delete' />
+                        </div>
+                    </div>
+                </form>
+            } 
         </>
     )
 }

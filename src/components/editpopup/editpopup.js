@@ -53,6 +53,42 @@ export default function EditPopup(props) {
             }); 
     }
 
+    async function onSubmitUser(e) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "id": props.data._id,
+            "roleID": props.data.roleID,
+            "universityID": props.data.universityID,
+            "firstName": e.target.firstName.value,
+            "lastName": e.target.lastName.value,
+            "email": e.target.email.value,
+            "canMarket": props.data.canMarket,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/userSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageusers");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); 
+    }
+
     return (
         <>
             {
@@ -147,6 +183,65 @@ export default function EditPopup(props) {
                             <Button 
                                 type='submit'
                                 name='Update University' 
+                            />
+                        </div>
+                    </div>
+                </form>
+            }
+
+            {
+                (props.show && props.type==="user") && 
+
+                <form className={styles.form} onSubmit={onSubmitUser}>
+                    <h1 className={styles.title}>Update User</h1>
+
+                    <div className={styles.padding}>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Name</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                placeholder='First Name' 
+                                defaultValue={props.data.firstName} 
+                                required 
+                            />
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                placeholder='Last Name' 
+                                defaultValue={props.data.lastName} 
+                                required 
+                            />
+                        </div>
+
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Email</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="email" 
+                                name="email" 
+                                placeholder='Email' 
+                                defaultValue={props.data.email} 
+                                required 
+                            />
+                        </div>
+
+                        {/* TODO: Add option to change role and university with dropdowns */}
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button 
+                                type='submit'
+                                name='Update User' 
                             />
                         </div>
                     </div>

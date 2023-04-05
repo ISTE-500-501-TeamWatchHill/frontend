@@ -51,8 +51,42 @@ export default function AddPopup(props) {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
             });
+    }
 
-        
+    async function onSubmitUser(e) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "firstName": e.target.firstName.value,
+            "lastName": e.target.lastName.value,
+            "roleID": parseInt(e.target.roleID.value),
+            "email": e.target.email.value,
+            "password": e.target.password.value,
+            "token": user.token,
+        });
+
+        console.log(raw);
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/userSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageusers");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            });
     }
 
     return (
@@ -149,7 +183,84 @@ export default function AddPopup(props) {
                     </div>
                 </form>
             }
-            
+
+            {
+                (props.show && props.type==="user") && 
+
+                <form className={styles.form} onSubmit={onSubmitUser}>
+                    <h1 className={styles.title}>Add User</h1>
+
+                    <div className={styles.padding}>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Name</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                placeholder='First Name' 
+                                required 
+                            />
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                placeholder='Last Name' 
+                                required 
+                            />
+                        </div>
+
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Role</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="roleID" 
+                                name="roleID" 
+                                placeholder='Role ID' 
+                                required 
+                            />
+                        </div>
+
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Email</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="email" 
+                                name="email" 
+                                placeholder='Email' 
+                                required 
+                            />
+                        </div>
+
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Password</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="password" 
+                                name="password" 
+                                placeholder='Password' 
+                                required 
+                            />
+                        </div>
+
+                        <div className={styles.flex}>
+                            <Button 
+                                name="Close"
+                                onClick={props.onClick} 
+                                backgroundColor="red"
+                            />
+                            <Button 
+                                type='submit'
+                                name='Add User' 
+                            />
+                        </div>
+                    </div>
+                </form>
+            }
         </>
     )
 }

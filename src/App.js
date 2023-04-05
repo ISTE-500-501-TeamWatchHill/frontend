@@ -21,6 +21,7 @@ import Login from './pages/login/login';
 import Profile from './pages/profile/profile';
 import ManageTeams from './pages/admin/manageteamsanduniversities/manageteams/manageteams';
 import ManageUniversities from './pages/admin/manageteamsanduniversities/manageuniversities/manageuniversities';
+import ManageUsers from './pages/admin/manageusers/manageusers';
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/*" element={<Home />} />
         <Route path="/manageteams" element={<ManageTeams />} />
         <Route path="/manageuniversities" element={<ManageUniversities />} />
+        <Route path="/manageusers" element={<ManageUsers />} />
       </Routes>
       <Footer />
     </div>

@@ -13,7 +13,7 @@ const CreateTeam = () => {
     const navigate = useNavigate();
 
     async function onSubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         const playerOne = user.email;
         const playerTwo = e.target.playerTwo.value;

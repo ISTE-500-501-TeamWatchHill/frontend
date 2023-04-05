@@ -14,6 +14,8 @@
     z-index: 10;
     background-color: white;
     border: 2px solid black;
+    width: 40vw;
+    padding: 0;
 }
 
 .title {
@@ -23,6 +25,14 @@
     font-size: 36px;
     line-height: 147.69%;
     margin-bottom: 2vh;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.padding {
+    padding: 2vh 20px;
 }
 
 .flex {

@@ -88,14 +88,37 @@ const Profile = (props) => {
             )}
 
             <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
-                <h1 className={globalStyles.h1_title}>{`${user.firstName} ${user.lastName}`}</h1>
             </div>
 
+            
+            <div className={styles.profile_margin}>
+            <h3 className={`${globalStyles.headline_text}`}>{`${user.firstName} ${user.lastName}`}</h3>
+            <br/><br/>
+
             {/* get univ name slay  */}
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>Name: {`${user.firstName} ${user.lastName}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>University: {`${university}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>University Email: {`${person.email}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>Team: {`${person.teamName}`}</p>
+            <table className={styles.profile_table}>
+              <tr className={styles.row_border}>
+                <td className={styles.fields}>Name</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${user.firstName} ${user.lastName}`}</td>
+             </tr>
+
+             <tr className={styles.row_border}>
+                <td className={styles.fields}>University</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${university}`}</td>
+             </tr>
+
+             <tr className={styles.row_border}>
+                <td className={styles.fields}>University Email</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.email}`}</td>
+             </tr>
+
+             <tr className={styles.row_border}>
+                <td className={styles.fields}>Team</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.teamName}`}</td>
+             </tr>
+
+            </table>
+            </div>
         </>
   )
 };

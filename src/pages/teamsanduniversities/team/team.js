@@ -60,7 +60,7 @@ const Team = () => {
 
     const fetchTeam = async () => {
       const raw = JSON.stringify({
-        "_id": id
+        "id": id
       });
 
       const requestOptions = {

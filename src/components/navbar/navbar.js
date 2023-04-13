@@ -75,7 +75,6 @@ export default function Navbar() {
                   <tbody>
                     <tr>
                       <th>
-                        <img src={process.env.PUBLIC_URL + 'profile.png'} className={styles.profilePic} alt="profile"/> 
                         <button className={styles.dropbtn}>
                           {user.firstName}
                           <FaCaretDown />

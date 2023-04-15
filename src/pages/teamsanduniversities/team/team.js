@@ -1,14 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
 import MemberBlock from '../../../components/memberblock/memberblock';
 import BackArrow from '../../../components/backarrow/backarrow';
 // import GameBlock from '../../../components/gameblock/gameblock';
-
-/* TODO
- * maybe look for a way to pass univ info? 
-*/
 
 const Team = () => {   
   let { id } = useParams();
@@ -18,13 +14,22 @@ const Team = () => {
     "_id": "Loading...",
     "teamID": 1,
     "universityID": 2760,
+    "universityName": "Loading...",
     "players": [],
     "description": "Loading...",
     "logo": "",
     "approvalStatus": false,
   });
-  const [members, setMembers] = useState([]);
-  const [university, setUniversity] = useState("Loading...");
+  const [members, setMembers] = useState([{
+    "canMarket": false,
+    "email": "...",
+    "firstName": "...",
+    "lastName": "...",
+    "roleID": 19202,
+    "teamID": "...",
+    "universityID": 2760,
+    "_id": "..."
+  }]);
   // const [games, setGames] = useState([]);
 
   // Needed for all API calls
@@ -69,11 +74,11 @@ const Team = () => {
         body: raw,
       };
 
-      await fetch(`${BASE_URL}/teamPub/byID`, requestOptions)
+      await fetch(`${BASE_URL}/teamPub/byIDExpanded`, requestOptions)
         .then(response => response.json())
-        .then(function(result) {
-          setTeam(result);
-          result.players.forEach(player => {
+        .then(function(result) { 
+          setTeam(result[0]);
+          result[0].players.map(player => {
             fetchMember(player);
           });
         })
@@ -87,30 +92,6 @@ const Team = () => {
     // eslint-disable-next-line
   },[]);  
 
-  useEffect(() => {
-    const fetchUniversity = async () => {
-      const raw = JSON.stringify({
-        "universityID": team.universityID
-      });
-
-      const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-      };
-
-      await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
-        .then(response => response.json())
-        .then(function(result) {
-          setUniversity(result.name);
-        })
-        .catch(function(error) {
-          console.log('error', error);
-        }); 
-    }
-    fetchUniversity();
-  },[team, BASE_URL, myHeaders]);
-
 
   return (
     <>
@@ -123,18 +104,16 @@ const Team = () => {
         </div>
 
         <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-          <h3 className={globalStyles.headline_text}>{university}</h3>
+          <h3 className={globalStyles.headline_text}>{team.universityName}</h3>
           <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
           <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>PLAYERS</p>
 
           <div className={styles.grid}>
               {/* Team Members */}
               {
-                members.length > 0 &&
+                // members.length > 0 &&
                   members.map((member, index) => {
-                    return (
-                        <MemberBlock key={index} member={member} />
-                    );
+                    <MemberBlock key={index} member={member}/> 
                   })
               }
           </div>

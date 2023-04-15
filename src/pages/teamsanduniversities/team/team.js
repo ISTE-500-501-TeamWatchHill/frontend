@@ -4,7 +4,7 @@ import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
 import MemberBlock from '../../../components/memberblock/memberblock';
 import BackArrow from '../../../components/backarrow/backarrow';
-// import GameBlock from '../../../components/gameblock/gameblock';
+import GameBlock from '../../../components/gameblock/gameblock';
 
 const Team = () => {   
   let { id } = useParams();
@@ -29,14 +29,38 @@ const Team = () => {
     "universityID": 2760,
     "_id": "..."
   }]);
-  // const [games, setGames] = useState([]);
+  const [games, setGames] = useState([{
+    "awayTeam": "643b18d356ec1b04ce3e5e47",
+    "gameFinished": false,
+    "gameTime": "2023-03-08T21:58:57.791Z",
+    "homeTeam": "64389a3e0231f39d1b359aa0",
+    "universityID": 2760,
+    "winningTeam": null,
+    "_id": "64090521737ad91d7cd5fb25",
+    "homeTeamInfo": [
+      {
+          "universityID": 2760,
+          "description": "Aaple Bapple Papple"
+      }
+    ],
+    "awayTeamInfo": [
+        {
+            "universityID": 2760,
+            "description": "Test Team That shouldn't work"
+        }
+    ],
+    "locationInfo": [
+        {
+            "name": "Rochester Institute of Technology"
+        }
+    ]
+  }]);
 
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   // eslint-disable-next-line
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-
 
   useEffect(() => {
     const fetchMember = async (userID) => {
@@ -91,6 +115,31 @@ const Team = () => {
     // eslint-disable-next-line
   },[]);  
 
+  useEffect(()=> {
+    const fetchGames = async () => {
+      const raw = JSON.stringify({
+        "id": team._id
+      });
+
+
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+      };
+
+      await fetch(`${BASE_URL}/gamePub/byTeamID`, requestOptions)
+        .then(response => response.json())
+        .then(function(result) { 
+          setGames(result);
+        })
+        .catch(function(error) {
+          console.log('error', error);
+        });
+    }
+
+    fetchGames();
+  },[team])
 
   return (
     <>
@@ -120,14 +169,14 @@ const Team = () => {
 
           <div className={styles.gridList}>
               {/* Games */}
-              {/* {
+              {
                 games.length > 0 &&
                   games.map((game, index) => {
                     return (
                         <GameBlock key={index} game={game} />
                     );
                   })
-              } */}
+              }
           </div>
         </div>
     </>

@@ -75,7 +75,6 @@ export default function Navbar() {
                   <tbody>
                     <tr>
                       <th>
-                        <img src={process.env.PUBLIC_URL + 'profile.png'} className={styles.profilePic} alt="profile"/> 
                         <button className={styles.dropbtn}>
                           {user.firstName}
                           <FaCaretDown />
@@ -84,7 +83,6 @@ export default function Navbar() {
                     </tr>
                     <tr className={styles.dropcontent}>
                       <td><a href="/user">Profile</a></td>
-                      <td><a href="/user">Team</a></td>{/* change to be to the user's team page */}
                       <td><a href="/login" onClick={function() {cookies.remove('user');}}>Logout</a></td>
                     </tr>
                   </tbody>

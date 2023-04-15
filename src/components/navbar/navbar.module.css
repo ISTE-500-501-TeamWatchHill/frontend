@@ -1,11 +1,15 @@
 nav {
-  overflow: hidden;
   background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 2vh 6vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
 }
 
 nav a {

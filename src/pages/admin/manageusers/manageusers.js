@@ -1,0 +1,145 @@
+import React, {useState, useEffect} from 'react';
+import globalStyles from '../../pages.module.css';
+import styles from './manageusers.module.css';
+import Cookies from 'universal-cookie';
+import AddPopup from '../../../components/addpopup/addpopup';
+import EditPopup from '../../../components/editpopup/editpopup';
+import DeletePopup from '../../../components/deletepopup/deletepopup';
+import DataTable from "react-data-table-component";
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import Button from '../../../components/button/button';
+// import { use } from 'i18next';
+
+const ManageUniversities = (props) => {  
+    const cookies = new Cookies();
+    const user = cookies.get('user');
+
+    const [addOpen, setAddOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
+    const [users, changeUsers] = useState([{}]);
+    const [editUser, changeEditUser] = useState({});
+
+    // Needed for all API calls
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    // eslint-disable-next-line
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    useEffect(()=> {
+        async function getUsers() {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+  
+            await fetch(`${BASE_URL}/userPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                  changeUsers(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
+        getUsers();
+    }, [])
+
+    const addEdit = (editUserData) => {
+        return (
+          <>
+            <div className={styles.icons}>
+                <FaEdit 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        handleEdit(editUserData)
+                    }}
+                ></FaEdit>
+
+                <FaTrash 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        handleDelete(editUserData)
+                    }}
+                ></FaTrash>
+            </div>
+          </>
+        );
+    };
+
+    const handleEdit = (data) => {
+        changeEditUser(data);
+        setEditOpen(true);
+    };
+
+    const handleDelete = (data) => {
+        changeEditUser(data);
+        setDeleteOpen(true);
+    };
+
+    const columns = [
+        {
+          name: "Name",
+          selector: (row) => `${row.firstName} ${row.lastName}`,
+          sortable: true
+        },
+        {
+            name: "Email",
+            selector: (row) => row.email,
+            sortable: true
+          },
+        {
+          name: "Role",
+          selector: (row) => row.roleID,
+          sortable: true
+        },
+        {
+            name: "University ID",
+            selector: (row) => row.universityID,
+            sortable: true
+        },
+        {
+            name: "",
+            cell: (row) => addEdit(row)
+        }
+    ];
+
+    return (
+        <>
+            {/* Disables rest of page from being clicked when a popup is open */}
+            {
+                (addOpen || editOpen || deleteOpen) &&
+                <div className={globalStyles.disable}></div>
+            }
+            
+            <div className={`${globalStyles.h1_title_section_manageView} ${styles.background}`}>
+                <h1 className={globalStyles.h1_title_manageView}>Manage Users</h1>
+            </div>
+            
+            <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                <AddPopup show={addOpen} type="user" onClick={(e) => { e.preventDefault(); setAddOpen(false); }} />
+                <EditPopup show={editOpen} type="user" data={editUser} onClick={(e) => { e.preventDefault(); setEditOpen(false); }} />
+                <DeletePopup show={deleteOpen} type="user" data={editUser} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+
+                <div className={styles.addButton}>
+                    <div></div>
+                    <Button 
+                        name="Add User"
+                        onClick={(e) => { 
+                            e.preventDefault(); 
+                            setAddOpen(true);
+                        }}
+                    />
+                </div>
+
+                <DataTable
+                    columns={columns}
+                    data={users}
+                />
+            </div>
+        </>
+    )
+};
+  
+export default ManageUniversities;

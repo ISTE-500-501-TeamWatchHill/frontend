@@ -51,7 +51,6 @@ const Profile = (props) => {
       getUser();
     },[BASE_URL, myHeaders]);
 
-    //change to be teams
     useEffect(()=> {
       async function getTeam() { 
           const raw = JSON.stringify({

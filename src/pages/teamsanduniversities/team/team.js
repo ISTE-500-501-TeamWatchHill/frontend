@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
@@ -9,7 +9,6 @@ import BackArrow from '../../../components/backarrow/backarrow';
 const Team = () => {   
   let { id } = useParams();
   
-  // roleID, universityID,  
   const [team, setTeam] = useState({
     "_id": "Loading...",
     "teamID": 1,
@@ -111,7 +110,6 @@ const Team = () => {
           <div className={styles.grid}>
               {/* Team Members */}
               {
-                // members.length > 0 &&
                   members.map((member, index) => {
                     <MemberBlock key={index} member={member}/> 
                   })

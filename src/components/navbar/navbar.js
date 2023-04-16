@@ -87,8 +87,9 @@ export default function Navbar() {
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>
-                      <td><a href="/manageTeams">TEAMS</a></td>
-                      <td><a href="/manageUniversities">UNIVERSITIES</a></td>
+                      <td><a href="/manageteams">TEAMS</a></td>
+                      <td><a href="/manageuniversities">UNIVERSITIES</a></td>
+                      <td><a href="/teamsanduniversities">PLAYER VIEW</a></td>
                     </tr>
                   </tbody>
                 </table>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import globalStyles from '../pages.module.css';
 import styles from './profile.module.css';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 
@@ -11,6 +11,7 @@ const Profile = (props) => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
     const user = cookies.get('user');
+    const navigate = useNavigate();
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -28,6 +29,13 @@ const Profile = (props) => {
     const [team, setTeam] = useState("ABP");
 
     useEffect(()=> {
+
+      if (!user) {
+        navigate("/login");
+        navigate(0);
+      }
+
+
       const fetchTeam = async (teamID) => {
         const raw = JSON.stringify({
           "id": teamID
@@ -90,7 +98,7 @@ const Profile = (props) => {
 
             
             <div className={styles.profile_margin}>
-            <h3 className={`${globalStyles.headline_text}`}>{`${user.firstName} ${user.lastName}`}</h3>
+            <h3 className={`${globalStyles.headline_text}`}>{`${person.firstName} ${person.lastName}`}</h3>
             <br/><br/>
 
             {/* get univ name slay  */}
@@ -98,7 +106,7 @@ const Profile = (props) => {
               <tbody>
               <tr className={styles.row_border}>
                 <td className={styles.fields}>Name</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${user.firstName} ${user.lastName}`}</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.firstName} ${person.lastName}`}</td>
               </tr>
 
               <tr className={styles.row_border}>

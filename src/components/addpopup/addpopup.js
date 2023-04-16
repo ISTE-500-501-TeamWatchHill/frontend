@@ -65,6 +65,7 @@ export default function AddPopup(props) {
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,
             "roleID": parseInt(e.target.roleID.value),
+            "teamID": null,
             "email": e.target.email.value,
             "password": e.target.password.value,
             "token": user.token,

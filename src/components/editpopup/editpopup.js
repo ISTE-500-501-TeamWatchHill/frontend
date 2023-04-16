@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+// import globalStyles from '../../pages/pages.module.css';
 import { useNavigate } from "react-router-dom";
 import styles from './editpopup.module.css';
 import Cookies from 'universal-cookie';
@@ -19,7 +20,51 @@ export default function EditPopup(props) {
     const cookies = new Cookies();
     const user = cookies.get('user');
     const navigate = useNavigate();
+    // eslint-disable-next-line
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const nothing = {_id: 1, approvalStatus: true, description: "None", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "None", domain: "", logo: "", name: "", universityID: 1}]};
+
+    //Setup for hook for teams
+    const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
+    const [teamSelected, changeTeamSelected] = useState(nothing);
+    const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
     const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
+
+    useEffect(()=> {
+        async function getTeams() {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeTeams(result);
+                    
+                    if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length == 0) {
+                        changeTeamSelected(nothing);
+                    } else {
+                        changeTeamSelected(teams.find(team => team._id === props.data.teamInfoJoined._id));
+                    }
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
+        getTeams();
+    }, []);
+
+
+    const handleTeamClick = (e) => {
+        changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+    };
+
+    const handleRoleClick = (e) => {
+        changeRoleSelected(e.target[e.target.selectedIndex].value);
+    };
     
     const handleWinnerClick = (e) => {
         changeWinnerSelected(e.target[e.target.selectedIndex].value);
@@ -111,7 +156,8 @@ export default function EditPopup(props) {
 
          const raw = JSON.stringify({
             "id": props.data._id,
-            "roleID": props.data.roleID,
+            "roleID": e.target.roleID.value,
+            "teamID": teamSelected._id,
             "universityID": props.data.universityID,
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,
@@ -359,6 +405,51 @@ export default function EditPopup(props) {
                                 required 
                             />
                         </div>
+
+                        <div className={`${styles.inputItem2} ${styles.center}`}>
+                            <p>Role</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="roleID" 
+                                name="roleID" 
+                                placeholder='Select Role' 
+                                value={roleSelected}  
+                                disabled
+                            />
+                        </div>
+
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
+                            <option key={0} value={14139}>Admin</option>
+                            <option key={1} value={21149}>Content Moderator</option>
+                            <option key={2} value={31514}>University Moderator</option>
+                            <option key={3} value={19202}>Registered User</option>
+                        </select>
+
+                        <div className={`${styles.inputItem2} ${styles.center}`}>
+                            <p>Team</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="team" 
+                                name="team" 
+                                placeholder='Select Team Name' 
+                                value={teamSelected.description}  
+                                disabled
+                            />
+                        </div>
+
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleTeamClick(e)}>
+                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            {
+                                // eslint-disable-next-line
+                                teams.map((team) => {
+                                    return (
+                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
 
                         {/* TODO: Add option to change role and university with dropdowns */}
 

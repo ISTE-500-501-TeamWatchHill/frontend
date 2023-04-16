@@ -21,10 +21,6 @@ const GameBlock = (props) => {
         throw new Error ("ERROR: No away team.");
     }
 
-    if (!props.game.gameFinished) {
-        console.log("No game status provided");
-    }
-
     if (!props.game.gameTime) {
         console.log("No game time provided");
     }
@@ -43,8 +39,7 @@ const GameBlock = (props) => {
 
                     <div className={`${styles.flex} ${styles.center}`}>
                         <div>
-                            {/* Need to fix hard coded url- need team IDs in addition to names or a way to get team name by ID */}
-                            <a href={"/team/1"} key={"/team/2"} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>
+                            <a href={`/team/${props.game.homeTeam}`} key={`/team/${props.game.homeTeam}`} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>
                             <p>Home Team University</p>
                         </div>
 
@@ -57,7 +52,7 @@ const GameBlock = (props) => {
                         <img className={styles.img} src={image} alt="Placeholder"/>
 
                         <div>
-                            <a href={"/team/1"} key={"/team/1"}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>
+                            <a href={`/team/${props.game.awayTeam}`} key={`/team/${props.game.awayTeam}`}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>
                             <p>Away Team University</p>
                         </div>
                     </div>

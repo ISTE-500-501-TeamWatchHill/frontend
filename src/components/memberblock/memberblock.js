@@ -23,7 +23,7 @@ const MemberBlock = (props) => {
                     <img className={styles.img} src={image} alt="Placeholder"/>
 
                     <div>
-                        <a href='/#' className={globalStyles.text}>{props.member.firstName} {props.member.lastName}</a>
+                        <div className={globalStyles.text}>{props.member.firstName} {props.member.lastName}</div>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,18 @@
 import React, {useState} from 'react'
-// import globalStyles from '../../pages/pages.module.css';
 import { useNavigate } from "react-router-dom";
 import styles from './editpopup.module.css';
 import Cookies from 'universal-cookie';
 import Button from '../button/button';
+
+/*
+ * TODO: 
+ * - make winning team look better
+ * - date update (datetime-local input type)
+ * - actually do home team edit
+ * - actually do away team edit
+ * - add game functionality 
+ * - remove all warnings 
+ */
 
 export default function EditPopup(props) {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -27,7 +36,7 @@ export default function EditPopup(props) {
                 "universityID": e.target.location.value,
                 "homeTeam": e.target.homeTeam.value,
                 "awayTeam": e.target.awayTeam.value,
-                "winningTeam": e.target.winningTeam.value,
+                "winningTeam": e.target.winner.value,
                 "gameFinished": props.data.gameFinished,
                 "gameTime": props.data.gameTime
             }
@@ -164,6 +173,18 @@ export default function EditPopup(props) {
                                 placeholder='Away Team' 
                                 defaultValue={props.data.awayTeam} 
                                 required 
+                            />
+                        </div>
+                        <div className={`${styles.inputItem2} ${styles.center}`}>
+                            <p>Winning Team</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="winner" 
+                                name="winner" 
+                                placeholder='Select Winning Team' 
+                                value={winnerSelected}  
+                                disabled
                             />
                         </div>
                         <select size="2" className={styles.dropdown} onChange={(e) => handleWinnerClick(e)}>

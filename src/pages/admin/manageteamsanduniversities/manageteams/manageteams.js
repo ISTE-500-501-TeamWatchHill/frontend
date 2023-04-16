@@ -45,6 +45,7 @@ const ManageTeams = (props) => {
                 });
         }
         getTeams();
+        // eslint-disable-next-line
     }, [])
 
     const addEdit = (editTeamData) => {

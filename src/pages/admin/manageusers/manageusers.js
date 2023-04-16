@@ -45,6 +45,7 @@ const ManageUniversities = (props) => {
                 });
         }
         getUsers();
+        // eslint-disable-next-line
     }, [])
 
     const addEdit = (editUserData) => {
@@ -103,7 +104,7 @@ const ManageUniversities = (props) => {
         {
             name: "Team Name",
             selector: (row) => {
-                if (row.teamInfoJoined === undefined || row.teamInfoJoined.length == 0) {
+                if (row.teamInfoJoined === undefined || row.teamInfoJoined.length === 0) {
                     return "";
                 } else {
                     return row.teamInfoJoined[0].description;

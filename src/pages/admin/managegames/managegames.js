@@ -9,7 +9,6 @@ import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Button from '../../../components/button/button';
 import { Navigate } from "react-router-dom";
-// import { use } from 'i18next';
 
 const ManageGames = (props) => {  
     const cookies = new Cookies();
@@ -45,6 +44,7 @@ const ManageGames = (props) => {
                 });
         }
         getGames();
+        // eslint-disable-next-line
     }, [])
 
     const addEdit = (editGameData) => {
@@ -117,7 +117,7 @@ const ManageGames = (props) => {
                 <Navigate to="/login" replace={true} />
             )}
 
-            {user && user.role != 14139 && (
+            {user && user.role !== 14139 && (
                 // <Navigate to="/" replace={true} />
                 console.log(user.roleID)
             )}

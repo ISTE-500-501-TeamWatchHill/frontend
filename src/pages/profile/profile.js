@@ -49,6 +49,7 @@ const Profile = (props) => {
               });
       }
       getUser();
+      // eslint-disable-next-line
     },[BASE_URL, myHeaders]);
 
     useEffect(()=> {
@@ -73,6 +74,7 @@ const Profile = (props) => {
               });
       }
       getTeam();
+      // eslint-disable-next-line
     },[BASE_URL, person, myHeaders]);
     
 

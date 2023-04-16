@@ -33,7 +33,7 @@ export default function EditPopup(props) {
                 .then(function(result) {
                     changeTeams(result);
                     
-                    if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length == 0) {
+                    if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length === 0) {
                         changeTeamSelected(nothing);
                     } else {
                         changeTeamSelected(teams.find(team => team._id === props.data.teamInfoJoined._id));
@@ -44,6 +44,7 @@ export default function EditPopup(props) {
                 });
         }
         getTeams();
+        // eslint-disable-next-line
     }, []);
 
 

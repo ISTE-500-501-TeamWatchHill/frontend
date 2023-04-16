@@ -102,7 +102,7 @@ const Team = () => {
         .then(function(result) { 
           setTeam(result[0]);
           result[0].players.map(player => {
-            fetchMember(player);
+            return fetchMember(player);
           });
         })
         .catch(function(error) {
@@ -139,6 +139,7 @@ const Team = () => {
     }
 
     fetchGames();
+    // eslint-disable-next-line
   },[team])
 
   return (
@@ -160,7 +161,7 @@ const Team = () => {
               {/* Team Members */}
               {
                   members.map((member, index) => {
-                    <MemberBlock key={index} member={member}/> 
+                    return ( <MemberBlock key={index} member={member}/> )
                   })
               }
           </div>

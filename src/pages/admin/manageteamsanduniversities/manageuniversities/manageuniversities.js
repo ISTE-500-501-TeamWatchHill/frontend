@@ -45,6 +45,7 @@ const ManageUniversities = (props) => {
                 });
         }
         getUniversities();
+        // eslint-disable-next-line
     }, [])
 
     const addEdit = (editUniversityData) => {

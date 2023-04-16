@@ -15,7 +15,9 @@ export default function Navbar() {
         <a href="/" className={styles.left}><strong>A NEW WORLD</strong></a>
 
         <div className={styles.right}>
-            <div className={styles.links}>
+            {
+              (!user || (user && user.role!==14139)) && 
+              <div className={styles.links}>
                 <table className={`${styles.dropdown} ${styles.border}`}>
                   <tbody>
                     <tr>
@@ -30,9 +32,8 @@ export default function Navbar() {
                       <td><a href="/tournament">{t("tournamentAboutNav.label")}</a></td>
                       <td><a href="/schedule">{t("tournamentScheduleNav.label")}</a></td>
                     </tr>
-                    </tbody>
-                  </table>
-
+                  </tbody>
+                </table>
 
                 <table className={`${styles.dropdown} ${styles.border}`}>
                   <tbody>
@@ -48,9 +49,8 @@ export default function Navbar() {
                       <td><a href="/teamsanduniversities">FIND A TEAM</a></td>
                       <td><a href="/team/create">CREATE A TEAM</a></td>
                     </tr>
-                    </tbody>
-                  </table>
-
+                  </tbody>
+                </table>
 
                 <table className={`${styles.dropdown} ${styles.border}`}>
                   <tbody>
@@ -66,9 +66,37 @@ export default function Navbar() {
                       <td><a href="/aardvarkgames">{t("aardvarkGamesAboutNav.label")}</a></td>
                       <td><a href="/boardgame">{t("aardvarkGamesBoardGameNav.label")}</a></td>
                     </tr>
-                    </tbody>
-                  </table>
-            </div>
+                  </tbody>
+                </table>
+              </div>
+            }
+
+{
+              (user && user.role===14139) && 
+              <div className={styles.links}>
+                <a className={styles.link} href="/managegames">GAMES</a>
+
+                <table className={`${styles.dropdown} ${styles.border}`}>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <button className={styles.dropbtn}>
+                        {t("teamsanduniversitiesNav.label")}
+                          <FaCaretDown />
+                        </button>
+                      </th>
+                    </tr>
+                    <tr className={styles.dropcontent}>
+                      <td><a href="/manageTeams">TEAMS</a></td>
+                      <td><a href="/manageUniversities">UNIVERSITIES</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <a className={styles.link} href="/manageusers">USERS</a>
+              </div>
+            }
+
 
             {!user && <a href="/login" className={styles.profile}>Login</a>}
             {user && <table className={`${styles.dropdown} ${styles.border}`}>

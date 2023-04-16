@@ -6,6 +6,7 @@
 .register_section {
     display: flex;
     flex-direction: row;
+    margin-top: 7vh;
 }
 
 form {

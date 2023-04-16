@@ -13,7 +13,7 @@ const CreateTeam = () => {
     const navigate = useNavigate();
 
     async function onSubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         const playerOne = user.email;
         const playerTwo = e.target.playerTwo.value;
@@ -73,9 +73,9 @@ const CreateTeam = () => {
                 <Navigate to="/login" replace={true} />
             )}
 
-            {user && user.teamID !== null && (
+            {/* {user && user.teamID !== null && (
                 <Navigate to="/user" replace={true} />
-            )}
+            )} */}
             
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmit}>

@@ -10,10 +10,49 @@ export default function EditPopup(props) {
     const cookies = new Cookies();
     const user = cookies.get('user');
     const navigate = useNavigate();
+    const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
     
+    const handleWinnerClick = (e) => {
+        changeWinnerSelected(e.target[e.target.selectedIndex].value);
+    };
 
     async function onSubmitGame(e) {
-        //TODO
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "token": user.token,
+            "id": props.data._id,
+            "updatedData": {
+                "universityID": e.target.location.value,
+                "homeTeam": e.target.homeTeam.value,
+                "awayTeam": e.target.awayTeam.value,
+                "winningTeam": e.target.winningTeam.value,
+                "gameFinished": props.data.gameFinished,
+                "gameTime": props.data.gameTime
+            }
+            
+        });
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/gameSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/managegame");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); 
     }
 
     async function onSubmitTeam(e) {
@@ -102,7 +141,48 @@ export default function EditPopup(props) {
                     <h1 className={styles.title}>Update Game</h1>
 
                     <div className={styles.padding}>
-                        {/* ALEXIS: TODO */}
+                        {/* VICKY: TODO */}
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Home Team</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="homeTeam" 
+                                name="homeTeam" 
+                                placeholder='Home Team' 
+                                defaultValue={props.data.homeTeam} 
+                                required 
+                            />
+                        </div>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Away Team</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="awayTeam" 
+                                name="awayTeam" 
+                                placeholder='Away Team' 
+                                defaultValue={props.data.awayTeam} 
+                                required 
+                            />
+                        </div>
+                        <select size="2" className={styles.dropdown} onChange={(e) => handleWinnerClick(e)}>
+                            <option key={0} value={null}>None</option>
+                            <option key={1} value={props.data.homeTeam}>{props.data.homeTeamInfo[0].description}</option>
+                            <option key={2} value={props.data.awayTeam}>{props.data.awayTeamInfo[0].description}</option>
+                        </select>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Location</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="location" 
+                                name="university" 
+                                placeholder='Location' 
+                                defaultValue={props.data.universityID} 
+                                required 
+                            />
+                        </div>
 
                         <div className={styles.flex}>
                             <Button 

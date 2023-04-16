@@ -1,5 +1,4 @@
 import React from 'react'
-import globalStyles from '../../pages/pages.module.css';
 import styles from './deletepopup.module.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';

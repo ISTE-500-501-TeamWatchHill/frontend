@@ -43,11 +43,11 @@ const App = () => {
         <Route exact path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<Profile />} />
-        <Route path="/*" element={<Home />} />
         <Route path="/manageteams" element={<ManageTeams />} />
         <Route path="/manageuniversities" element={<ManageUniversities />} />
         <Route path="/manageusers" element={<ManageUsers />} />
         <Route path="/managegames" element={<ManageGames />} />
+        <Route path="/*" element={<Home />} />
       </Routes>
       <Footer />
     </div>

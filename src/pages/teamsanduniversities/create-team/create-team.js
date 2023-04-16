@@ -71,10 +71,6 @@ const CreateTeam = () => {
             {!user && (
                 <Navigate to="/login" replace={true} />
             )}
-
-            {/* {user && user.teamID !== null && (
-                <Navigate to="/user" replace={true} />
-            )} */}
             
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmit}>

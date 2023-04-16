@@ -8,6 +8,7 @@ import DeletePopup from '../../../components/deletepopup/deletepopup';
 import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Button from '../../../components/button/button';
+import { Navigate } from "react-router-dom";
 // import { use } from 'i18next';
 
 const ManageGames = (props) => {  
@@ -112,6 +113,15 @@ const ManageGames = (props) => {
 
     return (
         <>
+            {!user && (
+                <Navigate to="/login" replace={true} />
+            )}
+
+            {user && user.role != 14139 && (
+                // <Navigate to="/" replace={true} />
+                console.log(user.roleID)
+            )}
+
             {/* Disables rest of page from being clicked when a popup is open */}
             {
                 (addOpen || editOpen || deleteOpen) &&

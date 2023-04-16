@@ -92,7 +92,7 @@ const Team = () => {
         .then(function(result) { 
           setTeam(result[0]);
           result[0].players.map(player => {
-            fetchMember(player);
+            return fetchMember(player);
           })
         })
         .catch(function(error) {

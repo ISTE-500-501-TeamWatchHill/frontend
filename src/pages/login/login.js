@@ -44,7 +44,6 @@ const Login = () => {
             .then(function(result) {
                 const options = {
                     path: '/',
-                    secure: true,
                     sameSite: 'strict',
                     expires: new Date(Date.now()+86400000) // expires in one dayish
                 };

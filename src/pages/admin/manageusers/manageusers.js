@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
 import styles from './manageusers.module.css';
-import Cookies from 'universal-cookie';
 import AddPopup from '../../../components/addpopup/addpopup';
 import EditPopup from '../../../components/editpopup/editpopup';
 import DeletePopup from '../../../components/deletepopup/deletepopup';
@@ -11,8 +10,6 @@ import Button from '../../../components/button/button';
 // import { use } from 'i18next';
 
 const ManageUniversities = (props) => {  
-    const cookies = new Cookies();
-    const user = cookies.get('user');
 
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
@@ -44,6 +41,7 @@ const ManageUniversities = (props) => {
                 });
         }
         getUsers();
+        // eslint-disable-next-line
     }, [])
 
     const addEdit = (editUserData) => {

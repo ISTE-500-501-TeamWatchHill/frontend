@@ -1,5 +1,33 @@
 .background {
     background-image: url("../../assets/images/aardvarkAboutBackground.png");
     background-repeat: no-repeat;
-    background-size:100% 100%;
+    background-size:100% 50%;
 }
+
+.profile_margin{
+    margin-left: 6vw;
+    margin-right: 6vw;
+    margin-top: -15vh;
+    margin-bottom: 8vh;
+}
+
+.fields {
+    font-family: 'Mulish';
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 28px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    padding:25px;
+}
+
+.row_border{
+    border-bottom:1px solid #D7D7D7;
+}
+
+.profile_table{
+    width:100%;
+    border-collapse: collapse; 
+}
+

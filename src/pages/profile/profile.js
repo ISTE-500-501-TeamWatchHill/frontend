@@ -15,8 +15,8 @@ const Profile = (props) => {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const [person, setPerson] = useState({
-      //"_id": ObjectId("640f5aa209be69cb0b64e42d"),
-      "uid": 1423518,
+      "_id": "640f5aa209be69cb0b64e42d",
+      "teamID": "1423518",
       "roleID": 19202,
       "universityID": 2760,
       "firstName": "Test",
@@ -25,12 +25,7 @@ const Profile = (props) => {
       "universityName": "RIT",
       "email": "spammewemails@rit.edu"
     });
-    const [university, setUniversity] = useState("RIT");
-
-    /* TODO:
-     * dynamic profile pic
-     * style it - alexis pls <3
-    */
+    const [team, setTeam] = useState("ABP");
 
     useEffect(()=> {
       async function getUser() { 
@@ -54,31 +49,31 @@ const Profile = (props) => {
               });
       }
       getUser();
-    },[BASE_URL, user, myHeaders]);
+    },[BASE_URL, myHeaders]);
 
-    useEffect(() => {
-      const fetchUniversity = async () => {
-        const raw = JSON.stringify({
-          "universityID": person.universityID
-        });
+    useEffect(()=> {
+      async function getTeam() { 
+          const raw = JSON.stringify({
+            "id": person.teamID
+          });
   
-        const requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-        };
+          const requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+          };
   
-        await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
-          .then(response => response.json())
-          .then(function(result) {
-            setUniversity(result.name);
-          })
-          .catch(function(error) {
-            console.log('error', error);
-          }); 
+          await fetch(`${BASE_URL}/teamPub/byID`, requestOptions) 
+              .then(response => response.json())
+              .then(function(result) {
+                setTeam(result.description); 
+              })
+              .catch(function(error) {
+                  console.log('error', error);
+              });
       }
-      fetchUniversity();
-    },[person, BASE_URL, myHeaders]);
+      getTeam();
+    },[BASE_URL, person, myHeaders]);
     
 
     return (
@@ -88,14 +83,37 @@ const Profile = (props) => {
             )}
 
             <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
-                <h1 className={globalStyles.h1_title}>{`${user.firstName} ${user.lastName}`}</h1>
             </div>
 
+            
+            <div className={styles.profile_margin}>
+            <h3 className={`${globalStyles.headline_text}`}>{`${user.firstName} ${user.lastName}`}</h3>
+            <br/><br/>
+
             {/* get univ name slay  */}
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>Name: {`${user.firstName} ${user.lastName}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>University: {`${university}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>University Email: {`${person.email}`}</p>
-            <p className={`${globalStyles.text} ${globalStyles.p}`}>Team: {`${person.teamName}`}</p>
+            <table className={styles.profile_table}>
+              <tr className={styles.row_border}>
+                <td className={styles.fields}>Name</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${user.firstName} ${user.lastName}`}</td>
+             </tr>
+
+             <tr className={styles.row_border}>
+                <td className={styles.fields}>University</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.universityName}`}</td>
+             </tr>
+
+             <tr className={styles.row_border}>
+                <td className={styles.fields}>University Email</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.email}`}</td>
+             </tr>
+
+             <tr className={styles.row_border}>
+                <td className={styles.fields}>Team</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${team}`}</td>
+             </tr>
+
+            </table>
+            </div>
         </>
   )
 };

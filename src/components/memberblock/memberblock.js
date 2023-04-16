@@ -16,12 +16,6 @@ const MemberBlock = (props) => {
         throw new Error ("ERROR: No member name.");
     }
 
-    //do we want to include email to contact to form teams or no? 
-
-    // if (!props.member.image) {
-    //     throw new Error ("ERROR: No member image.");
-    // }
-
     return (
           <>
             <div className={styles.block}>
@@ -34,7 +28,7 @@ const MemberBlock = (props) => {
                 </div>
             </div>
           </>
-    )
+    );
 };
   
 export default MemberBlock;

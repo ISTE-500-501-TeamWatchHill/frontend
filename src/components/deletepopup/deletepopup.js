@@ -13,16 +13,18 @@ export default function DeletePopup(props) {
 
 
     async function onSubmitGame(e) {
+        e.preventDefault();
         //TODO
     };
 
     async function onSubmitTeam(e) {
+        e.preventDefault();
         //TODO
     };
 
 
     async function onSubmitUniversity(e) {
-
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -53,6 +55,7 @@ export default function DeletePopup(props) {
     }
 
     async function onSubmitUser(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -81,8 +84,6 @@ export default function DeletePopup(props) {
                 alert('Bad! Bad! Did not like that at all >:(');
             });
     }
-
-    
 
     return (
         <>

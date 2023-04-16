@@ -13,14 +13,17 @@ export default function AddPopup(props) {
     
 
     async function onSubmitGame(e) {
+        e.preventDefault();
         //TODO
     }
 
     async function onSubmitTeam(e) {
+        e.preventDefault();
         //TODO
     }
 
     async function onSubmitUniversity(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -56,10 +59,11 @@ export default function AddPopup(props) {
     }
 
     async function onSubmitUser(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-         const raw = JSON.stringify({
+        const raw = JSON.stringify({
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,
             "roleID": parseInt(e.target.roleID.value),
@@ -85,7 +89,7 @@ export default function AddPopup(props) {
                 }
             })
             .catch(function(error) {
-                console.log('error', error);
+                console.log(error);
                 alert('Bad! Bad! Did not like that at all >:(');
             });
     }

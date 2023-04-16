@@ -58,14 +58,17 @@ export default function EditPopup(props) {
     
 
     async function onSubmitGame(e) {
+        e.preventDefault();
         //TODO
     }
 
     async function onSubmitTeam(e) {
+        e.preventDefault();
         //TODO
     }
 
     async function onSubmitUniversity(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -103,6 +106,7 @@ export default function EditPopup(props) {
     }
 
     async function onSubmitUser(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 

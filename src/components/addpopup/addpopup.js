@@ -90,6 +90,11 @@ export default function AddPopup(props) {
             });
     }
 
+    const [roleSelected, changeRoleSelected] = useState(19202);
+    const handleRoleClick = (e) => {
+        changeRoleSelected(e.target[e.target.selectedIndex].value);
+    };
+
     return (
         <>
             {
@@ -244,9 +249,17 @@ export default function AddPopup(props) {
                                 id="roleID" 
                                 name="roleID" 
                                 placeholder='Role ID' 
-                                required 
+                                value={roleSelected}
+                                disabled 
                             />
                         </div>
+
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
+                            <option key={0} value={14139}>Admin</option>
+                            <option key={1} value={21149}>Content Moderator</option>
+                            <option key={2} value={31514}>University Moderator</option>
+                            <option key={3} value={19202}>Registered User</option>
+                        </select>
 
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Email</p>

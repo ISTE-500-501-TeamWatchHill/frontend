@@ -48,7 +48,6 @@ const CreateTeam = () => {
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                // console.log(result);
                 if (result && result._id) {
                     navigate(`/team/${result._id}`);
                     navigate(0);

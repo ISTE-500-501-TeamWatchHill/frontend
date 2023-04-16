@@ -47,8 +47,6 @@ const Schedule = () => {
       getGames();
   },[token])
 
-  console.log(games);
-
   //parallel array
 let gameDates = [
   // "date1"

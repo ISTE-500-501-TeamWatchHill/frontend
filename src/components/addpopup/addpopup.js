@@ -34,8 +34,6 @@ export default function AddPopup(props) {
             "token": user.token,
         });
 
-        console.log(raw);
-
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -70,8 +68,6 @@ export default function AddPopup(props) {
             "password": e.target.password.value,
             "token": user.token,
         });
-
-        console.log(raw);
 
         const requestOptions = {
             method: 'POST',

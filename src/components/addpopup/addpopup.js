@@ -14,7 +14,7 @@ export default function AddPopup(props) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const nothing = {_id: 1, approvalStatus: true, description: "None", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "None", domain: "", logo: "", name: "", universityID: 1}]};
+    const nothing = {_id: 1, approvalStatus: true, description: "None", logo: "", players: [], universityID: 1};
 
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
@@ -29,7 +29,7 @@ export default function AddPopup(props) {
                 redirect: 'follow'
             };
 
-            await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
+            await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
                     changeTeams(result);
@@ -54,13 +54,10 @@ export default function AddPopup(props) {
     
 
     async function onSubmitGame(e) {
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
          const raw = JSON.stringify({
             "universityID": parseInt(e.target.universityID.value),
-            "homeTeam": e.target.homeTeam.value,
-            "awayTeam": e.target.awayTeam.value,
+            "homeTeam": homeTeamSelected._id,
+            "awayTeam": awayTeamSelected._id,
             "token": user.token,
         });
 
@@ -183,7 +180,7 @@ export default function AddPopup(props) {
                             /> 
                         </div>
                         <select size="3" className={styles.dropdown} onChange={(e) => handleHomeTeamClick(e)}>
-                            {/* <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option> */}
+                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
                                 teams.map((team) => {
@@ -221,10 +218,10 @@ export default function AddPopup(props) {
                             <input 
                                 className={styles.inputText} 
                                 type="text" 
-                                id="location" 
-                                name="university" 
+                                id="universityID" 
+                                name="universityID" 
                                 placeholder='Location' 
-                                defaultValue='2760'
+                                defaultValue='University ID'
                                 required 
                             />
                         </div>

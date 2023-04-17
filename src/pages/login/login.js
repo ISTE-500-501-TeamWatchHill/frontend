@@ -46,7 +46,7 @@ const Login = () => {
                     path: '/',
                     secure: true,
                     sameSite: 'strict',
-                    expires: new Date(Date.now()+8640000) // expires in one day
+                    expires: new Date(Date.now()+86400000) // expires in one day
                 };
                 cookies.set('user', result.user, options);
                 navigate('/');
@@ -55,7 +55,7 @@ const Login = () => {
             .catch(function(error) {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
-            }); // TODO: display error, refresh form
+            });
     }
 
 

@@ -89,7 +89,7 @@ const ManageGames = (props) => {
         },
         {
             name: "Winning Team",
-            selector: (row) => (row.winningTeam === row.homeTeam) ? row.homeTeamInfo[0].description : row.awayTeamInfo[0].description, 
+            selector: (row) => (row.winningTeam === null)? row.winningTeam : (row.winningTeam === row.homeTeam)? row.homeTeamInfo[0].description : row.awayTeamInfo[0].description, 
             sortable: true
         },
         {

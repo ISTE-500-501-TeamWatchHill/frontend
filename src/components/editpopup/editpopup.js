@@ -7,10 +7,6 @@ import Button from '../button/button';
 
 /*
  * TODO: 
- * - fix date update
- * - fix home team edit
- * - fix away team edit
- * - add game functionality 
  * - remove all warnings 
  * - add in backend documentation
  */
@@ -28,10 +24,11 @@ export default function EditPopup(props) {
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [teamSelected, changeTeamSelected] = useState(nothing);
-    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam);
-    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam);
+    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam); //_id
+    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam); //_id
     const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
     const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
+    const starterDate = props.data.gameTime.substr(0,16);
 
     useEffect(()=> {
         async function getTeams() {
@@ -66,11 +63,11 @@ export default function EditPopup(props) {
     };
 
     const handleAwayTeamClick = (e) => {
-        changeAwayTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+        changeAwayTeamSelected(e.target[e.target.selectedIndex].value);
     };
 
     const handleHomeTeamClick = (e) => {
-        changeHomeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+        changeHomeTeamSelected(e.target[e.target.selectedIndex].value); 
     };
 
     const handleRoleClick = (e) => {
@@ -82,27 +79,30 @@ export default function EditPopup(props) {
     };
 
     async function onSubmitGame(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        const raw = JSON.stringify({
+        const raw = {
             "token": user.token,
             "id": props.data._id,
             "updatedData": {
                 "universityID": e.target.location.value,
-                "homeTeam": e.target.homeTeam.value,
-                "awayTeam": e.target.awayTeam.value,
-                "winningTeam": e.target.winner.value,
+                "homeTeam": (homeTeamSelected !== 'Team One')? homeTeamSelected : props.data.homeTeam,
+                "awayTeam": (awayTeamSelected !== 'Team Two')? awayTeamSelected : props.data.awayTeam,
+                "winningTeam": (winnerSelected !== 'Team One')? winnerSelected : props.data.winningTeam,
                 "gameFinished": props.data.gameFinished,
-                "gameTime": props.data.gameTime
+                "gameTime": e.target.time.value
             }
-        });
+        };
+
+        const b = JSON.stringify(raw);
 
 
         const requestOptions = {
             method: 'PUT',
             headers: myHeaders,
-            body: raw,
+            body: b,
             redirect: 'follow'
         };
 
@@ -110,6 +110,7 @@ export default function EditPopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    console.log("Result", result);
                     navigate("/managegames");
                     navigate(0);
                 }
@@ -207,7 +208,6 @@ export default function EditPopup(props) {
                     <h1 className={styles.title}>Update Game</h1>
 
                     <div className={styles.padding}>
-                        {/* VICKY: TODO */}
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Home Team</p>
                             <input 
@@ -216,7 +216,7 @@ export default function EditPopup(props) {
                                 id="homeTeam" 
                                 name="homeTeam" 
                                 placeholder='Select Home Team' 
-                                value={homeTeamSelected.description}  
+                                value={homeTeamSelected}
                                 disabled
                             />
                         </div>
@@ -225,9 +225,9 @@ export default function EditPopup(props) {
                             <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
-                                teams.map((team) => {
+                                teams.map((team, index) => {
                                     return (
-                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                        <option key={index} value={team._id}>{team.description}</option>
                                     )
                                 })
                             }
@@ -240,7 +240,7 @@ export default function EditPopup(props) {
                                 id="awayTeam" 
                                 name="awayTeam" 
                                 placeholder='Select Away Team' 
-                                value={awayTeamSelected.description}  
+                                value={awayTeamSelected}  
                                 disabled
                             />
                         </div>
@@ -249,9 +249,9 @@ export default function EditPopup(props) {
                             <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
-                                teams.map((team) => {
+                                teams.map((team, index) => {
                                     return (
-                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                        <option key={index} value={team._id}>{team.description}</option>
                                     )
                                 })
                             }
@@ -292,7 +292,7 @@ export default function EditPopup(props) {
                                 type="datetime-local" 
                                 id="time" 
                                 name="time" 
-                                defaultValue={new Date(props.data.gameTime)} 
+                                defaultValue={starterDate} 
                                 required 
                             />
                         </div>

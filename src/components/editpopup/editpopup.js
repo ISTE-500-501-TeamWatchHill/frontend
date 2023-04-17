@@ -104,7 +104,6 @@ export default function EditPopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    console.log("Result", result);
                     navigate("/managegames");
                     navigate(0);
                 }

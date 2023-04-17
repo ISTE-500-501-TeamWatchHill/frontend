@@ -61,8 +61,6 @@ export default function AddPopup(props) {
             "token": user.token,
         });
 
-        console.log(raw);
-
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,

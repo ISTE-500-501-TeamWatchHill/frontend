@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 // import globalStyles from '../../pages/pages.module.css';
 import { useNavigate } from "react-router-dom";
 import styles from './addpopup.module.css';
@@ -10,11 +10,77 @@ export default function AddPopup(props) {
     const cookies = new Cookies();
     const user = cookies.get('user');
     const navigate = useNavigate();
+    // eslint-disable-next-line
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const nothing = {_id: 1, approvalStatus: true, description: "None", logo: "", players: [], universityID: 1};
+
+    //Setup for hook for teams
+    const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
+    const [awayTeamSelected, changeAwayTeamSelected] = useState(nothing);
+    const [homeTeamSelected, changeHomeTeamSelected] = useState(nothing);
+
+    useEffect(()=> {
+        async function getTeams() {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeTeams(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
+        getTeams();
+        // eslint-disable-next-line
+    }, []);
+
+    const handleAwayTeamClick = (e) => {
+        changeAwayTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+        console.log(awayTeamSelected);
+    };
+
+    const handleHomeTeamClick = (e) => {
+        changeHomeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+        console.log(homeTeamSelected);
+    };
     
 
     async function onSubmitGame(e) {
         e.preventDefault();
-        //TODO
+         const raw = JSON.stringify({
+            "universityID": parseInt(e.target.universityID.value),
+            "homeTeam": homeTeamSelected._id,
+            "awayTeam": awayTeamSelected._id,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/gameSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/managegames");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            })
     }
 
     async function onSubmitTeam(e) {
@@ -108,8 +174,64 @@ export default function AddPopup(props) {
                     <h1 className={styles.title}>Add Game</h1>
 
                     <div className={styles.padding}>
-                        {/* ALEXIS: TODO */}
-
+                        <div className={`${styles.inputItem2} ${styles.center}`} >
+                            <p>Home Team</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="homeTeam" 
+                                name="homeTeam" 
+                                placeholder='Select Home Team' 
+                                value={homeTeamSelected.description} 
+                                disabled
+                            /> 
+                        </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleHomeTeamClick(e)}>
+                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            {
+                                // eslint-disable-next-line
+                                teams.map((team) => {
+                                    return (
+                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <div className={`${styles.inputItem2} ${styles.center}`} >
+                            <p>Away Team</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="awayTeam" 
+                                name="awayTeam" 
+                                placeholder='Select Away Team' 
+                                value={awayTeamSelected.description}
+                                disabled
+                            />
+                        </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleAwayTeamClick(e)}>
+                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            {
+                                // eslint-disable-next-line
+                                teams.map((team) => {
+                                    return (
+                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Location</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="universityID" 
+                                name="universityID" 
+                                placeholder='Location' 
+                                defaultValue='University ID'
+                                required 
+                            />
+                        </div>
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"

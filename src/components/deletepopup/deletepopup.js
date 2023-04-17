@@ -1,5 +1,4 @@
 import React from 'react'
-import globalStyles from '../../pages/pages.module.css';
 import styles from './deletepopup.module.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
@@ -14,7 +13,33 @@ export default function DeletePopup(props) {
 
     async function onSubmitGame(e) {
         e.preventDefault();
-        //TODO
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "id": props.data._id,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/gameSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/managegame");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            });
     };
 
     async function onSubmitTeam(e) {
@@ -95,7 +120,7 @@ export default function DeletePopup(props) {
 
                     <div className={styles.padding}>
                         <div className={`${styles.inputItem} ${styles.center}`}>
-                            <p>Are you sure you want to delete game between {props.data.homeTeam} and {props.data.awayTeam}?</p>
+                            <p>Are you sure you want to delete game between {props.data.homeTeamInfo[0].description} and {props.data.awayTeamInfo[0].description}?</p>
                         </div>
 
                         <div className={styles.flex}>

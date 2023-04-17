@@ -110,7 +110,7 @@ export default function EditPopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/managegame");
+                    navigate("/managegames");
                     navigate(0);
                 }
             })

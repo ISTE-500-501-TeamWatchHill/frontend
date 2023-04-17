@@ -7,12 +7,12 @@ import Button from '../button/button';
 
 /*
  * TODO: 
- * - make winning team look better
- * - date update (datetime-local input type)
- * - actually do home team edit
- * - actually do away team edit
+ * - fix date update
+ * - fix home team edit
+ * - fix away team edit
  * - add game functionality 
  * - remove all warnings 
+ * - add in backend documentation
  */
 
 export default function EditPopup(props) {
@@ -28,6 +28,8 @@ export default function EditPopup(props) {
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [teamSelected, changeTeamSelected] = useState(nothing);
+    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam);
+    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam);
     const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
     const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
 
@@ -44,7 +46,7 @@ export default function EditPopup(props) {
                 .then(function(result) {
                     changeTeams(result);
                     
-                    if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length == 0) {
+                    if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length === 0) {
                         changeTeamSelected(nothing);
                     } else {
                         changeTeamSelected(teams.find(team => team._id === props.data.teamInfoJoined._id));
@@ -55,11 +57,20 @@ export default function EditPopup(props) {
                 });
         }
         getTeams();
+        // eslint-disable-next-line
     }, []);
 
 
     const handleTeamClick = (e) => {
         changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+    };
+
+    const handleAwayTeamClick = (e) => {
+        changeAwayTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+    };
+
+    const handleHomeTeamClick = (e) => {
+        changeHomeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
     };
 
     const handleRoleClick = (e) => {
@@ -85,8 +96,8 @@ export default function EditPopup(props) {
                 "gameFinished": props.data.gameFinished,
                 "gameTime": props.data.gameTime
             }
-            
         });
+
 
         const requestOptions = {
             method: 'PUT',
@@ -197,30 +208,54 @@ export default function EditPopup(props) {
 
                     <div className={styles.padding}>
                         {/* VICKY: TODO */}
-                        <div className={`${styles.inputItem} ${styles.center}`}>
+                        <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Home Team</p>
                             <input 
                                 className={styles.inputText} 
                                 type="text" 
                                 id="homeTeam" 
                                 name="homeTeam" 
-                                placeholder='Home Team' 
-                                defaultValue={props.data.homeTeam} 
-                                required 
+                                placeholder='Select Home Team' 
+                                value={homeTeamSelected.description}  
+                                disabled
                             />
                         </div>
-                        <div className={`${styles.inputItem} ${styles.center}`}>
+
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleHomeTeamClick(e)}>
+                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            {
+                                // eslint-disable-next-line
+                                teams.map((team) => {
+                                    return (
+                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Away Team</p>
                             <input 
                                 className={styles.inputText} 
                                 type="text" 
                                 id="awayTeam" 
                                 name="awayTeam" 
-                                placeholder='Away Team' 
-                                defaultValue={props.data.awayTeam} 
-                                required 
+                                placeholder='Select Away Team' 
+                                value={awayTeamSelected.description}  
+                                disabled
                             />
                         </div>
+
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleAwayTeamClick(e)}>
+                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            {
+                                // eslint-disable-next-line
+                                teams.map((team) => {
+                                    return (
+                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Winning Team</p>
                             <input 
@@ -247,6 +282,17 @@ export default function EditPopup(props) {
                                 name="university" 
                                 placeholder='Location' 
                                 defaultValue={props.data.universityID} 
+                                required 
+                            />
+                        </div>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Time</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="datetime-local" 
+                                id="time" 
+                                name="time" 
+                                defaultValue={new Date(props.data.gameTime)} 
                                 required 
                             />
                         </div>

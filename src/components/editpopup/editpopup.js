@@ -5,12 +5,6 @@ import styles from './editpopup.module.css';
 import Cookies from 'universal-cookie';
 import Button from '../button/button';
 
-/*
- * TODO: 
- * - remove all warnings 
- * - add in backend documentation
- */
-
 export default function EditPopup(props) {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
@@ -19,7 +13,7 @@ export default function EditPopup(props) {
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    const nothing = {_id: 1, approvalStatus: true, description: "None", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "None", domain: "", logo: "", name: "", universityID: 1}]};
+    const nothing = {_id: 'None', approvalStatus: true, description: "None", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "None", domain: "", logo: "", name: "", universityID: 1}]};
 
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
@@ -216,18 +210,18 @@ export default function EditPopup(props) {
                                 id="homeTeam" 
                                 name="homeTeam" 
                                 placeholder='Select Home Team' 
-                                value={homeTeamSelected}
+                                value={(homeTeamSelected !== 'Team One')? homeTeamSelected : props.data.homeTeam}
                                 disabled
                             />
                         </div>
-
+                        {/* // eslint-disable-next-line */}
                         <select size="3" className={styles.dropdown} onChange={(e) => handleHomeTeamClick(e)}>
-                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            <option key={0} value={nothing._id}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
                                 teams.map((team, index) => {
                                     return (
-                                        <option key={index} value={team._id}>{team.description}</option>
+                                        <option key={index} value={team._id} selected={((team._id===homeTeamSelected) || (team._id===props.data.homeTeam && homeTeamSelected==='Team One'))}>{team.description}</option>
                                     )
                                 })
                             }
@@ -240,18 +234,18 @@ export default function EditPopup(props) {
                                 id="awayTeam" 
                                 name="awayTeam" 
                                 placeholder='Select Away Team' 
-                                value={awayTeamSelected}  
+                                value={(awayTeamSelected !== 'Team Two')? awayTeamSelected : props.data.awayTeam}  
                                 disabled
                             />
                         </div>
-
+                            {/* // eslint-disable-next-line */}
                         <select size="3" className={styles.dropdown} onChange={(e) => handleAwayTeamClick(e)}>
-                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            <option key={0} value={nothing._id}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
                                 teams.map((team, index) => {
                                     return (
-                                        <option key={index} value={team._id}>{team.description}</option>
+                                        <option key={index} value={team._id} selected={((team._id===awayTeamSelected) || (team._id===props.data.awayTeam && awayTeamSelected==='Team Two'))}>{team.description}</option>
                                     )
                                 })
                             }
@@ -264,14 +258,15 @@ export default function EditPopup(props) {
                                 id="winner" 
                                 name="winner" 
                                 placeholder='Select Winning Team' 
-                                value={winnerSelected}  
+                                value={(winnerSelected !== 'Team One')? winnerSelected : props.data.winningTeam}  
                                 disabled
                             />
                         </div>
                         <select size="2" className={styles.dropdown} onChange={(e) => handleWinnerClick(e)}>
-                            <option key={0} value={null}>None</option>
-                            <option key={1} value={props.data.homeTeam}>{props.data.homeTeamInfo[0].description}</option>
-                            <option key={2} value={props.data.awayTeam}>{props.data.awayTeamInfo[0].description}</option>
+                        {/* // eslint-disable-next-line */}
+                            <option key={0} value={null} selected={((null===winnerSelected) || (null===props.data.winningTeam && winnerSelected==='Team One'))}>None</option>
+                            <option key={1} value={props.data.homeTeam} selected={((props.data.homeTeam===winnerSelected) || (props.data.homeTeam===props.data.winningTeam && winnerSelected==='Team One'))}>{props.data.homeTeamInfo[0].description}</option>
+                            <option key={2} value={props.data.awayTeam} selected={((props.data.awayTeam===winnerSelected) || (props.data.awayTeam===props.data.winningTeam && winnerSelected==='Team One'))}>{props.data.awayTeamInfo[0].description}</option>
                         </select>
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Location</p>

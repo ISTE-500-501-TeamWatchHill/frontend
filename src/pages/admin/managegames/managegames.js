@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
 import styles from './managegames.module.css';
-import Cookies from 'universal-cookie';
 import AddPopup from '../../../components/addpopup/addpopup';
 import EditPopup from '../../../components/editpopup/editpopup';
 import DeletePopup from '../../../components/deletepopup/deletepopup';
@@ -11,8 +10,6 @@ import Button from '../../../components/button/button';
 // import { use } from 'i18next';
 
 const ManageGames = (props) => {  
-    const cookies = new Cookies();
-    const user = cookies.get('user');
 
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
@@ -44,6 +41,7 @@ const ManageGames = (props) => {
                 });
         }
         getGames();
+         // eslint-disable-next-line
     }, [])
 
     const addEdit = (editGameData) => {
@@ -81,17 +79,17 @@ const ManageGames = (props) => {
     const columns = [
         {
           name: "Home Team",
-          selector: (row) => row.homeTeamInfo.description,
+          selector: (row) => row.homeTeamInfo[0].description,
           sortable: true
         },
         {
             name: "Away Team",
-            selector: (row) => row.awayTeamInfo.description,
+            selector: (row) => row.awayTeamInfo[0].description,
             sortable: true
         },
         {
             name: "Winning Team",
-            selector: (row) => row.winningTeam,
+            selector: (row) => (row.winningTeam === null)? row.winningTeam : (row.winningTeam === row.homeTeam)? row.homeTeamInfo[0].description : row.awayTeamInfo[0].description, 
             sortable: true
         },
         {

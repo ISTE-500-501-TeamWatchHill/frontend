@@ -2,14 +2,11 @@ import React, {useState, useEffect} from 'react'
 import Select from 'react-select'
 import globalStyles from '../../pages.module.css';
 import styles from './teamsanduniversities.module.css';
-import Cookies from 'universal-cookie';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 // import { use } from 'i18next';
 
 const TeamsAndUniversities = (props) => {  
-    const cookies = new Cookies();
-    const user = cookies.get('user');
 
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
@@ -40,6 +37,7 @@ const TeamsAndUniversities = (props) => {
                 });
         }
         getTeams();
+        // eslint-disable-next-line
     }, [])
 
 

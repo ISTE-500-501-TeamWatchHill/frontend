@@ -1,29 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
 import styles from './schedule.module.css';
-import Cookies from 'universal-cookie';
 
 import GameBlock from '../../../components/gameblock/gameblock';
-
-//Hard coded for now- will grab from database.
-const rawgames = [ 
-  { gameid: 1, teamoneid: 1, teamtwoid: 5, datetime: "04 Aug 2023 00:12:00 EST", location: "Antarctica" },
-  { gameid: 2, teamoneid: 2, teamtwoid: 6, datetime: "04 Aug 2023 00:12:00 EST", location: "Antarctica" },
-  { gameid: 3, teamoneid: 3, teamtwoid: 7, datetime: "05 Aug 2023 00:01:00 EST", location: "Antarctica" },
-  { gameid: 4, teamoneid: 4, teamtwoid: 8, datetime: "05 Aug 2023 00:12:00 EST", location: "Antarctica" }
-];
-
 
 const Schedule = () => {
 
   //Setup for hook for games
   const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]); 
-  const [token, changeToken] = useState("");
 
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const cookies = new Cookies();
-  const user = cookies.get('user');
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -45,7 +32,8 @@ const Schedule = () => {
               });
       }
       getGames();
-  },[token])
+      // eslint-disable-next-line
+  },[])
 
   console.log(games);
 

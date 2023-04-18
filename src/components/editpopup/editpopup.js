@@ -26,7 +26,7 @@ export default function EditPopup(props) {
     const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
     const starterDate = (props.data.gameTime)? props.data.gameTime.substr(0,16): '';
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
-    const [univSelected, changeUnivSelected]= useState(props.data.universityInfo[0].universityID);
+    const [univSelected, changeUnivSelected]= useState(props.data.universityInfo ? props.data.universityInfo[0].universityID : 0);
     const [members, setMembers] = useState([]);
 
     useEffect(()=> {
@@ -657,7 +657,7 @@ export default function EditPopup(props) {
                                 id="team" 
                                 name="team" 
                                 placeholder='Select Team Name' 
-                                value={teamSelected.description}  
+                                value={(teamSelected !== 'None') ? "that" : "this"}  
                                 disabled
                             />
                         </div>
@@ -666,9 +666,9 @@ export default function EditPopup(props) {
                             <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
-                                teams.map((team) => {
+                                teams.map((team, index) => {
                                     return (
-                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                        <option key={index} value={team._id}>{team.description}</option>
                                     )
                                 })
                             }

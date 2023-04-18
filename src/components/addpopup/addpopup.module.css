@@ -88,3 +88,9 @@
     margin: 1vh 0 3vh 0;
     width: 100%;
 }
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

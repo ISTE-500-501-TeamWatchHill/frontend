@@ -74,7 +74,6 @@ export default function AddPopup(props) {
 
     const handleHomeTeamClick = (e) => {
         changeHomeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
-        console.log(homeTeamSelected);
     };
     
 
@@ -356,44 +355,46 @@ export default function AddPopup(props) {
                             }
                         </select>
                         <div className={`${styles.inputItem} ${styles.center}`} >
-                        <p>Add Players</p>
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player1" 
-                            name="player1" 
-                            placeholder='Enter Email' 
-                            required
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player2" 
-                            name="player2" 
-                            placeholder='Enter Email' 
-                            required
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player3" 
-                            name="player3" 
-                            placeholder='Enter Email' 
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player4" 
-                            name="player4" 
-                            placeholder='Enter Email' 
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player5" 
-                            name="player5" 
-                            placeholder='Enter Email' 
-                        /> 
+                            <p>Add Players</p>
+                            <div className={styles.flex_column}>
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player1" 
+                                    name="player1" 
+                                    placeholder='Enter Email' 
+                                    required
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player2" 
+                                    name="player2" 
+                                    placeholder='Enter Email' 
+                                    required
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player3" 
+                                    name="player3" 
+                                    placeholder='Enter Email' 
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player4" 
+                                    name="player4" 
+                                    placeholder='Enter Email' 
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player5" 
+                                    name="player5" 
+                                    placeholder='Enter Email' 
+                                /> 
+                            </div>
                         </div>
         
                         <CFormSwitch 

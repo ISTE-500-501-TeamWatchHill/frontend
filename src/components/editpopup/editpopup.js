@@ -503,8 +503,8 @@ export default function EditPopup(props) {
                         <CFormSwitch 
                             id="approvalStatus" 
                             label="Approved" 
-                            type="checkbox" 
-                            //TODO: add default is checked if value is true
+                            type="checkbox"
+                            // checked={props.data.approvalStatus} // TODO: fix this with state
                             onChange={(e) => { 
                                 const isChecked = document.getElementById("approvalStatus").checked;
                                 document.getElementById("approvalStatus").style.backgroundColor = isChecked ?  "#2E8D93" : "#FFFFFF";

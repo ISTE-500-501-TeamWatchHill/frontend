@@ -118,8 +118,7 @@ const ManageGames = (props) => {
             )}
 
             {user && user.role !== 14139 && (
-                // <Navigate to="/" replace={true} />
-                console.log(user.roleID)
+                <Navigate to="/" replace={true} />
             )}
 
             {/* Disables rest of page from being clicked when a popup is open */}

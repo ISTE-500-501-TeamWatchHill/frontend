@@ -110,13 +110,29 @@ export default function AddPopup(props) {
 
     async function onSubmitTeam(e) {
         e.preventDefault();
-         const raw = JSON.stringify({
+        const players = [
+            e.target.player1.value,
+            e.target.player2.value
+        ];
+        if ((e.target.player3.value!=='')) {
+            players[2]=e.target.player3.value;
+        }
+        if ((e.target.player4.value!=='')) {
+            players[3]=e.target.player4.value;
+        }
+        if ((e.target.player5.value!=='')) {
+            players[4]=e.target.player5.value;
+        }
+
+
+        const b = {
             "universityID": parseInt(e.target.universityID.value),
-            "description": e.target.teamName.value,
+            "name": e.target.teamName.value,
             "approvalStatus": e.target.approvalStatus.checked,
-            // "players": e.target.players.value,
+            "emails": players,
             "token": user.token,
-        });
+        };
+        const raw = JSON.stringify(b);
 
         const requestOptions = {
             method: 'POST',
@@ -339,6 +355,46 @@ export default function AddPopup(props) {
                                 })
                             }
                         </select>
+                        <div className={`${styles.inputItem} ${styles.center}`} >
+                        <p>Add Players</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player1" 
+                            name="player1" 
+                            placeholder='Enter Email' 
+                            required
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player2" 
+                            name="player2" 
+                            placeholder='Enter Email' 
+                            required
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player3" 
+                            name="player3" 
+                            placeholder='Enter Email' 
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player4" 
+                            name="player4" 
+                            placeholder='Enter Email' 
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player5" 
+                            name="player5" 
+                            placeholder='Enter Email' 
+                        /> 
+                        </div>
         
                         <CFormSwitch 
                             id="approvalStatus" 

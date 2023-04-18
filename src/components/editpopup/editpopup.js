@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styles from './editpopup.module.css';
 import Cookies from 'universal-cookie';
 import Button from '../button/button';
+import { CFormSwitch } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 export default function EditPopup(props) {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -18,13 +20,43 @@ export default function EditPopup(props) {
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [teamSelected, changeTeamSelected] = useState(nothing);
-    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam); //_id
-    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam); //_id
+    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam);
+    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam);
     const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
     const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
     const starterDate = (props.data.gameTime)? props.data.gameTime.substr(0,16): '';
+    const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
+    const [univSelected, changeUnivSelected]= useState(props.data.universityInfo[0].universityID);
+    const [members,setMembers] = useState([]);
 
     useEffect(()=> {
+        const fetchMember = async (userID) => {
+            const raw = JSON.stringify({
+              "id": userID
+            });
+        
+            const requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+            };
+        
+            await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
+              .then(response => response.json())
+              .then(function(result) { 
+                setMembers(current => [...current, result]); //set 
+              })
+              .catch(function(error) {
+                console.log('error', error);
+              });
+        }
+
+        if (props.type==="team"){
+            props.data.players.forEach(player => {
+                fetchMember(player);
+            });
+        }
+
         async function getTeams() {
             const requestOptions = {
                 method: 'GET',
@@ -47,10 +79,31 @@ export default function EditPopup(props) {
                     console.log('error', error);
                 });
         }
+
+        const getUniversities = async() => {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeUniversities(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
         getTeams();
+        getUniversities();
         // eslint-disable-next-line
     }, []);
 
+    const handleUniversityClick = (e) => {
+        changeUnivSelected(e.target[e.target.selectedIndex].value);
+    };
 
     const handleTeamClick = (e) => {
         changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
@@ -119,13 +172,27 @@ export default function EditPopup(props) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        const players = [
+            e.target.player1.value,
+            e.target.player2.value
+        ];
+        if ((e.target.player3.value!=='')) { //TODO change to check for db values 
+            players[2]=e.target.player3.value;
+        } 
+        if ((e.target.player4.value!=='')) {
+            players[3]=e.target.player4.value;
+        }
+        if ((e.target.player5.value!=='')) {
+            players[4]=e.target.player5.value;
+        }
+
         const raw = {
             "token": user.token,
             "id": props.data._id,
             "updatedData": {
                 "universityID": e.target.location.value,
                 "players": props.data.players,
-                "description": props.data.description,
+                "description": e.target.teamName.value,
                 "approvalStatus": props.data.approvalStatus
             }
         };
@@ -364,7 +431,86 @@ export default function EditPopup(props) {
                             />
                         </div>
 
-                        {/* ALEXIS: Currently waiting to edit players and team as a whole until user functionality is done */}
+                        <div className={`${styles.inputItem} ${styles.center}`} >
+                        <p>University</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="universityID" 
+                            name="universityID" 
+                            value={(univSelected !== 'None')? univSelected : props.data.universityInfo[0].universityID}
+                            disabled
+                        /> 
+                    </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            <option key={0} value={'None'}>{'None'}</option>
+                            {
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <div className={`${styles.inputItem} ${styles.center}`} > 
+                        {/* TODO players stuff */}
+                        <p>Edit Players</p>
+                        
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player1" 
+                            name="player1" 
+                            placeholder='Enter Email' 
+                            defaultValue={props.data.players[0]} //this is an id not an email, need to fix? 
+                            required
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player2" 
+                            name="player2" 
+                            placeholder='Enter Email' 
+                            defaultValue={props.data.players[1]}
+                            required
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player3" 
+                            name="player3" 
+                            placeholder='Enter Email'
+                            defaultValue={props.data.players[2]} 
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player4" 
+                            name="player4" 
+                            placeholder='Enter Email'
+                            defaultValue={props.data.players[3]} 
+                        /> 
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="player5" 
+                            name="player5" 
+                            placeholder='Enter Email'
+                            defaultValue={props.data.players[3]}  
+                        /> 
+                        </div>
+        
+                        <CFormSwitch 
+                            id="approvalStatus" 
+                            label="Approved" 
+                            type="checkbox" 
+                            //TODO: add default is checked if value is true
+                            onChange={(e) => { 
+                                const isChecked = document.getElementById("approvalStatus").checked;
+                                document.getElementById("approvalStatus").style.backgroundColor = isChecked ?  "#2E8D93" : "#FFFFFF";
+                            }}
+                        />
 
                         <div className={styles.flex}>
                             <Button 

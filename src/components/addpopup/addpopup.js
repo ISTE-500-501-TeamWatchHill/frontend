@@ -406,8 +406,6 @@ export default function AddPopup(props) {
                             }}
                         />
 
-                        {/* players stuff */}
-
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"

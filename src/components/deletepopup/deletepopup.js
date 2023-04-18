@@ -32,7 +32,7 @@ export default function DeletePopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/managegame");
+                    navigate("/managegames");
                     navigate(0);
                 }
             })
@@ -69,7 +69,7 @@ export default function DeletePopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/manageteam");
+                    navigate("/manageuniversities");
                     navigate(0);
                 }
             })

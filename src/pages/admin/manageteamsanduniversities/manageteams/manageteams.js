@@ -92,7 +92,8 @@ const ManageTeams = (props) => {
           sortable: true
         },
         {
-          name: "Players"
+          name: "Number of Players",
+          selector: (row) => row.players.length,
         },
         {
           name: "University Name",

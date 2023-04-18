@@ -6,7 +6,9 @@ import EditPopup from '../../../../components/editpopup/editpopup';
 import DeletePopup from '../../../../components/deletepopup/deletepopup';
 import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Cookies from 'universal-cookie';
 import Button from '../../../../components/button/button';
+import { Navigate } from "react-router-dom";
 // import { use } from 'i18next';
 
 const ManageTeams = (props) => {  
@@ -14,11 +16,13 @@ const ManageTeams = (props) => {
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
-    const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
-    const [editTeam, changeEditTeam] = useState({ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] });
+    const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 'None'}] }]);
+    const [editTeam, changeEditTeam] = useState({ _id: 1, description: "Team One", universityID: 'None', universityName: "RIT", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 'None'}] });
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -88,7 +92,8 @@ const ManageTeams = (props) => {
           sortable: true
         },
         {
-          name: "Players"
+          name: "Number of Players",
+          selector: (row) => row.players.length,
         },
         {
           name: "University Name",
@@ -103,6 +108,14 @@ const ManageTeams = (props) => {
 
     return (
         <>
+            {!user && (
+                <Navigate to="/login" replace={true} />
+            )}
+
+            {user && user.role !== 14139 && (
+                <Navigate to="/" replace={true} />
+            )}
+
             {/* Disables rest of page from being clicked when a popup is open */}
             {
                 (addOpen || editOpen || deleteOpen) &&

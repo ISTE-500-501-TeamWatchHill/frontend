@@ -44,9 +44,8 @@ const Login = () => {
             .then(function(result) {
                 const options = {
                     path: '/',
-                    secure: true,
                     sameSite: 'strict',
-                    expires: new Date(Date.now()+86400000) // expires in one day
+                    expires: new Date(Date.now()+86400000) // expires in one dayish
                 };
                 cookies.set('user', result.user, options);
                 navigate('/');

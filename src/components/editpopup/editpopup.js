@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styles from './editpopup.module.css';
 import Cookies from 'universal-cookie';
 import Button from '../button/button';
+import { CFormSwitch } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 export default function EditPopup(props) {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -14,18 +16,50 @@ export default function EditPopup(props) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const nothing = {_id: 'None', approvalStatus: true, description: "None", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "None", domain: "", logo: "", name: "", universityID: 1}]};
-
+    
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
-    const [teamSelected, changeTeamSelected] = useState(nothing);
-    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam); //_id
-    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam); //_id
-    const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
-    const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
-    const starterDate = props.data.gameTime.substr(0,16);
+    const [teamSelected, changeTeamSelected] = useState(props.data.teamID ? props.data.teamID : 0);
+    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam ? props.data.awayTeam : 'None');
+    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam ? props.data.homeTeam : 'None');
+    const [roleSelected, changeRoleSelected] = useState(props.data.roleID ? props.data.roleID : 0);
+    const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam ? props.data.winningTeam : "None");
+    const starterDate = (props.data.gameTime)? props.data.gameTime.substr(0,16): '';
+    const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
+    const [univSelected, changeUnivSelected]= useState(props.data.universityInfo ? props.data.universityInfo[0].universityID : 0);
+    const [members, setMembers] = useState([]);
+
 
     useEffect(()=> {
-        async function getTeams() {
+        const fetchMember = async (userID) => {
+            const raw = JSON.stringify({
+              "id": userID
+            });
+        
+            const requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+            };
+        
+            await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
+              .then(response => response.json())
+              .then(function(result) { 
+                setMembers(current => [...current, result]); //set 
+              })
+              .catch(function(error) {
+                console.log('error', error);
+              });
+        }
+
+        if (props.type==="team") {
+            setMembers([]); 
+            props.data.players.forEach(player => {
+                fetchMember(player);
+            });
+        }
+
+        const getTeams = async () => {
             const requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
@@ -38,22 +72,44 @@ export default function EditPopup(props) {
                     changeTeams(result);
                     
                     if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length === 0) {
-                        changeTeamSelected(nothing);
+                        changeTeamSelected('None');
                     } else {
-                        changeTeamSelected(teams.find(team => team._id === props.data.teamInfoJoined._id));
+                        changeTeamSelected(props.data.teamID);
                     }
                 })
                 .catch(function(error) {
                     console.log('error', error);
                 });
         }
-        getTeams();
-        // eslint-disable-next-line
-    }, []);
 
+        const getUniversities = async() => {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeUniversities(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
+
+        getTeams();
+        getUniversities();
+        // eslint-disable-next-line
+    }, [props.data]);
+
+    const handleUniversityClick = (e) => {
+        changeUnivSelected(e.target[e.target.selectedIndex].value);
+    };
 
     const handleTeamClick = (e) => {
-        changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+        changeTeamSelected(e.target[e.target.selectedIndex].value); 
     };
 
     const handleAwayTeamClick = (e) => {
@@ -115,10 +171,57 @@ export default function EditPopup(props) {
     }
 
     async function onSubmitTeam(e) {
-        //TODO
+        e.preventDefault();
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const playerOne = e.target.player1.value;
+        const playerTwo = e.target.player2.value;
+        const playerThree = e.target.player3.value;
+        const playerFour = e.target.player4.value;
+        const playerFive = e.target.player5.value;
+
+        let emails = [playerOne];
+
+        if (playerTwo) { emails.push(playerTwo) }
+        if (playerThree) { emails.push(playerThree) }
+        if (playerFour) { emails.push(playerFour) }
+        if (playerFive) { emails.push(playerFive) }
+
+        const raw = {
+            "token": user.token,
+            "id": props.data._id,
+            "updatedData": {
+                "universityID": parseInt(e.target.universityID.value),
+                "emails": emails,
+                "description": e.target.teamName.value,
+                "approvalStatus": e.target.approvalStatus.checked,
+            }
+        };
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: JSON.stringify(raw),
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageteams");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); 
     }
 
     async function onSubmitUniversity(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -145,7 +248,7 @@ export default function EditPopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/manageteam");
+                    navigate("/manageuniversities");
                     navigate(0);
                 }
             })
@@ -156,13 +259,14 @@ export default function EditPopup(props) {
     }
 
     async function onSubmitUser(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
          const raw = JSON.stringify({
             "id": props.data._id,
             "roleID": e.target.roleID.value,
-            "teamID": teamSelected._id,
+            "teamID": teamSelected,
             "universityID": props.data.universityID,
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,
@@ -190,6 +294,25 @@ export default function EditPopup(props) {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
             }); 
+    }
+
+    function renderRestOfRows()  {
+        const rows = []
+        for(let index=members.length; index<5; index++) {
+            rows.push(
+                <>
+                    <input 
+                        key={index}
+                        className={styles.inputText} 
+                        type="text"
+                        id={`player${index+1}`}
+                        name={`player${index+1}`} 
+                        placeholder='Enter Email'
+                    />
+                </>
+            );
+        }
+        return rows;
     }
 
     return (
@@ -326,7 +449,67 @@ export default function EditPopup(props) {
                             />
                         </div>
 
-                        {/* ALEXIS: Currently waiting to edit players and team as a whole until user functionality is done */}
+                        <div className={`${styles.inputItem} ${styles.center}`} >
+                        <p>University</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="universityID" 
+                            name="universityID" 
+                            value={(univSelected !== 'None')? univSelected : props.data.universityInfo[0].universityID}
+                            disabled
+                        /> 
+                        </div>
+                            <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                                <option key={0} value={'None'}>{'None'}</option>
+                                {
+                                    // eslint-disable-next-line
+                                    universities.map((university, index) => {
+                                        return (
+                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            <div className={`${styles.inputItem} ${styles.center}`} > 
+                            {/* TODO players stuff */}
+                            <p>Edit Players</p>
+                            <div className={styles.flex_column}>
+                            {
+                                // eslint-disable-next-line
+                                members.map((member, index) => {
+                                    return (
+                                        <>
+                                            <input 
+                                                key={index}
+                                                className={styles.inputText} 
+                                                type="text"
+                                                id={`player${index+1}`}
+                                                name={`player${index+1}`} 
+                                                placeholder='Enter Email' 
+                                                defaultValue={member.email}
+                                            />
+                                        </>
+                                    )
+                                })
+
+                            }
+                            {renderRestOfRows()}
+                            </div>
+
+                             
+                        </div>
+        
+                        <CFormSwitch 
+                            id="approvalStatus" 
+                            label="Approved" 
+                            type="checkbox"
+                            // checked={props.data.approvalStatus} // TODO: fix this with state
+                            onChange={(e) => { 
+                                const isChecked = document.getElementById("approvalStatus").checked;
+                                document.getElementById("approvalStatus").style.backgroundColor = isChecked ?  "#2E8D93" : "#FFFFFF";
+                            }}
+                        />
 
                         <div className={styles.flex}>
                             <Button 
@@ -460,10 +643,10 @@ export default function EditPopup(props) {
                         </div>
 
                         <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
-                            <option key={0} value={14139}>Admin</option>
-                            <option key={1} value={21149}>Content Moderator</option>
-                            <option key={2} value={31514}>University Moderator</option>
-                            <option key={3} value={19202}>Registered User</option>
+                            <option key={0} value={14139} selected={props.data.roleID===14139}>Admin</option>
+                            <option key={1} value={21149} selected={props.data.roleID===21149}>Content Moderator</option>
+                            <option key={2} value={31514} selected={props.data.roleID===31514}>University Moderator</option>
+                            <option key={3} value={19202} selected={props.data.roleID===19202}>Registered User</option>
                         </select>
 
                         <div className={`${styles.inputItem2} ${styles.center}`}>
@@ -474,24 +657,22 @@ export default function EditPopup(props) {
                                 id="team" 
                                 name="team" 
                                 placeholder='Select Team Name' 
-                                value={teamSelected.description}  
+                                value={(teamSelected !== 0) ?  teamSelected : props.data.teamID}  
                                 disabled
                             />
                         </div>
 
                         <select size="3" className={styles.dropdown} onChange={(e) => handleTeamClick(e)}>
-                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            <option key={0} value={'None'}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
-                                teams.map((team) => {
+                                teams.map((team, index) => {
                                     return (
-                                        <option key={team._id} value={JSON.stringify(team)}>{team.description}</option>
+                                        <option key={index} value={team._id} selected={props.data.teamID===team._id}>{team.description}</option>
                                     )
                                 })
                             }
                         </select>
-
-                        {/* TODO: Add option to change role and university with dropdowns */}
 
                         <div className={styles.flex}>
                             <Button 

@@ -19,20 +19,13 @@ const Team = () => {
     "logo": "",
     "approvalStatus": false,
   });
-  const [members, setMembers] = useState([{
-    "canMarket": false,
-    "email": "...",
-    "firstName": "...",
-    "lastName": "...",
-    "roleID": 19202,
-    "teamID": "...",
-    "universityID": 2760,
-    "_id": "..."
-  }]);
+
+  const [members, setMembers] = useState([]);
+
   const [games, setGames] = useState([{
     "awayTeam": "643b18d356ec1b04ce3e5e47",
     "gameFinished": false,
-    "gameTime": "2023-03-08T21:58:57.791Z",
+    "gameTime": "...",
     "homeTeam": "64389a3e0231f39d1b359aa0",
     "universityID": 2760,
     "winningTeam": null,
@@ -40,25 +33,24 @@ const Team = () => {
     "homeTeamInfo": [
       {
           "universityID": 2760,
-          "description": "Aaple Bapple Papple"
+          "description": "..."
       }
     ],
     "awayTeamInfo": [
         {
             "universityID": 2760,
-            "description": "Test Team That shouldn't work"
+            "description": "..."
         }
     ],
     "locationInfo": [
         {
-            "name": "Rochester Institute of Technology"
+            "name": "..."
         }
     ]
   }]);
 
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  // eslint-disable-next-line
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -76,10 +68,8 @@ const Team = () => {
   
       await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
         .then(response => response.json())
-        .then(function(result) {
-          const updatedMembers = members;
-          updatedMembers.push(result);
-          setMembers(updatedMembers); 
+        .then(function(result) { 
+          setMembers(current => [...current, result]);
         })
         .catch(function(error) {
           console.log('error', error);
@@ -102,23 +92,17 @@ const Team = () => {
         .then(function(result) { 
           setTeam(result[0]);
           result[0].players.map(player => {
-            fetchMember(player);
-          });
+            return fetchMember(player);
+          })
         })
         .catch(function(error) {
           console.log('error', error);
         }); 
     }
 
-    fetchTeam();
-
-    // eslint-disable-next-line
-  },[]);  
-
-  useEffect(()=> {
     const fetchGames = async () => {
       const raw = JSON.stringify({
-        "id": team._id
+        "id": id
       });
 
 
@@ -138,8 +122,11 @@ const Team = () => {
         });
     }
 
+    fetchTeam();
     fetchGames();
-  },[team])
+
+    // eslint-disable-next-line
+  },[]);  
 
   return (
     <>
@@ -159,8 +146,9 @@ const Team = () => {
           <div className={styles.grid}>
               {/* Team Members */}
               {
+                members.length > 0 &&
                   members.map((member, index) => {
-                    <MemberBlock key={index} member={member}/> 
+                    return ( <MemberBlock key={index} member={member}/> )
                   })
               }
           </div>
@@ -172,9 +160,7 @@ const Team = () => {
               {
                 games.length > 0 &&
                   games.map((game, index) => {
-                    return (
-                        <GameBlock key={index} game={game} />
-                    );
+                    return ( <GameBlock key={index} game={game} /> );
                   })
               }
           </div>

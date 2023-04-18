@@ -7,18 +7,22 @@ import DeletePopup from '../../../components/deletepopup/deletepopup';
 import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Button from '../../../components/button/button';
+import Cookies from 'universal-cookie';
+import { Navigate } from "react-router-dom";
 // import { use } from 'i18next';
 
-const ManageUniversities = (props) => {  
+const ManageUsers = (props) => {  
 
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
-    const [users, changeUsers] = useState([{roleID: 19202, universityID: 1357, firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]}]);
-    const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
+    const [users, changeUsers] = useState([{roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]}]);
+    const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -100,7 +104,7 @@ const ManageUniversities = (props) => {
         {
             name: "Team Name",
             selector: (row) => {
-                if (row.teamInfoJoined === undefined || row.teamInfoJoined.length == 0) {
+                if (row.teamInfoJoined === undefined || row.teamInfoJoined.length === 0) {
                     return "";
                 } else {
                     return row.teamInfoJoined[0].description;
@@ -116,6 +120,13 @@ const ManageUniversities = (props) => {
 
     return (
         <>
+            {!user && (
+                <Navigate to="/login" replace={true} />
+            )}
+            
+            {user && user.role !== 14139 && (
+                <Navigate to="/" replace={true} />
+            )}
             {/* Disables rest of page from being clicked when a popup is open */}
             {
                 (addOpen || editOpen || deleteOpen) &&
@@ -151,4 +162,4 @@ const ManageUniversities = (props) => {
     )
 };
   
-export default ManageUniversities;
+export default ManageUsers;

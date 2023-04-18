@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
 import styles from './schedule.module.css';
-
 import GameBlock from '../../../components/gameblock/gameblock';
 
 const Schedule = () => {
@@ -32,10 +31,8 @@ const Schedule = () => {
               });
       }
       getGames();
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   },[])
-
-  console.log(games);
 
   //parallel array
 let gameDates = [

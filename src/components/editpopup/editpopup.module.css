@@ -42,6 +42,12 @@
     width: 100%;
 }
 
+.flex_column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .inputItem {
     display: flex;
     flex-direction: row;

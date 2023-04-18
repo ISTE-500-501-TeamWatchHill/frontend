@@ -27,7 +27,7 @@ export default function EditPopup(props) {
     const starterDate = (props.data.gameTime)? props.data.gameTime.substr(0,16): '';
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
     const [univSelected, changeUnivSelected]= useState(props.data.universityInfo[0].universityID);
-    const [members,setMembers] = useState([]);
+    const [members, setMembers] = useState([]);
 
     useEffect(()=> {
         const fetchMember = async (userID) => {
@@ -51,13 +51,14 @@ export default function EditPopup(props) {
               });
         }
 
-        if (props.type==="team"){
+        if (props.type==="team") {
+            setMembers([]); 
             props.data.players.forEach(player => {
                 fetchMember(player);
             });
         }
 
-        async function getTeams() {
+        const getTeams = async () => {
             const requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
@@ -96,17 +97,18 @@ export default function EditPopup(props) {
                     console.log('error', error);
                 });
         }
+
         getTeams();
         getUniversities();
         // eslint-disable-next-line
-    }, []);
+    }, [props.data]);
 
     const handleUniversityClick = (e) => {
         changeUnivSelected(e.target[e.target.selectedIndex].value);
     };
 
     const handleTeamClick = (e) => {
-        changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
+        changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value)); 
     };
 
     const handleAwayTeamClick = (e) => {
@@ -172,38 +174,34 @@ export default function EditPopup(props) {
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        const players = [
-            e.target.player1.value,
-            e.target.player2.value
-        ];
-        if ((e.target.player3.value!=='')) { //TODO change to check for db values 
-            players[2]=e.target.player3.value;
-        } 
-        if ((e.target.player4.value!=='')) {
-            players[3]=e.target.player4.value;
-        }
-        if ((e.target.player5.value!=='')) {
-            players[4]=e.target.player5.value;
-        }
+        const playerOne = e.target.player1.value;
+        const playerTwo = e.target.player2.value;
+        const playerThree = e.target.player3.value;
+        const playerFour = e.target.player4.value;
+        const playerFive = e.target.player5.value;
+
+        let emails = [playerOne];
+
+        if (playerTwo) { emails.push(playerTwo) }
+        if (playerThree) { emails.push(playerThree) }
+        if (playerFour) { emails.push(playerFour) }
+        if (playerFive) { emails.push(playerFive) }
 
         const raw = {
             "token": user.token,
             "id": props.data._id,
             "updatedData": {
-                "universityID": e.target.location.value,
-                "players": props.data.players,
+                "universityID": e.target.universityID.value,
+                "emails": emails,
                 "description": e.target.teamName.value,
-                "approvalStatus": props.data.approvalStatus
+                "approvalStatus": e.target.approvalStatus.checked,
             }
         };
-
-        const b = JSON.stringify(raw);
-
 
         const requestOptions = {
             method: 'PUT',
             headers: myHeaders,
-            body: b,
+            body: raw,
             redirect: 'follow'
         };
 
@@ -295,6 +293,26 @@ export default function EditPopup(props) {
                 console.log('error', error);
                 alert('Bad! Bad! Did not like that at all >:(');
             }); 
+    }
+
+    function renderRestOfRows()  {
+        const rows = []
+        for(let index=members.length; index<5; index++) {
+            rows.push(
+                <>
+                    <input 
+                        key={index}
+                        className={styles.inputText} 
+                        type="text"
+                        id={`player${index+1}`}
+                        name={`player${index+1}`} 
+                        placeholder='Enter Email'
+                    />
+                </>
+            );
+        }
+        // console.log(rows);
+        return rows;
     }
 
     return (
@@ -441,64 +459,45 @@ export default function EditPopup(props) {
                             value={(univSelected !== 'None')? univSelected : props.data.universityInfo[0].universityID}
                             disabled
                         /> 
-                    </div>
-                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
-                            <option key={0} value={'None'}>{'None'}</option>
+                        </div>
+                            <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                                <option key={0} value={'None'}>{'None'}</option>
+                                {
+                                    // eslint-disable-next-line
+                                    universities.map((university, index) => {
+                                        return (
+                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                            <div className={`${styles.inputItem} ${styles.center}`} > 
+                            {/* TODO players stuff */}
+                            <p>Edit Players</p>
+                            <div className={styles.flex_column}>
                             {
                                 // eslint-disable-next-line
-                                universities.map((university, index) => {
+                                members.map((member, index) => {
                                     return (
-                                        <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                        <>
+                                            <input 
+                                                key={index}
+                                                className={styles.inputText} 
+                                                type="text"
+                                                id={`player${index+1}`}
+                                                name={`player${index+1}`} 
+                                                placeholder='Enter Email' 
+                                                value={member.email}
+                                            />
+                                        </>
                                     )
                                 })
+
                             }
-                        </select>
-                        <div className={`${styles.inputItem} ${styles.center}`} > 
-                        {/* TODO players stuff */}
-                        <p>Edit Players</p>
-                        
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player1" 
-                            name="player1" 
-                            placeholder='Enter Email' 
-                            defaultValue={props.data.players[0]} //this is an id not an email, need to fix? 
-                            required
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player2" 
-                            name="player2" 
-                            placeholder='Enter Email' 
-                            defaultValue={props.data.players[1]}
-                            required
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player3" 
-                            name="player3" 
-                            placeholder='Enter Email'
-                            defaultValue={props.data.players[2]} 
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player4" 
-                            name="player4" 
-                            placeholder='Enter Email'
-                            defaultValue={props.data.players[3]} 
-                        /> 
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="player5" 
-                            name="player5" 
-                            placeholder='Enter Email'
-                            defaultValue={props.data.players[3]}  
-                        /> 
+                            {renderRestOfRows()}
+                            </div>
+
+                             
                         </div>
         
                         <CFormSwitch 

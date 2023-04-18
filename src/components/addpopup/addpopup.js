@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styles from './addpopup.module.css';
 import Cookies from 'universal-cookie';
 import Button from '../button/button';
+import { CFormSwitch } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 export default function AddPopup(props) {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -20,16 +22,18 @@ export default function AddPopup(props) {
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [awayTeamSelected, changeAwayTeamSelected] = useState(nothing);
     const [homeTeamSelected, changeHomeTeamSelected] = useState(nothing);
+    const [univSelected, changeUnivSelected]= useState("None");
+    const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
 
     useEffect(()=> {
-        async function getTeams() {
+        const getTeams = async() => {
             const requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'
             };
 
-            await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
+            await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
                     changeTeams(result);
@@ -38,13 +42,34 @@ export default function AddPopup(props) {
                     console.log('error', error);
                 });
         }
+
+        const getUniversities = async() => {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeUniversities(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
         getTeams();
+        getUniversities();
         // eslint-disable-next-line
     }, []);
 
     const handleAwayTeamClick = (e) => {
         changeAwayTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
-        console.log(awayTeamSelected);
+    };
+
+    const handleUniversityClick = (e) => {
+        changeUnivSelected(e.target[e.target.selectedIndex].value);
     };
 
     const handleHomeTeamClick = (e) => {
@@ -85,7 +110,33 @@ export default function AddPopup(props) {
 
     async function onSubmitTeam(e) {
         e.preventDefault();
-        //TODO
+         const raw = JSON.stringify({
+            "universityID": parseInt(e.target.universityID.value),
+            "description": e.target.teamName.value,
+            "approvalStatus": e.target.approvalStatus.checked,
+            // "players": e.target.players.value,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageteams");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            })
     }
 
     async function onSubmitUniversity(e) {
@@ -254,7 +305,52 @@ export default function AddPopup(props) {
                     <h1 className={styles.title}>Add Team</h1>
 
                     <div className={styles.padding}>
-                        {/* ALEXIS: TODO */}
+                    <div className={`${styles.inputItem} ${styles.center}`}>
+                        <p>Team Name</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="teamName" 
+                            name="teamName" 
+                            placeholder='Team Name'
+                            required 
+                        />
+                    </div>
+                    <div className={`${styles.inputItem} ${styles.center}`} >
+                        <p>University</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="universityID" 
+                            name="universityID" 
+                            placeholder='Select University' 
+                            value={univSelected} 
+                            disabled
+                        /> 
+                    </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            <option key={0} value={'None'} selected>{'None'}</option>
+                            {
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+        
+                        <CFormSwitch 
+                            id="approvalStatus" 
+                            label="Approved" 
+                            type="checkbox" 
+                            onChange={(e) => { 
+                                const isChecked = document.getElementById("approvalStatus").checked;
+                                document.getElementById("approvalStatus").style.backgroundColor = isChecked ?  "#2E8D93" : "#FFFFFF";
+                            }}
+                        />
+
+                        {/* players stuff */}
 
                         <div className={styles.flex}>
                             <Button 

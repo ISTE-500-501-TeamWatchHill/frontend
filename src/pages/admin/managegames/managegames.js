@@ -6,6 +6,7 @@ import EditPopup from '../../../components/editpopup/editpopup';
 import DeletePopup from '../../../components/deletepopup/deletepopup';
 import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Cookies from 'universal-cookie';
 import Button from '../../../components/button/button';
 import { Navigate } from "react-router-dom";
 
@@ -19,6 +20,8 @@ const ManageGames = (props) => {
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

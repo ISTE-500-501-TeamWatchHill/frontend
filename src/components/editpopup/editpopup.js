@@ -22,7 +22,7 @@ export default function EditPopup(props) {
     const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam); //_id
     const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
     const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
-    const starterDate = props.data.gameTime.substr(0,16);
+    const starterDate = (props.data.gameTime)? props.data.gameTime.substr(0,16): '';
 
     useEffect(()=> {
         async function getTeams() {
@@ -116,7 +116,42 @@ export default function EditPopup(props) {
 
     async function onSubmitTeam(e) {
         e.preventDefault();
-        //TODO
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = {
+            "token": user.token,
+            "id": props.data._id,
+            "updatedData": {
+                "universityID": e.target.location.value,
+                "players": props.data.players,
+                "description": props.data.description,
+                "approvalStatus": props.data.approvalStatus
+            }
+        };
+
+        const b = JSON.stringify(raw);
+
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: b,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageteams");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            }); 
     }
 
     async function onSubmitUniversity(e) {

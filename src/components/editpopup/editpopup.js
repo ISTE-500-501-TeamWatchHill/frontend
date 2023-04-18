@@ -266,7 +266,7 @@ export default function EditPopup(props) {
          const raw = JSON.stringify({
             "id": props.data._id,
             "roleID": e.target.roleID.value,
-            "teamID": teamSelected._id,
+            "teamID": teamSelected,
             "universityID": props.data.universityID,
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,

@@ -7,6 +7,7 @@ const AardvarkGames = () => {
     
   return (
     <>
+      {/* Header */}
       <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
           <h1 className={globalStyles.h1_title}>Aardvark Games</h1>
       </div>

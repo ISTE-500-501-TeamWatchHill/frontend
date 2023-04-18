@@ -14,6 +14,7 @@ const Profile = (props) => {
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    //Default user
     const [person, setPerson] = useState({
       "_id": "640f5aa209be69cb0b64e42d",
       "teamID": "1423518",
@@ -25,8 +26,10 @@ const Profile = (props) => {
       "universityName": "RIT",
       "email": "spammewemails@rit.edu"
     });
+    //Default team
     const [team, setTeam] = useState("ABP");
 
+    //Retreive user using the token
     useEffect(()=> {
       async function getUser() { 
           const raw = JSON.stringify({
@@ -51,6 +54,7 @@ const Profile = (props) => {
       getUser();
     },[BASE_URL, myHeaders]);
 
+    //Retreive user's team with the newly retreived user
     useEffect(()=> {
       async function getTeam() { 
           const raw = JSON.stringify({
@@ -90,7 +94,7 @@ const Profile = (props) => {
             <h3 className={`${globalStyles.headline_text}`}>{`${user.firstName} ${user.lastName}`}</h3>
             <br/><br/>
 
-            {/* get univ name slay  */}
+            {/* Table containing user information  */}
             <table className={styles.profile_table}>
               <tr className={styles.row_border}>
                 <td className={styles.fields}>Name</td>

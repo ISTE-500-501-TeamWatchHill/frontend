@@ -11,6 +11,7 @@ const University = (props) => {
 
   let { id } = useParams();
 
+  //Defaults for university and associated teams
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
   const [teams, setTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
 
@@ -20,6 +21,7 @@ const University = (props) => {
    let myHeaders = new Headers();
    myHeaders.append("Content-Type", "application/json");
 
+   //Attempt to get university
   useEffect(()=> {
     async function getUniversity() {
         const raw = JSON.stringify({
@@ -44,6 +46,7 @@ const University = (props) => {
     getUniversity();
   },[BASE_URL, id, myHeaders])
 
+  //Attempt to get teams from the given university
   useEffect(()=> {
     
     async function getTeams() {
@@ -76,6 +79,7 @@ const University = (props) => {
 
     return (
           <>
+              {/* Header */}
               <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
                   <h1 className={globalStyles.h1_title}>{university.name}</h1>
               </div>
@@ -90,13 +94,13 @@ const University = (props) => {
 
               <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>TEAMS</h3>
               <div className={`${globalStyles.margin8_bottom}`}>
+                {/* Display all teams in a given university */}
                 <div className={`${globalStyles.body_margin} ${styles.grid}`}>
                     {/* Teams */}
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
                           return (
-                              // TODO: change key to use unique identifier
                               <TeamBlock key={team._id} team={team} />
                           )
                       })

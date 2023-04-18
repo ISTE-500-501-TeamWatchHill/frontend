@@ -9,6 +9,7 @@ import boardGameImages from '../../../assets/images/boardGameImages.png';
 const BoardGame = () => {
   return (
     <>
+      {/* Header */}
       <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
           <h1 className={globalStyles.h1_title}>Board Game</h1>
       </div>
@@ -30,6 +31,7 @@ const BoardGame = () => {
 
           <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.margin8_bottom}`}>Every team must designate the roles for each player prior to beginning play. If a team has fewer than five players, team members may assume more than one role.</p>
 
+          {/* Roles */}
           <div className={`${styles.green_box_role} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>
               <p className={styles.role}>EXPEDITION LEADER</p>
               <p className={`${globalStyles.sub_text} ${styles.left_text}`}>This team member will make decisions on when and how action cards are played. They facilitate the team's joint strategic planning and manage the expedition budget.</p>

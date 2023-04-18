@@ -9,6 +9,7 @@ import GameBlock from '../../../components/gameblock/gameblock';
 const Team = () => {   
   let { id } = useParams();
   
+  //Default team, members and games for state initiations
   const [team, setTeam] = useState({
     "_id": "Loading...",
     "teamID": 1,
@@ -62,6 +63,7 @@ const Team = () => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
+  //Attempt to retreive user information
   useEffect(() => {
     const fetchMember = async (userID) => {
       const raw = JSON.stringify({
@@ -77,6 +79,7 @@ const Team = () => {
       await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
         .then(response => response.json())
         .then(function(result) {
+          //Retreive the members
           const updatedMembers = members;
           updatedMembers.push(result);
           setMembers(updatedMembers); 
@@ -128,6 +131,7 @@ const Team = () => {
         body: raw,
       };
 
+      //Retreive the games for a given team
       await fetch(`${BASE_URL}/gamePub/byTeamID`, requestOptions)
         .then(response => response.json())
         .then(function(result) { 
@@ -143,6 +147,7 @@ const Team = () => {
 
   return (
     <>
+      {/* Header */}
         <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
             <h1 className={globalStyles.h1_title}>{team.description}</h1>
         </div>
@@ -156,6 +161,7 @@ const Team = () => {
           <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
           <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>PLAYERS</p>
 
+          {/* Grid row of the team members */}
           <div className={styles.grid}>
               {/* Team Members */}
               {
@@ -167,6 +173,7 @@ const Team = () => {
 
           <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>UPCOMING GAMES</p>
 
+          {/* Grid column of the games for a given team */}
           <div className={styles.gridList}>
               {/* Games */}
               {

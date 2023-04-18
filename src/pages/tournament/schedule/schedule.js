@@ -14,6 +14,7 @@ const Schedule = () => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
+  //Attempt to get all games with the associated team information
   useEffect(()=> {
       async function getGames() {
           const requestOptions = {
@@ -81,16 +82,17 @@ games.forEach((game) => {
             <div className={`${globalStyles.body_margin} ${styles.grid_list}`}>
                 {/* Teams */}
                 {
+                  //Get all games
                   gamesByDate.map( (gamesForDateX) => {
                     return (
                       <>
                         <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{gameDates[gamesByDate.indexOf(gamesForDateX)]}</h3>
                       
                         {
+                          //Get all games for a certain date
                           // eslint-disable-next-line
                           gamesForDateX.map((game, index) => {
                             return (
-                                // TODO: change key to use unique identifier
                                 <GameBlock key={index} game={game} />
                             )
                           })

@@ -41,6 +41,7 @@ const Registration = () => {
             redirect: 'follow'
         };
 
+        //Attempt to add a user
         await fetch(`${BASE_URL}/register`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
@@ -50,6 +51,7 @@ const Registration = () => {
                     sameSite: 'strict',
                     expires: new Date(Date.now()+86400) // expires in one day
                 };
+                //Set the cookie and send the new user home
                 cookies.set('user', result.user, options);
                 navigate('/');
                 navigate(0);
@@ -66,7 +68,9 @@ const Registration = () => {
                 <Navigate to="/" replace={true} />
             )}
             <div className={styles.register_section}>
+                {/* Register form */}
                 <form className={styles.form} onSubmit={onSubmit}>
+                    {/* Back to home arrow */}
                     <div className={styles.arrow}>
                         <BackArrow text="Back to Homepage" route="/"/>
                     </div>
@@ -80,6 +84,7 @@ const Registration = () => {
                     <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>
                     <Button type='submit' name='Register' width='100%' />
                     <Spacer height='36px' />
+                    {/* Button to lead to login form or forget password */}
                     <h4 className={styles.h4}>Already registered? <a className={styles.link} href="/login">Login here</a></h4>
                 </form>
 

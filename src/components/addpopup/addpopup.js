@@ -534,7 +534,7 @@ export default function AddPopup(props) {
                             <option key={0} value={14139}>Admin</option>
                             <option key={1} value={21149}>Content Moderator</option>
                             <option key={2} value={31514}>University Moderator</option>
-                            <option key={3} value={19202}>Registered User</option>
+                            <option key={3} value={19202} selected>Registered User</option>
                         </select>
 
                         <div className={`${styles.inputItem} ${styles.center}`}>

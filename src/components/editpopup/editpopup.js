@@ -16,18 +16,19 @@ export default function EditPopup(props) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const nothing = {_id: 'None', approvalStatus: true, description: "None", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "None", domain: "", logo: "", name: "", universityID: 1}]};
-
+    
     //Setup for hook for teams
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
-    const [teamSelected, changeTeamSelected] = useState(nothing);
-    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam);
-    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam);
-    const [roleSelected, changeRoleSelected] = useState(props.data.roleID);
-    const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam);
+    const [teamSelected, changeTeamSelected] = useState(props.data.teamID ? props.data.teamID : 0);
+    const [awayTeamSelected, changeAwayTeamSelected] = useState(props.data.awayTeam ? props.data.awayTeam : 'None');
+    const [homeTeamSelected, changeHomeTeamSelected] = useState(props.data.homeTeam ? props.data.homeTeam : 'None');
+    const [roleSelected, changeRoleSelected] = useState(props.data.roleID ? props.data.roleID : 0);
+    const [winnerSelected, changeWinnerSelected] = useState(props.data.winningTeam ? props.data.winningTeam : "None");
     const starterDate = (props.data.gameTime)? props.data.gameTime.substr(0,16): '';
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
     const [univSelected, changeUnivSelected]= useState(props.data.universityInfo ? props.data.universityInfo[0].universityID : 0);
     const [members, setMembers] = useState([]);
+
 
     useEffect(()=> {
         const fetchMember = async (userID) => {
@@ -71,9 +72,9 @@ export default function EditPopup(props) {
                     changeTeams(result);
                     
                     if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length === 0) {
-                        changeTeamSelected(nothing);
+                        changeTeamSelected('None');
                     } else {
-                        changeTeamSelected(teams.find(team => team._id === props.data.teamInfoJoined._id));
+                        changeTeamSelected(props.data.teamID);
                     }
                 })
                 .catch(function(error) {
@@ -108,7 +109,7 @@ export default function EditPopup(props) {
     };
 
     const handleTeamClick = (e) => {
-        changeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value)); 
+        changeTeamSelected(e.target[e.target.selectedIndex].value); 
     };
 
     const handleAwayTeamClick = (e) => {
@@ -311,7 +312,6 @@ export default function EditPopup(props) {
                 </>
             );
         }
-        // console.log(rows);
         return rows;
     }
 
@@ -643,10 +643,10 @@ export default function EditPopup(props) {
                         </div>
 
                         <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
-                            <option key={0} value={14139}>Admin</option>
-                            <option key={1} value={21149}>Content Moderator</option>
-                            <option key={2} value={31514}>University Moderator</option>
-                            <option key={3} value={19202}>Registered User</option>
+                            <option key={0} value={14139} selected={props.data.roleID===14139}>Admin</option>
+                            <option key={1} value={21149} selected={props.data.roleID===21149}>Content Moderator</option>
+                            <option key={2} value={31514} selected={props.data.roleID===31514}>University Moderator</option>
+                            <option key={3} value={19202} selected={props.data.roleID===19202}>Registered User</option>
                         </select>
 
                         <div className={`${styles.inputItem2} ${styles.center}`}>
@@ -657,24 +657,22 @@ export default function EditPopup(props) {
                                 id="team" 
                                 name="team" 
                                 placeholder='Select Team Name' 
-                                value={(teamSelected !== 'None') ? "that" : "this"}  
+                                value={(teamSelected !== 0) ?  teamSelected : props.data.teamID}  
                                 disabled
                             />
                         </div>
 
                         <select size="3" className={styles.dropdown} onChange={(e) => handleTeamClick(e)}>
-                            <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
+                            <option key={0} value={'None'}>{nothing.description}</option>
                             {
                                 // eslint-disable-next-line
                                 teams.map((team, index) => {
                                     return (
-                                        <option key={index} value={team._id}>{team.description}</option>
+                                        <option key={index} value={team._id} selected={props.data.teamID===team._id}>{team.description}</option>
                                     )
                                 })
                             }
                         </select>
-
-                        {/* TODO: Add option to change role and university with dropdowns */}
 
                         <div className={styles.flex}>
                             <Button 

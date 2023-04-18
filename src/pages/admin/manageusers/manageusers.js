@@ -11,13 +11,13 @@ import Cookies from 'universal-cookie';
 import { Navigate } from "react-router-dom";
 // import { use } from 'i18next';
 
-const ManageUniversities = (props) => {  
+const ManageUsers = (props) => {  
 
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
-    const [users, changeUsers] = useState([{roleID: 19202, universityID: 1357, firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]}]);
-    const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
+    const [users, changeUsers] = useState([{roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]}]);
+    const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -162,4 +162,4 @@ const ManageUniversities = (props) => {
     )
 };
   
-export default ManageUniversities;
+export default ManageUsers;

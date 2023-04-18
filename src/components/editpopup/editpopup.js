@@ -192,7 +192,7 @@ export default function EditPopup(props) {
             "token": user.token,
             "id": props.data._id,
             "updatedData": {
-                "universityID": e.target.universityID.value,
+                "universityID": parseInt(e.target.universityID.value),
                 "emails": emails,
                 "description": e.target.teamName.value,
                 "approvalStatus": e.target.approvalStatus.checked,

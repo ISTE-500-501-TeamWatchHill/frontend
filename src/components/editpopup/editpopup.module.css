@@ -16,6 +16,8 @@
     border: 2px solid black;
     width: 40vw;
     padding: 0;
+    overflow: auto;
+    height: 70vh;
 }
 
 .title {

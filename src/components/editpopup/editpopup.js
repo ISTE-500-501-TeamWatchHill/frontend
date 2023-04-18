@@ -487,7 +487,7 @@ export default function EditPopup(props) {
                                                 id={`player${index+1}`}
                                                 name={`player${index+1}`} 
                                                 placeholder='Enter Email' 
-                                                value={member.email}
+                                                defaultValue={member.email}
                                             />
                                         </>
                                     )

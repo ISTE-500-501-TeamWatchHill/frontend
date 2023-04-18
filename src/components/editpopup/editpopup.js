@@ -201,7 +201,7 @@ export default function EditPopup(props) {
         const requestOptions = {
             method: 'PUT',
             headers: myHeaders,
-            body: raw,
+            body: JSON.stringify(raw),
             redirect: 'follow'
         };
 

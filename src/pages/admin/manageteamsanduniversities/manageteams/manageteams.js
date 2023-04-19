@@ -70,6 +70,16 @@ const ManageTeams = (props) => {
         );
     };
 
+    const approvalButton = (editTeamData) => {
+        return (
+          <>
+            <button disabled className={editTeamData.approvalStatus ? `${styles.greenButton}` : `${styles.redButton}`}>
+                {editTeamData.approvalStatus ? "Approved" : "Pending"}
+            </button>
+          </>
+        );
+    };
+
     const handleEdit = (data) => {
         changeEditTeam(data);
         setEditOpen(true);
@@ -99,6 +109,11 @@ const ManageTeams = (props) => {
           name: "University Name",
           selector: (row) => row.universityInfo[0].name,
           sortable: true
+        },
+        {
+            name: "Approval Status",
+            selector: (row) => approvalButton(row),
+            sortable: true
         },
         {
             name: "",

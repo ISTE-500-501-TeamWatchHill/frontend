@@ -14,3 +14,19 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.greenButton {
+    background-color: rgb(111, 153, 78);
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.redButton {
+    background-color: rgb(200, 79, 31);
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 10px;
+}

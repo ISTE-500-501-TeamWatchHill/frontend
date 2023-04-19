@@ -51,7 +51,6 @@ export default function DeletePopup(props) {
             "id": props.data._id,
             "token": user.token,
         });
-        console.log(raw);
 
         const requestOptions = {
             method: 'DELETE',

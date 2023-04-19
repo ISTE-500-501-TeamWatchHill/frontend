@@ -44,7 +44,22 @@ export default function DeletePopup(props) {
 
     async function onSubmitTeam(e) {
         e.preventDefault();
-        //TODO
+        e.preventDefault();
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "id": props.data._id,
+            "token": user.token,
+        });
+        console.log(raw);
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
     };
 
 

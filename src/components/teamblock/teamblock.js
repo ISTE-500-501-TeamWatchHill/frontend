@@ -4,7 +4,6 @@ import image from '../placeholder.png';
 import globalStyles from '../../pages/pages.module.css';
 
 const TeamBlock = (props) => { 
-    console.log(props);
     return (
           <>
             <div className={styles.block}>

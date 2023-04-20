@@ -12,6 +12,7 @@
 }
 
 .flexBlock a {
+    color: #43c6cf;
     text-decoration: none;
     font-weight: bold;
 }
@@ -24,23 +25,4 @@
 
 .img {
     width: 150px;
-}
-
-.visible {
-    color: red;
-    font-weight: bold;
-}
-
-.hidden {
-    display: none;
-}
-
-.green {
-    color: #43c6cf;
-}
-
-.disabled {
-    pointer-events: none;
-    cursor: default;
-    color: gray;
 }

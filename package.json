@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@coreui/coreui": "^4.2.6",
+    "@coreui/react": "^4.7.0",
     "@fontsource/mulish": "^4.5.14",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -10,6 +12,7 @@
     "dotenv": "^16.0.3",
     "i18next": "^22.4.10",
     "react": "^18.2.0",
+    "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.0",
     "react-icons": "^4.8.0",

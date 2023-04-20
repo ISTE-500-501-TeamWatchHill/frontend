@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import globalStyles from '../pages.module.css';
 import styles from './profile.module.css';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 
@@ -11,12 +11,13 @@ const Profile = (props) => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
     const user = cookies.get('user');
+    const navigate = useNavigate();
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const [person, setPerson] = useState({
-      //"_id": ObjectId("640f5aa209be69cb0b64e42d"),
-      "uid": 1423518,
+      "_id": "640f5aa209be69cb0b64e42d",
+      "teamID": "1423518",
       "roleID": 19202,
       "universityID": 2760,
       "firstName": "Test",
@@ -25,60 +26,65 @@ const Profile = (props) => {
       "universityName": "RIT",
       "email": "spammewemails@rit.edu"
     });
-    const [university, setUniversity] = useState("RIT");
-
-    /* TODO:
-     * dynamic profile pic
-     * style it - alexis pls <3
-    */
+    const [team, setTeam] = useState("ABP");
 
     useEffect(()=> {
-      async function getUser() { 
-          const raw = JSON.stringify({
-            "token": user.token
-          });
-  
-          const requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-          };
-  
-          await fetch(`${BASE_URL}/userSec/getUserProfile`, requestOptions) 
-              .then(response => response.json())
-              .then(function(result) {
-                setPerson(result); 
-              })
-              .catch(function(error) {
-                  console.log('error', error);
-              });
-      }
-      getUser();
-    },[BASE_URL, user, myHeaders]);
 
-    useEffect(() => {
-      const fetchUniversity = async () => {
-        const raw = JSON.stringify({
-          "universityID": person.universityID
-        });
-  
-        const requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-        };
-  
-        await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
-          .then(response => response.json())
-          .then(function(result) {
-            setUniversity(result.name);
-          })
-          .catch(function(error) {
-            console.log('error', error);
-          }); 
+      if (!user) {
+        navigate("/login");
+        navigate(0);
       }
-      fetchUniversity();
-    },[person, BASE_URL, myHeaders]);
+
+
+      const fetchTeam = async (teamID) => {
+        const raw = JSON.stringify({
+          "id": teamID
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        await fetch(`${BASE_URL}/teamPub/byID`, requestOptions) 
+            .then(response => response.json())
+            .then(function(result) {
+              setTeam(result.description); 
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+      }
+
+      const fetchUser = async () => {
+        const raw = JSON.stringify({
+          "token": user.token
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        await fetch(`${BASE_URL}/userSec/getUserProfile`, requestOptions) 
+            .then(response => response.json())
+            .then(function(result) {
+              setPerson(result); 
+              fetchTeam(result.teamID);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+      }
+
+      fetchUser();
+      
+      // eslint-disable-next-line
+    },[]);
+
+    
     
 
     return (
@@ -92,31 +98,32 @@ const Profile = (props) => {
 
             
             <div className={styles.profile_margin}>
-            <h3 className={`${globalStyles.headline_text}`}>{`${user.firstName} ${user.lastName}`}</h3>
+            <h3 className={`${globalStyles.headline_text}`}>{`${person.firstName} ${person.lastName}`}</h3>
             <br/><br/>
 
             {/* get univ name slay  */}
             <table className={styles.profile_table}>
+              <tbody>
               <tr className={styles.row_border}>
                 <td className={styles.fields}>Name</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${user.firstName} ${user.lastName}`}</td>
-             </tr>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.firstName} ${person.lastName}`}</td>
+              </tr>
 
-             <tr className={styles.row_border}>
+              <tr className={styles.row_border}>
                 <td className={styles.fields}>University</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${university}`}</td>
-             </tr>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.universityName}`}</td>
+              </tr>
 
-             <tr className={styles.row_border}>
+              <tr className={styles.row_border}>
                 <td className={styles.fields}>University Email</td>
                 <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.email}`}</td>
-             </tr>
+              </tr>
 
-             <tr className={styles.row_border}>
+              <tr className={styles.row_border}>
                 <td className={styles.fields}>Team</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.teamName}`}</td>
-             </tr>
-
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${team}`}</td>
+              </tr>
+            </tbody>
             </table>
             </div>
         </>

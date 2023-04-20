@@ -2,18 +2,16 @@ import React, {useState, useEffect} from 'react'
 import Select from 'react-select'
 import globalStyles from '../../pages.module.css';
 import styles from './teamsanduniversities.module.css';
-
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 // import { use } from 'i18next';
 
-const TeamsAndUniversities = (props) => {   
+const TeamsAndUniversities = (props) => {  
 
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
-    const [teams, changeTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
-    const [universities, changeUniversities] = useState([{"universityID": 2429, "name": "Monroe Community College"}]);
+    const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -22,57 +20,33 @@ const TeamsAndUniversities = (props) => {
     myHeaders.append("Content-Type", "application/json");
 
     useEffect(()=> {
-        async function getUniversities() {
+        async function getTeams() {
             const requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'
             };
-
-            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
+  
+            await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
-                    changeUniversities(result);
+                  changeTeams(result);
                 })
                 .catch(function(error) {
                     console.log('error', error);
                 });
         }
-        getUniversities();
-    })
-
-    useEffect(() =>{
-        async function getTeams () {
-            const requestOptions = {
-                method: 'GET',
-                headers: myHeaders,
-                redirect: 'follow'
-            };
-
-            await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
-                .then(response => response.json())
-                .then(function(result) {
-                    // eslint-disable-next-line
-                    result.map((team) => {
-                        team.universityName = universities.filter(university => {
-                            return university.universityID === team.universityID
-                        })[0].name;
-                    });
-                    changeTeams(result);
-                })
-                .catch(function(error) {
-                    //console.log('error', error);
-                }); 
-        }
         getTeams();
-    }, [universities, BASE_URL, myHeaders] )  
+        // eslint-disable-next-line
+    }, [])
+
 
     if (sortOption !== null) {
         teams.sort(function (a, b) {            
-            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityName < b.universityName : a.teamID < b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityInfo[0].name < b.universityInfo[0].name : a._id < b._id) {
                 return -1;
             }
-            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityName > b.universityName : a.teamID > b.teamID) {
+            if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description > b.description : a.universityInfo[0].name > b.universityInfo[0].name : a._id > b._id) {
                 return 1;
             }
             return 0;
@@ -84,11 +58,9 @@ const TeamsAndUniversities = (props) => {
             <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
                 <h1 className={globalStyles.h1_title}>Teams & Universities</h1>
             </div>
-
             
-
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                 <div className={styles.flex}>
+                <div className={styles.flex}>
                     <div className={styles.left}>
                         <h3 className={globalStyles.headline_text}>All Teams</h3>
                         <p className={globalStyles.green_bar}>____</p>
@@ -124,14 +96,14 @@ const TeamsAndUniversities = (props) => {
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {
-                            if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityName.toLowerCase().includes(searchValue.toLowerCase())) {
+                            if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityInfo[0].name.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
                                     // TODO: change key to use unique identifier
                                     <TeamBlock key={team._id} team={team} />
                                 )
                             }
                         })
-                       
+                    
                     }
                 </div>
             </div>

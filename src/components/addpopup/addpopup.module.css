@@ -1,0 +1,96 @@
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.form {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: white;
+    border: 2px solid black;
+    width: 40vw;
+    padding: 0;
+}
+
+.title {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 147.69%;
+    margin-bottom: 2vh;
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.padding {
+    padding: 2vh 20px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+    width: 100%;
+}
+
+.inputItem {
+    display: flex;
+    flex-direction: row;
+    column-gap: 8px;
+    margin-bottom: 2vh;
+}
+
+.inputItemBox {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    margin: 4vh 0;
+    width: 100%;
+}
+
+.center {
+    align-items: center;
+}
+
+.inputText {
+    padding: 4px 16px;
+    border: 1px solid #858C94;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.textArea {
+    width: calc(100%-32px);
+    height: 10vh;
+    resize: none;
+    border-radius: 8px;
+    padding: 4px 16px;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    max-height:100px;
+    overflow:scroll;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 4px 16px;
+    margin: 1vh 0 3vh 0;
+    width: 100%;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

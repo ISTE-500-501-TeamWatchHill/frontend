@@ -13,7 +13,7 @@ const CreateTeam = () => {
     const navigate = useNavigate();
 
     async function onSubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         const playerOne = user.email;
         const playerTwo = e.target.playerTwo.value;
@@ -48,7 +48,6 @@ const CreateTeam = () => {
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                // console.log(result);
                 if (result && result._id) {
                     navigate(`/team/${result._id}`);
                     navigate(0);
@@ -71,10 +70,6 @@ const CreateTeam = () => {
         <>
             {!user && (
                 <Navigate to="/login" replace={true} />
-            )}
-
-            {user && user.teamID !== null && (
-                <Navigate to="/user" replace={true} />
             )}
             
             <div className={styles.login_section}>

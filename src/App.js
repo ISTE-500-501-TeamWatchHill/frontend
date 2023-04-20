@@ -19,6 +19,10 @@ import Home from './pages/home/home';
 import Registration from './pages/registration/registration';
 import Login from './pages/login/login';
 import Profile from './pages/profile/profile';
+import ManageTeams from './pages/admin/manageteamsanduniversities/manageteams/manageteams';
+import ManageUniversities from './pages/admin/manageteamsanduniversities/manageuniversities/manageuniversities';
+import ManageUsers from './pages/admin/manageusers/manageusers';
+import ManageGames from './pages/admin/managegames/managegames';
 
 
 const App = () => {
@@ -39,6 +43,10 @@ const App = () => {
         <Route exact path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<Profile />} />
+        <Route path="/manageteams" element={<ManageTeams />} />
+        <Route path="/manageuniversities" element={<ManageUniversities />} />
+        <Route path="/manageusers" element={<ManageUsers />} />
+        <Route path="/managegames" element={<ManageGames />} />
         <Route path="/*" element={<Home />} />
       </Routes>
       <Footer />

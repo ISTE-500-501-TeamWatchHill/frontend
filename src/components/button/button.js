@@ -28,6 +28,11 @@ export default function Button(props) {
         propStyles.padding = `12px 17px`;
     }
 
+    // if anything but default
+    if (props.backgroundColor) {
+        propStyles.backgroundColor = props.backgroundColor;
+    }
+
     // transparentBackground={true}
     if (props.transparentBackground) {
         // set background to transparent and change color of text

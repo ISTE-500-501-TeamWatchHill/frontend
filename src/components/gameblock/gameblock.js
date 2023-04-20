@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './gameblock.module.css';
 import globalStyles from '../../pages/pages.module.css';
 
-import image from '../placeholder.png';
+import image from '../../../src/assets/images/universities/rit_circle.png';
+import image2 from '../../../src/assets/images/universities/cornell_circle.png';
 
 const GameBlock = (props) => {
     if (!props.game._id) {
@@ -30,11 +31,11 @@ const GameBlock = (props) => {
             <div className={styles.block}>
                 <div className={`${styles.flexBlock} ${styles.center}`}>
                     <div>
-                        <p><strong>START TIME</strong></p>
-                        <p>{props.game.gameTime}</p>
+                        <p className={styles.h1}>START TIME</p>
+                        <p className={styles.h2}>{props.game.gameTime}</p>
                         <br/>
-                        <p><strong>LOCATION</strong></p>
-                        <p>{props.game.locationInfo[0].name}</p>
+                        <p className={styles.h1}>LOCATION</p>
+                        <p className={styles.h2}>{props.game.locationInfo[0].name}</p>
                     </div>
 
                     <div className={`${styles.flex} ${styles.center}`}>
@@ -46,10 +47,10 @@ const GameBlock = (props) => {
                         <img className={styles.img} src={image} alt="Placeholder"/>
 
                         <div>
-                            <p className={globalStyles.text}>[]</p>
+                            <p className={globalStyles.text}> VS </p>
                         </div>
 
-                        <img className={styles.img} src={image} alt="Placeholder"/>
+                        <img className={styles.img} src={image2} alt="Placeholder"/>
 
                         <div>
                             <a href={`/team/${props.game.awayTeam}`} key={`/team/${props.game.awayTeam}`}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>

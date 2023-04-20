@@ -74,8 +74,13 @@ games.forEach((game) => {
              */}
 
 
-          <div className={globalStyles.margin8_top}>
-            <div className={`${globalStyles.body_margin} ${styles.grid_list}`}>
+          <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+            <h3 className={globalStyles.headline_text}>Upcoming Games</h3>
+
+            <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>__</p>
+            <br/>
+
+            <div className={`${styles.grid_list}`}>
                 {/* Teams */}
                 {
                   gamesByDate.map( (gamesForDateX) => {

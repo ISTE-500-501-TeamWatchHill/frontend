@@ -24,3 +24,18 @@
 .center {
     align-items: center;
 }
+
+.h1{
+    text-transform: uppercase;
+    line-height: 2em;
+    font-weight: bold;
+    color:#373F41;
+}
+
+.h2{
+    text-transform: uppercase;
+    line-height: 2em;
+    font-weight: bold;
+    font-size: 20px;
+    color:#326C64;
+}

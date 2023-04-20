@@ -44,7 +44,33 @@ export default function DeletePopup(props) {
 
     async function onSubmitTeam(e) {
         e.preventDefault();
-        //TODO
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "id": props.data._id,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageteams");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                alert('Bad! Bad! Did not like that at all >:(');
+            });
     };
 
 
@@ -142,7 +168,9 @@ export default function DeletePopup(props) {
                     <h1 className={styles.title}>Delete Team</h1>
 
                     <div className={styles.padding}>
-                        {/* ALEXIS: TODO */}
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Are you sure you want to delete team {props.data.description}?</p>
+                        </div>
 
                         <div className={styles.flex}>
                             <Button 

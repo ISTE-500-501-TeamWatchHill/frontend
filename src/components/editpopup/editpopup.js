@@ -472,7 +472,6 @@ export default function EditPopup(props) {
                                 }
                             </select>
                             <div className={`${styles.inputItem} ${styles.center}`} > 
-                            {/* TODO players stuff */}
                             <p>Edit Players</p>
                             <div className={styles.flex_column}>
                             {

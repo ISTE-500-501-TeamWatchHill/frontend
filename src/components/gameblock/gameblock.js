@@ -41,11 +41,16 @@ const GameBlock = (props) => {
                     <div className={`${styles.flex} ${styles.center}`}>
                         <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             {/* Need to fix hard coded url- need team IDs in addition to names or a way to get team name by ID */}
                             <p  className={styles.h1}>Team</p>
                             <a href={"/team/1"} key={"/team/2"} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>
                             <p className={styles.h2}>Team Name</p>
                             <p>Rochester Institute of Technology</p>
+=======
+                            <a href={`/team/${props.game.homeTeam}`} key={`/team/${props.game.homeTeam}`} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>
+                            <p>Home Team University</p>
+>>>>>>> origin/main
 =======
                             <a href={`/team/${props.game.homeTeam}`} key={`/team/${props.game.homeTeam}`} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>
                             <p>Home Team University</p>
@@ -62,10 +67,15 @@ const GameBlock = (props) => {
 
                         <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <p className={styles.h1}>Team</p>
                             <a href={"/team/1"} key={"/team/1"}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>
                             <p className={styles.h2}>Team Name</p>
                             <p>Cornell University</p>
+=======
+                            <a href={`/team/${props.game.awayTeam}`} key={`/team/${props.game.awayTeam}`}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>
+                            <p>Away Team University</p>
+>>>>>>> origin/main
 =======
                             <a href={`/team/${props.game.awayTeam}`} key={`/team/${props.game.awayTeam}`}className={globalStyles.text}>{props.game.awayTeamInfo[0].description}</a>
                             <p>Away Team University</p>

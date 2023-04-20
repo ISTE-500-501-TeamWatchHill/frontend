@@ -20,33 +20,28 @@ const University = (props) => {
    let myHeaders = new Headers();
    myHeaders.append("Content-Type", "application/json");
 
-  useEffect(()=> {
-    async function getUniversity() {
-        const raw = JSON.stringify({
-          "universityID": Number(id)
-        });
+    useEffect(()=> {
+      const getUniversity = async () => {
+          const raw = JSON.stringify({
+            "universityID": Number(id)
+          });
 
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-        };
+          const requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+          };
 
-        await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
-            .then(response => response.json())
-            .then(function(result) {
-              changeUniversity(result); 
-            })
-            .catch(function(error) {
-                console.log('error', error);
-            });
-    }
-    getUniversity();
-  },[BASE_URL, id, myHeaders])
-
-  useEffect(()=> {
-    
-    async function getTeams() {
+          await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
+              .then(response => response.json())
+              .then(function(result) {
+                changeUniversity(result); 
+              })
+              .catch(function(error) {
+                  console.log('error', error);
+              });
+      }
+      const getTeams = async () => {
         const raw = JSON.stringify({
           "universityID": Number(id)
         });
@@ -71,8 +66,10 @@ const University = (props) => {
                 console.log('error', error);
             });
     }
-    getTeams();
-  },[university,BASE_URL, id, myHeaders])
+      getUniversity();
+      getTeams();
+      // eslint-disable-next-line
+    },[])
 
     return (
           <>
@@ -81,7 +78,7 @@ const University = (props) => {
               </div>
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
-                  <BackArrow text="Back to Teams" route="/teamsanduniversities"/>
+                  <BackArrow text="Back to Teams and Universities" route="/teamsanduniversities"/>
               </div>
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
@@ -104,6 +101,7 @@ const University = (props) => {
                 </div>
 
                 <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>UPCOMING GAMES</h3>
+                    
               </div>
           </>
     )

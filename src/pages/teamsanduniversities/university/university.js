@@ -101,6 +101,7 @@ const University = (props) => {
                 </div>
 
                 <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>UPCOMING GAMES</h3>
+                    
               </div>
           </>
     )

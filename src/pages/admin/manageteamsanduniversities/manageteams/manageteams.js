@@ -21,6 +21,8 @@ const ManageTeams = (props) => {
     const [editTeam, changeEditTeam] = useState({ _id: 1, description: "Team One", universityID: 'None', universityName: "RIT", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 'None'}] });
     //To keep the status of when messages need to be shown
     const [toastOpen, setToastOpen] = useState(false);
+    const [toastTitle, setToastTitle] = useState("");
+    const [toastMessage, setToastMessage] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -46,6 +48,8 @@ const ManageTeams = (props) => {
                 .catch(function(error) {
                     console.log('error', error);
                     //Display the error
+                    setToastTitle("Failed to Retreive Teams");
+                    setToastMessage("Please check to ensure the API is up and running.");
                     setToastOpen(true);
                 });
         }
@@ -132,9 +136,50 @@ const ManageTeams = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                <AddPopup show={addOpen} type="team" onClick={(e) => { e.preventDefault(); setAddOpen(false); }} />
-                <EditPopup show={editOpen} type="team" data={editTeam} onClick={(e) => { e.preventDefault(); setEditOpen(false); }} />
-                <DeletePopup show={deleteOpen} type="team" data={editTeam} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+                <AddPopup 
+                    show={addOpen} 
+                    type="team" 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setAddOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Add Team");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }} 
+                />
+                <EditPopup 
+                    show={editOpen} 
+                    type="team" 
+                    data={editTeam} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setEditOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Edit Team");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setEditOpen(false); 
+                    }} 
+                />
+                <DeletePopup 
+                    show={deleteOpen} 
+                    type="team" 
+                    data={editTeam} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setDeleteOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Delete Team");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setDeleteOpen(false); 
+                    }} 
+                />
 
                 <div className={styles.addButton}>
                     <div></div>
@@ -156,8 +201,8 @@ const ManageTeams = (props) => {
             {
                 toastOpen &&
                 <Toast 
-                    title="Failed to Retreive Teams"
-                    message="Please check to ensure the API is up and running." 
+                    title={toastTitle}
+                    message={toastMessage}
                     onclick={() => setToastOpen(false)}
                 />
             }

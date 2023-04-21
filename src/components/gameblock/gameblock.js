@@ -32,7 +32,6 @@ const GameBlock = (props) => {
                 <div className={`${styles.flexBlock} ${styles.center}`}>
                     <div>
                         {props.game.gameTime &&<p className={styles.h2}>START TIME</p>}
-                        {/* {props.game.gameTime && <p className={styles.h1}>{new Date(props.game.gameTime).toString()}</p>} */}
                         {props.game.gameTime && <p className={styles.h1}>{new Date(props.game.gameTime).toLocaleString([], { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>}
                         <br/>
                         <p className={styles.h2}>LOCATION</p>

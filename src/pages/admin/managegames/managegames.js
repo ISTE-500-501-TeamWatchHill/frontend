@@ -9,6 +9,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Cookies from 'universal-cookie';
 import Button from '../../../components/button/button';
 import { Navigate } from "react-router-dom";
+import Toast from '../../../components/toast/toast';
 
 const ManageGames = (props) => {  
 
@@ -17,6 +18,8 @@ const ManageGames = (props) => {
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [games, changeGames] = useState([{_id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}]}]);
     const [editGame, changeEditGame] = useState({_id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}]});
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -41,6 +44,8 @@ const ManageGames = (props) => {
                 })
                 .catch(function(error) {
                     console.log('error', error);
+                    //Display the error
+                    setToastOpen(true);
                 });
         }
         getGames();
@@ -152,6 +157,15 @@ const ManageGames = (props) => {
                     data={games}
                 />
             </div>
+
+            {
+                toastOpen &&
+                <Toast 
+                    title="Failed to Retreive Games"
+                    message="Please check to ensure the API is up and running." 
+                    onclick={() => setToastOpen(false)}
+                />
+            }
         </>
     )
 };

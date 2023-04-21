@@ -9,6 +9,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Button from '../../../../components/button/button';
 import Cookies from 'universal-cookie';
 import { Navigate } from "react-router-dom";
+import Toast from '../../../../components/toast/toast';
 // import { use } from 'i18next';
 
 const ManageUniversities = (props) => {  
@@ -18,6 +19,8 @@ const ManageUniversities = (props) => {
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [universities, changeUniversities] = useState([{ universityID: 1, domain: "", moderatorIDs: [""], name: "", logo: "", description: "", approvalStatus: true }]);
     const [editUniversity, changeEditUniversity] = useState({ universityID: 1, domain: "", moderatorIDs: [""], name: "", logo: "", description: "", approvalStatus: true });
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -42,6 +45,8 @@ const ManageUniversities = (props) => {
                 })
                 .catch(function(error) {
                     console.log('error', error);
+                    //Display the error
+                    setToastOpen(true);
                 });
         }
         getUniversities();
@@ -152,6 +157,15 @@ const ManageUniversities = (props) => {
                     data={universities}
                 />
             </div>
+
+            {
+                toastOpen &&
+                <Toast 
+                    title="Failed to Retreive Universities"
+                    message="Please check to ensure the API is up and running." 
+                    onclick={() => setToastOpen(false)}
+                />
+            }
         </>
     )
 };

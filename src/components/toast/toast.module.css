@@ -1,0 +1,66 @@
+.toast {
+    position: absolute;
+    bottom: 16vh;
+    right: 6vw;
+    width: 30vw;
+    padding: 12px 12px 0 12px;
+    margin-top: 30px;
+    background: pink;
+    border: 1px solid red;
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.titleAndX {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.toast h4 {
+    color: red;
+    font-weight: bold;
+    margin: 0;
+}
+
+.toast p {
+    color: red;
+    background: white;
+    font-size: 14px;
+    padding: 12px;
+    align-self: center;
+    margin-bottom: 12px;
+}
+
+.close {
+    background-color: red;
+    color: white;
+    padding: 0 8px;
+    border: none;
+    max-width: 24px;
+}
+
+.animate {
+    animation-duration: 1s;
+    animation-name: animate-fade;
+    animation-delay: 0s;
+    animation-fill-mode: backwards;
+}
+  
+@keyframes animate-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.animate2 {
+    animation-duration: 0.5s;
+    animation-name: slide;
+    animation-delay: 0s;
+}
+
+@keyframes slide {
+    0% { bottom: 10vh; }
+    100% { bottom: 16vh; }
+}

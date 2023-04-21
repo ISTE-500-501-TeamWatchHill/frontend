@@ -6,6 +6,7 @@ import styles from './university.module.css';
 
 import TeamBlock from '../../../components/teamblock/teamblock';
 import BackArrow from '../../../components/backarrow/backarrow';
+import Toast from '../../../components/toast/toast';
 
 const University = (props) => {   
 
@@ -13,6 +14,10 @@ const University = (props) => {
 
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
   const [teams, setTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
+  //To keep the status of when messages need to be shown
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastTitle, setToastTitle] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
 
    // Needed for all API calls
    const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -39,6 +44,10 @@ const University = (props) => {
               })
               .catch(function(error) {
                   console.log('error', error);
+                  //Display the error
+                  setToastTitle("Failed to Retreive University");
+                  setToastMessage("Please check to ensure the API is up and running.");
+                  setToastOpen(true);
               });
       }
       const getTeams = async () => {
@@ -64,6 +73,10 @@ const University = (props) => {
             })
             .catch(function(error) {
                 console.log('error', error);
+                //Display the error
+                setToastTitle("Failed to Retreive University");
+                setToastMessage("Please check to ensure the API is up and running.");
+                setToastOpen(true);
             });
     }
       getUniversity();
@@ -103,6 +116,15 @@ const University = (props) => {
                 <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>UPCOMING GAMES</h3>
                     
               </div>
+
+              {
+                  toastOpen &&
+                  <Toast 
+                      title={toastTitle}
+                      message={toastMessage}
+                      onclick={() => setToastOpen(false)}
+                  />
+              }
           </>
     )
 };

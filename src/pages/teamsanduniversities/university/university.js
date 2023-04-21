@@ -15,7 +15,6 @@ const University = (props) => {
 
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
   const [teams, setTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
-  // const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]); 
   const [games, changeGames] = useState([]); 
 
 
@@ -86,7 +85,6 @@ const University = (props) => {
         await fetch(`${BASE_URL}/gamePub/byUniversityID`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-              console.log(result);
               changeGames(result);
             })
             .catch(function(error) {
@@ -180,7 +178,7 @@ const University = (props) => {
                     })
                   };
                 </div>
-                
+
               </div>
           </>
     )

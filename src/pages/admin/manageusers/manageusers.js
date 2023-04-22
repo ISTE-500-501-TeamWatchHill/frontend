@@ -10,6 +10,7 @@ import Button from '../../../components/button/button';
 import Cookies from 'universal-cookie';
 import { Navigate } from "react-router-dom";
 // import { use } from 'i18next';
+import Toast from '../../../components/toast/toast';
 
 const ManageUsers = (props) => {  
 
@@ -18,6 +19,10 @@ const ManageUsers = (props) => {
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [users, changeUsers] = useState([{roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]}]);
     const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
+    const [toastTitle, setToastTitle] = useState("");
+    const [toastMessage, setToastMessage] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -42,6 +47,10 @@ const ManageUsers = (props) => {
                 })
                 .catch(function(error) {
                     console.log('error', error);
+                    //Display the error
+                    setToastTitle("Failed to Retreive Users");
+                    setToastMessage("Please check to ensure the API is up and running.");
+                    setToastOpen(true);
                 });
         }
         getUsers();
@@ -138,9 +147,50 @@ const ManageUsers = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                <AddPopup show={addOpen} type="user" onClick={(e) => { e.preventDefault(); setAddOpen(false); }} />
-                <EditPopup show={editOpen} type="user" data={editUser} onClick={(e) => { e.preventDefault(); setEditOpen(false); }} />
-                <DeletePopup show={deleteOpen} type="user" data={editUser} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+                <AddPopup 
+                    show={addOpen} 
+                    type="user" 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setAddOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Add User");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }}
+                />
+                <EditPopup 
+                    show={editOpen} 
+                    type="user" 
+                    data={editUser} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setEditOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Edit User");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }}
+                />
+                <DeletePopup 
+                    show={deleteOpen} 
+                    type="user" 
+                    data={editUser} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setDeleteOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Delete User");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }}
+                />
 
                 <div className={styles.addButton}>
                     <div></div>
@@ -158,6 +208,15 @@ const ManageUsers = (props) => {
                     data={users}
                 />
             </div>
+
+            {
+                toastOpen &&
+                <Toast 
+                    title="Failed to Retreive Users"
+                    message="Please check to ensure the API is up and running." 
+                    onclick={() => setToastOpen(false)}
+                />
+            }
         </>
     )
 };

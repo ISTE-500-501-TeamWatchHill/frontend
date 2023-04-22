@@ -5,6 +5,7 @@ import styles from './team.module.css';
 import MemberBlock from '../../../components/memberblock/memberblock';
 import BackArrow from '../../../components/backarrow/backarrow';
 import GameBlock from '../../../components/gameblock/gameblock';
+import Toast from '../../../components/toast/toast';
 
 const Team = () => {   
   let { id } = useParams();
@@ -49,6 +50,11 @@ const Team = () => {
     ]
   }]);
 
+  //To keep the status of when messages need to be shown
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastTitle, setToastTitle] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
+
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   let myHeaders = new Headers();
@@ -73,6 +79,10 @@ const Team = () => {
         })
         .catch(function(error) {
           console.log('error', error);
+          //Display the error
+          setToastTitle("Failed to Retreive Team");
+          setToastMessage("Please check to ensure the API is up and running.");
+          setToastOpen(true);
         });
     }
 
@@ -97,6 +107,10 @@ const Team = () => {
         })
         .catch(function(error) {
           console.log('error', error);
+          //Display the error
+          setToastTitle("Failed to Retreive Team");
+          setToastMessage("Please check to ensure the API is up and running.");
+          setToastOpen(true);
         }); 
     }
 
@@ -119,6 +133,10 @@ const Team = () => {
         })
         .catch(function(error) {
           console.log('error', error);
+          //Display the error
+          setToastTitle("Failed to Retreive Team");
+          setToastMessage("Please check to ensure the API is up and running.");
+          setToastOpen(true);
         });
     }
 
@@ -165,6 +183,15 @@ const Team = () => {
               }
           </div>
         </div>
+
+        {
+            toastOpen &&
+            <Toast 
+                title={toastTitle}
+                message={toastMessage}
+                onclick={() => setToastOpen(false)}
+            />
+        }
     </>
   );
 };

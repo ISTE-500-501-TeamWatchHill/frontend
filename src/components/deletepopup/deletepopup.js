@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './deletepopup.module.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
@@ -9,6 +9,7 @@ export default function DeletePopup(props) {
     const cookies = new Cookies();
     const user = cookies.get('user');
     const navigate = useNavigate();
+    const [hasError, changeHasError] = useState(false);
 
 
     async function onSubmitGame(e) {
@@ -38,7 +39,7 @@ export default function DeletePopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     };
 
@@ -69,7 +70,7 @@ export default function DeletePopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     };
 
@@ -101,7 +102,7 @@ export default function DeletePopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
 
@@ -132,7 +133,7 @@ export default function DeletePopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
 
@@ -155,7 +156,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>
@@ -178,7 +183,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>
@@ -201,7 +210,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>
@@ -224,7 +237,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>

@@ -2,11 +2,16 @@ import React, {useState, useEffect} from 'react';
 import globalStyles from '../../pages.module.css';
 import styles from './schedule.module.css';
 import GameBlock from '../../../components/gameblock/gameblock';
+import Toast from '../../../components/toast/toast';
 
 const Schedule = () => {
 
   //Setup for hook for games
-  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]); 
+  const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]);
+  //To keep the status of when messages need to be shown
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastTitle, setToastTitle] = useState("");
+  const [toastMessage, setToastMessage] = useState(""); 
 
   // Needed for all API calls
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -28,6 +33,10 @@ const Schedule = () => {
               })
               .catch(function(error) {
                   console.log('error', error);
+                  //Display the error
+                  setToastTitle("Failed to Retreive Schedule");
+                  setToastMessage("Please check to ensure the API is up and running.");
+                  setToastOpen(true);
               });
       }
       getGames();
@@ -105,6 +114,15 @@ games.forEach((game) => {
                 };
             </div>
           </div>
+
+          {
+              toastOpen &&
+              <Toast 
+                  title={toastTitle}
+                  message={toastMessage}
+                  onclick={() => setToastOpen(false)}
+              />
+          }
         </>
     )
   };

@@ -28,6 +28,7 @@ export default function EditPopup(props) {
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
     const [univSelected, changeUnivSelected]= useState(props.data.universityInfo ? props.data.universityInfo[0].universityID : 0);
     const [members, setMembers] = useState([]);
+    const [hasError, changeHasError] = useState(false);
 
 
     useEffect(()=> {
@@ -166,7 +167,7 @@ export default function EditPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             }); 
     }
 
@@ -216,7 +217,7 @@ export default function EditPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             }); 
     }
 
@@ -254,7 +255,7 @@ export default function EditPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             }); 
     }
 
@@ -292,7 +293,7 @@ export default function EditPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             }); 
     }
 
@@ -422,6 +423,7 @@ export default function EditPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Update Game' 
                             />
                         </div>
@@ -518,6 +520,7 @@ export default function EditPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Update Team' 
                             />
                         </div>
@@ -579,6 +582,7 @@ export default function EditPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Update University' 
                             />
                         </div>
@@ -681,6 +685,7 @@ export default function EditPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Update User' 
                             />
                         </div>

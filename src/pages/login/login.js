@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './login.module.css';
 //import globalStyles from '../pages.module.css';
 import Button from '../../components/button/button';
@@ -6,6 +6,7 @@ import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import BackArrow from '../../components/backarrow/backarrow';
+import Toast from '../../components/toast/toast';
 
 import landscapeImage from '../../assets/images/loginsidepanel.png';
 
@@ -17,6 +18,9 @@ const Login = () => {
 
     // used for redirect after successful login
     const navigate = useNavigate();
+
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
 
     
     async function onSubmit(e) { 
@@ -53,7 +57,8 @@ const Login = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                //Display the error
+                setToastOpen(true);
             });
     }
 
@@ -74,10 +79,18 @@ const Login = () => {
                     <Button type='submit' name='Login' width='100%' />
                     <Spacer height='36px' />
                     <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
-                    {/* <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4> */}
+
+                    {
+                    toastOpen &&
+                    <Toast 
+                        title="Login Attempt Failed"
+                        message="Please check to ensure your username and password are correct." 
+                        onclick={() => setToastOpen(false)}
+                    />
+                    }
                 </form>
                 
-                <img src={landscapeImage} alt="Landscape" />
+                <img src={landscapeImage} alt="Landscape" />                
             </div>
           </>
     )

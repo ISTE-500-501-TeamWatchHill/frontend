@@ -79,7 +79,6 @@ const Login = () => {
                     <Button type='submit' name='Login' width='100%' />
                     <Spacer height='36px' />
                     <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
-                    <h4 className={styles.h4}>Forgot your password? <a className={styles.link} href="/">Reset here</a></h4>
 
                     {
                     toastOpen &&

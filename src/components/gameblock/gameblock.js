@@ -24,18 +24,18 @@ const GameBlock = (props) => {
 
     if (!props.game.gameTime) {
         console.log("No game time provided");
-    }
+    } 
 
     return (
         <>
             <div className={styles.block}>
                 <div className={`${styles.flexBlock} ${styles.center}`}>
                     <div>
-                        <p className={styles.h1}>START TIME</p>
-                        <p className={styles.h2}>{props.game.gameTime}</p>
+                        {props.game.gameTime &&<p className={styles.h2}>START TIME</p>}
+                        {props.game.gameTime && <p className={styles.h1}>{new Date(props.game.gameTime).toLocaleString([], { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>}
                         <br/>
-                        <p className={styles.h1}>LOCATION</p>
-                        <p className={styles.h2}>{props.game.locationInfo[0].name}</p>
+                        <p className={styles.h2}>LOCATION</p>
+                        <p className={styles.h1}>{props.game.locationInfo[0].name}</p>
                     </div>
 
                     <div className={`${styles.flex} ${styles.center}`}>

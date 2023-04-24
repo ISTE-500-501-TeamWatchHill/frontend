@@ -5,6 +5,7 @@ import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import BackArrow from '../../components/backarrow/backarrow';
+import Toast from '../../components/toast/toast';
 
 import landscapeImage from '../../assets/images/registersidepanel.png';
 
@@ -20,6 +21,9 @@ const Registration = () => {
     myHeaders.append("Content-Type", "application/json");
     
     const navigate = useNavigate();
+
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
 
     useEffect(()=> {
         const getUniversities = async() => {
@@ -86,8 +90,9 @@ const Registration = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
-            }); // TODO: display error, refresh form
+                //Display the error
+                setToastOpen(true);
+            });
     }
 
     return (
@@ -131,6 +136,15 @@ const Registration = () => {
                     <Button type='submit' name='Register' width='100%' />
                     <Spacer height='36px' />
                     <h4 className={styles.h4}>Already registered? <a className={styles.link} href="/login">Login here</a></h4>
+
+                    {
+                    toastOpen &&
+                    <Toast 
+                        title="Registration Attempt Failed"
+                        message="Please check to ensure your email is associated with an existing university and your password contains at least 8 characters, 1 special character, and no whitespace." 
+                        onclick={() => setToastOpen(false)}
+                    />
+                    }
                 </form>
 
                 <img src={landscapeImage} alt="Landscape" />

@@ -9,6 +9,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Button from '../../../../components/button/button';
 import Cookies from 'universal-cookie';
 import { Navigate } from "react-router-dom";
+import Toast from '../../../../components/toast/toast';
 // import { use } from 'i18next';
 
 const ManageUniversities = (props) => {  
@@ -18,6 +19,10 @@ const ManageUniversities = (props) => {
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [universities, changeUniversities] = useState([{ universityID: 1, domain: "", moderatorIDs: [""], name: "", logo: "", description: "", approvalStatus: true }]);
     const [editUniversity, changeEditUniversity] = useState({ universityID: 1, domain: "", moderatorIDs: [""], name: "", logo: "", description: "", approvalStatus: true });
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
+    const [toastTitle, setToastTitle] = useState("");
+    const [toastMessage, setToastMessage] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -42,6 +47,10 @@ const ManageUniversities = (props) => {
                 })
                 .catch(function(error) {
                     console.log('error', error);
+                    //Display the error
+                    setToastTitle("Failed to Retreive Universities");
+                    setToastMessage("Please check to ensure the API is up and running.");
+                    setToastOpen(true);
                 });
         }
         getUniversities();
@@ -132,9 +141,50 @@ const ManageUniversities = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                <AddPopup show={addOpen} type="university" onClick={(e) => { e.preventDefault(); setAddOpen(false); }} />
-                <EditPopup show={editOpen} type="university" data={editUniversity} onClick={(e) => { e.preventDefault(); setEditOpen(false); }} />
-                <DeletePopup show={deleteOpen} type="university" data={editUniversity} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+                <AddPopup 
+                    show={addOpen} 
+                    type="university" 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setAddOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Add University");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }}
+                />
+                <EditPopup 
+                    show={editOpen} 
+                    type="university" 
+                    data={editUniversity} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setEditOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Edit University");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }}
+                />
+                <DeletePopup 
+                    show={deleteOpen} 
+                    type="university" 
+                    data={editUniversity} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setDeleteOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Delete University");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }}
+                />
 
                 <div className={styles.addButton}>
                     <div></div>
@@ -152,6 +202,15 @@ const ManageUniversities = (props) => {
                     data={universities}
                 />
             </div>
+
+            {
+                toastOpen &&
+                <Toast 
+                    title={toastTitle}
+                    message={toastMessage}
+                    onclick={() => setToastOpen(false)}
+                />
+            }
         </>
     )
 };

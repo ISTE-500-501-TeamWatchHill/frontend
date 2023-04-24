@@ -233,7 +233,6 @@ export default function EditPopup(props) {
             "logo": props.data.logo,
             "moderatorIDs": props.data.moderatorIDs,
             "name": e.target.universityName.value,
-            "universityID": props.data.universityID,
             "id": props.data._id,
             "token": user.token,
         });

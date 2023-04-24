@@ -295,9 +295,19 @@ export default function AddPopup(props) {
                                 id="universityID" 
                                 name="universityID" 
                                 placeholder='Location' 
-                                defaultValue='University ID'
-                                required 
+                                value={univSelected}
+                                disabled
                             />
+                            <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            {
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
                         </div>
                         <div className={styles.flex}>
                             <Button 

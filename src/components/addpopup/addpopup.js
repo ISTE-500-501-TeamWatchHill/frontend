@@ -298,7 +298,8 @@ export default function AddPopup(props) {
                                 value={univSelected}
                                 disabled
                             />
-                            <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                        </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
                             {
                                 // eslint-disable-next-line
                                 universities.map((university, index) => {
@@ -308,7 +309,6 @@ export default function AddPopup(props) {
                                 })
                             }
                         </select>
-                        </div>
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"

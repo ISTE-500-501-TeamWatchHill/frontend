@@ -111,27 +111,27 @@ const Registration = () => {
                         <input className={styles.inputText} type="text" id="lname" name="lname" placeholder='Last Name' required></input>
                     </div>
                     <div className={`${styles.inputItem} ${styles.center}`} >
-                        <p>University
+                        <p>University</p>
                         <input 
-                            className={styles.inputText} 
+                            className={`${styles.inputText}`} 
                             type="text" 
                             id="universityID" 
                             name="universityID" 
                             value={(univSelected)}
                             disabled
-                        /> 
-                        </p>
-                        </div>
-                            <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
-                                {
-                                    // eslint-disable-next-line
-                                    universities.map((university, index) => {
-                                        return (
-                                            <option key={index} value={university.universityID}>{university.description}</option>
-                                        )
-                                    })
-                                }
-                            </select>                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='University Email' required></input>
+                        />
+                    </div>
+                    <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                        {
+                            // eslint-disable-next-line
+                            universities.map((university, index) => {
+                                return (
+                                    <option key={index} value={university.universityID}>{university.description}</option>
+                                )
+                            })
+                        }
+                    </select>                
+                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='University Email' required></input>
                     <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>
                     <Button type='submit' name='Register' width='100%' />
                     <Spacer height='36px' />

@@ -89,6 +89,16 @@ const ManageTeams = (props) => {
         setDeleteOpen(true);
     };
 
+    const approvalButton = (editTeamData) => {
+        return (
+          <>
+            <button disabled className={editTeamData.approvalStatus ? `${styles.greenButton}` : `${styles.redButton}`}>
+                {editTeamData.approvalStatus ? "Approved" : "Pending"}
+            </button>
+          </>
+        );
+    };
+
     const columns = [
         {
           name: "ID",
@@ -108,6 +118,11 @@ const ManageTeams = (props) => {
           name: "University Name",
           selector: (row) => row.universityInfo[0].name,
           sortable: true
+        },
+        {
+            name: "Approval Status",
+            selector: (row) => approvalButton(row),
+            sortable: true
         },
         {
             name: "",

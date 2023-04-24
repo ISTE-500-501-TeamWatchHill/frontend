@@ -24,6 +24,7 @@ export default function AddPopup(props) {
     const [homeTeamSelected, changeHomeTeamSelected] = useState(nothing);
     const [univSelected, changeUnivSelected]= useState("None");
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
+    const [hasError, changeHasError] = useState(false);
 
     useEffect(()=> {
         const getTeams = async() => {
@@ -103,7 +104,7 @@ export default function AddPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             })
     }
 
@@ -150,7 +151,7 @@ export default function AddPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             })
     }
 
@@ -186,7 +187,7 @@ export default function AddPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
 
@@ -222,7 +223,7 @@ export default function AddPopup(props) {
             })
             .catch(function(error) {
                 console.log(error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
 
@@ -294,10 +295,20 @@ export default function AddPopup(props) {
                                 id="universityID" 
                                 name="universityID" 
                                 placeholder='Location' 
-                                defaultValue='University ID'
-                                required 
+                                value={univSelected}
+                                disabled
                             />
                         </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            {
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
@@ -306,6 +317,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add Game' 
                             />
                         </div>
@@ -415,6 +427,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add Team' 
                             />
                         </div>
@@ -484,6 +497,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add University' 
                             />
                         </div>
@@ -570,6 +584,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add User' 
                             />
                         </div>

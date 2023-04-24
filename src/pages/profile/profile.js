@@ -20,13 +20,13 @@ const Profile = (props) => {
       "teamID": "1423518",
       "roleID": 19202,
       "universityID": 2760,
-      "firstName": "Test",
-      "lastName": "User",
-      "teamName": "Sample Team One",
-      "universityName": "RIT",
-      "email": "spammewemails@rit.edu"
+      "firstName": "...",
+      "lastName": "",
+      "teamName": "No team found",
+      "universityName": "No university found",
+      "email": "No email found"
     });
-    const [team, setTeam] = useState("ABP");
+    const [team, setTeam] = useState();
 
     useEffect(()=> {
 
@@ -121,7 +121,21 @@ const Profile = (props) => {
 
               <tr className={styles.row_border}>
                 <td className={styles.fields}>Team</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${team}`}</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>
+                  {team && `${team}`}
+                  {!team && `User hasn't joined a team yet!`}
+                </td>
+              </tr>
+
+              <tr className={styles.row_border}>
+                <td className={styles.fields}>Role</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>
+                  {person.roleID === 19202 && `Registered User`}
+                  {person.roleID === 31514 && `University Moderator`}
+                  {person.roleID === 21149 && `Content Moderator`}
+                  {person.roleID === 14139 && `Administrator`}
+                  {![19202,31514,21149,14139].includes(person.roleID) && `No role set`}
+                </td>
               </tr>
             </tbody>
             </table>

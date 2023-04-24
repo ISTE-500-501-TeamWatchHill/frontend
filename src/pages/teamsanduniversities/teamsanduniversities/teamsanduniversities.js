@@ -5,6 +5,7 @@ import styles from './teamsanduniversities.module.css';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
 // import { use } from 'i18next';
+import Toast from '../../../components/toast/toast';
 
 const TeamsAndUniversities = (props) => {  
 
@@ -12,6 +13,10 @@ const TeamsAndUniversities = (props) => {
     const [searchValue, changeSearchValue] = useState("");
     const [sortOption, changeSortOption] = useState(null);
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
+    const [toastTitle, setToastTitle] = useState("");
+    const [toastMessage, setToastMessage] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -34,6 +39,10 @@ const TeamsAndUniversities = (props) => {
                 })
                 .catch(function(error) {
                     console.log('error', error);
+                    //Display the error
+                    setToastTitle("Failed to Retreive Teams");
+                    setToastMessage("Please check to ensure the API is up and running.");
+                    setToastOpen(true);
                 });
         }
         getTeams();
@@ -107,6 +116,15 @@ const TeamsAndUniversities = (props) => {
                     }
                 </div>
             </div>
+
+            {
+                toastOpen &&
+                <Toast 
+                    title={toastTitle}
+                    message={toastMessage}
+                    onclick={() => setToastOpen(false)}
+                />
+            }
         </>
     )
 };

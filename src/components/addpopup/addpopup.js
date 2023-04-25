@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styles from './addpopup.module.css';
 import Cookies from 'universal-cookie';
 import Button from '../button/button';
+import { CFormSwitch } from '@coreui/react';
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 export default function AddPopup(props) {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -20,16 +22,19 @@ export default function AddPopup(props) {
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 1}] }]);
     const [awayTeamSelected, changeAwayTeamSelected] = useState(nothing);
     const [homeTeamSelected, changeHomeTeamSelected] = useState(nothing);
+    const [univSelected, changeUnivSelected]= useState("None");
+    const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
+    const [hasError, changeHasError] = useState(false);
 
     useEffect(()=> {
-        async function getTeams() {
+        const getTeams = async() => {
             const requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'
             };
 
-            await fetch(`${BASE_URL}/teamPub/all`, requestOptions)
+            await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
                     changeTeams(result);
@@ -38,22 +43,43 @@ export default function AddPopup(props) {
                     console.log('error', error);
                 });
         }
+
+        const getUniversities = async() => {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeUniversities(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
         getTeams();
+        getUniversities();
         // eslint-disable-next-line
     }, []);
 
     const handleAwayTeamClick = (e) => {
         changeAwayTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
-        console.log(awayTeamSelected);
+    };
+
+    const handleUniversityClick = (e) => {
+        changeUnivSelected(e.target[e.target.selectedIndex].value);
     };
 
     const handleHomeTeamClick = (e) => {
         changeHomeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
-        console.log(homeTeamSelected);
     };
     
 
     async function onSubmitGame(e) {
+        e.preventDefault();
          const raw = JSON.stringify({
             "universityID": parseInt(e.target.universityID.value),
             "homeTeam": homeTeamSelected._id,
@@ -78,15 +104,59 @@ export default function AddPopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             })
     }
 
     async function onSubmitTeam(e) {
-        //TODO
+        e.preventDefault();
+        const players = [
+            e.target.player1.value,
+            e.target.player2.value
+        ];
+        if ((e.target.player3.value!=='')) {
+            players[2]=e.target.player3.value;
+        }
+        if ((e.target.player4.value!=='')) {
+            players[3]=e.target.player4.value;
+        }
+        if ((e.target.player5.value!=='')) {
+            players[4]=e.target.player5.value;
+        }
+
+
+        const b = {
+            "universityID": parseInt(e.target.universityID.value),
+            "name": e.target.teamName.value,
+            "approvalStatus": e.target.approvalStatus.checked,
+            "emails": players,
+            "token": user.token,
+        };
+        const raw = JSON.stringify(b);
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageteams");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                changeHasError(true);
+            })
     }
 
     async function onSubmitUniversity(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -111,21 +181,22 @@ export default function AddPopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/manageteam");
+                    navigate("/manageuniversities");
                     navigate(0);
                 }
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
 
     async function onSubmitUser(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-         const raw = JSON.stringify({
+        const raw = JSON.stringify({
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,
             "roleID": parseInt(e.target.roleID.value),
@@ -151,10 +222,15 @@ export default function AddPopup(props) {
                 }
             })
             .catch(function(error) {
-                console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                console.log(error);
+                changeHasError(true);
             });
     }
+
+    const [roleSelected, changeRoleSelected] = useState(19202);
+    const handleRoleClick = (e) => {
+        changeRoleSelected(e.target[e.target.selectedIndex].value);
+    };
 
     return (
         <>
@@ -219,10 +295,20 @@ export default function AddPopup(props) {
                                 id="universityID" 
                                 name="universityID" 
                                 placeholder='Location' 
-                                defaultValue='University ID'
-                                required 
+                                value={univSelected}
+                                disabled
                             />
                         </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            {
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
@@ -231,6 +317,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add Game' 
                             />
                         </div>
@@ -245,7 +332,92 @@ export default function AddPopup(props) {
                     <h1 className={styles.title}>Add Team</h1>
 
                     <div className={styles.padding}>
-                        {/* ALEXIS: TODO */}
+                    <div className={`${styles.inputItem} ${styles.center}`}>
+                        <p>Team Name</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="teamName" 
+                            name="teamName" 
+                            placeholder='Team Name'
+                            required 
+                        />
+                    </div>
+                    <div className={`${styles.inputItem} ${styles.center}`} >
+                        <p>University</p>
+                        <input 
+                            className={styles.inputText} 
+                            type="text" 
+                            id="universityID" 
+                            name="universityID" 
+                            placeholder='Select University' 
+                            value={univSelected} 
+                            disabled
+                        /> 
+                    </div>
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            <option key={0} value={'None'} selected>{'None'}</option>
+                            {
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        <div className={`${styles.inputItem} ${styles.center}`} >
+                            <p>Add Players</p>
+                            <div className={styles.flex_column}>
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player1" 
+                                    name="player1" 
+                                    placeholder='Enter Email' 
+                                    required
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player2" 
+                                    name="player2" 
+                                    placeholder='Enter Email' 
+                                    required
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player3" 
+                                    name="player3" 
+                                    placeholder='Enter Email' 
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player4" 
+                                    name="player4" 
+                                    placeholder='Enter Email' 
+                                /> 
+                                <input 
+                                    className={styles.inputText} 
+                                    type="text" 
+                                    id="player5" 
+                                    name="player5" 
+                                    placeholder='Enter Email' 
+                                /> 
+                            </div>
+                        </div>
+        
+                        <CFormSwitch 
+                            id="approvalStatus" 
+                            label="Approved" 
+                            type="checkbox" 
+                            onChange={(e) => { 
+                                const isChecked = document.getElementById("approvalStatus").checked;
+                                document.getElementById("approvalStatus").style.backgroundColor = isChecked ?  "#2E8D93" : "#FFFFFF";
+                            }}
+                        />
 
                         <div className={styles.flex}>
                             <Button 
@@ -255,6 +427,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add Team' 
                             />
                         </div>
@@ -324,6 +497,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add University' 
                             />
                         </div>
@@ -366,9 +540,17 @@ export default function AddPopup(props) {
                                 id="roleID" 
                                 name="roleID" 
                                 placeholder='Role ID' 
-                                required 
+                                value={roleSelected}
+                                disabled 
                             />
                         </div>
+
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
+                            <option key={0} value={14139}>Admin</option>
+                            <option key={1} value={21149}>Content Moderator</option>
+                            <option key={2} value={31514}>University Moderator</option>
+                            <option key={3} value={19202} selected>Registered User</option>
+                        </select>
 
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Email</p>
@@ -402,6 +584,7 @@ export default function AddPopup(props) {
                             />
                             <Button 
                                 type='submit'
+                                onClick={hasError ? props.changeFailed : null}
                                 name='Add User' 
                             />
                         </div>

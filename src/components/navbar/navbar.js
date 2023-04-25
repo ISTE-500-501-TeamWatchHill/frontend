@@ -3,6 +3,8 @@ import styles from './navbar.module.css';
 import { useTranslation } from "react-i18next";
 import Cookies from 'universal-cookie';
 import { FaCaretDown } from 'react-icons/fa';
+import Spacer from '../spacer/spacer';
+
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -87,8 +89,9 @@ export default function Navbar() {
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>
-                      <td><a href="/manageTeams">TEAMS</a></td>
-                      <td><a href="/manageUniversities">UNIVERSITIES</a></td>
+                      <td><a href="/manageteams">TEAMS</a></td>
+                      <td><a href="/manageuniversities">UNIVERSITIES</a></td>
+                      <td><a href="/teamsanduniversities">PLAYER VIEW</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -98,6 +101,8 @@ export default function Navbar() {
             }
 
 
+            {!user && <a href="/register" className={styles.profile}>Register</a>}
+            <Spacer width="16px"/>
             {!user && <a href="/login" className={styles.profile}>Login</a>}
             {user && <table className={`${styles.dropdown} ${styles.border}`}>
                   <tbody>

@@ -14,3 +14,9 @@
 .gridTitleMargin {
     margin-left: 6vw;
 }
+
+.grid_list {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import globalStyles from '../pages.module.css';
 import styles from './profile.module.css';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 
@@ -11,6 +11,7 @@ const Profile = (props) => {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
     const user = cookies.get('user');
+    const navigate = useNavigate();
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -20,64 +21,73 @@ const Profile = (props) => {
       "teamID": "1423518",
       "roleID": 19202,
       "universityID": 2760,
-      "firstName": "Test",
-      "lastName": "User",
-      "teamName": "Sample Team One",
-      "universityName": "RIT",
-      "email": "spammewemails@rit.edu"
+      "firstName": "...",
+      "lastName": "",
+      "teamName": "No team found",
+      "universityName": "No university found",
+      "email": "No email found"
     });
     //Default team
-    const [team, setTeam] = useState("ABP");
+    const [team, setTeam] = useState();
 
     //Retreive user using the token
     useEffect(()=> {
-      async function getUser() { 
-          const raw = JSON.stringify({
-            "token": user.token
-          });
-  
-          const requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-          };
-  
-          await fetch(`${BASE_URL}/userSec/getUserProfile`, requestOptions) 
-              .then(response => response.json())
-              .then(function(result) {
-                setPerson(result); 
-              })
-              .catch(function(error) {
-                  console.log('error', error);
-              });
-      }
-      getUser();
-    },[BASE_URL, myHeaders]);
 
-    //Retreive user's team with the newly retreived user
-    useEffect(()=> {
-      async function getTeam() { 
-          const raw = JSON.stringify({
-            "id": person.teamID
-          });
-  
-          const requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-          };
-  
-          await fetch(`${BASE_URL}/teamPub/byID`, requestOptions) 
-              .then(response => response.json())
-              .then(function(result) {
-                setTeam(result.description); 
-              })
-              .catch(function(error) {
-                  console.log('error', error);
-              });
+      if (!user) {
+        navigate("/login");
+        navigate(0);
       }
-      getTeam();
-    },[BASE_URL, person, myHeaders]);
+
+
+      const fetchTeam = async (teamID) => {
+        const raw = JSON.stringify({
+          "id": teamID
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        await fetch(`${BASE_URL}/teamPub/byID`, requestOptions) 
+            .then(response => response.json())
+            .then(function(result) {
+              setTeam(result.description); 
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+      }
+
+      const fetchUser = async () => {
+        const raw = JSON.stringify({
+          "token": user.token
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        await fetch(`${BASE_URL}/userSec/getUserProfile`, requestOptions) 
+            .then(response => response.json())
+            .then(function(result) {
+              setPerson(result); 
+              fetchTeam(result.teamID);
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            });
+      }
+
+      fetchUser();
+      
+      // eslint-disable-next-line
+    },[]);
+
+    
     
 
     return (
@@ -91,31 +101,46 @@ const Profile = (props) => {
 
             
             <div className={styles.profile_margin}>
-            <h3 className={`${globalStyles.headline_text}`}>{`${user.firstName} ${user.lastName}`}</h3>
+            <h3 className={`${globalStyles.headline_text}`}>{`${person.firstName} ${person.lastName}`}</h3>
             <br/><br/>
 
             {/* Table containing user information  */}
             <table className={styles.profile_table}>
+              <tbody>
               <tr className={styles.row_border}>
                 <td className={styles.fields}>Name</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${user.firstName} ${user.lastName}`}</td>
-             </tr>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.firstName} ${person.lastName}`}</td>
+              </tr>
 
-             <tr className={styles.row_border}>
+              <tr className={styles.row_border}>
                 <td className={styles.fields}>University</td>
                 <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.universityName}`}</td>
-             </tr>
+              </tr>
 
-             <tr className={styles.row_border}>
+              <tr className={styles.row_border}>
                 <td className={styles.fields}>University Email</td>
                 <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${person.email}`}</td>
-             </tr>
+              </tr>
 
-             <tr className={styles.row_border}>
+              <tr className={styles.row_border}>
                 <td className={styles.fields}>Team</td>
-                <td className={`${globalStyles.text} ${globalStyles.p}`}>{`${team}`}</td>
-             </tr>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>
+                  {team && `${team}`}
+                  {!team && `User hasn't joined a team yet!`}
+                </td>
+              </tr>
 
+              <tr className={styles.row_border}>
+                <td className={styles.fields}>Role</td>
+                <td className={`${globalStyles.text} ${globalStyles.p}`}>
+                  {person.roleID === 19202 && `Registered User`}
+                  {person.roleID === 31514 && `University Moderator`}
+                  {person.roleID === 21149 && `Content Moderator`}
+                  {person.roleID === 14139 && `Administrator`}
+                  {![19202,31514,21149,14139].includes(person.roleID) && `No role set`}
+                </td>
+              </tr>
+            </tbody>
             </table>
             </div>
         </>

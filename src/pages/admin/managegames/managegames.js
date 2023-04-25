@@ -6,8 +6,10 @@ import EditPopup from '../../../components/editpopup/editpopup';
 import DeletePopup from '../../../components/deletepopup/deletepopup';
 import DataTable from "react-data-table-component";
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Cookies from 'universal-cookie';
 import Button from '../../../components/button/button';
-// import { use } from 'i18next';
+import { Navigate } from "react-router-dom";
+import Toast from '../../../components/toast/toast';
 
 const ManageGames = (props) => {  
 
@@ -16,9 +18,15 @@ const ManageGames = (props) => {
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [games, changeGames] = useState([{_id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}]}]);
     const [editGame, changeEditGame] = useState({_id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}]});
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
+    const [toastTitle, setToastTitle] = useState("");
+    const [toastMessage, setToastMessage] = useState("");
 
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const cookies = new Cookies();
+    const user = cookies.get('user');
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -38,10 +46,14 @@ const ManageGames = (props) => {
                 })
                 .catch(function(error) {
                     console.log('error', error);
+                    //Display the error
+                    setToastTitle("Failed to Retreive Games");
+                    setToastMessage("Please check to ensure the API is up and running.");
+                    setToastOpen(true);
                 });
         }
         getGames();
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
 
     const addEdit = (editGameData) => {
@@ -110,6 +122,14 @@ const ManageGames = (props) => {
 
     return (
         <>
+            {!user && (
+                <Navigate to="/login" replace={true} />
+            )}
+
+            {user && user.role !== 14139 && (
+                <Navigate to="/" replace={true} />
+            )}
+
             {/* Disables rest of page from being clicked when a popup is open */}
             {
                 (addOpen || editOpen || deleteOpen) &&
@@ -121,9 +141,49 @@ const ManageGames = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-                <AddPopup show={addOpen} type="game" onClick={(e) => { e.preventDefault(); setAddOpen(false); }} />
-                <EditPopup show={editOpen} type="game" data={editGame} onClick={(e) => { e.preventDefault(); setEditOpen(false); }} />
-                <DeletePopup show={deleteOpen} type="game" data={editGame} onClick={(e) => { e.preventDefault(); setDeleteOpen(false); }} />
+                <AddPopup 
+                    show={addOpen} 
+                    type="game" 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setAddOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Add Game");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setAddOpen(false); 
+                    }} 
+                />
+                <EditPopup 
+                    show={editOpen} 
+                    type="game" data={editGame} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setEditOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Edit Game");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setEditOpen(false); 
+                    }} 
+                />
+                <DeletePopup 
+                    show={deleteOpen} 
+                    type="game" 
+                    data={editGame} 
+                    onClick={(e) => { 
+                        e.preventDefault(); 
+                        setDeleteOpen(false); 
+                    }} 
+                    changeFailed={(e) => { 
+                        setToastTitle("Failed to Delete Game");
+                        setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
+                        setToastOpen(true);
+                        setDeleteOpen(false); 
+                    }} 
+                />
 
                 <div className={styles.addButton}>
                     <div></div>
@@ -141,6 +201,15 @@ const ManageGames = (props) => {
                     data={games}
                 />
             </div>
+
+            {
+                toastOpen &&
+                <Toast 
+                    title={toastTitle}
+                    message={toastMessage}
+                    onclick={() => setToastOpen(false)}
+                />
+            }
         </>
     )
 };

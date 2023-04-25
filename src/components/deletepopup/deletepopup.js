@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './deletepopup.module.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
@@ -9,9 +9,11 @@ export default function DeletePopup(props) {
     const cookies = new Cookies();
     const user = cookies.get('user');
     const navigate = useNavigate();
+    const [hasError, changeHasError] = useState(false);
 
 
     async function onSubmitGame(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -31,23 +33,50 @@ export default function DeletePopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/managegame");
+                    navigate("/managegames");
                     navigate(0);
                 }
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     };
 
     async function onSubmitTeam(e) {
-        //TODO
+        e.preventDefault();
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+         const raw = JSON.stringify({
+            "id": props.data._id,
+            "token": user.token,
+        });
+
+        const requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        await fetch(`${BASE_URL}/teamSec`, requestOptions)
+            .then(response => response.json())
+            .then(function(result) {
+                if (result) {
+                    navigate("/manageteams");
+                    navigate(0);
+                }
+            })
+            .catch(function(error) {
+                console.log('error', error);
+                changeHasError(true);
+            });
     };
 
 
     async function onSubmitUniversity(e) {
-
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -67,17 +96,18 @@ export default function DeletePopup(props) {
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
-                    navigate("/manageteam");
+                    navigate("/manageuniversities");
                     navigate(0);
                 }
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
 
     async function onSubmitUser(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -103,11 +133,9 @@ export default function DeletePopup(props) {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                changeHasError(true);
             });
     }
-
-    
 
     return (
         <>
@@ -128,7 +156,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>
@@ -141,7 +173,9 @@ export default function DeletePopup(props) {
                     <h1 className={styles.title}>Delete Team</h1>
 
                     <div className={styles.padding}>
-                        {/* ALEXIS: TODO */}
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Are you sure you want to delete team {props.data.description}?</p>
+                        </div>
 
                         <div className={styles.flex}>
                             <Button 
@@ -149,7 +183,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>
@@ -172,7 +210,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>
@@ -195,7 +237,11 @@ export default function DeletePopup(props) {
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
-                            <Button type='submit' name='Confirm Delete' />
+                            <Button 
+                                type='submit' 
+                                onClick={hasError ? props.changeFailed : null}
+                                name='Confirm Delete' 
+                            />
                         </div>
                     </div>
                 </form>

@@ -75,3 +75,22 @@
     border-radius: 8px;
     padding: 4px 16px;
 }
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    max-height:100px;
+    overflow:scroll;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 4px 16px;
+    margin: 1vh 0 3vh 0;
+    width: 100%;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

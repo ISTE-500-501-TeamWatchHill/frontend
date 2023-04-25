@@ -16,6 +16,8 @@
     border: 2px solid black;
     width: 40vw;
     padding: 0;
+    overflow: auto;
+    height: 70vh;
 }
 
 .title {
@@ -39,6 +41,12 @@
     display: flex;
     flex-direction: row;
     column-gap: 12px;
+    width: 100%;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 

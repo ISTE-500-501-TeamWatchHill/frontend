@@ -1,19 +1,54 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './registration.module.css';
 import Button from '../../components/button/button';
 import Spacer from '../../components/spacer/spacer';
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import BackArrow from '../../components/backarrow/backarrow';
+import Toast from '../../components/toast/toast';
 
 import landscapeImage from '../../assets/images/registersidepanel.png';
 
 const Registration = () => {  
+    const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
+    const [univSelected, changeUnivSelected]= useState('University');
+
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
     const user = cookies.get('user');
+    // eslint-disable-next-line
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     
     const navigate = useNavigate();
+
+    //To keep the status of when messages need to be shown
+    const [toastOpen, setToastOpen] = useState(false);
+
+    useEffect(()=> {
+        const getUniversities = async() => {
+            const requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
+                .then(response => response.json())
+                .then(function(result) {
+                    changeUniversities(result);
+                })
+                .catch(function(error) {
+                    console.log('error', error);
+                });
+        }
+
+        getUniversities();
+    });
+
+    const handleUniversityClick = (e) => {
+        changeUnivSelected(e.target[e.target.selectedIndex].value);
+    };
     
     async function onSubmit(e) {
         e.preventDefault();
@@ -27,7 +62,7 @@ const Registration = () => {
          * require special characters
          */
         const raw = JSON.stringify({
-            "uid": 1423518, // TODO: get university IDs dynamically
+            "universityID": parseInt(e.target.universityID.value),
             "firstName": e.target.fname.value,
             "lastName": e.target.lname.value,
             "email": e.target.email.value,
@@ -47,9 +82,8 @@ const Registration = () => {
             .then(function(result) {
                 const options = {
                     path: '/',
-                    secure: true,
                     sameSite: 'strict',
-                    expires: new Date(Date.now()+86400) // expires in one day
+                    expires: new Date(Date.now()+86400000) // expires in one dayish
                 };
                 //Set the cookie and send the new user home
                 cookies.set('user', result.user, options);
@@ -58,8 +92,9 @@ const Registration = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
-            }); // TODO: display error, refresh form
+                //Display the error
+                setToastOpen(true);
+            });
     }
 
     return (
@@ -79,13 +114,42 @@ const Registration = () => {
                         <input className={styles.inputText} type="text" id="fname" name="fname" placeholder='First Name' required></input>
                         <input className={styles.inputText} type="text" id="lname" name="lname" placeholder='Last Name' required></input>
                     </div>
-                    <input className={styles.inputText} type="text" id="university" name="university" placeholder='University' required></input>
+                    <div className={`${styles.inputItem} ${styles.center}`} >
+                        <p>University</p>
+                        <input 
+                            className={`${styles.inputText}`} 
+                            type="text" 
+                            id="universityID" 
+                            name="universityID" 
+                            value={(univSelected)}
+                            disabled
+                        />
+                    </div>
+                    <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                        {
+                            // eslint-disable-next-line
+                            universities.map((university, index) => {
+                                return (
+                                    <option key={index} value={university.universityID}>{university.description}</option>
+                                )
+                            })
+                        }
+                    </select>                
                     <input className={styles.inputText} type="email" id="email" name="email" placeholder='University Email' required></input>
                     <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>
                     <Button type='submit' name='Register' width='100%' />
                     <Spacer height='36px' />
                     {/* Button to lead to login form or forget password */}
                     <h4 className={styles.h4}>Already registered? <a className={styles.link} href="/login">Login here</a></h4>
+
+                    {
+                    toastOpen &&
+                    <Toast 
+                        title="Registration Attempt Failed"
+                        message="Please check to ensure your email is associated with an existing university and your password contains at least 8 characters, 1 special character, and no whitespace." 
+                        onclick={() => setToastOpen(false)}
+                    />
+                    }
                 </form>
 
                 <img src={landscapeImage} alt="Landscape" />

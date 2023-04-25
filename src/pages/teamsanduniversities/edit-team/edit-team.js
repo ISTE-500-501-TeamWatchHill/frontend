@@ -22,52 +22,56 @@ const EditTeam = () => {
     });
     const [members, setMembers] = useState([]);
 
-
-    async function onSubmit(e) {
-        // e.preventDefault();
-
-        const playerOne = user.email;
-        const playerTwo = e.target.playerTwo.value;
-        const playerThree = e.target.playerThree.value;
-        const playerFour = e.target.playerFour.value;
-        const playerFive = e.target.playerFive.value;
-
-        let formValues = [playerOne];
-
-        if (playerTwo) { formValues.push(playerTwo) }
-        if (playerThree) { formValues.push(playerThree) }
-        if (playerFour) { formValues.push(playerFour) }
-        if (playerFive) { formValues.push(playerFive) }
-
+    async function onSubmitTeam(e) {
+        e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        const raw = JSON.stringify({
-            "universityID": user.universityID,
-            "name": e.target.teamName.value,
-            "emails": formValues,
+        const playerOne = e.target.player1.value;
+        const playerTwo = e.target.player2.value;
+        const playerThree = e.target.player3.value;
+        const playerFour = e.target.player4.value;
+        const playerFive = e.target.player5.value;
+
+        let emails = [playerOne];
+
+        if (playerTwo) { emails.push(playerTwo) }
+        if (playerThree) { emails.push(playerThree) }
+        if (playerFour) { emails.push(playerFour) }
+        if (playerFive) { emails.push(playerFive) }
+
+        const raw = {
             "token": user.token,
-        });
+            "id": team._id,
+            "updatedData": {
+                "universityID": team.universityID,
+                "emails": emails,
+                "description": e.target.teamName.value,
+                "approvalStatus": team.approvalStatus,
+            }
+        };
+
+        console.log(raw);
 
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: myHeaders,
-            body: raw,
+            body: JSON.stringify(raw),
             redirect: 'follow'
         };
 
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
-                if (result && result._id) {
-                    navigate(`/team/${result._id}`);
+                if (result) {
+                    navigate("/user");
                     navigate(0);
                 }
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Failed to edit team');
-            }); // TODO: display error, refresh form
+                // changeHasError(true);
+            }); 
     }
 
     useEffect(()=> {
@@ -149,7 +153,7 @@ const EditTeam = () => {
             )}
             
             <div className={styles.login_section}>
-                <form className={styles.form} onSubmit={onSubmit}>
+                <form className={styles.form} onSubmit={onSubmitTeam}>
                     <h1 className={styles.title}>Edit {team.description}</h1>
                     <input 
                         className={styles.inputText} 
@@ -175,8 +179,6 @@ const EditTeam = () => {
                                 /> 
                             )
                         })
-                        // onSubmit function
-                        // test
                         // fix issue where page is cutting off H1 for some reason
                         // fix defaultValue of team.description issue
                     }

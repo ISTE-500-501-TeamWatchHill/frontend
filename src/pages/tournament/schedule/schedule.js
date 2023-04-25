@@ -30,6 +30,7 @@ const Schedule = () => {
           await fetch(`${BASE_URL}/gamePub/allExpanded`, requestOptions)
               .then(response => response.json())
               .then(function(result) {
+                //Attempt to get all games and their associated team information
                 changeGames(result);
               })
               .catch(function(error) {
@@ -78,12 +79,6 @@ games.forEach((game) => {
               <h1 className={globalStyles.h1_title}>Schedule</h1>
           </div>
 
-          {/* TODO FOR ALEXIS
-            filter games by date/team/university location
-            incorporate endpoint 
-             */}
-
-
           <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
             <h3 className={globalStyles.headline_text}>Upcoming Games</h3>
 
@@ -117,6 +112,7 @@ games.forEach((game) => {
             </div>
           </div>
 
+          {/* Toast message to handle errors and provide feedback to users */}
           {
               toastOpen &&
               <Toast 

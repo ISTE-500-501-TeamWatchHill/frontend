@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import landscapeImage from '../../../assets/images/loginsidepanel.png';
 import Button from '../../../components/button/button';
+import Spacer from '../../../components/spacer/spacer';
 
 const CreateTeam = () => {
 
@@ -56,7 +57,7 @@ const CreateTeam = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                alert('Failed to create team');
             }); // TODO: display error, refresh form
     }
 
@@ -66,6 +67,7 @@ const CreateTeam = () => {
                 <Navigate to="/login" replace={true} />
             )}
             
+            <Spacer height="80px"/>
             <div className={styles.login_section}>
                 {/* Form for filling in user emails. The user currently trying to create the team will be autofilled in the first email space and unchangable */}
                 <form className={styles.form} onSubmit={onSubmit}>

@@ -125,7 +125,7 @@ const Profile = (props) => {
               <tr className={styles.row_border}>
                 <td className={styles.fields}>Team</td>
                 <td className={`${globalStyles.text} ${globalStyles.p}`}>
-                  {team && `${team}`}
+                  {team && `${team} - `} {team && <a href="/team/edit">Edit</a>}
                   {!team && `User hasn't joined a team yet!`}
                 </td>
               </tr>

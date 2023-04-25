@@ -30,6 +30,7 @@ const GameBlock = (props) => {
         <>
             <div className={styles.block}>
                 <div className={`${styles.flexBlock} ${styles.center}`}>
+                    {/* Left side which contains the game time and location information */}
                     <div>
                         {props.game.gameTime &&<p className={styles.h2}>START TIME</p>}
                         {props.game.gameTime && <p className={styles.h1}>{new Date(props.game.gameTime).toLocaleString([], { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>}
@@ -38,6 +39,7 @@ const GameBlock = (props) => {
                         <p className={styles.h1}>{props.game.locationInfo[0].name}</p>
                     </div>
 
+                    {/* Right side which contains the game home and away teams */}
                     <div className={`${styles.flex} ${styles.center}`}>
                         <div>
                             <a href={`/team/${props.game.homeTeam}`} key={`/team/${props.game.homeTeam}`} className={globalStyles.text}>{props.game.homeTeamInfo[0].description}</a>

@@ -14,9 +14,11 @@ import Toast from '../../../components/toast/toast';
 
 const ManageUsers = (props) => {  
 
+    //To keep the open status of the add, edit and delete popups
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
+    //To keep the status of the users and currently selected user
     const [users, changeUsers] = useState([{roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]}]);
     const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
     //To keep the status of when messages need to be shown
@@ -43,7 +45,8 @@ const ManageUsers = (props) => {
             await fetch(`${BASE_URL}/userPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
-                  changeUsers(result);
+                    //Attempt to retreive users and associated teams information
+                    changeUsers(result);
                 })
                 .catch(function(error) {
                     console.log('error', error);
@@ -61,6 +64,7 @@ const ManageUsers = (props) => {
         return (
           <>
             <div className={styles.icons}>
+                {/* Edit button */}
                 <FaEdit 
                     onClick={(e) => { 
                         e.preventDefault(); 
@@ -68,6 +72,7 @@ const ManageUsers = (props) => {
                     }}
                 ></FaEdit>
 
+                {/* Trash button */}
                 <FaTrash 
                     onClick={(e) => { 
                         e.preventDefault(); 
@@ -80,16 +85,21 @@ const ManageUsers = (props) => {
     };
 
     const handleEdit = (data) => {
+        //Update the user being edited
         changeEditUser(data);
+        //Open the edit popup for users
         setEditOpen(true);
     };
 
     const handleDelete = (data) => {
+        //Update the user being edited
         changeEditUser(data);
+        //Open the delete popup for users
         setDeleteOpen(true);
     };
 
     const columns = [
+        //Columns that will be in the management table
         {
           name: "Name",
           selector: (row) => `${row.firstName} ${row.lastName}`,
@@ -121,6 +131,7 @@ const ManageUsers = (props) => {
             },
             sortable: true
         },
+        //Will contain edit and delete buttons
         {
             name: "",
             cell: (row) => addEdit(row)
@@ -147,13 +158,17 @@ const ManageUsers = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                {/* Add popup */}
                 <AddPopup 
                     show={addOpen} 
                     type="user" 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setAddOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Add User");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -161,14 +176,19 @@ const ManageUsers = (props) => {
                         setAddOpen(false); 
                     }}
                 />
+
+                {/* Edit popup */}
                 <EditPopup 
                     show={editOpen} 
                     type="user" 
                     data={editUser} 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setEditOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Edit User");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -176,14 +196,19 @@ const ManageUsers = (props) => {
                         setAddOpen(false); 
                     }}
                 />
+
+                {/* Delete popup */}
                 <DeletePopup 
                     show={deleteOpen} 
                     type="user" 
                     data={editUser} 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setDeleteOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Delete User");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -192,6 +217,7 @@ const ManageUsers = (props) => {
                     }}
                 />
 
+                {/* Add user button above the management table */}
                 <div className={styles.addButton}>
                     <div></div>
                     <Button 
@@ -203,17 +229,19 @@ const ManageUsers = (props) => {
                     />
                 </div>
 
+                {/* Management table */}
                 <DataTable
                     columns={columns}
                     data={users}
                 />
             </div>
 
+            {/* Toast message to handle errors and provide feedback to users */}
             {
                 toastOpen &&
                 <Toast 
-                    title="Failed to Retreive Users"
-                    message="Please check to ensure the API is up and running." 
+                    title={toastTitle}
+                    message={toastMessage}
                     onclick={() => setToastOpen(false)}
                 />
             }

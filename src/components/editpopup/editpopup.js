@@ -28,6 +28,7 @@ export default function EditPopup(props) {
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
     const [univSelected, changeUnivSelected]= useState(props.data.universityInfo ? props.data.universityInfo[0].universityID : 0);
     const [members, setMembers] = useState([]);
+    //Check for error state
     const [hasError, changeHasError] = useState(false);
 
 
@@ -46,7 +47,8 @@ export default function EditPopup(props) {
             await fetch(`${BASE_URL}/userPub/byID`, requestOptions)
               .then(response => response.json())
               .then(function(result) { 
-                setMembers(current => [...current, result]); //set 
+                //Attempt to retreive team members
+                setMembers(current => [...current, result]); 
               })
               .catch(function(error) {
                 console.log('error', error);
@@ -70,6 +72,7 @@ export default function EditPopup(props) {
             await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
+                    //Attempt to retreive team
                     changeTeams(result);
                     
                     if (props.data.teamInfoJoined === undefined || props.data.teamInfoJoined.length === 0) {
@@ -93,6 +96,7 @@ export default function EditPopup(props) {
             await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
+                    //Attempt to retreive university
                     changeUniversities(result);
                 })
                 .catch(function(error) {
@@ -105,35 +109,43 @@ export default function EditPopup(props) {
         // eslint-disable-next-line
     }, [props.data]);
 
+    //Event set up to handle when the university select is clicked so the associated state variable may be updated
     const handleUniversityClick = (e) => {
         changeUnivSelected(e.target[e.target.selectedIndex].value);
     };
 
+    //Event set up to handle when the team select is clicked so the associated state variable may be updated
     const handleTeamClick = (e) => {
         changeTeamSelected(e.target[e.target.selectedIndex].value); 
     };
 
+    //Event set up to handle when the away team select is clicked so the associated state variable may be updated
     const handleAwayTeamClick = (e) => {
         changeAwayTeamSelected(e.target[e.target.selectedIndex].value);
     };
 
+    //Event set up to handle when the home team select is clicked so the associated state variable may be updated
     const handleHomeTeamClick = (e) => {
         changeHomeTeamSelected(e.target[e.target.selectedIndex].value); 
     };
 
+    //Event set up to handle when the role select is clicked so the associated state variable may be updated
     const handleRoleClick = (e) => {
         changeRoleSelected(e.target[e.target.selectedIndex].value);
     };
     
+    //Event set up to handle when the game winner select is clicked so the associated state variable may be updated
     const handleWinnerClick = (e) => {
         changeWinnerSelected(e.target[e.target.selectedIndex].value);
     };
 
+    //Authorized user is on the manage games page and clicked the edit game button for one of the games
     async function onSubmitGame(e) {
         e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        //Prepare the form information and turn it into JSON
         const raw = {
             "token": user.token,
             "id": props.data._id,
@@ -157,25 +169,33 @@ export default function EditPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to edit the game
         await fetch(`${BASE_URL}/gameSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage games page (closing popup) 
+                        //which will display the edited game
                     navigate("/managegames");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error editing the game on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             }); 
     }
 
+    //Authorized user is on the manage teams page and clicked the edit team button for one of the teams
     async function onSubmitTeam(e) {
         e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        //Grab the players from the form (some can be blank)
         const playerOne = e.target.player1.value;
         const playerTwo = e.target.player2.value;
         const playerThree = e.target.player3.value;
@@ -189,6 +209,7 @@ export default function EditPopup(props) {
         if (playerFour) { emails.push(playerFour) }
         if (playerFive) { emails.push(playerFive) }
 
+        //Prepare the form information and turn it into JSON
         const raw = {
             "token": user.token,
             "id": props.data._id,
@@ -207,25 +228,33 @@ export default function EditPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to edit the team
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage teams page (closing popup) 
+                        //which will display the edited team
                     navigate("/manageteams");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error editing the team on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             }); 
     }
 
+    //Authorized user is on the manage universities page and clicked the edit university button for one of the universities
     async function onSubmitUniversity(e) {
         e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        //Prepare the form information and turn it into JSON
          const raw = JSON.stringify({
             "approvalStatus": props.data.approvalStatus,
             "description": e.target.universityDescription.value,
@@ -244,25 +273,33 @@ export default function EditPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to edit the university
         await fetch(`${BASE_URL}/universitySec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage universities page (closing popup) 
+                        //which will display the edited university
                     navigate("/manageuniversities");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error editing the university on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             }); 
     }
 
+    //Authorized user is on the manage users page and clicked the edit user button for one of the users
     async function onSubmitUser(e) {
         e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        //Prepare the form information and turn it into JSON
          const raw = JSON.stringify({
             "id": props.data._id,
             "roleID": e.target.roleID.value,
@@ -282,15 +319,21 @@ export default function EditPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to edit the user
         await fetch(`${BASE_URL}/userSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage users page (closing popup) 
+                        //which will display the edited user
                     navigate("/manageusers");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error editing the user on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             }); 
@@ -317,6 +360,8 @@ export default function EditPopup(props) {
 
     return (
         <>
+            {/* The edit popup should be shown and specifically for the game form 
+                (edit button was clicked on manage games page) */}
             {
                 (props.show && props.type==="game") && 
 
@@ -324,6 +369,7 @@ export default function EditPopup(props) {
                     <h1 className={styles.title}>Update Game</h1>
 
                     <div className={styles.padding}>
+                        {/* Home team form component and select */}
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Home Team</p>
                             <input 
@@ -340,6 +386,7 @@ export default function EditPopup(props) {
                         <select size="3" className={styles.dropdown} onChange={(e) => handleHomeTeamClick(e)}>
                             <option key={0} value={nothing._id}>{nothing.description}</option>
                             {
+                                //Displays all teams
                                 // eslint-disable-next-line
                                 teams.map((team, index) => {
                                     return (
@@ -348,6 +395,8 @@ export default function EditPopup(props) {
                                 })
                             }
                         </select>
+
+                        {/* Away team form component and select */}
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Away Team</p>
                             <input 
@@ -360,10 +409,11 @@ export default function EditPopup(props) {
                                 disabled
                             />
                         </div>
-                            {/* // eslint-disable-next-line */}
+                        {/* // eslint-disable-next-line */}
                         <select size="3" className={styles.dropdown} onChange={(e) => handleAwayTeamClick(e)}>
                             <option key={0} value={nothing._id}>{nothing.description}</option>
                             {
+                                //Displays all teams
                                 // eslint-disable-next-line
                                 teams.map((team, index) => {
                                     return (
@@ -372,6 +422,8 @@ export default function EditPopup(props) {
                                 })
                             }
                         </select>
+
+                        {/* Winning team form component and select */}
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Winning Team</p>
                             <input 
@@ -390,6 +442,8 @@ export default function EditPopup(props) {
                             <option key={1} value={props.data.homeTeam} selected={((props.data.homeTeam===winnerSelected) || (props.data.homeTeam===props.data.winningTeam && winnerSelected==='Team One'))}>{props.data.homeTeamInfo[0].description}</option>
                             <option key={2} value={props.data.awayTeam} selected={((props.data.awayTeam===winnerSelected) || (props.data.awayTeam===props.data.winningTeam && winnerSelected==='Team One'))}>{props.data.awayTeamInfo[0].description}</option>
                         </select>
+
+                        {/* Location form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Location</p>
                             <input 
@@ -402,6 +456,8 @@ export default function EditPopup(props) {
                                 required 
                             />
                         </div>
+
+                        {/* Datetime form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Time</p>
                             <input 
@@ -414,14 +470,17 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Update Game' 
                             />
@@ -430,6 +489,8 @@ export default function EditPopup(props) {
                 </form>
             }
 
+            {/* The edit popup should be shown and specifically for the team form 
+                (edit button was clicked on manage teams page) */}
             {
                 (props.show && props.type==="team") && 
 
@@ -437,6 +498,7 @@ export default function EditPopup(props) {
                     <h1 className={styles.title}>Update Team</h1>
 
                     <div className={styles.padding}>
+                        {/* Team name form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Name</p>
                             <input 
@@ -450,32 +512,37 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* University form component and select */}
                         <div className={`${styles.inputItem} ${styles.center}`} >
-                        <p>University</p>
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="universityID" 
-                            name="universityID" 
-                            value={(univSelected !== 'None')? univSelected : props.data.universityInfo[0].universityID}
-                            disabled
-                        /> 
+                            <p>University</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="universityID" 
+                                name="universityID" 
+                                value={(univSelected !== 'None')? univSelected : props.data.universityInfo[0].universityID}
+                                disabled
+                            /> 
                         </div>
-                            <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
-                                <option key={0} value={'None'}>{'None'}</option>
-                                {
-                                    // eslint-disable-next-line
-                                    universities.map((university, index) => {
-                                        return (
-                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                            <div className={`${styles.inputItem} ${styles.center}`} > 
+                        <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
+                            <option key={0} value={'None'}>{'None'}</option>
+                            {
+                                //Displays all universities
+                                // eslint-disable-next-line
+                                universities.map((university, index) => {
+                                    return (
+                                        <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                    )
+                                })
+                            }
+                        </select>
+
+                        {/* Players form component */}
+                        <div className={`${styles.inputItem} ${styles.center}`} > 
                             <p>Edit Players</p>
                             <div className={styles.flex_column}>
                             {
+                                //Displays current members in the team
                                 // eslint-disable-next-line
                                 members.map((member, index) => {
                                     return (
@@ -492,14 +559,12 @@ export default function EditPopup(props) {
                                         </>
                                     )
                                 })
-
                             }
                             {renderRestOfRows()}
-                            </div>
-
-                             
+                            </div>  
                         </div>
         
+                        {/* Approval status checkbox form component */}
                         <CFormSwitch 
                             id="approvalStatus" 
                             label="Approved" 
@@ -511,14 +576,17 @@ export default function EditPopup(props) {
                             }}
                         />
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Update Team' 
                             />
@@ -527,6 +595,8 @@ export default function EditPopup(props) {
                 </form>
             }
 
+            {/* The edit popup should be shown and specifically for the university form 
+                (edit button was clicked on manage universities page) */}
             {
                 (props.show && props.type==="university") && 
 
@@ -534,6 +604,7 @@ export default function EditPopup(props) {
                     <h1 className={styles.title}>Update University</h1>
 
                     <div className={styles.padding}>
+                        {/* University name form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Name</p>
                             <input 
@@ -547,6 +618,7 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* University domain form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Domain</p>
                             <input 
@@ -560,6 +632,7 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* University description form component */}
                         <div className={`${styles.inputItemBox}`}>
                             <p>Description</p>
                             <textarea 
@@ -573,14 +646,17 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Update University' 
                             />
@@ -589,6 +665,8 @@ export default function EditPopup(props) {
                 </form>
             }
 
+            {/* The edit popup should be shown and specifically for the user form 
+                (edit button was clicked on manage users page) */}
             {
                 (props.show && props.type==="user") && 
 
@@ -596,6 +674,7 @@ export default function EditPopup(props) {
                     <h1 className={styles.title}>Update User</h1>
 
                     <div className={styles.padding}>
+                        {/* First and last name form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Name</p>
                             <input 
@@ -618,6 +697,7 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* User email form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Email</p>
                             <input 
@@ -631,6 +711,7 @@ export default function EditPopup(props) {
                             />
                         </div>
 
+                        {/* User role form component and select */}
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Role</p>
                             <input 
@@ -643,7 +724,6 @@ export default function EditPopup(props) {
                                 disabled
                             />
                         </div>
-
                         <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
                             <option key={0} value={14139} selected={props.data.roleID===14139}>Admin</option>
                             <option key={1} value={21149} selected={props.data.roleID===21149}>Content Moderator</option>
@@ -651,6 +731,7 @@ export default function EditPopup(props) {
                             <option key={3} value={19202} selected={props.data.roleID===19202}>Registered User</option>
                         </select>
 
+                        {/* User team form component and select */}
                         <div className={`${styles.inputItem2} ${styles.center}`}>
                             <p>Team</p>
                             <input 
@@ -663,10 +744,10 @@ export default function EditPopup(props) {
                                 disabled
                             />
                         </div>
-
                         <select size="3" className={styles.dropdown} onChange={(e) => handleTeamClick(e)}>
                             <option key={0} value={'None'}>{nothing.description}</option>
                             {
+                                //Displays all teams
                                 // eslint-disable-next-line
                                 teams.map((team, index) => {
                                     return (
@@ -676,14 +757,17 @@ export default function EditPopup(props) {
                             }
                         </select>
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Update User' 
                             />

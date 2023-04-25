@@ -13,6 +13,7 @@ const University = (props) => {
 
   let { id } = useParams();
 
+  //Defaults for university and associated teams
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
   const [teams, setTeams] = useState([{ _id: 1, description: "Team One", universityID: 1, universityName: "RIT", players: [] }]);
   const [games, changeGames] = useState([]); 
@@ -29,6 +30,7 @@ const University = (props) => {
    let myHeaders = new Headers();
    myHeaders.append("Content-Type", "application/json");
 
+   //Attempt to get university
     useEffect(()=> {
       const getUniversity = async () => {
           const raw = JSON.stringify({
@@ -44,6 +46,7 @@ const University = (props) => {
           await fetch(`${BASE_URL}/universityPub/byUniversityID`, requestOptions)
               .then(response => response.json())
               .then(function(result) {
+                //Attempt to get the university
                 changeUniversity(result); 
               })
               .catch(function(error) {
@@ -139,6 +142,7 @@ const University = (props) => {
 
     return (
           <>
+              {/* Header */}
               <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
                   <h1 className={globalStyles.h1_title}>{university.name}</h1>
               </div>
@@ -153,14 +157,14 @@ const University = (props) => {
 
               <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>TEAMS</h3>
               <div className={`${globalStyles.margin8_bottom}`}>
-
+                
+                {/* Display all teams in a given university */}
                 <div className={`${globalStyles.body_margin} ${styles.grid}`}>
                     {/* Teams */}
                     {
                         // eslint-disable-next-line
                         teams.map((team, index) => {
                           return (
-                              // TODO: change key to use unique identifier
                               <TeamBlock key={index} team={team} />
                           )
                       })

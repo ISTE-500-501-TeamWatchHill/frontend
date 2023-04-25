@@ -14,14 +14,14 @@ const CreateTeam = () => {
     const navigate = useNavigate();
 
     async function onSubmit(e) {
-        // e.preventDefault();
-
+        //Retreive the user creating the team and any other emails that are filled in
         const playerOne = user.email;
         const playerTwo = e.target.playerTwo.value;
         const playerThree = e.target.playerThree.value;
         const playerFour = e.target.playerFour.value;
         const playerFive = e.target.playerFive.value;
 
+        //Consolidating emails into one array to send
         let formValues = [playerOne];
 
         if (playerTwo) { formValues.push(playerTwo) }
@@ -46,6 +46,7 @@ const CreateTeam = () => {
             redirect: 'follow'
         };
 
+        //Attempt to create team
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
@@ -58,13 +59,6 @@ const CreateTeam = () => {
                 console.log('error', error);
                 alert('Failed to create team');
             }); // TODO: display error, refresh form
-
-        // ask to get backend changed to accept emails instead of ids
-        // strip out empty inputs
-        // create object to POST
-        // make POST request
-            // show error message if POST request fails
-            // or redirect to the page created for the team
     }
 
     return (
@@ -75,6 +69,7 @@ const CreateTeam = () => {
             
             <Spacer height="80px"/>
             <div className={styles.login_section}>
+                {/* Form for filling in user emails. The user currently trying to create the team will be autofilled in the first email space and unchangable */}
                 <form className={styles.form} onSubmit={onSubmit}>
                     <h1 className={styles.title}>Create a new team</h1>
                     <input className={styles.inputText} type="text" id="teamName" name="teamName" placeholder='Team Name' required />

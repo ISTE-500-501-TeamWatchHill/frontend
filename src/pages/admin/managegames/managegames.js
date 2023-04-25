@@ -13,9 +13,11 @@ import Toast from '../../../components/toast/toast';
 
 const ManageGames = (props) => {  
 
+    //To keep the open status of the add, edit and delete popups
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
+    //To keep the status of the games and currently selected game
     const [games, changeGames] = useState([{_id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}]}]);
     const [editGame, changeEditGame] = useState({_id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}]});
     //To keep the status of when messages need to be shown
@@ -42,7 +44,8 @@ const ManageGames = (props) => {
             await fetch(`${BASE_URL}/gamePub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
-                  changeGames(result);
+                    //Attempt to retreive games and associated teams information
+                    changeGames(result);
                 })
                 .catch(function(error) {
                     console.log('error', error);
@@ -60,6 +63,7 @@ const ManageGames = (props) => {
         return (
           <>
             <div className={styles.icons}>
+                {/* Edit button */}
                 <FaEdit 
                     onClick={(e) => { 
                         e.preventDefault(); 
@@ -67,6 +71,7 @@ const ManageGames = (props) => {
                     }}
                 ></FaEdit>
 
+                {/* Trash button */}
                 <FaTrash 
                     onClick={(e) => { 
                         e.preventDefault(); 
@@ -79,16 +84,21 @@ const ManageGames = (props) => {
     };
 
     const handleEdit = (data) => {
+        //Update the game being edited
         changeEditGame(data);
+        //Open the edit popup for games
         setEditOpen(true);
     };
 
     const handleDelete = (data) => {
+        //Update the game being edited
         changeEditGame(data);
+        //Open the delete popup for games
         setDeleteOpen(true);
     };
 
     const columns = [
+        //Columns that will be in the management table
         {
           name: "Home Team",
           selector: (row) => row.homeTeamInfo[0].description,
@@ -114,6 +124,7 @@ const ManageGames = (props) => {
             selector: (row) => row.universityID,
             sortable: true
         },
+        //Will contain edit and delete buttons
         {
             name: "",
             cell: (row) => addEdit(row)
@@ -141,13 +152,17 @@ const ManageGames = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                {/* Add popup */}
                 <AddPopup 
                     show={addOpen} 
                     type="game" 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setAddOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Add Game");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -155,13 +170,18 @@ const ManageGames = (props) => {
                         setAddOpen(false); 
                     }} 
                 />
+
+                {/* Edit popup */}
                 <EditPopup 
                     show={editOpen} 
                     type="game" data={editGame} 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setEditOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Edit Game");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -169,14 +189,19 @@ const ManageGames = (props) => {
                         setEditOpen(false); 
                     }} 
                 />
+
+                {/* Delete popup */}
                 <DeletePopup 
                     show={deleteOpen} 
                     type="game" 
                     data={editGame} 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setDeleteOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Delete Game");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -185,6 +210,7 @@ const ManageGames = (props) => {
                     }} 
                 />
 
+                {/* Add game button above the management table */}
                 <div className={styles.addButton}>
                     <div></div>
                     <Button 
@@ -196,12 +222,14 @@ const ManageGames = (props) => {
                     />
                 </div>
 
+                {/* Management table */}
                 <DataTable
                     columns={columns}
                     data={games}
                 />
             </div>
 
+            {/* Toast message to handle errors and provide feedback to users */}
             {
                 toastOpen &&
                 <Toast 

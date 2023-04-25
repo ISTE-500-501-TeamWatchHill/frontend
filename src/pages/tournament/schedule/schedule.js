@@ -18,6 +18,7 @@ const Schedule = () => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
+  //Attempt to get all games with the associated team information
   useEffect(()=> {
       async function getGames() {
           const requestOptions = {
@@ -29,6 +30,7 @@ const Schedule = () => {
           await fetch(`${BASE_URL}/gamePub/allExpanded`, requestOptions)
               .then(response => response.json())
               .then(function(result) {
+                //Attempt to get all games and their associated team information
                 changeGames(result);
               })
               .catch(function(error) {
@@ -77,12 +79,6 @@ games.forEach((game) => {
               <h1 className={globalStyles.h1_title}>Schedule</h1>
           </div>
 
-          {/* TODO FOR ALEXIS
-            filter games by date/team/university location
-            incorporate endpoint 
-             */}
-
-
           <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
             <h3 className={globalStyles.headline_text}>Upcoming Games</h3>
 
@@ -92,16 +88,17 @@ games.forEach((game) => {
             <div className={`${styles.grid_list}`}>
                 {/* Teams */}
                 {
+                  //Get all games
                   gamesByDate.map( (gamesForDateX) => {
                     return (
                       <>
                         <h3 className={`${globalStyles.text} ${globalStyles.sub_header_spacer}`}>{gameDates[gamesByDate.indexOf(gamesForDateX)]}</h3>
                       
                         {
+                          //Get all games for a certain date
                           // eslint-disable-next-line
                           gamesForDateX.map((game, index) => {
                             return (
-                                // TODO: change key to use unique identifier
                                 <GameBlock key={index} game={game} />
                             )
                           })
@@ -115,6 +112,7 @@ games.forEach((game) => {
             </div>
           </div>
 
+          {/* Toast message to handle errors and provide feedback to users */}
           {
               toastOpen &&
               <Toast 

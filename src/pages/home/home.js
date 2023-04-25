@@ -19,10 +19,14 @@ const Home = () => {
     return (
         <>
             <div className={globalStyles.background}>
+                {/* Header */}
                 <div className={styles.home_title_section}>
+                    {/* Title */}
                     <h1 className={`${styles.home_title} ${styles.h1}`}>A New World</h1>
                     <div className={`${globalStyles.text} ${globalStyles.white}`}>{t("homeSubTitle.label")}</div>
+                    {/* Timer */}
                     <CountdownTimer />
+                    {/* Register and learn more buttons */}
                     <div className={globalStyles.button_row}>
                         <Button name={t("learnMoreButton.label")} transparentBackground={true} link="/tournament"/>
                         <Spacer width="20px"/>
@@ -55,6 +59,7 @@ const Home = () => {
                     <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
                 </div>
 
+                {/* Universities */}
                 <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
                     <div className={styles.universities}>
                         <div className={styles.team_playing}>

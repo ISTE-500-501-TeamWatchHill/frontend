@@ -15,6 +15,7 @@ const Profile = (props) => {
     // eslint-disable-next-line
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    //Default user
     const [person, setPerson] = useState({
       "_id": "640f5aa209be69cb0b64e42d",
       "teamID": "1423518",
@@ -26,8 +27,10 @@ const Profile = (props) => {
       "universityName": "No university found",
       "email": "No email found"
     });
+    //Default team
     const [team, setTeam] = useState();
 
+    //Retreive user using the token
     useEffect(()=> {
 
       if (!user) {
@@ -101,7 +104,7 @@ const Profile = (props) => {
             <h3 className={`${globalStyles.headline_text}`}>{`${person.firstName} ${person.lastName}`}</h3>
             <br/><br/>
 
-            {/* get univ name slay  */}
+            {/* Table containing user information  */}
             <table className={styles.profile_table}>
               <tbody>
               <tr className={styles.row_border}>

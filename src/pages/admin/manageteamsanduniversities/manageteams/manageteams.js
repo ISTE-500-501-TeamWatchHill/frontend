@@ -14,9 +14,11 @@ import Toast from '../../../../components/toast/toast';
 
 const ManageTeams = (props) => {  
 
+    //To keep the open status of the add, edit and delete popups
     const [addOpen, setAddOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [deleteOpen, setDeleteOpen] = useState(false);
+    //To keep the status of the teams and currently selected team
     const [teams, changeTeams] = useState([{ _id: 1, approvalStatus: true, description: "Team One", logo: "", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 'None'}] }]);
     const [editTeam, changeEditTeam] = useState({ _id: 1, description: "Team One", universityID: 'None', universityName: "RIT", players: [], universityInfo: [{approvalStatus: true, description: "", domain: "", logo: "", name: "", universityID: 'None'}] });
     //To keep the status of when messages need to be shown
@@ -43,6 +45,7 @@ const ManageTeams = (props) => {
             await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
+                    //Attempt to retreive teams and their university information
                   changeTeams(result);
                 })
                 .catch(function(error) {
@@ -61,6 +64,7 @@ const ManageTeams = (props) => {
         return (
           <>
             <div className={styles.icons}>
+                {/* Edit button */}
                 <FaEdit 
                     onClick={(e) => { 
                         e.preventDefault(); 
@@ -68,6 +72,7 @@ const ManageTeams = (props) => {
                     }}
                 ></FaEdit>
 
+                {/* Trash button */}
                 <FaTrash 
                     onClick={(e) => { 
                         e.preventDefault(); 
@@ -80,17 +85,22 @@ const ManageTeams = (props) => {
     };
 
     const handleEdit = (data) => {
+        //Update the team being edited
         changeEditTeam(data);
+        //Open the edit popup for teams
         setEditOpen(true);
     };
 
     const handleDelete = (data) => {
+        //Update the team being edited
         changeEditTeam(data);
+        //Open the delete popup for teams
         setDeleteOpen(true);
     };
 
     const approvalButton = (editTeamData) => {
         return (
+            //Approval button
           <>
             <button disabled className={editTeamData.approvalStatus ? `${styles.greenButton}` : `${styles.redButton}`}>
                 {editTeamData.approvalStatus ? "Approved" : "Pending"}
@@ -100,6 +110,7 @@ const ManageTeams = (props) => {
     };
 
     const columns = [
+        //Columns that will be in the management table
         {
           name: "ID",
           selector: (row) => row._id,
@@ -124,6 +135,7 @@ const ManageTeams = (props) => {
             selector: (row) => approvalButton(row),
             sortable: true
         },
+        //Will contain edit and delete buttons
         {
             name: "",
             cell: (row) => addEdit(row)
@@ -151,13 +163,17 @@ const ManageTeams = (props) => {
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
+                {/* Add popup */}
                 <AddPopup 
                     show={addOpen} 
                     type="team" 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setAddOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Add Team");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -171,8 +187,11 @@ const ManageTeams = (props) => {
                     data={editTeam} 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setEditOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Edit Team");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -186,8 +205,11 @@ const ManageTeams = (props) => {
                     data={editTeam} 
                     onClick={(e) => { 
                         e.preventDefault(); 
+                        //Close the popup
                         setDeleteOpen(false); 
                     }} 
+                    //Set toast title and message
+                    //Close the popup and open the toast message
                     changeFailed={(e) => { 
                         setToastTitle("Failed to Delete Team");
                         setToastMessage("Please check to ensure the API is up and running and the information entered in the form is valid.");
@@ -196,6 +218,7 @@ const ManageTeams = (props) => {
                     }} 
                 />
 
+                {/* Add team button above the management table */}
                 <div className={styles.addButton}>
                     <div></div>
                     <Button 
@@ -207,12 +230,14 @@ const ManageTeams = (props) => {
                     />
                 </div>
 
+                {/* Management table */}
                 <DataTable
                     columns={columns}
                     data={teams}
                 />
             </div>
 
+            {/* Toast message to handle errors and provide feedback to users */}
             {
                 toastOpen &&
                 <Toast 

@@ -26,11 +26,10 @@ const Login = () => {
     async function onSubmit(e) { 
         e.preventDefault();
 
-        //TODO: move out login to methods.js 
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        // TODO: Sanitize data and make consts for future use
+        //Retreive form data
         const raw = JSON.stringify({
             "email": e.target.email.value,
             "password": e.target.password.value,
@@ -43,6 +42,7 @@ const Login = () => {
             redirect: 'follow'
         };
 
+        //Call login backend endpoint
         await fetch(`${BASE_URL}/login`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
@@ -51,6 +51,7 @@ const Login = () => {
                     sameSite: 'strict',
                     expires: new Date(Date.now()+86400000) // expires in one dayish
                 };
+                //Set cookie and go home
                 cookies.set('user', result.user, options);
                 navigate('/');
                 navigate(0);
@@ -69,7 +70,9 @@ const Login = () => {
                 <Navigate to="/" replace={true} />
             )}
             <div className={styles.login_section}>
+                {/* Login form */}
                 <form className={styles.form} onSubmit={onSubmit}>
+                    {/* Back to home arrow */}
                     <div className={styles.arrow}>
                         <BackArrow text="Back to Homepage" route="/"/>
                     </div>

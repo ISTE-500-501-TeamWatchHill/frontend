@@ -24,6 +24,7 @@ const TeamsAndUniversities = (props) => {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+    //Retreive all teams with university information associated
     useEffect(()=> {
         async function getTeams() {
             const requestOptions = {
@@ -50,6 +51,7 @@ const TeamsAndUniversities = (props) => {
     }, [])
 
 
+    //If the sort is being used, attempt to sort based on team or university
     if (sortOption !== null) {
         teams.sort(function (a, b) {            
             if ((sortOption.value !== "none") ? (sortOption.value === "team") ? a.description < b.description : a.universityInfo[0].name < b.universityInfo[0].name : a._id < b._id) {
@@ -64,6 +66,7 @@ const TeamsAndUniversities = (props) => {
 
     return (
         <>
+            {/* Header */}
             <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
                 <h1 className={globalStyles.h1_title}>Teams & Universities</h1>
             </div>
@@ -101,7 +104,7 @@ const TeamsAndUniversities = (props) => {
                 </div> 
 
                 <div className={styles.grid}>
-                    {/* Results */}
+                    {/* Grid of all the teams */}
                     {
                         // eslint-disable-next-line
                         teams.map((team) => {

@@ -10,10 +10,12 @@ const Tournament = () => {
     
 return (
       <>
+        {/* Header */}
         <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
             <h1 className={globalStyles.h1_title}>Tournament</h1>
         </div>
 
+        {/* Rules */}
         <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
           <h3 className={`${globalStyles.headline_text}`}>Rules</h3>
 
@@ -40,6 +42,7 @@ return (
           <p className={`${globalStyles.text} ${globalStyles.sub_text_spacer}`}>Aardvark Games reserves the right to alter these rules, as well as the right to interpret, modify, clarify, or otherwise issue official changes to these rules without prior notice.</p>
         </div>
 
+        {/* Sign up or register */}
         <div className={styles.sign_up_section}>
           <h3 className={`${globalStyles.headline_text} ${globalStyles.white} ${globalStyles.sub_header_spacer}`}>Take Home the Prize!</h3>
           <div className={globalStyles.button_row}>

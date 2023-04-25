@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import landscapeImage from '../../../assets/images/loginsidepanel.png';
 import Button from '../../../components/button/button';
+import Spacer from '../../../components/spacer/spacer';
 
 const EditTeam = () => {
 
@@ -152,6 +153,8 @@ const EditTeam = () => {
                 <Navigate to="/login" replace={true} />
             )}
             
+            
+            <Spacer height="80px"/>
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmitTeam}>
                     <h1 className={styles.title}>Edit {team.description}</h1>
@@ -179,8 +182,8 @@ const EditTeam = () => {
                                 /> 
                             )
                         })
-                        // fix issue where page is cutting off H1 for some reason
                         // fix defaultValue of team.description issue
+                        // error messages on bad input
                     }
                     { renderRestOfRows() }
                     <Button type='submit' name='Edit Team' width='100%' />

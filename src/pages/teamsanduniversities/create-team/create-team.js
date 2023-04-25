@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import landscapeImage from '../../../assets/images/loginsidepanel.png';
 import Button from '../../../components/button/button';
+import Spacer from '../../../components/spacer/spacer';
 
 const CreateTeam = () => {
 
@@ -72,6 +73,7 @@ const CreateTeam = () => {
                 <Navigate to="/login" replace={true} />
             )}
             
+            <Spacer height="80px"/>
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmit}>
                     <h1 className={styles.title}>Create a new team</h1>

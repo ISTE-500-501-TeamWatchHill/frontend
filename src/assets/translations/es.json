@@ -1,43 +1,77 @@
 {
-    "homeSubTitle.label": "Presentamos el juego de mesa más nuevo de Aardvark, A New World, con una competencia universitaria mundial!",
+    "homeSubTitle.home": "¡Presentamos el juego de mesa más nuevo de Aardvark, A New World, con una competencia universitaria mundial!",
   
-    "learnMoreButton.label": "Aprende más",
+    "learnMoreButton.home": "Aprende más",
   
-    "registerButton.label": "Regístrese para el Torneo",
+    "registerButton.home": "Regístrese para el Torneo",
 
-    "tournamentNav.label": "TORNEO",
+    "tournamentNav.home": "TORNEO",
 
-    "tournamentAboutNav.label": "ACERCA DE",
+    "tournamentAboutNav.home": "ACERCA DE",
 
-    "tournamentScheduleNav.label": "CRONOGRAMA",
+    "tournamentScheduleNav.home": "CRONOGRAMA",
 
-    "teamsanduniversitiesNav.label": "EQUIPOS & UNIVERSIDADES",
+    "teamsanduniversitiesNav.home": "EQUIPOS Y UNIVERSIDADES",
 
-    "aardvarkGamesNav.label": "AARDVARK GAMES",
+    "findATeamNav.home": "ENCUENTRA UN EQUIPO",
 
-    "aardvarkGamesAboutNav.label": "ACERCA DE",
+    "createATeamNav.home": "CREAR UN EQUIPO",
 
-    "aardvarkGamesBoardGameNav.label": "JUEGO DE MESA",
+    "editATeamNav.home": "EDITA TU EQUIPO",
 
-    "loginButton.label": "Acceso",
+    "aardvarkGamesNav.home": "AARDVARK GAMES",
 
-    "homeTournamentExplanationTitle.label": "Puede su equipo llevar a casa el premio?",
+    "aardvarkGamesAboutNav.home": "ACERCA DE",
 
-    "homeTournamentPrizeTitle.label": "Premios",
+    "aardvarkGamesBoardGameNav.home": "JUEGO DE MESA",
 
-    "homeTournamentExplanationp1.label": "Reúna un equipo e inscríbase para jugar, primero por el honor de ser el equipo campeón de su universidad y luego por la oportunidad de representar a su escuela en rondas continuas de competencia global.",
+    "loginButton.home": "Acceso",
 
-    "homeTournamentExplanationp2.label": "A New World requiere un equipo de 2 a 5 jugadores que trabajarán juntos para anotar tantos puntos como sea posible después de caer en un mundo nuevo y despoblado. Para el torneo, los equipos jugarán en una competencia cara a cara con un oponente que busca sobrevivir en su propio Nuevo Mundo, pero compitiendo con su equipo por los mismos recursos.",
+    "registerButton.home": "Registro",
 
-    "homeTournamentExplanationp3.label": "Únase a nosotros para divertirse jugando! Únase a nosotros para algunos premios increíbles del torneo!",
+    "homeTournamentExplanationTitle.home": "¿Puede su equipo llevarse el premio a casa?",
 
-    "homePrizeExplanation.label": "Todos los jugadores que completen al menos una ronda de torneos recibirán una copia gratuita de A New World. Los equipos de la ronda final de cada universidad se irán a casa con un increíble botín de Aardvark Games.",
+    "homeTournamentPrizeTitle.home": "Premios",
 
-    "homeFirstPlace.label": "El equipo del Primer Lugar de cada universidad recibirá un premio en efectivo de $1,000 y cada miembro individual del equipo recibirá un certificado de regalo de $100 para la tienda en línea de Aardvark Games.",
+    "homeTournamentExplanationp1.home": "Reúna un equipo e inscríbase para jugar, primero por el honor de ser el equipo campeón de su universidad y luego por la oportunidad de representar a su escuela en rondas continuas de competencia global.",
 
-    "whoPlaying.label": "Quien esta jugando?",
+    "homeTournamentExplanationp2.home": "A New World requiere un equipo de dos a cinco jugadores que trabajarán juntos para anotar tantos puntos como sea posible después de caer en un mundo nuevo y despoblado. Para el torneo, los equipos jugarán en una competencia cara a cara con un oponente que busca sobrevivir en su propio Nuevo Mundo, pero que compite con su equipo por los mismos recursos.",
 
-    "footerSubtitle.label": "La nueva aventura de juegos de mesa de Aardvark Game!",
+    "homeTournamentExplanationp3.home": "¡Únete a nosotros para divertirte mucho jugando! ¡Únase a nosotros para obtener increíbles premios de torneos!",
 
-    "navigation.label": "NAVEGACIÓN"
+    "homePrizeExplanation.home": "Todos los jugadores que completen al menos una ronda de torneos recibirán una copia gratuita de A New World. Los equipos de la ronda final de cada universidad se irán a casa con un increíble botín de Aardvark Games.",
+
+    "homeFirstPlace.home": "El equipo del Primer Lugar de cada universidad recibirá un premio en efectivo de $1,000 y cada miembro individual del equipo recibirá un certificado de regalo de $100 para la tienda en línea de Aardvark Games.",
+
+    "whoPlaying.home": "¿Quién está jugando?",
+
+    "footerSubtitle.home": "¡La nueva aventura de juegos de mesa de Aardvark Games!",
+
+    "navigation.home": "NAVEGACIÓN",
+
+    "tournamentAboutTitle.tournament": "Tournament",
+
+    "tournamentAboutRulesTitle.tournament": "Rules",
+
+    "aboutRuleOne.tournament": "Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.",
+
+    "aboutRuleTwo.tournament": "Each Team will have at least two, but no more than five, members.",
+
+    "aboutRuleThree.tournament": "The deadline for registration is midnight EDT on Monday, May 1, 2023, unless an extension for all is publicized on the tournament website.",
+
+    "aboutRuleFour.tournament": "Registration must be completed on the tournament website.",
+
+    "aboutRuleFive.tournament": "Each Team member must be currently enrolled at the college/university that the Team wishes to represent. A Team member may not play for more than one college in the 2023 tournament. Eligibility will be verified in advance with the college and team  members will be required to present valid student IDs on the day of the on-site tournament. Any questions regarding IDs on the day of the tournament will be decided by the on-site Moderator representing the college.",
+
+    "aboutRuleSix.tournament": "Any Team that fails to appear in person and on time on the day of the on-campus tournament round forfeits that game.",
+
+    "aboutRuleSeven.tournament": "The dates of tournament game play and all Team match ups will be selected by Aardvark Games. If an odd number of teams register for any site, the first team to complete registration will be awarded a bye in the first round of competition.",
+
+    "aboutRuleEight.tournament": "Game play and scoring will take place according to the printed rules shipped with the game.",
+
+    "aboutRuleNine.tournament": "Tournament play will be run consistently at each location to ensure that all players are treated equally. Both players and moderators are expected to cooperate to run an orderly competition. Players and moderators must treat each other in a fair and respectful manner, following both the rules and the spirit in which those rules were created.",
+
+    "aboutRuleTen.tournament": "Aardvark Games reserves the right to alter these rules, as well as the right to interpret, modify, clarify, or otherwise issue official changes to these rules without prior notice.",
+
+    "aboutPrize.tournament": "Take Home the Prize!"
   }

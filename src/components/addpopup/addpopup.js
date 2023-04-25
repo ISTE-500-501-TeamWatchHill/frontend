@@ -16,6 +16,7 @@ export default function AddPopup(props) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+    //No team select option
     const nothing = {_id: 1, approvalStatus: true, description: "None", logo: "", players: [], universityID: 1};
 
     //Setup for hook for teams
@@ -24,6 +25,7 @@ export default function AddPopup(props) {
     const [homeTeamSelected, changeHomeTeamSelected] = useState(nothing);
     const [univSelected, changeUnivSelected]= useState("None");
     const [universities, changeUniversities] = useState([{_id: 'None', universityID: 2760, moderatorIDs:[], name:'Rochester Institute of Technology', logo:'', description:'Rochester Institute of Technology', approvalStatus: true, domain:'rit.edu'}]);
+    //Check for error state
     const [hasError, changeHasError] = useState(false);
 
     useEffect(()=> {
@@ -37,6 +39,7 @@ export default function AddPopup(props) {
             await fetch(`${BASE_URL}/teamPub/allExpanded`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
+                    //Attempt to retreive teams and their university information
                     changeTeams(result);
                 })
                 .catch(function(error) {
@@ -54,6 +57,7 @@ export default function AddPopup(props) {
             await fetch(`${BASE_URL}/universityPub/all`, requestOptions)
                 .then(response => response.json())
                 .then(function(result) {
+                    //Attempt to retreive universities
                     changeUniversities(result);
                 })
                 .catch(function(error) {
@@ -65,21 +69,26 @@ export default function AddPopup(props) {
         // eslint-disable-next-line
     }, []);
 
+    //Event set up to handle when the away team select is clicked so the associated state variable may be updated
     const handleAwayTeamClick = (e) => {
         changeAwayTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
     };
 
+    //Event set up to handle when the university select is clicked so the associated state variable may be updated
     const handleUniversityClick = (e) => {
         changeUnivSelected(e.target[e.target.selectedIndex].value);
     };
 
+    //Event set up to handle when home team select is clicked so the associated state variable may be updated
     const handleHomeTeamClick = (e) => {
         changeHomeTeamSelected(JSON.parse(e.target[e.target.selectedIndex].value));
     };
     
 
+    //Authorized user is on the manage games page and clicked the add game button
     async function onSubmitGame(e) {
         e.preventDefault();
+        //Prepare the form information and turn it into JSON
          const raw = JSON.stringify({
             "universityID": parseInt(e.target.universityID.value),
             "homeTeam": homeTeamSelected._id,
@@ -94,22 +103,31 @@ export default function AddPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to add the new game
         await fetch(`${BASE_URL}/gameSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage games page (closing popup) 
+                        //which will display the added game
                     navigate("/managegames");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error adding the game on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             })
     }
 
+    //Authorized user is on the manage teams page and clicked the and clicked the add team button
     async function onSubmitTeam(e) {
         e.preventDefault();
+
+        //Grab the players from the form (some can be blank)
         const players = [
             e.target.player1.value,
             e.target.player2.value
@@ -124,7 +142,7 @@ export default function AddPopup(props) {
             players[4]=e.target.player5.value;
         }
 
-
+        //Prepare the form information and turn it into JSON
         const b = {
             "universityID": parseInt(e.target.universityID.value),
             "name": e.target.teamName.value,
@@ -141,25 +159,33 @@ export default function AddPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to add the new team
         await fetch(`${BASE_URL}/teamSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage teams page (closing popup) 
+                        //which will display the added team
                     navigate("/manageteams");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error adding the team on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             })
     }
 
+    //Authorized user is on the manage universities page and clicked the add university button
     async function onSubmitUniversity(e) {
         e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        //Prepare the form information and turn it into JSON
          const raw = JSON.stringify({
             "description": e.target.universityDescription.value,
             "domain": e.target.universityDomain.value,
@@ -177,25 +203,33 @@ export default function AddPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to add the new university
         await fetch(`${BASE_URL}/universitySec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage universities page (closing popup) 
+                        //which will display the added university
                     navigate("/manageuniversities");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error adding the university on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log('error', error);
                 changeHasError(true);
             });
     }
 
+    //Authorized user is on the manage users page and clicked the add user button
     async function onSubmitUser(e) {
         e.preventDefault();
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+        //Prepare the form information and turn it into JSON
         const raw = JSON.stringify({
             "firstName": e.target.firstName.value,
             "lastName": e.target.lastName.value,
@@ -213,33 +247,45 @@ export default function AddPopup(props) {
             redirect: 'follow'
         };
 
+        //Attempt to add the new user
         await fetch(`${BASE_URL}/userSec`, requestOptions)
             .then(response => response.json())
             .then(function(result) {
                 if (result) {
+                    //If it is successful, navigate back to the manage users page (closing popup) 
+                        //which will display the added user
                     navigate("/manageusers");
                     navigate(0);
                 }
             })
             .catch(function(error) {
+                //But if there was an error adding the user on the backend, 
+                    //log it in the console and 
+                    //change the error state (will close popup and display unique error message)
                 console.log(error);
                 changeHasError(true);
             });
     }
 
+    //Check for error state
     const [roleSelected, changeRoleSelected] = useState(19202);
+
+    //Event set up to handle when the role select is clicked so the associated state variable may be updated
     const handleRoleClick = (e) => {
         changeRoleSelected(e.target[e.target.selectedIndex].value);
     };
 
     return (
         <>
+            {/* The add popup should be shown and specifically for the game form 
+                (add button was clicked on manage games page) */}
             {
                 (props.show && props.type==="game") && 
 
                 <form className={styles.form} onSubmit={onSubmitGame}>
                     <h1 className={styles.title}>Add Game</h1>
 
+                    {/* Home team form component and select */}
                     <div className={styles.padding}>
                         <div className={`${styles.inputItem2} ${styles.center}`} >
                             <p>Home Team</p>
@@ -256,6 +302,7 @@ export default function AddPopup(props) {
                         <select size="3" className={styles.dropdown} onChange={(e) => handleHomeTeamClick(e)}>
                             <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
                             {
+                                //Displays all teams
                                 // eslint-disable-next-line
                                 teams.map((team) => {
                                     return (
@@ -264,6 +311,8 @@ export default function AddPopup(props) {
                                 })
                             }
                         </select>
+
+                        {/* Away team form component and select */}
                         <div className={`${styles.inputItem2} ${styles.center}`} >
                             <p>Away Team</p>
                             <input 
@@ -279,6 +328,7 @@ export default function AddPopup(props) {
                         <select size="3" className={styles.dropdown} onChange={(e) => handleAwayTeamClick(e)}>
                             <option key={0} value={JSON.stringify(nothing)}>{nothing.description}</option>
                             {
+                                //Displays all teams
                                 // eslint-disable-next-line
                                 teams.map((team) => {
                                     return (
@@ -287,6 +337,8 @@ export default function AddPopup(props) {
                                 })
                             }
                         </select>
+
+                        {/* Location form component and select */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Location</p>
                             <input 
@@ -301,6 +353,7 @@ export default function AddPopup(props) {
                         </div>
                         <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
                             {
+                                //Displays all universities that serve as locations for game play
                                 // eslint-disable-next-line
                                 universities.map((university, index) => {
                                     return (
@@ -309,14 +362,18 @@ export default function AddPopup(props) {
                                 })
                             }
                         </select>
+
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Add Game' 
                             />
@@ -325,39 +382,45 @@ export default function AddPopup(props) {
                 </form>
             }
 
+            {/* The add popup should be shown and specifically for the team form 
+                (add button was clicked on manage teams page) */}
             {
                 (props.show && props.type==="team") && 
 
                 <form className={styles.form} onSubmit={onSubmitTeam}>
                     <h1 className={styles.title}>Add Team</h1>
 
+                    {/* Team name form component */}
                     <div className={styles.padding}>
-                    <div className={`${styles.inputItem} ${styles.center}`}>
-                        <p>Team Name</p>
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="teamName" 
-                            name="teamName" 
-                            placeholder='Team Name'
-                            required 
-                        />
-                    </div>
-                    <div className={`${styles.inputItem} ${styles.center}`} >
-                        <p>University</p>
-                        <input 
-                            className={styles.inputText} 
-                            type="text" 
-                            id="universityID" 
-                            name="universityID" 
-                            placeholder='Select University' 
-                            value={univSelected} 
-                            disabled
-                        /> 
-                    </div>
+                        <div className={`${styles.inputItem} ${styles.center}`}>
+                            <p>Team Name</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="teamName" 
+                                name="teamName" 
+                                placeholder='Team Name'
+                                required 
+                            />
+                        </div>
+
+                        {/* University form component and select */}
+                        <div className={`${styles.inputItem} ${styles.center}`} >
+                            <p>University</p>
+                            <input 
+                                className={styles.inputText} 
+                                type="text" 
+                                id="universityID" 
+                                name="universityID" 
+                                placeholder='Select University' 
+                                value={univSelected} 
+                                disabled
+                            /> 
+                        </div>
                         <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
                             <option key={0} value={'None'} selected>{'None'}</option>
                             {
+                                //Displays all universities
                                 // eslint-disable-next-line
                                 universities.map((university, index) => {
                                     return (
@@ -366,6 +429,8 @@ export default function AddPopup(props) {
                                 })
                             }
                         </select>
+
+                        {/* Players form component */}
                         <div className={`${styles.inputItem} ${styles.center}`} >
                             <p>Add Players</p>
                             <div className={styles.flex_column}>
@@ -408,7 +473,8 @@ export default function AddPopup(props) {
                                 /> 
                             </div>
                         </div>
-        
+            
+                        {/* Approval status checkbox form component */}
                         <CFormSwitch 
                             id="approvalStatus" 
                             label="Approved" 
@@ -419,14 +485,17 @@ export default function AddPopup(props) {
                             }}
                         />
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Add Team' 
                             />
@@ -435,12 +504,15 @@ export default function AddPopup(props) {
                 </form>
             }
 
+            {/* The add popup should be shown and specifically for the university form 
+                (add button was clicked on manage universities page) */}
             {
                 (props.show && props.type==="university") && 
 
                 <form className={styles.form} onSubmit={onSubmitUniversity}>
                     <h1 className={styles.title}>Add University</h1>
 
+                    {/* University ID form component */}
                     <div className={styles.padding}>
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>ID</p>
@@ -454,6 +526,7 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* University name form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Name</p>
                             <input 
@@ -466,6 +539,7 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* University domain form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Domain</p>
                             <input 
@@ -478,6 +552,7 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* University description form component */}
                         <div className={`${styles.inputItemBox}`}>
                             <p>Description</p>
                             <textarea 
@@ -489,14 +564,17 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Add University' 
                             />
@@ -505,6 +583,8 @@ export default function AddPopup(props) {
                 </form>
             }
 
+            {/* The add popup should be shown and specifically for the user form 
+                (add button was clicked on manage users page) */}
             {
                 (props.show && props.type==="user") && 
 
@@ -512,6 +592,7 @@ export default function AddPopup(props) {
                     <h1 className={styles.title}>Add User</h1>
 
                     <div className={styles.padding}>
+                        {/* User first and last name form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Name</p>
                             <input 
@@ -532,6 +613,7 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* User role form component and select */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Role</p>
                             <input 
@@ -544,7 +626,6 @@ export default function AddPopup(props) {
                                 disabled 
                             />
                         </div>
-
                         <select size="3" className={styles.dropdown} onChange={(e) => handleRoleClick(e)}>
                             <option key={0} value={14139}>Admin</option>
                             <option key={1} value={21149}>Content Moderator</option>
@@ -552,6 +633,7 @@ export default function AddPopup(props) {
                             <option key={3} value={19202} selected>Registered User</option>
                         </select>
 
+                        {/* User email form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Email</p>
                             <input 
@@ -564,6 +646,7 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* User password form component */}
                         <div className={`${styles.inputItem} ${styles.center}`}>
                             <p>Password</p>
                             <input 
@@ -576,14 +659,17 @@ export default function AddPopup(props) {
                             />
                         </div>
 
+                        {/* Close and submit buttons */}
                         <div className={styles.flex}>
                             <Button 
                                 name="Close"
+                                //Will close the popup
                                 onClick={props.onClick} 
                                 backgroundColor="red"
                             />
                             <Button 
                                 type='submit'
+                                //If the submit has an error, it will close the popup and display the form message
                                 onClick={hasError ? props.changeFailed : null}
                                 name='Add User' 
                             />

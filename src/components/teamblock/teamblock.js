@@ -10,6 +10,7 @@ const TeamBlock = (props) => {
                 <div className={styles.flexBlock}>
                     <img className={styles.img} src={image} alt="Placeholder"/>
 
+                    {/* Display team name, university name, the number of players, and the approval status */}
                     <div>
                         <a className={props.team.approvalStatus ? `${globalStyles.text} ${styles.green}` : `${styles.disabled} ${globalStyles.text}`} href={"/team/" + props.team._id} key={"/team/" + props.team._id} >{props.team.description}</a>
                         {props.team.universityInfo && <p className={globalStyles.sub_text}><a href={"/university/" + props.team.universityInfo[0].universityID} key={"/university/" + props.team.universityInfo[0].universityID}>{props.team.universityInfo[0].name}</a></p>}

@@ -20,8 +20,11 @@ const MemberBlock = (props) => {
           <>
             <div className={styles.block}>
                 <div className={styles.flexBlock}>
+
+                    {/* Team member image */}
                     <img className={styles.img} src={image} alt="Placeholder"/>
 
+                    {/* Team member first and last name */}
                     <div>
                         <div className={globalStyles.text}>{props.member.firstName} {props.member.lastName}</div>
                     </div>

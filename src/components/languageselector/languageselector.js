@@ -19,7 +19,7 @@ const LanguageSelector = () => {
   return (
     <select className="lang-select" style={{margin: 8, width: 100}} onChange={changeLanguageHandler}>
         <option value="en" >English</option>
-        <option value="es" >Spanish</option>
+        <option value="es" >Español</option>
     </select>
   );
 

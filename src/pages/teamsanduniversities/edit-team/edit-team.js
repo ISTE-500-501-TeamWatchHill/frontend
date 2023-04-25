@@ -123,24 +123,24 @@ const EditTeam = () => {
         fetchTeam();
     }, []);
 
-    // function renderRestOfRows()  {
-    //     const rows = []
-    //     for(let index=members.length; index<5; index++) {
-    //         rows.push(
-    //             <>
-    //                 <input 
-    //                     key={index}
-    //                     className={styles.inputText} 
-    //                     type="text"
-    //                     id={`player${index+1}`}
-    //                     name={`player${index+1}`} 
-    //                     placeholder='Enter Email'
-    //                 />
-    //             </>
-    //         );
-    //     }
-    //     return rows;
-    // }
+    function renderRestOfRows()  {
+        const rows = []
+        for(let index=members.length; index<5; index++) {
+            rows.push(
+                <>
+                    <input 
+                        key={index}
+                        className={styles.inputText} 
+                        type="email"
+                        id={`player${index+1}`} 
+                        name={`player${index+1}`} 
+                        placeholder={`Player ${index+1}'s email`} 
+                    /> 
+                </>
+            );
+        }
+        return rows;
+    }
 
     return (
         <>
@@ -175,14 +175,12 @@ const EditTeam = () => {
                                 /> 
                             )
                         })
-                        // started ^^
-                        // finish displaying exisiting users DONE
-                        // display empty users
                         // onSubmit function
                         // test
                         // fix issue where page is cutting off H1 for some reason
-
+                        // fix defaultValue of team.description issue
                     }
+                    { renderRestOfRows() }
                     <Button type='submit' name='Edit Team' width='100%' />
                 </form>
                 

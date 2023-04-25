@@ -55,7 +55,7 @@ const CreateTeam = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                alert('Bad! Bad! Did not like that at all >:(');
+                alert('Failed to create team');
             }); // TODO: display error, refresh form
 
         // ask to get backend changed to accept emails instead of ids

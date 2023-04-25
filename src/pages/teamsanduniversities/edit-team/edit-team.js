@@ -157,14 +157,14 @@ const EditTeam = () => {
             <Spacer height="80px"/>
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmitTeam}>
-                    <h1 className={styles.title}>Edit {team.description}</h1>
+                    <h1 className={styles.title}>Edit "{team.description}"</h1>
                     <input 
                         className={styles.inputText} 
                         type="text" 
                         id="teamName" 
                         name="teamName" 
                         placeholder='Team Name' 
-                        // defaultValue={`${team.description}`} 
+                        defaultValue={team.description === "No Team" ? "" : team.description} 
                         required
                     />
                     {

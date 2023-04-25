@@ -81,7 +81,7 @@ export default function DeletePopup(props) {
         myHeaders.append("Content-Type", "application/json");
 
          const raw = JSON.stringify({
-            "id": props.data._id,
+            "id": props.data.universityID,
             "token": user.token,
         });
 

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './team.module.css';
@@ -8,6 +9,7 @@ import GameBlock from '../../../components/gameblock/gameblock';
 import Toast from '../../../components/toast/toast';
 
 const Team = () => {   
+  const { t } = useTranslation();
   let { id } = useParams();
   
   const [team, setTeam] = useState({
@@ -153,13 +155,13 @@ const Team = () => {
         </div>
 
         <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
-            <BackArrow text="Back to Teams" route="/teamsanduniversities"/>
+            <BackArrow text={t("back.teams")} route="/teamsanduniversities"/>
         </div>
 
         <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
           <h3 className={globalStyles.headline_text}>{team.universityName}</h3>
           <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
-          <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>PLAYERS</p>
+          <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>{t("players.teamsunis")}</p>
 
           <div className={styles.grid}>
               {/* Team Members */}
@@ -171,7 +173,7 @@ const Team = () => {
               }
           </div>
 
-          <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>UPCOMING GAMES</p>
+          <p className={`${globalStyles.text} ${globalStyles.bold} ${globalStyles.margin8_top} ${globalStyles.margin4_bottom}`}>{t("upcomingGames.teams")}</p>
 
           <div className={styles.gridList}>
               {/* Games */}

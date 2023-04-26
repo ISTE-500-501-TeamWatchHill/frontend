@@ -103,5 +103,11 @@
 
     "players.teamsunis": "PLAYERS",
 
-    "pendingApproval.teamsunis": "Pending Approval"
+    "pendingApproval.teamsunis": "Pending Approval",
+
+    "back.teams": "Back to Teams",
+
+    "upcomingGames.teams": "UPCOMING GAMES",
+
+    "teams.unis": "TEAMS"
   }

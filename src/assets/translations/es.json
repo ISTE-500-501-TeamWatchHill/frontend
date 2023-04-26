@@ -49,6 +49,8 @@
 
     "navigation.home": "NAVEGACIÓN",
 
+    "language.footer": "Idioma:",
+
     "tournamentAboutTitle.tournament": "Torneo",
 
     "tournamentAboutRulesTitle.tournament": "Normas",
@@ -75,5 +77,13 @@
 
     "aboutPrize.tournament": "¡Llévate a casa el premio!",
 
-    "aboutRegister.tournament": "Regístrese para el Torneo"
+    "aboutRegister.tournament": "Regístrese para el Torneo",
+
+    "scheduleTitle.schedule": "Cronograma",
+
+    "upcomingGames.schedule": "Próximos juegos",
+
+    "startTime.schedule": "HORA DE INICIO",
+
+    "location.schedule": "UBICACIÓN"
   }

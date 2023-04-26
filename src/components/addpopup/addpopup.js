@@ -304,7 +304,7 @@ export default function AddPopup(props) {
                                 // eslint-disable-next-line
                                 universities.map((university, index) => {
                                     return (
-                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                        <option key={index} value={university.universityID}>{university.name}</option>
                                     )
                                 })
                             }
@@ -361,7 +361,7 @@ export default function AddPopup(props) {
                                 // eslint-disable-next-line
                                 universities.map((university, index) => {
                                     return (
-                                        <option key={index} value={university.universityID}>{university.description}</option>
+                                        <option key={index} value={university.universityID}>{university.name}</option>
                                     )
                                 })
                             }

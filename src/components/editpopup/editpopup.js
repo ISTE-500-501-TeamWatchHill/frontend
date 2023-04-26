@@ -467,7 +467,7 @@ export default function EditPopup(props) {
                                     // eslint-disable-next-line
                                     universities.map((university, index) => {
                                         return (
-                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.name}</option>
                                         )
                                     })
                                 }

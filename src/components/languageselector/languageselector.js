@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const LanguageSelector = () => {
 
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState(localStorage.getItem("i18nextLng"));
 
 
@@ -23,7 +23,7 @@ const LanguageSelector = () => {
 
   return (
     <div className={styles.flex}>
-        <p>Language: </p>
+        <p>{t("language.footer")}</p>
 
         <Select
             className={styles.select}

@@ -119,6 +119,7 @@ const Registration = () => {
                             name="universityID" 
                             value={(univSelected)}
                             disabled
+                            hidden
                         />
                     </div>
                     <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
@@ -136,6 +137,7 @@ const Registration = () => {
                     <Button type='submit' name='Register' width='100%' />
                     <Spacer height='36px' />
                     <h4 className={styles.h4}>Already registered? <a className={styles.link} href="/login">Login here</a></h4>
+                    <h4 className={styles.h4}>Don't see your university listed? <a className={styles.link} href="mailto:anw.aardvarkgames@gmail.com">Contact us</a></h4>
 
                     {
                     toastOpen &&

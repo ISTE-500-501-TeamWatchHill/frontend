@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { useTranslation } from "react-i18next";
 import styles from './login.module.css';
 //import globalStyles from '../pages.module.css';
 import Button from '../../components/button/button';
@@ -11,6 +12,8 @@ import Toast from '../../components/toast/toast';
 import landscapeImage from '../../assets/images/loginsidepanel.png';
 
 const Login = () => {
+    const { t } = useTranslation();
+
     // Needed for all API calls
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const cookies = new Cookies();
@@ -69,14 +72,14 @@ const Login = () => {
             <div className={styles.login_section}>
                 <form className={styles.form} onSubmit={onSubmit}>
                     <div className={styles.arrow}>
-                        <BackArrow text="Back to Homepage" route="/"/>
+                        <BackArrow text={t("back.login")} route="/"/>
                     </div>
-                    <h1 className={styles.title}>Login</h1>
-                    <input className={styles.inputText} type="email" id="email" name="email" placeholder='Email' required></input>
-                    <input className={styles.inputText} type="password" id="password" name="password" placeholder='Password' required></input>
-                    <Button type='submit' name='Login' width='100%' />
+                    <h1 className={styles.title}>{t("login.login")}</h1>
+                    <input className={styles.inputText} type="email" id="email" name="email" placeholder={t("email.login")} required></input>
+                    <input className={styles.inputText} type="password" id="password" name="password" placeholder={t("password.login")} required></input>
+                    <Button type='submit' name={t("login.login")} width='100%' />
                     <Spacer height='36px' />
-                    <h4 className={styles.h4}>Not registered for the tournament yet? <a className={styles.link} href="/register">Register here</a></h4>
+                    <h4 className={styles.h4}>{t("notRegistered.login")} <a className={styles.link} href="/register">{t("registerHere.login")}</a></h4>
 
                     {
                     toastOpen &&

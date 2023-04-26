@@ -25,14 +25,14 @@ export default function Navbar() {
                     <tr>
                       <th>
                         <button className={styles.dropbtn}>
-                          {t("tournamentNav.label")}
+                          {t("tournamentNav.home")}
                           <FaCaretDown />
                         </button>
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>
-                      <td><a href="/tournament">{t("tournamentAboutNav.label")}</a></td>
-                      <td><a href="/schedule">{t("tournamentScheduleNav.label")}</a></td>
+                      <td><a href="/tournament">{t("tournamentAboutNav.home")}</a></td>
+                      <td><a href="/schedule">{t("tournamentScheduleNav.home")}</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -42,14 +42,12 @@ export default function Navbar() {
                     <tr>
                       <th>
                         <button className={styles.dropbtn}>
-                        {t("teamsanduniversitiesNav.label")}
+                        {t("teamsanduniversitiesNav.home")}
                           <FaCaretDown />
                         </button>
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>
-                      <td><a href="/teamsanduniversities">FIND A TEAM</a></td>
-                      <td><a href="/team/create">CREATE A TEAM</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -59,14 +57,14 @@ export default function Navbar() {
                     <tr>
                       <th>
                         <button className={styles.dropbtn}>
-                          {t("aardvarkGamesNav.label")}
+                          {t("aardvarkGamesNav.home")}
                           <FaCaretDown />
                         </button>
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>
-                      <td><a href="/aardvarkgames">{t("aardvarkGamesAboutNav.label")}</a></td>
-                      <td><a href="/boardgame">{t("aardvarkGamesBoardGameNav.label")}</a></td>
+                      <td><a href="/aardvarkgames">{t("aardvarkGamesAboutNav.home")}</a></td>
+                      <td><a href="/boardgame">{t("aardvarkGamesBoardGameNav.home")}</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -83,7 +81,7 @@ export default function Navbar() {
                     <tr>
                       <th>
                         <button className={styles.dropbtn}>
-                        {t("teamsanduniversitiesNav.label")}
+                        TEAMS AND UNIVERSITIES
                           <FaCaretDown />
                         </button>
                       </th>
@@ -101,9 +99,9 @@ export default function Navbar() {
             }
 
 
-            {!user && <a href="/register" className={styles.profile}>Register</a>}
+            {!user && <a href="/register" className={styles.profile}>{t("registerButton.home")}</a>}
             <Spacer width="16px"/>
-            {!user && <a href="/login" className={styles.profile}>Login</a>}
+            {!user && <a href="/login" className={styles.profile}>{t("loginButton.home")}</a>}
             {user && <table className={`${styles.dropdown} ${styles.border}`}>
                   <tbody>
                     <tr>

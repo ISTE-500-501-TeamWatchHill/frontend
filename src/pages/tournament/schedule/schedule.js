@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import { useTranslation } from "react-i18next";
 import globalStyles from '../../pages.module.css';
 import styles from './schedule.module.css';
 import GameBlock from '../../../components/gameblock/gameblock';
 import Toast from '../../../components/toast/toast';
 
 const Schedule = () => {
+  const { t } = useTranslation();
 
   //Setup for hook for games
   const [games, changeGames] = useState([{ _id: 1, universityID: 1, homeTeam: "Team One", homeTeamInfo: [{description: "", logo: "", universityID: 1}], awayTeam: "Team Two", awayTeamInfo: [{description: "", logo: "", universityID: 1}], winningTeam: "Team One", gameFinished: true, gameTime: "12:00pm EST", locationInfo: [{name: ""}] }]);
@@ -74,11 +76,11 @@ games.forEach((game) => {
   return (
         <>
           <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
-              <h1 className={globalStyles.h1_title}>Schedule</h1>
+              <h1 className={globalStyles.h1_title}>{t("scheduleTitle.schedule")}</h1>
           </div>
 
           <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
-            <h3 className={globalStyles.headline_text}>Upcoming Games</h3>
+            <h3 className={globalStyles.headline_text}>{t("upcomingGames.schedule")}</h3>
 
             <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>__</p>
             <br/>

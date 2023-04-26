@@ -21,36 +21,36 @@ const Home = () => {
             <div className={globalStyles.background}>
                 <div className={styles.home_title_section}>
                     <h1 className={`${styles.home_title} ${styles.h1}`}>A New World</h1>
-                    <div className={`${globalStyles.text} ${globalStyles.white}`}>{t("homeSubTitle.label")}</div>
+                    <div className={`${globalStyles.text} ${globalStyles.white}`}>{t("homeSubTitle.home")}</div>
                     <CountdownTimer />
                     <div className={globalStyles.button_row}>
-                        <Button name={t("learnMoreButton.label")} transparentBackground={true} link="/tournament"/>
+                        <Button name={t("learnMoreButton.home")} transparentBackground={true} link="/tournament"/>
                         <Spacer width="20px"/>
-                        <Button name={t("registerButton.label")} link="/register"/>
+                        <Button name={t("registerButton.home")} link="/register"/>
                     </div>
                 </div>
 
                 <div className={`${globalStyles.thintext_margin} ${globalStyles.margin8_top_bottom} ${globalStyles.center_text} ${globalStyles.white}`}>
-                    <h3 className={globalStyles.headline_text}>{t("homeTournamentExplanationTitle.label")}</h3>
+                    <h3 className={globalStyles.headline_text}>{t("homeTournamentExplanationTitle.home")}</h3>
 
                     <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
 
-                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.sub_text_spacer}`}>{t("homeTournamentExplanationp1.label")}</p>
-                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.sub_text_spacer}`}>{t("homeTournamentExplanationp2.label")}</p>
-                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.margin20_bottom}`}>{t("homeTournamentExplanationp3.label")}</p>
+                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.sub_text_spacer}`}>{t("homeTournamentExplanationp1.home")}</p>
+                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.sub_text_spacer}`}>{t("homeTournamentExplanationp2.home")}</p>
+                    <p className={`${globalStyles.p} ${globalStyles.text} ${globalStyles.margin20_bottom}`}>{t("homeTournamentExplanationp3.home")}</p>
                 
-                    <h3 className={globalStyles.headline_text}>{t("homeTournamentPrizeTitle.label")}</h3>
+                    <h3 className={globalStyles.headline_text}>{t("homeTournamentPrizeTitle.home")}</h3>
 
                     <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
 
-                    <p className={`${globalStyles.p} ${globalStyles.text}`}>{t("homePrizeExplanation.label")}</p>
+                    <p className={`${globalStyles.p} ${globalStyles.text}`}>{t("homePrizeExplanation.home")}</p>
 
                     <div className={`${globalStyles.green_box} ${globalStyles.margin8_top} ${globalStyles.margin20_bottom}`}>
                         <img className={styles.prizeImg} src={firstPlacePrizeImage} alt='Tournament cup'/>
-                        <p className={`${globalStyles.p} ${globalStyles.text} ${styles.left_text}`}>{t("homeFirstPlace.label")}</p>
+                        <p className={`${globalStyles.p} ${globalStyles.text} ${styles.left_text}`}>{t("homeFirstPlace.home")}</p>
                     </div>
 
-                    <h3 className={`${globalStyles.headline_text} ${globalStyles.sub_header_spacer}`}>{t("whoPlaying.label")}</h3>
+                    <h3 className={`${globalStyles.headline_text} ${globalStyles.sub_header_spacer}`}>{t("whoPlaying.home")}</h3>
 
                     <p className={`${globalStyles.green_bar} ${globalStyles.sub_header_spacer}`}>____</p>
                 </div>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-// import image from '../../../components/placeholder.png';
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import globalStyles from '../../pages.module.css';
 import styles from './university.module.css';
@@ -10,7 +10,7 @@ import GameBlock from '../../../components/gameblock/gameblock';
 import Toast from '../../../components/toast/toast';
 
 const University = (props) => {   
-
+  const { t } = useTranslation();
   let { id } = useParams();
 
   const [university, changeUniversity] = useState({"universityID": 2429, "name": "Monroe Community College"});
@@ -144,14 +144,14 @@ const University = (props) => {
               </div>
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top}`}>
-                  <BackArrow text="Back to Teams and Universities" route="/teamsanduniversities"/>
+                  <BackArrow text={t("back.teams")} route="/teamsanduniversities"/>
               </div>
 
               <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
                 <p className={`${globalStyles.text} ${globalStyles.p}`}>Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.</p>
               </div>
 
-              <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>TEAMS</h3>
+              <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>{t("teams.unis")}</h3>
               <div className={`${globalStyles.margin8_bottom}`}>
 
                 <div className={`${globalStyles.body_margin} ${styles.grid}`}>
@@ -166,7 +166,7 @@ const University = (props) => {
                     }
                 </div>
 
-                <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>UPCOMING GAMES</h3>
+                <h3 className={`${globalStyles.text} ${styles.gridTitleMargin} ${globalStyles.margin8_top} ${globalStyles.sub_header_spacer}`}>{t("upcomingGames.teams")}</h3>
                 <div className={`${styles.grid_list} ${globalStyles.body_margin}`}>
                   {
                     gamesByDate.map( (gamesForDateX) => {

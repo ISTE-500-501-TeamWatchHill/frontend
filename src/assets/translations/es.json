@@ -117,5 +117,41 @@
 
     "blurbOne.aardvarkgames": "Aardvark Games es un editor de juegos de mesa dedicado a entretener a los jugadores de todo el mundo con productos diseñados para atraer y desafiar. Nuestros juegos más conocidos incluyen Meeple City, Beyond the Galaxy, Continental Conquest, Between the Seas y ahora, A New World.",
 
-    "blurbTwo.aardvarkgames": "Ya sea que sea nuevo en los juegos, un jugador experimentado, miembro de un grupo de juegos o alguien que prefiera jugar solo, ¡buscamos crear juegos que lo deleitarán y harán que regrese por más!"
+    "blurbTwo.aardvarkgames": "Ya sea que sea nuevo en los juegos, un jugador experimentado, miembro de un grupo de juegos o alguien que prefiera jugar solo, ¡buscamos crear juegos que lo deleitarán y harán que regrese por más!",
+
+    "boardGame.boardgame": "Juego de mesa",
+
+    "about.boardgame": "Sobre el A New World",
+
+    "ruleOne.boardgame": "Aardvark Games anuncia nuestra nueva aventura de juegos de mesa, A New World. Requiere un equipo de dos a cinco jugadores que trabajarán juntos para anotar tantos puntos como sea posible después de caer en un mundo nuevo y despoblado. Los hábitats variarán y el equipo no sabrá de antemano dónde aterrizarán.",
+
+    "ruleTwo.boardgame": "Los entornos pueden ser un planeta desértico, una ubicación submarina, un mundo acuático con islas dispersas, una cadena montañosa cubierta de hielo o una jungla llena de animales depredadores y plantas peligrosas. (¡Noticias avanzadas! ¡El paquete de expansión 1 está en la fase de diseño con mundos y recursos adicionales!)",
+
+    "ruleThree.boardgame": "El juego se juega mejor en una competencia cara a cara con un segundo equipo que busca sobrevivir en su propio Nuevo Mundo, pero compitiendo por los mismos recursos. Sin embargo, con las modificaciones descritas para el juego en equipo en solitario, es posible disfrutar esforzándose por superar sus propios puntajes anteriores.",
+
+    "roles.boardgame": "Roles",
+
+    "roleBlurb.boardgame": "Cada equipo debe designar los roles de cada jugador antes de comenzar a jugar. Si un equipo tiene menos de cinco jugadores, los miembros del equipo pueden asumir más de un rol.",
+
+    "expeditionLeader.boardgame": "LÍDER DE EXPEDICIÓN",
+
+    "expeditionLeaderBlurb.boardgame": "Este miembro del equipo tomará decisiones sobre cuándo y cómo se juegan las cartas de acción. Facilitan la planificación estratégica conjunta del equipo y gestionan el presupuesto de la expedición.",
+
+    "resourceSpecialist.boardgame": "ESPECIALISTA EN RECURSOS",
+
+    "resourceSpecialistBlurb.boardgame": "Este miembro del equipo es responsable de obtener los recursos necesarios para sobrevivir al llegar y establecer una base en el nuevo mundo.",
+
+    "scientist.boardgame": "CIENTÍFICO",
+
+    "scientistBlurb.boardgame": "Este miembro del equipo colecciona tarjetas de conocimiento que le dan al equipo una ventaja para saber cómo superar los obstáculos y qué acciones tienen más probabilidades de éxito.",
+
+    "technician.boardgame": "TÉCNICO",
+
+    "technicianBlurb.boardgame": "Este miembro del equipo usa tarjetas de herramientas y tecnología para crear la base del equipo y reparar máquinas y armas según sea necesario.",
+
+    "weapons.boardgame": "ESPECIALISTA EN ARMAS",
+
+    "weaponsBlurb.boardgame": "Este miembro del equipo lidera las estrategias de defensa del equipo y trabaja para ganar puntos para elevar el nivel de habilidad de cada miembro del equipo en las clases de armas que mejor se adaptan al hábitat actual.",
+
+    "playtime.boardgame": "Este juego es apropiado para mayores de 13 años. El tiempo de juego es de 60 a 90 minutos."
   }

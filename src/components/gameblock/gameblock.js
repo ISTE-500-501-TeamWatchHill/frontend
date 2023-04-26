@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
 import styles from './gameblock.module.css';
 import globalStyles from '../../pages/pages.module.css';
 
@@ -6,6 +7,8 @@ import image from '../../../src/assets/images/universities/rit_circle.png';
 import image2 from '../../../src/assets/images/universities/cornell_circle.png';
 
 const GameBlock = (props) => {
+    const { t } = useTranslation();
+
     if (!props.game._id) {
         throw new Error ("ERROR: No game ID.");
     }
@@ -31,10 +34,10 @@ const GameBlock = (props) => {
             <div className={styles.block}>
                 <div className={`${styles.flexBlock} ${styles.center}`}>
                     <div>
-                        {props.game.gameTime &&<p className={styles.h2}>START TIME</p>}
+                        {props.game.gameTime &&<p className={styles.h2}>{t("startTime.schedule")}</p>}
                         {props.game.gameTime && <p className={styles.h1}>{new Date(props.game.gameTime).toLocaleString([], { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>}
                         <br/>
-                        <p className={styles.h2}>LOCATION</p>
+                        <p className={styles.h2}>{t("location.schedule")}</p>
                         <p className={styles.h1}>{props.game.locationInfo[0].name}</p>
                     </div>
 

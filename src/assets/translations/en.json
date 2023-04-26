@@ -1,43 +1,181 @@
 {
-    "homeSubTitle.label": "Introducing Aardvark's newest board game, A New World, with a global collegiate competition!",
+    "homeSubTitle.home": "Introducing Aardvark's newest board game, A New World, with a global collegiate competition!",
   
-    "learnMoreButton.label": "Learn More",
+    "learnMoreButton.home": "Learn More",
   
-    "registerButton.label": "Register for Tournament",
+    "registerButton.home": "Register for Tournament",
 
-    "tournamentNav.label": "TOURNAMENT",
+    "tournamentNav.home": "TOURNAMENT",
 
-    "tournamentAboutNav.label": "ABOUT",
+    "tournamentAboutNav.home": "ABOUT",
 
-    "tournamentScheduleNav.label": "SCHEDULE",
+    "tournamentScheduleNav.home": "SCHEDULE",
 
-    "teamsanduniversitiesNav.label": "TEAMS & UNIVERSITIES",
+    "teamsanduniversitiesNav.home": "TEAMS & UNIVERSITIES",
 
-    "aardvarkGamesNav.label": "AARDVARK GAMES",
+    "findATeamNav.home": "FIND A TEAM",
 
-    "aardvarkGamesAboutNav.label": "ABOUT",
+    "createATeamNav.home": "CREATE A TEAM",
 
-    "aardvarkGamesBoardGameNav.label": "BOARD GAME",
+    "editATeamNav.home": "EDIT YOUR TEAM",
 
-    "loginButton.label": "Login",
+    "aardvarkGamesNav.home": "AARDVARK GAMES",
 
-    "homeTournamentExplanationTitle.label": "Can Your Team Bring Home the Prize?",
+    "aardvarkGamesAboutNav.home": "ABOUT",
 
-    "homeTournamentPrizeTitle.label": "Prizes",
+    "aardvarkGamesBoardGameNav.home": "BOARD GAME",
 
-    "homeTournamentExplanationp1.label": "Gather a team and sign up to play, first for the honor of being your University's championship team and then for the chance to represent your school in continued rounds of global competition.",
+    "loginButton.home": "Login",
 
-    "homeTournamentExplanationp2.label": "A New World requires a team of 2-5 players who will work together to score as many points as possible after being dropped into a new, unpopulated world. For the tournament, teams will play in a head-to-head competition with an opponent seeking to survive in its own New World, but competing with your team for the same resources.",
+    "registerButton.home": "Register",
 
-    "homeTournamentExplanationp3.label": "Join us for some great gaming fun! Join us for some awesome tournament prizes!",
+    "homeTournamentExplanationTitle.home": "Can Your Team Bring Home the Prize?",
 
-    "homePrizeExplanation.label": "All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag.",
+    "homeTournamentPrizeTitle.home": "Prizes",
 
-    "homeFirstPlace.label": "The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.",
+    "homeTournamentExplanationp1.home": "Gather a team and sign up to play, first for the honor of being your University's championship team and then for the chance to represent your school in continued rounds of global competition.",
 
-    "whoPlaying.label": "Who's Playing?",
+    "homeTournamentExplanationp2.home": "A New World requires a team of 2-5 players who will work together to score as many points as possible after being dropped into a new, unpopulated world. For the tournament, teams will play in a head-to-head competition with an opponent seeking to survive in its own New World, but competing with your team for the same resources.",
 
-    "footerSubtitle.label": "Aardvark Game's newest board game adventure!",
+    "homeTournamentExplanationp3.home": "Join us for some great gaming fun! Join us for some awesome tournament prizes!",
 
-    "navigation.label": "NAVIGATION"
+    "homePrizeExplanation.home": "All players who complete at least one round of tournament play will receive a complimentary copy of A New World. Each university's final round teams will go home with some awesome Aardvark Games swag.",
+
+    "homeFirstPlace.home": "The First Place team for each university will receive a cash prize of $1,000 and each individual team member will get a $100 gift certificate for the Aardvark Games online store.",
+
+    "whoPlaying.home": "Who's Playing?",
+
+    "footerSubtitle.home": "Aardvark Game's newest board game adventure!",
+
+    "navigation.home": "NAVIGATION",
+
+    "language.footer": "Language:",
+
+    "tournamentAboutTitle.tournament": "Tournament",
+
+    "tournamentAboutRulesTitle.tournament": "Rules",
+
+    "aboutRuleOne.tournament": "Registration for this tournament is limited to countries in which participation is legal. If there is a difference of opinion in interpretation of the law, Aardvark Games' legal counsel will have the final word on a Team's ability to register.",
+
+    "aboutRuleTwo.tournament": "Each Team will have at least two, but no more than five, members.",
+
+    "aboutRuleThree.tournament": "The deadline for registration is midnight EDT on Monday, May 1, 2023, unless an extension for all is publicized on the tournament website.",
+
+    "aboutRuleFour.tournament": "Registration must be completed on the tournament website.",
+
+    "aboutRuleFive.tournament": "Each Team member must be currently enrolled at the college/university that the Team wishes to represent. A Team member may not play for more than one college in the 2023 tournament. Eligibility will be verified in advance with the college and team  members will be required to present valid student IDs on the day of the on-site tournament. Any questions regarding IDs on the day of the tournament will be decided by the on-site Moderator representing the college.",
+
+    "aboutRuleSix.tournament": "Any Team that fails to appear in person and on time on the day of the on-campus tournament round forfeits that game.",
+
+    "aboutRuleSeven.tournament": "The dates of tournament game play and all Team match ups will be selected by Aardvark Games. If an odd number of teams register for any site, the first team to complete registration will be awarded a bye in the first round of competition.",
+
+    "aboutRuleEight.tournament": "Game play and scoring will take place according to the printed rules shipped with the game.",
+
+    "aboutRuleNine.tournament": "Tournament play will be run consistently at each location to ensure that all players are treated equally. Both players and moderators are expected to cooperate to run an orderly competition. Players and moderators must treat each other in a fair and respectful manner, following both the rules and the spirit in which those rules were created.",
+
+    "aboutRuleTen.tournament": "Aardvark Games reserves the right to alter these rules, as well as the right to interpret, modify, clarify, or otherwise issue official changes to these rules without prior notice.",
+
+    "aboutPrize.tournament": "Take Home the Prize!",
+
+    "aboutRegister.tournament": "Register for Tournament",
+
+    "scheduleTitle.schedule": "Schedule",
+
+    "upcomingGames.schedule": "Upcoming Games",
+
+    "startTime.schedule": "START TIME",
+
+    "location.schedule": "LOCATION",
+
+    "teamsunisTitle.teamsunis": "Teams & Universities",
+
+    "allTeams.teamsunis": "All Teams",
+
+    "sort.teamsunis": "Sort by...",
+
+    "noneSort.teamsUnis": "None",
+
+    "teamSort.teamsunis": "Team A-Z",
+
+    "uniSort.teamsunis": "University A-Z",
+
+    "search.teamsunis": "Search teams and universites",
+
+    "players.teamsunis": "PLAYERS",
+
+    "pendingApproval.teamsunis": "Pending Approval",
+
+    "back.teams": "Back to Teams",
+
+    "upcomingGames.teams": "UPCOMING GAMES",
+
+    "teams.unis": "TEAMS",
+
+    "aardvarkTitle.aardvarkgames": "Aardvark Games",
+
+    "aardvarkAbout.aardvarkgames": "About Aardvark Games",
+
+    "blurbOne.aardvarkgames": "Aardvark Games is a tabletop game publisher dedicated to entertaining game players worldwide with products designed to engage and challenge. Our best known games include Meeple City, Beyond the Galaxy, Continental Conquest, Between the Seas and now, A New World.",
+
+    "blurbTwo.aardvarkgames": "Whether you are new to gaming, an experienced game player, a member of a gaming group or someone who prefers to play solo, we seek to make games that will delight and keep you coming back for more!",
+
+    "boardGame.boardgame": "Board Game",
+
+    "about.boardgame": "About A New World",
+
+    "ruleOne.boardgame": "Aardvark Games announces our newest board game adventure, A New World. A New World requires a team of 2-5 players who will work together to score as many points as possible after being dropped into a new, unpopulated world. The habitats will vary and the team will not know in advance where they will land.",
+
+    "ruleTwo.boardgame": "Environments could be a desert planet, an underwater location, a water world with scattered islands, an ice covered mountain range, or a jungle full of predatory animals and dangerous plant life. (Advance News! Expansion Pack 1 is in the design phase with additional worlds and resources!)",
+
+    "ruleThree.boardgame": "The game is best played in a head-to-head competition with a second team seeking to survive in its own New World, but competing for the same resources. However, with the modifications described for solo team play, it is possible to enjoy striving to beat your own prior scores.",
+
+    "roles.boardgame": "Roles",
+
+    "roleBlurb.boardgame": "Every team must designate the roles for each player prior to beginning play. If a team has fewer than five players, team members may assume more than one role.",
+
+    "expeditionLeader.boardgame": "EXPEDITION LEADER",
+
+    "expeditionLeaderBlurb.boardgame": "This team member will make decisions on when and how action cards are played. They facilitate the team's joint strategic planning and manage the expedition budget.",
+
+    "resourceSpecialist.boardgame": "RESOURCE SPECIALIST",
+
+    "resourceSpecialistBlurb.boardgame": "This team member is responsible for obtaining the resources required for survival on arrival and the establishment of a base on the new world.",
+
+    "scientist.boardgame": "SCIENTIST",
+
+    "scientistBlurb.boardgame": "This team member collects knowledge cards that allow the team an advantage in knowing how to overcome obstacles and which actions are most likely to succeed.",
+
+    "technician.boardgame": "TECHNICIAN",
+
+    "technicianBlurb.boardgame": "This team member uses tool and technology cards to create the team base and repair machines and weapons as needed.",
+
+    "weapons.boardgame": "WEAPONS SPECIALIST",
+
+    "weaponsBlurb.boardgame": "This team member leads the team defense strategies and works to gain points to raise each team member's skill level on the weapon classes best suited to the current habitat.",
+
+    "playtime.boardgame": "This game is appropriate for ages 13 and over. Play time runs 60-90 minutes.",
+
+    "back.login": "Back to Homepage",
+
+    "login.login": "Login",
+
+    "email.login": "Email",
+
+    "password.login": "Password",
+
+    "notRegistered.login": "Not registered for the tournament yet?",
+
+    "registerHere.login": "Register here",
+
+    "register.register": "Register",
+
+    "firstName.register": "First Name",
+
+    "lastName.register": "Last Name",
+
+    "university.register": "University",
+
+    "registeredAlready.register": "Already registered?",
+
+    "loginHere.register": "Login here"
   }

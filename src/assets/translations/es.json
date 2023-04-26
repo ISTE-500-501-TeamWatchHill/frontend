@@ -1,43 +1,181 @@
 {
-    "homeSubTitle.label": "Presentamos el juego de mesa más nuevo de Aardvark, A New World, con una competencia universitaria mundial!",
+    "homeSubTitle.home": "¡Presentamos el juego de mesa más nuevo de Aardvark, A New World, con una competencia universitaria mundial!",
   
-    "learnMoreButton.label": "Aprende más",
+    "learnMoreButton.home": "Aprende más",
   
-    "registerButton.label": "Regístrese para el Torneo",
+    "registerButton.home": "Regístrese para el Torneo",
 
-    "tournamentNav.label": "TORNEO",
+    "tournamentNav.home": "TORNEO",
 
-    "tournamentAboutNav.label": "ACERCA DE",
+    "tournamentAboutNav.home": "ACERCA DE",
 
-    "tournamentScheduleNav.label": "CRONOGRAMA",
+    "tournamentScheduleNav.home": "CRONOGRAMA",
 
-    "teamsanduniversitiesNav.label": "EQUIPOS & UNIVERSIDADES",
+    "teamsanduniversitiesNav.home": "EQUIPOS Y UNIVERSIDADES",
 
-    "aardvarkGamesNav.label": "AARDVARK GAMES",
+    "findATeamNav.home": "ENCUENTRA UN EQUIPO",
 
-    "aardvarkGamesAboutNav.label": "ACERCA DE",
+    "createATeamNav.home": "CREAR UN EQUIPO",
 
-    "aardvarkGamesBoardGameNav.label": "JUEGO DE MESA",
+    "editATeamNav.home": "EDITA TU EQUIPO",
 
-    "loginButton.label": "Acceso",
+    "aardvarkGamesNav.home": "AARDVARK GAMES",
 
-    "homeTournamentExplanationTitle.label": "Puede su equipo llevar a casa el premio?",
+    "aardvarkGamesAboutNav.home": "ACERCA DE",
 
-    "homeTournamentPrizeTitle.label": "Premios",
+    "aardvarkGamesBoardGameNav.home": "JUEGO DE MESA",
 
-    "homeTournamentExplanationp1.label": "Reúna un equipo e inscríbase para jugar, primero por el honor de ser el equipo campeón de su universidad y luego por la oportunidad de representar a su escuela en rondas continuas de competencia global.",
+    "loginButton.home": "Acceso",
 
-    "homeTournamentExplanationp2.label": "A New World requiere un equipo de 2 a 5 jugadores que trabajarán juntos para anotar tantos puntos como sea posible después de caer en un mundo nuevo y despoblado. Para el torneo, los equipos jugarán en una competencia cara a cara con un oponente que busca sobrevivir en su propio Nuevo Mundo, pero compitiendo con su equipo por los mismos recursos.",
+    "registerButton.home": "Registro",
 
-    "homeTournamentExplanationp3.label": "Únase a nosotros para divertirse jugando! Únase a nosotros para algunos premios increíbles del torneo!",
+    "homeTournamentExplanationTitle.home": "¿Puede su equipo llevarse el premio a casa?",
 
-    "homePrizeExplanation.label": "Todos los jugadores que completen al menos una ronda de torneos recibirán una copia gratuita de A New World. Los equipos de la ronda final de cada universidad se irán a casa con un increíble botín de Aardvark Games.",
+    "homeTournamentPrizeTitle.home": "Premios",
 
-    "homeFirstPlace.label": "El equipo del Primer Lugar de cada universidad recibirá un premio en efectivo de $1,000 y cada miembro individual del equipo recibirá un certificado de regalo de $100 para la tienda en línea de Aardvark Games.",
+    "homeTournamentExplanationp1.home": "Reúna un equipo e inscríbase para jugar, primero por el honor de ser el equipo campeón de su universidad y luego por la oportunidad de representar a su escuela en rondas continuas de competencia global.",
 
-    "whoPlaying.label": "Quien esta jugando?",
+    "homeTournamentExplanationp2.home": "A New World requiere un equipo de dos a cinco jugadores que trabajarán juntos para anotar tantos puntos como sea posible después de caer en un mundo nuevo y despoblado. Para el torneo, los equipos jugarán en una competencia cara a cara con un oponente que busca sobrevivir en su propio Nuevo Mundo, pero que compite con su equipo por los mismos recursos.",
 
-    "footerSubtitle.label": "La nueva aventura de juegos de mesa de Aardvark Game!",
+    "homeTournamentExplanationp3.home": "¡Únete a nosotros para divertirte mucho jugando! ¡Únase a nosotros para obtener increíbles premios de torneos!",
 
-    "navigation.label": "NAVEGACIÓN"
+    "homePrizeExplanation.home": "Todos los jugadores que completen al menos una ronda de torneos recibirán una copia gratuita de A New World. Los equipos de la ronda final de cada universidad se irán a casa con un increíble botín de Aardvark Games.",
+
+    "homeFirstPlace.home": "El equipo del Primer Lugar de cada universidad recibirá un premio en efectivo de $1,000 y cada miembro individual del equipo recibirá un certificado de regalo de $100 para la tienda en línea de Aardvark Games.",
+
+    "whoPlaying.home": "¿Quién está jugando?",
+
+    "footerSubtitle.home": "¡La nueva aventura de juegos de mesa de Aardvark Games!",
+
+    "navigation.home": "NAVEGACIÓN",
+
+    "language.footer": "Idioma:",
+
+    "tournamentAboutTitle.tournament": "Torneo",
+
+    "tournamentAboutRulesTitle.tournament": "Normas",
+
+    "aboutRuleOne.tournament": "La inscripción para este torneo está limitada a los países en los que la participación es legal. Si hay una diferencia de opinión en la interpretación de la ley, el asesor legal de Aardvark Games tendrá la última palabra sobre la capacidad de registro de un equipo.",
+
+    "aboutRuleTwo.tournament": "Cada Equipo tendrá por lo menos dos, pero no más de cinco, miembros.",
+
+    "aboutRuleThree.tournament": "La fecha límite para registrarse es la medianoche EDT del lunes 1 de mayo de 2023, a menos que se publique una extensión para todos en el sitio web del torneo.",
+
+    "aboutRuleFour.tournament": "El registro debe completarse en el sitio web del torneo.",
+
+    "aboutRuleFive.tournament": "Cada miembro del Equipo debe estar actualmente matriculado en el colegio/universidad que el Equipo desea representar. Un miembro del equipo no puede jugar para más de una universidad en el torneo de 2023. La elegibilidad se verificará por adelantado con la universidad y los miembros del equipo deberán presentar una identificación de estudiante válida el día del torneo en el lugar. Cualquier pregunta relacionada con las identificaciones el día del torneo será resuelta por el moderador en el lugar que representa a la universidad.",
+
+    "aboutRuleSix.tournament": "Cualquier equipo que no se presente en persona y a tiempo el día de la ronda del torneo en el campus perderá ese juego.",
+
+    "aboutRuleSeven.tournament": "Aardvark Games seleccionará las fechas de juego del torneo y todos los enfrentamientos de equipos. Si un número impar de equipos se registra para cualquier sitio, el primer equipo que complete el registro recibirá un adiós en la primera ronda de la competencia.",
+
+    "aboutRuleEight.tournament": "El juego y la puntuación se llevarán a cabo de acuerdo con las reglas impresas que se envían con el juego.",
+
+    "aboutRuleNine.tournament": "El juego del torneo se llevará a cabo de manera consistente en cada ubicación para garantizar que todos los jugadores reciban el mismo trato. Se espera que tanto los jugadores como los moderadores cooperen para llevar a cabo una competencia ordenada. Los jugadores y los moderadores deben tratarse entre sí de manera justa y respetuosa, siguiendo tanto las reglas como el espíritu con el que se crearon dichas reglas.",
+
+    "aboutRuleTen.tournament": "Aardvark Games se reserva el derecho de alterar estas reglas, así como el derecho de interpretar, modificar, aclarar o emitir cambios oficiales a estas reglas sin previo aviso.",
+
+    "aboutPrize.tournament": "¡Llévate a casa el premio!",
+
+    "aboutRegister.tournament": "Regístrese para el Torneo",
+
+    "scheduleTitle.schedule": "Cronograma",
+
+    "upcomingGames.schedule": "Próximos juegos",
+
+    "startTime.schedule": "HORA DE INICIO",
+
+    "location.schedule": "UBICACIÓN",
+
+    "teamsunisTitle.teamsunis": "Equipos y Universidades",
+
+    "allTeams.teamsunis": "Todos los equipos",
+
+    "sort.teamsunis": "Ordenar por...",
+
+    "noneSort.teamsUnis": "Ninguno",
+
+    "teamSort.teamsunis": "Equipo A-Z",
+
+    "uniSort.teamsunis": "Universidad A-Z",
+
+    "search.teamsunis": "Buscar equipos y universidades",
+
+    "players.teamsunis": "JUGADORES",
+
+    "pendingApproval.teamsunis": "Aprobación pendiente",
+
+    "back.teams": "Volver a Equipos",
+
+    "upcomingGames.teams": "PRÓXIMOS JUEGOS",
+
+    "teams.unis": "EQUIPOS",
+
+    "aardvarkTitle.aardvarkgames": "Aardvark Games",
+
+    "aardvarkAbout.aardvarkgames": "Acerca de Aardvark Games",
+
+    "blurbOne.aardvarkgames": "Aardvark Games es un editor de juegos de mesa dedicado a entretener a los jugadores de todo el mundo con productos diseñados para atraer y desafiar. Nuestros juegos más conocidos incluyen Meeple City, Beyond the Galaxy, Continental Conquest, Between the Seas y ahora, A New World.",
+
+    "blurbTwo.aardvarkgames": "Ya sea que sea nuevo en los juegos, un jugador experimentado, miembro de un grupo de juegos o alguien que prefiera jugar solo, ¡buscamos crear juegos que lo deleitarán y harán que regrese por más!",
+
+    "boardGame.boardgame": "Juego de mesa",
+
+    "about.boardgame": "Sobre el A New World",
+
+    "ruleOne.boardgame": "Aardvark Games anuncia nuestra nueva aventura de juegos de mesa, A New World. Requiere un equipo de dos a cinco jugadores que trabajarán juntos para anotar tantos puntos como sea posible después de caer en un mundo nuevo y despoblado. Los hábitats variarán y el equipo no sabrá de antemano dónde aterrizarán.",
+
+    "ruleTwo.boardgame": "Los entornos pueden ser un planeta desértico, una ubicación submarina, un mundo acuático con islas dispersas, una cadena montañosa cubierta de hielo o una jungla llena de animales depredadores y plantas peligrosas. (¡Noticias avanzadas! ¡El paquete de expansión 1 está en la fase de diseño con mundos y recursos adicionales!)",
+
+    "ruleThree.boardgame": "El juego se juega mejor en una competencia cara a cara con un segundo equipo que busca sobrevivir en su propio Nuevo Mundo, pero compitiendo por los mismos recursos. Sin embargo, con las modificaciones descritas para el juego en equipo en solitario, es posible disfrutar esforzándose por superar sus propios puntajes anteriores.",
+
+    "roles.boardgame": "Roles",
+
+    "roleBlurb.boardgame": "Cada equipo debe designar los roles de cada jugador antes de comenzar a jugar. Si un equipo tiene menos de cinco jugadores, los miembros del equipo pueden asumir más de un rol.",
+
+    "expeditionLeader.boardgame": "LÍDER DE EXPEDICIÓN",
+
+    "expeditionLeaderBlurb.boardgame": "Este miembro del equipo tomará decisiones sobre cuándo y cómo se juegan las cartas de acción. Facilitan la planificación estratégica conjunta del equipo y gestionan el presupuesto de la expedición.",
+
+    "resourceSpecialist.boardgame": "ESPECIALISTA EN RECURSOS",
+
+    "resourceSpecialistBlurb.boardgame": "Este miembro del equipo es responsable de obtener los recursos necesarios para sobrevivir al llegar y establecer una base en el nuevo mundo.",
+
+    "scientist.boardgame": "CIENTÍFICO",
+
+    "scientistBlurb.boardgame": "Este miembro del equipo colecciona tarjetas de conocimiento que le dan al equipo una ventaja para saber cómo superar los obstáculos y qué acciones tienen más probabilidades de éxito.",
+
+    "technician.boardgame": "TÉCNICO",
+
+    "technicianBlurb.boardgame": "Este miembro del equipo usa tarjetas de herramientas y tecnología para crear la base del equipo y reparar máquinas y armas según sea necesario.",
+
+    "weapons.boardgame": "ESPECIALISTA EN ARMAS",
+
+    "weaponsBlurb.boardgame": "Este miembro del equipo lidera las estrategias de defensa del equipo y trabaja para ganar puntos para elevar el nivel de habilidad de cada miembro del equipo en las clases de armas que mejor se adaptan al hábitat actual.",
+
+    "playtime.boardgame": "Este juego es apropiado para mayores de 13 años. El tiempo de juego es de 60 a 90 minutos.",
+
+    "back.login": "Volver a la página de inicio",
+
+    "login.login": "Acceso",
+
+    "email.login": "Correo electrónico",
+
+    "password.login": "Contraseña",
+
+    "notRegistered.login": "¿Aún no estás registrado para el torneo?",
+
+    "registerHere.login": "Registrar aquí",
+
+    "register.register": "Registro",
+
+    "firstName.register": "Nombre de pila",
+
+    "lastName.register": "Apellido",
+
+    "university.register": "Universidad",
+
+    "registeredAlready.register": "¿Ya registrado?",
+
+    "loginHere.register": "Entre aquí"
   }

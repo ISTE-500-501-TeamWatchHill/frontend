@@ -110,11 +110,6 @@ const ManageUniversities = (props) => {
             selector: (row) => row.description
         },
         {
-            name: "Approval Status",
-            selector: (row) => row.approvalStatus,
-            sortable: true
-        },
-        {
             name: "",
             cell: (row) => addEdit(row)
         }

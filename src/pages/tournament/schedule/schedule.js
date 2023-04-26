@@ -77,12 +77,6 @@ games.forEach((game) => {
               <h1 className={globalStyles.h1_title}>Schedule</h1>
           </div>
 
-          {/* TODO FOR ALEXIS
-            filter games by date/team/university location
-            incorporate endpoint 
-             */}
-
-
           <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
             <h3 className={globalStyles.headline_text}>Upcoming Games</h3>
 
@@ -101,7 +95,6 @@ games.forEach((game) => {
                           // eslint-disable-next-line
                           gamesForDateX.map((game, index) => {
                             return (
-                                // TODO: change key to use unique identifier
                                 <GameBlock key={index} game={game} />
                             )
                           })

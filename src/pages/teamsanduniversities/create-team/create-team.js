@@ -56,15 +56,7 @@ const CreateTeam = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                // alert('Failed to create team');
-            }); // TODO: display error, refresh form
-
-        // ask to get backend changed to accept emails instead of ids
-        // strip out empty inputs
-        // create object to POST
-        // make POST request
-            // show error message if POST request fails
-            // or redirect to the page created for the team
+            });
     }
 
     return (

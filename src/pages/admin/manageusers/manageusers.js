@@ -9,7 +9,6 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Button from '../../../components/button/button';
 import Cookies from 'universal-cookie';
 import { Navigate } from "react-router-dom";
-// import { use } from 'i18next';
 import Toast from '../../../components/toast/toast';
 
 const ManageUsers = (props) => {  
@@ -21,7 +20,9 @@ const ManageUsers = (props) => {
     const [editUser, changeEditUser] = useState({roleID: 19202, universityID: 1357, teamID: 'None', firstName: "Jane", lastName: "Doe", email: "janedoe@rit.edu", teamInfo: [{players: [], description: ""}]});
     //To keep the status of when messages need to be shown
     const [toastOpen, setToastOpen] = useState(false);
+    // eslint-disable-next-line
     const [toastTitle, setToastTitle] = useState("");
+    // eslint-disable-next-line
     const [toastMessage, setToastMessage] = useState("");
 
     // Needed for all API calls

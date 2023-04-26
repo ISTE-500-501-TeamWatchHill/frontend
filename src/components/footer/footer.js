@@ -14,7 +14,7 @@ export default function Footer(props) {
                 <div className={styles.footerLeftBlock}>
                     <h4 className={styles.footerTitle}>A New World</h4>
                     <div className={styles.subcontent}>{t("footerSubtitle.home")}</div>
-                    <p>Select your language: <LanguageSelector /></p>
+                    <LanguageSelector />
                     <Spacer height='119px' />
                     <div className={styles.subcontent}>&copy; Copyright 2023 · Team Watch Hill</div>
                 </div>

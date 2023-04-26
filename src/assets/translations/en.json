@@ -153,5 +153,29 @@
 
     "weaponsBlurb.boardgame": "This team member leads the team defense strategies and works to gain points to raise each team member's skill level on the weapon classes best suited to the current habitat.",
 
-    "playtime.boardgame": "This game is appropriate for ages 13 and over. Play time runs 60-90 minutes."
+    "playtime.boardgame": "This game is appropriate for ages 13 and over. Play time runs 60-90 minutes.",
+
+    "back.login": "Back to Homepage",
+
+    "login.login": "Login",
+
+    "email.login": "Email",
+
+    "password.login": "Password",
+
+    "notRegistered.login": "Not registered for the tournament yet?",
+
+    "registerHere.login": "Register here",
+
+    "register.register": "Register",
+
+    "firstName.register": "First Name",
+
+    "lastName.register": "Last Name",
+
+    "university.register": "University",
+
+    "registeredAlready.register": "Already registered?",
+
+    "loginHere.register": "Login here"
   }

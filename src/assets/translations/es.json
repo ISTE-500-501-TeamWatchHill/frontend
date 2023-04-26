@@ -153,5 +153,29 @@
 
     "weaponsBlurb.boardgame": "Este miembro del equipo lidera las estrategias de defensa del equipo y trabaja para ganar puntos para elevar el nivel de habilidad de cada miembro del equipo en las clases de armas que mejor se adaptan al hábitat actual.",
 
-    "playtime.boardgame": "Este juego es apropiado para mayores de 13 años. El tiempo de juego es de 60 a 90 minutos."
+    "playtime.boardgame": "Este juego es apropiado para mayores de 13 años. El tiempo de juego es de 60 a 90 minutos.",
+
+    "back.login": "Volver a la página de inicio",
+
+    "login.login": "Acceso",
+
+    "email.login": "Correo electrónico",
+
+    "password.login": "Contraseña",
+
+    "notRegistered.login": "¿Aún no estás registrado para el torneo?",
+
+    "registerHere.login": "Registrar aquí",
+
+    "register.register": "Registro",
+
+    "firstName.register": "Nombre de pila",
+
+    "lastName.register": "Apellido",
+
+    "university.register": "Universidad",
+
+    "registeredAlready.register": "¿Ya registrado?",
+
+    "loginHere.register": "Entre aquí"
   }

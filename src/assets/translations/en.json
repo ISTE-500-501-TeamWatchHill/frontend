@@ -85,5 +85,23 @@
 
     "startTime.schedule": "START TIME",
 
-    "location.schedule": "LOCATION"
+    "location.schedule": "LOCATION",
+
+    "teamsunisTitle.teamsunis": "Teams & Universities",
+
+    "allTeams.teamsunis": "All Teams",
+
+    "sort.teamsunis": "Sort by...",
+
+    "noneSort.teamsUnis": "None",
+
+    "teamSort.teamsunis": "Team A-Z",
+
+    "uniSort.teamsunis": "University A-Z",
+
+    "search.teamsunis": "Search teams and universites",
+
+    "players.teamsunis": "PLAYERS",
+
+    "pendingApproval.teamsunis": "Pending Approval"
   }

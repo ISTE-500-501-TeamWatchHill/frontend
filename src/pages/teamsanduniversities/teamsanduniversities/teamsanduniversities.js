@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
+import { useTranslation } from "react-i18next";
 import Select from 'react-select'
 import globalStyles from '../../pages.module.css';
 import styles from './teamsanduniversities.module.css';
 import SearchBar from '../../../components/searchbar/searchbar';
 import TeamBlock from '../../../components/teamblock/teamblock';
-// import { use } from 'i18next';
 import Toast from '../../../components/toast/toast';
 
 const TeamsAndUniversities = (props) => {  
+    const { t } = useTranslation();
 
     //Setup for hook for search term from search bar
     const [searchValue, changeSearchValue] = useState("");
@@ -65,13 +66,13 @@ const TeamsAndUniversities = (props) => {
     return (
         <>
             <div className={`${globalStyles.h1_title_section} ${styles.background}`}>
-                <h1 className={globalStyles.h1_title}>Teams & Universities</h1>
+                <h1 className={globalStyles.h1_title}>{t("teamsunisTitle.teamsunis")}</h1>
             </div>
             
             <div className={`${globalStyles.body_margin} ${globalStyles.margin8_top_bottom}`}>
                 <div className={styles.flex}>
                     <div className={styles.left}>
-                        <h3 className={globalStyles.headline_text}>All Teams</h3>
+                        <h3 className={globalStyles.headline_text}>{t("allTeams.teamsunis")}</h3>
                         <p className={globalStyles.green_bar}>____</p>
                     </div>
 
@@ -81,12 +82,12 @@ const TeamsAndUniversities = (props) => {
                         <Select
                             //Default value is null
                             className={styles.select}
-                            placeholder="Sort by..."
+                            placeholder={t("sort.teamsunis")}
                             value={sortOption}
                             options={[
-                                { value: 'none', label: "None" },
-                                { value: 'team', label: 'Team A-Z' },
-                                { value: 'university', label: 'University A-Z' }
+                                { value: 'none', label:t("noneSort.teamsUnis") },
+                                { value: 'team', label:t("teamSort.teamsunis") },
+                                { value: 'university', label:t("uniSort.teamsunis") }
                             ]}
                             onChange={changeSortOption}
                         />

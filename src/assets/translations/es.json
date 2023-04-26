@@ -85,5 +85,23 @@
 
     "startTime.schedule": "HORA DE INICIO",
 
-    "location.schedule": "UBICACIÓN"
+    "location.schedule": "UBICACIÓN",
+
+    "teamsunisTitle.teamsunis": "Equipos y Universidades",
+
+    "allTeams.teamsunis": "Todos los equipos",
+
+    "sort.teamsunis": "Ordenar por...",
+
+    "noneSort.teamsUnis": "Ninguno",
+
+    "teamSort.teamsunis": "Equipo A-Z",
+
+    "uniSort.teamsunis": "Universidad A-Z",
+
+    "search.teamsunis": "Buscar equipos y universidades",
+
+    "players.teamsunis": "JUGADORES",
+
+    "pendingApproval.teamsunis": "Aprobación pendiente"
   }

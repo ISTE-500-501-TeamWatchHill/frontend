@@ -160,7 +160,6 @@ const University = (props) => {
                         // eslint-disable-next-line
                         teams.map((team, index) => {
                           return (
-                              // TODO: change key to use unique identifier
                               <TeamBlock key={index} team={team} />
                           )
                       })
@@ -179,7 +178,6 @@ const University = (props) => {
                             // eslint-disable-next-line
                             gamesForDateX.map((game, index) => {
                               return (
-                                  // TODO: change key to use unique identifier
                                   <GameBlock key={index} game={game} />
                               )
                             })

@@ -108,7 +108,6 @@ const TeamsAndUniversities = (props) => {
                         teams.map((team) => {
                             if (searchValue.length === 0 || team.description.toLowerCase().includes(searchValue.toLowerCase()) || team.universityInfo[0].name.toLowerCase().includes(searchValue.toLowerCase())) {
                                 return (
-                                    // TODO: change key to use unique identifier
                                     <TeamBlock key={team._id} team={team} />
                                 )
                             }

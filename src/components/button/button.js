@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './button.module.css';
 
-// TODO: Handle icons in buttons? (like on logged in profile page)
 // name: String                     -- string included within the button
 // width: Int                       -- width of button (subtract width of word and 34px of padding)
 // transparentBackground: Boolean   -- background of button is clear

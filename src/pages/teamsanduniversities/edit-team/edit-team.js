@@ -71,7 +71,6 @@ const EditTeam = () => {
             })
             .catch(function(error) {
                 console.log('error', error);
-                // changeHasError(true);
             }); 
     }
 
@@ -94,10 +93,6 @@ const EditTeam = () => {
               })
               .catch(function(error) {
                 console.log('error', error);
-                //Display the error
-                // setToastTitle("Failed to Retreive Team");
-                // setToastMessage("Please check to ensure the API is up and running.");
-                // setToastOpen(true);
               });
           }
         const fetchTeam = async (teamID) => {
@@ -126,6 +121,7 @@ const EditTeam = () => {
         }
 
         fetchTeam();
+        // eslint-disable-next-line
     }, []);
 
     function renderRestOfRows()  {
@@ -182,8 +178,6 @@ const EditTeam = () => {
                                 /> 
                             )
                         })
-                        // fix defaultValue of team.description issue
-                        // error messages on bad input
                     }
                     { renderRestOfRows() }
                     <Button type='submit' name='Edit Team' width='100%' />

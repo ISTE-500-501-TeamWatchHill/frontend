@@ -48,9 +48,6 @@ export default function Navbar() {
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>
-                      <td><a href="/teamsanduniversities">{t("findATeamNav.home")}</a></td>
-                      <td><a href="/team/create">{t("createATeamNav.home")}</a></td>
-                      <td><a href="/team/create">{t("editATeamNav.home")}</a></td>
                     </tr>
                   </tbody>
                 </table>

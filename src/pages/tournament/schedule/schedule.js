@@ -97,7 +97,6 @@ games.forEach((game) => {
                           // eslint-disable-next-line
                           gamesForDateX.map((game, index) => {
                             return (
-                                // TODO: change key to use unique identifier
                                 <GameBlock key={index} game={game} />
                             )
                           })

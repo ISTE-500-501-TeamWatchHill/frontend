@@ -29,11 +29,9 @@ const Login = () => {
     async function onSubmit(e) { 
         e.preventDefault();
 
-        //TODO: move out login to methods.js 
         let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        // TODO: Sanitize data and make consts for future use
         const raw = JSON.stringify({
             "email": e.target.email.value,
             "password": e.target.password.value,

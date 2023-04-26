@@ -122,6 +122,7 @@ const Registration = () => {
                             name="universityID" 
                             value={(univSelected)}
                             disabled
+                            hidden
                         />
                     </div>
                     <select size="3" className={styles.dropdown} onChange={(e) => handleUniversityClick(e)}>
@@ -129,7 +130,7 @@ const Registration = () => {
                             // eslint-disable-next-line
                             universities.map((university, index) => {
                                 return (
-                                    <option key={index} value={university.universityID}>{university.description}</option>
+                                    <option key={index} value={university.universityID}>{university.name}</option>
                                 )
                             })
                         }
@@ -139,6 +140,7 @@ const Registration = () => {
                     <Button type='submit' name={t("register.register")} width='100%' />
                     <Spacer height='36px' />
                     <h4 className={styles.h4}>{t("registeredAlready.register")} <a className={styles.link} href="/login">{t("loginHere.register")}</a></h4>
+                    <h4 className={styles.h4}>Don't see your university listed? <a className={styles.link} href="mailto:anw.aardvarkgames@gmail.com">Contact us</a></h4>
 
                     {
                     toastOpen &&

@@ -467,7 +467,7 @@ export default function EditPopup(props) {
                                     // eslint-disable-next-line
                                     universities.map((university, index) => {
                                         return (
-                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.description}</option>
+                                            <option key={index} value={university.universityID} selected={(props.data.universityInfo[0].universityID===university.universityID)}>{university.name}</option>
                                         )
                                     })
                                 }
@@ -504,7 +504,6 @@ export default function EditPopup(props) {
                             id="approvalStatus" 
                             label="Approved" 
                             type="checkbox"
-                            // checked={props.data.approvalStatus} // TODO: fix this with state
                             onChange={(e) => { 
                                 const isChecked = document.getElementById("approvalStatus").checked;
                                 document.getElementById("approvalStatus").style.backgroundColor = isChecked ?  "#2E8D93" : "#FFFFFF";

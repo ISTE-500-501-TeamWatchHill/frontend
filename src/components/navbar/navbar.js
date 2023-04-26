@@ -45,6 +45,10 @@ export default function Navbar() {
                         {t("teamsanduniversitiesNav.home")}
                           <FaCaretDown />
                         </button>
+                        <tr className={styles.dropcontent}>
+                          <td><a href="/teamsanduniversities">{t("findATeamNav.home")}</a></td>
+                          <td><a href="/team/create">{t("createATeamNav.home")}</a></td>
+                        </tr>
                       </th>
                     </tr>
                     <tr className={styles.dropcontent}>

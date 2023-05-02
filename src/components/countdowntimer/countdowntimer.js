@@ -3,7 +3,7 @@ import styles from './countdowntimer.module.css';
 
 export default function CountdownTimer() {
 
-    const countDownDate = new Date("May 1, 2023 15:37:25").getTime();
+    const countDownDate = new Date("June 1, 2023 15:37:25").getTime();
     let days = 0;
     let hours = 0;
     let minutes = 0;
